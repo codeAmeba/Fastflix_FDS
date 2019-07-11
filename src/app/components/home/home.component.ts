@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core'
   })
 export class HomeComponent implements OnInit {
   user: string
+  playBillBoard: boolean
 
   constructor() {}
 
   ngOnInit() {
     this.user = '사용자'
+    this.playBillBoard = false
   }
 }

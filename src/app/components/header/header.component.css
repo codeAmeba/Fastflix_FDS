@@ -7,38 +7,72 @@
   position: absolute;
   left: 0;
   top: 0;
+  z-index: 2;
 }
 
 .header-container {
-  position: relative;
-  background: transparent;
   left: 0;
   right: 0;
   top: 0;
-  z-index: 1;
+  position: relative;
+  z-index: 1
+}
+
+.header-container .main-header {
+  z-index: 2;
+  height: 41px
+}
+
+@media screen and (min-width: 950px) {
+  .header-container .main-header {
+    height: 68px
+  }
 }
 
 .main-header {
-  height: 68px;
-  z-index: 2;
-  background-color: transparent;
-  padding: 0 60px;
-  font-size: 14px;
   position: relative;
   display: flex;
   align-items: center;
+  padding: 0 4%;
+  z-index: 2;
+  font-size: 1.2rem;
+  transition: background-color .4s
+}
+
+@media screen and (min-width: 1200px) {
+  .pinning-header .main-header {
+    font-size: 14px
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .pinning-header .main-header {
+    padding: 0 60px
+  }
 }
 
 /* https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff */
-.logo {
+
+.main-header .logo {
   text-decoration: none;
+  font-size: 1.8em;
   color: #e50914;
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
+  margin-right: 5px
+}
 
-  margin-right: 25px;
-  font-size: 25px;
+@media screen and (min-width: 950px) {
+  .main-header .logo {
+    font-size: 25px
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .main-header .logo {
+    margin-right: 25px
+  }
 }
 
 .main-navigation {

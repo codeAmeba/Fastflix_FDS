@@ -1,0 +1,213 @@
+.billboard-animations-container {
+  display: block;
+  z-index: 1;
+  position: relative;
+}
+
+.billboard-animations-container .billboard-row {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.billboard-row {
+  user-select: none;
+  touch-action: pan-y;
+  margin-bottom: 20px;
+  background-color: #000;
+  position: relative;
+  padding-bottom: 40%;
+}
+
+.billboard-row .billboard {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+}
+
+.billboard-row .billboard,
+.billboard-row .billboard-originals {
+  z-index: 0;
+}
+
+.billboard-trailer {
+  position: relative;
+  background-color: #000;
+  width: 100%;
+  height: 56.25vw;
+}
+
+.trailer-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.billboard-trailer .hero-img-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.billboard-trailer .loading-mask,
+.billboard-trailer .static-image {
+  position: absolute;
+  background-position: center center;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 1;
+  transition: opacity .4s cubic-bezier(.665, .235, .265, .8) 0s;
+}
+
+.billboard-row .billboard .hero {
+  position: absolute;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  transition: opacity 750ms;
+}
+
+.billboard-row .billboard .image-layer {
+  z-index: 5;
+}
+
+.billboard-row .billboard .vignette-layer {
+  z-index: 8;
+}
+
+.billboard .vignette-bottom {
+  background-size: 100% 100%;
+  background-position: 0 top;
+  background-repeat: repeat-x;
+  background-color: transparent;
+  width: 100%;
+  height: 22.8vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: 0;
+  background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0) 0, rgba(20, 20, 20, .15) 15%, rgba(20, 20, 20, .35) 29%, rgba(20, 20, 20, .58) 44%, #141414 68%, #141414 100%);
+}
+
+.billboard .vignette-top {
+  background-image: linear-gradient(to bottom, #141414 0, rgba(20, 20, 20, 0) 100%);
+  background-size: 100% 100%;
+  background-position: 0 top;
+  background-repeat: repeat-x;
+  background-color: transparent;
+  width: 100%;
+  height: 12.8vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: .65;
+}
+
+.billboard .billboard-data {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+}
+
+.billboard-data {
+  width: 100%;
+  height: 100%;
+}
+
+.billboard .info {
+  top: 0;
+  width: 40%;
+  height: 130%;
+  left: 0;
+  padding-left: 4%;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.billboard .meta-layer {
+  z-index: 10;
+}
+
+.billboard .info .logo-and-text {
+  margin: 0;
+  width: 100%;
+  padding-top: 10vw;
+  position: relative;
+  transition: -webkit-transform 1.5s cubic-bezier(.165, .84, .44, 1);
+  transition: transform 1.5s cubic-bezier(.165, .84, .44, 1);
+  transition: transform 1.5s cubic-bezier(.165, .84, .44, 1), -webkit-transform 1.5s cubic-bezier(.165, .84, .44, 1), -moz-transform 1.5s cubic-bezier(.165, .84, .44, 1), -o-transform 1.5s cubic-bezier(.165, .84, .44, 1);
+}
+
+.billboard .billboard-title {
+  min-height: 13.2vw;
+  position: relative;
+}
+
+.billboard .info .logo-and-text .title-logo {
+  margin: 0;
+  width: 90%;
+}
+
+.thanosRow,
+.rowContainer {
+  transition: transform .54s cubic-bezier(.5, 0, .1, 1) 0s, -webkit-transform .54s cubic-bezier(.5, 0, .1, 1) 0s, -moz-transform .54s cubic-bezier(.5, 0, .1, 1) 0s, -o-transform .54s cubic-bezier(.5, 0, .1, 1) 0
+}
+
+.thanosRow {
+  z-index: 1;
+  position: relative;
+}
+
+.rowContainer {
+  position: relative;
+  z-index: 0;
+}
+
+.thanosRow.thanosTitleCard {
+  margin: 3vw 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+.thanosRow .rowHeader {
+  line-height: 1.3;
+  margin: 0;
+}
+
+.thanosRow.thanosTitleCard .rowTitle {
+  font-size: 1.4vw;
+  color: #e5e5e5;
+  font-weight: 700;
+  margin: 0 4% .5em 4%;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 6em;
+}
+
+.thanosRow.thanosTitleCard .rowTitle .rowHeaderTitle {
+  display: table-cell;
+  vertical-align: bottom;
+  line-height: 1.25vw;
+  font-size: 1.4vw;
+}
+
+.bigRow {
+  position: relative;
+  padding: 34.6875vw 0 0 0;
+}
