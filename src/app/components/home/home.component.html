@@ -1,4 +1,94 @@
 <app-header></app-header>
-<div class="main" role="main">
+<div class="thanos" role="main">
   <h1 class="visually-hidden">Fastflix 홈</h1>
+  <span class="billboard-animations-container">
+    <div class="billboard-row" role="region" aria-label="특별 소개 콘텐츠">
+      <div class="billboard">
+        <div class="billboard-trailer">
+          <div class="trailer-background">
+            <div class="FFPlayer" *ngIf="playBillBoard"></div>
+            <div class="hero-img-wrapper">
+              <img class="hero static-image image-layer"
+                src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABRJewj46ewk1GG7755f0p-zAiizaKO-B1-Ku8aIauHIw1H_MhASsR3fZrz630jHxwOl_Ng2-ERgvrqavnjarXjiDzBsFDibn7g.webp?r=7d4"
+                alt="">
+              <div class="vignette-top vignette-layer"></div>
+              <div class="vignette-bottom vignette-layer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="billboard-data">
+          <div class="info meta-layer">
+            <div class="logo-and-text meta-layer">
+              <div class="billboard-title">
+                <img class="title-logo"
+                  src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/5e0byrbbfBPBmtxyXMpKqMuqOQY/AAAABT0NCUJAm3n2Rk5ea_Rx8Xdh8MSUFm8BNoycSTMJGfClC9kA7T-YQ2XZPvlXcI_1fsVpeDh96XZQDyJOEK4OUGBNVsmgVTwigEbL_7PJ4eHhA6GFhuTgPmLlw2R-vc9d7J8ZEXcn2esX5bKqSTM10xhk3MGpV6lABe-MLmTcB9g0cg.webp?r=497"
+                  title="Outlander" alt="Outlander">
+              </div>
+              <div class="billboard-links">
+                <a routerLink="/watch"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+  <div class="thanosRow thanosTitleCard">
+    <h2 class="rowHeader">
+      <span class="rowTitle">
+        <div class="rowHeaderTitle">
+          Fastflix 인기 콘텐츠
+        </div>
+      </span>
+    </h2>
+    <div class="rowContainer"></div>
+  </div>
+  <div class="thanosRow thanosTitleCard">
+    <h2 class="rowHeader">
+      <span class="rowTitle">
+        <div class="rowHeaderTitle">
+          내가 찜한 콘텐츠
+        </div>
+      </span>
+    </h2>
+    <div class="rowContainer"></div>
+  </div>
+  <div class="thanosRow thanosTitleCard thanosBigRow">
+    <div class="bigRow">
+
+    </div>
+  </div>
+  <div class="thanosRow thanosTitleCard">
+    <h2 class="rowHeader">
+      <span class="rowTitle">
+        <div class="rowHeaderTitle">최신 등록 콘텐츠</div>
+      </span>
+    </h2>
+    <div class="rowContainer rowContainerTitleCard"></div>
+  </div>
+  <div class="thanosRow thanosTitleCard">
+    <h2 class="rowHeader">
+      <span class="rowTitle">
+        <div class="rowHeaderTitle">{{user}} 님이 시청 중인 콘텐츠</div>
+      </span>
+    </h2>
+    <div class="rowContainer rowContainerTitleCard"></div>
+  </div>
+  <div class="thanosRow thanosTitleCard originalsRow">
+    <h2 class="rowHeader">
+      <span class="rowTitle">
+        <div class="rowHeaderTitle">Fastflix 오리지널</div>
+      </span>
+    </h2>
+    <div class="rowContainer rowContainerTitleCard"></div>
+  </div>
+  <div class="thanosRow thanosTitleCard">
+    <h2 class="rowHeader">
+      <span class="rowTitle">
+        <div class="rowHeaderTitle">영화</div>
+      </span>
+    </h2>
+    <div class="rowContainer rowContainerTitleCard"></div>
+  </div>
 </div>
+<app-footer></app-footer>
