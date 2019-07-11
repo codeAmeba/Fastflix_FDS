@@ -1,0 +1,48 @@
+.billboard-animations-container {
+  display: block;
+  z-index: 1;
+  position: relative;
+}
+
+.billboard-animations-container .billboardRow {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.billboardRow {
+  user-select: none;
+  touch-action: pan-y;
+  margin-bottom: 20px;
+  background-color: #000;
+  position: relative;
+  padding-bottom: 40%;
+}
+
+.thanosRow .rowHeader {
+  line-height: 1.3;
+  margin: 0;
+}
+
+.thanosRow.thanosTitleCard .rowTitle {
+  font-size: 1.4vw;
+  color: #e5e5e5;
+  font-weight: 700;
+  margin: 0 4% .5em 4%;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 6em;
+}
+
+.thanosRow.thanosTitleCard .rowTitle .rowHeaderTitle {
+  display: table-cell;
+  vertical-align: bottom;
+  line-height: 1.25vw;
+  font-size: 1.4vw;
+}
+
+.bigRow {
+  position: relative;
+  padding: 34.6875vw 0 0 0;
+}
