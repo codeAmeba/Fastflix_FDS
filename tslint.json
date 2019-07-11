@@ -1,5 +1,5 @@
 {
-  "extends": "tslint:recommended",
+  "extends": ["@netflix/tslint-config", "tslint-config-prettier", "tslint:recommended"],
   "rules": {
     "array-type": false,
     "arrow-parens": false,
