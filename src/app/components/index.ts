@@ -1,11 +1,12 @@
 // Routing
-export * from './home/home.component';
-export * from './movie/movie.component';
-export * from './profile/profile.component';
-export * from './signup/signup.component';
-export * from './login/login.component';
-export * from './watch/watch.component';
-export * from './index/index.component';
+export * from './home/home.component'
+export * from './movie/movie.component'
+export * from './profile/profile.component'
+export * from './signup/signup.component'
+export * from './login/login.component'
+export * from './watch/watch.component'
+export * from './index/index.component'
+export * from './my-list/my-list.component'
 
 // export * from './slider/slider.component';
 // export * from './card/card.component';

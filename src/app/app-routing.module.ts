@@ -9,7 +9,8 @@ import {
   SignupComponent,
   LoginComponent,
   WatchComponent,
-  IndexComponent
+  IndexComponent,
+  MyListComponent
 } from './components'
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'watch', component: WatchComponent }
+  { path: 'watch', component: WatchComponent },
+  { path: 'mylist', component: MyListComponent }
 ]
 
 @NgModule({
