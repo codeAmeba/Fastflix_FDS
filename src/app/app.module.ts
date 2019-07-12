@@ -15,6 +15,7 @@ import { DetailCardComponent } from './components/detail-card/detail-card.compon
 import { IndexComponent } from './components/index/index.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MyListComponent } from './components/my-list/my-list.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FooterComponent } from './components/footer/footer.component';
     DetailCardComponent,
     IndexComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MyListComponent
   ],
   imports: [
     BrowserModule,

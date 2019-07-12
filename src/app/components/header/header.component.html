@@ -3,8 +3,12 @@
     <nav class="main-header">
       <a routerLink="/home" class="logo icon-logoUpdate" routerLinkActive="active"></a>
       <ul class="main-navigation">
-        <li class="navigation-tab"><a routerLink="/home" routerLinkActive="current">홈</a></li>
-        <li class="navigation-tab"><a routerLink="/movie" routerLinkActive="current">영화</a></li>
+        <li class="navigation-tab"><a routerLink="/home" [routerLinkActiveOptions]="{exact:
+          true}" routerLinkActive="current">홈</a></li>
+        <li class="navigation-tab"><a routerLink="/movie" [routerLinkActiveOptions]="{exact:
+          true}" routerLinkActive="current">영화</a></li>
+        <li class="navigation-tab"><a routerLink="/mylist" [routerLinkActiveOptions]="{exact:
+          true}" routerLinkActive="current">내가 찜 한 목록</a></li>
       </ul>
       <ul class="second-navigation">
         <li></li>
