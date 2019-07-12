@@ -54,3 +54,55 @@
 .icon-add:before {
   content: '\e641'
 }
+
+.nf-flat-button .nf-flat-button-icon-close,
+.nf-flat-button .nf-flat-button-icon-episodes,
+.nf-flat-button .nf-flat-button-icon-info,
+.nf-flat-button .nf-flat-button-icon-mylist-add,
+.nf-flat-button .nf-flat-button-icon-mylist-added,
+.nf-flat-button .nf-flat-button-icon-play,
+.nf-flat-button .nf-flat-button-icon-restart {
+  font-family: nf-icon;
+}
+
+.nf-flat-button .nf-flat-button-icon {
+  vertical-align: middle;
+  margin-right: .71em;
+  background-color: transparent;
+  font-size: inherit;
+}
+
+.nf-flat-button .nf-flat-button-icon-play:before {
+  content: '\e646';
+}
+
+.bigRowItem .forward-leaning .btn-flat,
+.bigRowItem .forward-leaning .nf-flat-button .annotation,
+.bigRowItem .forward-leaning .nf-flat-button .nf-flat-button-text,
+.bigRowItem .forward-leaning .nf-icon-button .nf-icon-button-label,
+.billboard-links.forward-leaning .btn-flat,
+.billboard-links.forward-leaning .nf-flat-button .annotation,
+.billboard-links.forward-leaning .nf-flat-button .nf-flat-button-text,
+.billboard-links.forward-leaning .nf-icon-button .nf-icon-button-label,
+.content-refresh .forward-leaning .btn-flat,
+.content-refresh .forward-leaning .nf-flat-button .annotation,
+.content-refresh .forward-leaning .nf-flat-button .nf-flat-button-text,
+.content-refresh .forward-leaning .nf-icon-button .nf-icon-button-label,
+.profiles-billboard .forward-leaning .btn-flat,
+.profiles-billboard .forward-leaning .nf-flat-button .annotation,
+.profiles-billboard .forward-leaning .nf-flat-button .nf-flat-button-text,
+.profiles-billboard .forward-leaning .nf-icon-button .nf-icon-button-label {
+  text-transform: none;
+}
+
+.nf-flat-button .nf-flat-button-text {
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+  top: auto;
+  white-space: nowrap;
+}
+
+.icon-button-mylist-add:before {
+  content: '\e885';
+}
