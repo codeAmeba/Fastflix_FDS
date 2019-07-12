@@ -40,13 +40,13 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .pinning-header .main-header {
+  .header-container .main-header {
     font-size: 14px
   }
 }
 
 @media screen and (min-width: 1500px) {
-  .pinning-header .main-header {
+  .header-container .main-header {
     padding: 0 60px
   }
 }
