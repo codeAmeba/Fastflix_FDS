@@ -198,13 +198,6 @@
   display: block;
 }
 
-@media screen and (max-width: 950px) {
-
-  .pinning-header .account-drop-down {
-    top: 59px;
-  }
-}
-
 .pinning-header .account-drop-down {
   position: absolute;
   right: 0;
@@ -215,6 +208,12 @@
 
   opacity: 0;
   transition-duration: 150ms;
+}
+
+@media screen and (max-width: 950px) {
+  .pinning-header .account-drop-down {
+    top: 59px;
+  }
 }
 
 .sub-menu.theme-lakira {
@@ -332,4 +331,28 @@
 .pinning-header .account-drop-down .account-links {
   padding: 10px 0;
   border-top: solid 1px rgba(255, 255, 255, .25);
+}
+
+.pinning-header .account-menu-item .avatar-wrapper {
+  display: inline;
+}
+
+.pinning-header .account-dropdown-button .avatar-wrapper {
+  position: relative;
+}
+
+.pinning-header .account-dropdown-button .callout-arrow {
+  position: absolute;
+  bottom: -19px;
+  left: 50%;
+  border-width: 7px;
+  margin-left: -7px;
+  border-color: transparent transparent #e5e5e5;
+  border-style: solid;
+  height: 0;
+  width: 0;
+  padding: 10px 0;
+
+  opacity: 0;
+  transition-duration: 150ms;
 }

@@ -19,13 +19,25 @@
           </div>
         </li>
         <li class="nav-element">
-          <div class="account-menu-item">
-            <div class="account-dropdown-button"><a routerLink="/profile" role="button" tabindex="0"
-                aria-haspopup="true" aria-expanded="false" aria-label="수빈 - Account &amp; Settings"><span
-                  class="profile-link" role="presentation"><img class="profile-icon"
+          <div class="account-menu-item" (mouseenter)="showDropDown = true" (mouseleave)="showDropDown = false">
+            <div class="account-dropdown-button">
+              <a routerLink="/profile" role="button" tabindex="0">
+                <span class="profile-link" role="presentation">
+                  <div class="avatar-wrapper"
+                    [ngStyle]="{display : showDropDown ? 'block' : 'none', 'transition-duration': '150ms'}">
+                    <img class="profile-icon"
+                      src="https://occ-0-3451-1009.1.nflxso.net/art/5c6df/9dcbbf93bc90ed9752c79fa6b0b04bf0ad85c6df.png"
+                      alt="">
+                    <div class="callout-arrow" [ngStyle]="{opacity : showDropDown ? 1 : 0}"></div>
+                  </div>
+                  <img class="profile-icon"
+                    [ngStyle]="{display : showDropDown ? 'none' : 'block', 'transition-duration': '150ms'}"
                     src="https://occ-0-3451-1009.1.nflxso.net/art/5c6df/9dcbbf93bc90ed9752c79fa6b0b04bf0ad85c6df.png"
-                    alt=""></span></a><span class="caret" role="presentation"></span></div>
-            <div class="account-drop-down sub-menu theme-lakira">
+                    alt="">
+                </span>
+              </a>
+              <span class="caret" role="presentation"></span></div>
+            <div class="account-drop-down sub-menu theme-lakira" [ngStyle]="{opacity : showDropDown ? 1 : 0}">
               <div class="ptrack-content">
                 <div class="topbar"></div>
                 <ul class="sub-menu-list profiles" role="list" aria-label="Profiles">
