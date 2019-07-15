@@ -86,12 +86,6 @@
   margin-left: 20px;
 }
 
-.main-navigation .navigation-tab a.current {
-  color: #fff;
-  font-weight: 700;
-  cursor: default;
-}
-
 .main-navigation .navigation-tab a {
   position: relative;
   color: #e5e5e5;
@@ -99,6 +93,17 @@
   display: flex;
   align-items: center;
   height: 100%;
+}
+
+.pinning-header .navigation-tab a:hover {
+  color: #b3b3b3;
+}
+
+
+.main-navigation .navigation-tab a.current {
+  color: #fff;
+  font-weight: 700;
+  cursor: default;
 }
 
 .pinning-header .secondary-navigation {
@@ -193,7 +198,6 @@
   }
 }
 
-
 .pinning-header .secondary-navigation .nav-element a {
   display: block;
 }
@@ -270,6 +274,19 @@
   display: inline;
 }
 
+.pinning-header .account-dropdown-button .caret {
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+}
+
+.pinning-header .secondary-navigation:not(.menu-navigation).search-focused .searchBox {
+  margin-left: 100px
+}
+
 .akira-header .account-drop-down .profiles .profile-icon,
 .pinning-header .account-drop-down .profiles .profile-icon {
   margin-right: 10px;
@@ -277,7 +294,6 @@
   height: 32px;
   width: 32px;
 }
-
 
 .pinning-header .account-drop-down .profiles .profile-name {
   overflow: hidden;
@@ -287,6 +303,14 @@
   vertical-align: middle;
   display: inline-block;
   white-space: pre;
+}
+
+.pinning-header .account-drop-down .profiles .profile-link:hover .profile-name {
+  text-decoration: underline;
+}
+
+.pinning-header .account-drop-down .sub-menu-item>a:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 950px) {

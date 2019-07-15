@@ -60,4 +60,5 @@ html {
   color: #fff;
   user-select: none;
   cursor: default;
+  -webkit-font-smoothing: antialiased;
 }
