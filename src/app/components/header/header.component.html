@@ -36,8 +36,10 @@
                     alt="">
                 </span>
               </a>
-              <span class="caret" role="presentation"></span></div>
-            <div class="account-drop-down sub-menu theme-lakira" [ngStyle]="{opacity : showDropDown ? 1 : 0}">
+              <span class="caret" role="presentation"></span>
+            </div>
+            <div class="account-drop-down sub-menu theme-lakira" *ngIf="showDropDown"
+              [ngStyle]="{opacity : showDropDown ? 1 : 0}">
               <div class="ptrack-content">
                 <div class="topbar"></div>
                 <ul class="sub-menu-list profiles" role="list" aria-label="Profiles">
