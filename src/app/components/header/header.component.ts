@@ -13,4 +13,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.showDropDown = false
   }
+
+  showMenu(event: HTMLElement) {
+    console.log(event)
+    this.showDropDown = true
+  }
+
+  hideMenu(event: HTMLElement) {
+    console.log(event)
+    this.showDropDown = false
+  }
 }
