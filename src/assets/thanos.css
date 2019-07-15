@@ -323,3 +323,35 @@
   position: relative;
   padding: 34.6875vw 0 0 0;
 }
+
+.bigRow .bigRowItem {
+  padding: 0 4%;
+}
+
+.bigRow .bigRowItem .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-size: cover;
+  background-position: top;
+  height: 40.078125vw;
+  opacity: .1;
+  pointer-events: none;
+
+  /* 임시 */
+  background-image: url("https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABUGdNBnQ3ucgsTitrvngw3xl3kTv3-jy9fA3PVFu-byUot1FgFnep4UwprnnPajgX0yXVDCDXSXIPZJr5vDncVN-Gn6_lWcTPA.webp?r=348");
+}
+
+.bigRow .video-component-container {
+  position: absolute;
+  top: 3.125vw;
+  width: 53.90625vw;
+  height: 30.3125vw;
+}
+
+.bigRow .info {
+  position: absolute;
+  top: 3.125vw;
+  left: 60.9375vw;
+}
