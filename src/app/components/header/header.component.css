@@ -210,16 +210,17 @@
   width: 166px;
   margin-left: 0;
   padding: 0;
+  padding-top: 7px;
 
   opacity: 0;
   transition-duration: 150ms;
 }
 
-@media screen and (max-width: 950px) {
+/* @media screen and (max-width: 950px) {
   .pinning-header .account-drop-down {
     top: 59px;
   }
-}
+} */
 
 .sub-menu.theme-lakira {
   box-sizing: border-box;
