@@ -15,7 +15,8 @@
   right: 0;
   top: 0;
   position: relative;
-  z-index: 1
+  z-index: 1;
+  transition: all ease 1.5s;
 }
 
 .header-container .main-header {
