@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/reset.css";
-@import "../node_modules/normalize.css/normalize.css";
+@import "./assets/normalize.css";
 @import "./assets/netflix-icon.css";
 @import "./assets/thanos.css";
 
