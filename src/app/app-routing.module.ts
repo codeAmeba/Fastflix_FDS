@@ -15,14 +15,14 @@ import {
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'welcome', component: IndexComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'movie', component: MovieComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'watch', component: WatchComponent },
-  { path: 'mylist', component: MyListComponent }
+  { path: 'welcome', component: IndexComponent, data: { animation: 'main' } },
+  { path: 'home', component: HomeComponent, data: { animation: 'main' } },
+  { path: 'movie', component: MovieComponent, data: { animation: 'main' } },
+  { path: 'profile', component: ProfileComponent, data: { animation: 'main' } },
+  { path: 'signup', component: SignupComponent, data: { animation: 'main' } },
+  { path: 'login', component: LoginComponent, data: { animation: 'main' } },
+  { path: 'watch', component: WatchComponent, data: { animation: 'main' } },
+  { path: 'mylist', component: MyListComponent, data: { animation: 'main' } }
 ]
 
 @NgModule({
