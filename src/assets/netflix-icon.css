@@ -1,14 +1,10 @@
 @font-face {
   font-family: nf-icon;
   src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot);
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot?#iefix)
-      format("embedded-opentype"),
-    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff)
-      format("woff"),
-    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.ttf)
-      format("truetype"),
-    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.svg#nf-icon-v1-93)
-      format("svg");
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot?#iefix) format("embedded-opentype"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff) format("woff"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.ttf) format("truetype"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.svg#nf-icon-v1-93) format("svg");
   font-weight: 400;
   font-style: normal;
 }
@@ -79,6 +75,14 @@
   font-size: inherit;
 }
 
+.nf-flat-button .nf-flat-button-text {
+  vertical-align: middle;
+  padding: 0;
+  margin: 0;
+  top: auto;
+  white-space: nowrap;
+}
+
 .nf-flat-button .nf-flat-button-icon-play:before {
   content: "\e646";
 }
@@ -90,15 +94,7 @@
 .billboard-links.forward-leaning .btn-flat,
 .billboard-links.forward-leaning .nf-flat-button .annotation,
 .billboard-links.forward-leaning .nf-flat-button .nf-flat-button-text,
-.billboard-links.forward-leaning .nf-icon-button .nf-icon-button-label,
-.content-refresh .forward-leaning .btn-flat,
-.content-refresh .forward-leaning .nf-flat-button .annotation,
-.content-refresh .forward-leaning .nf-flat-button .nf-flat-button-text,
-.content-refresh .forward-leaning .nf-icon-button .nf-icon-button-label,
-.profiles-billboard .forward-leaning .btn-flat,
-.profiles-billboard .forward-leaning .nf-flat-button .annotation,
-.profiles-billboard .forward-leaning .nf-flat-button .nf-flat-button-text,
-.profiles-billboard .forward-leaning .nf-icon-button .nf-icon-button-label {
+.billboard-links.forward-leaning .nf-icon-button .nf-icon-button-label {
   text-transform: none;
 }
 
@@ -110,6 +106,28 @@
   white-space: nowrap;
 }
 
+.nf-flat-button-uppercase {
+  text-transform: uppercase;
+}
+
+.nf-flat-button {
+  font-size: 1vw;
+  font-weight: 700;
+  margin-right: .75em;
+  padding: .57em 1.35em;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  background-image: none;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.nf-icon-button {
+  display: inline-block;
+  color: #fff;
+  position: relative;
+}
+
 .icon-button-mylist-add:before {
   content: "\e885";
 }
@@ -117,6 +135,7 @@
 .slider .handle:focus {
   outline: 0;
 }
+
 .slider:hover .handle:focus .indicator-icon:hover {
   font-weight: 700;
   -webkit-transform: scale(1.25);
@@ -126,7 +145,8 @@
   transform: scale(1.25);
   color: #fff;
 }
-.slider .handle > .indicator-icon {
+
+.slider .handle>.indicator-icon {
   display: none;
   height: auto;
   -webkit-align-self: center;
@@ -142,12 +162,15 @@
   transition: transform 0.1s ease-out 0s, -webkit-transform 0.1s ease-out 0s,
     -moz-transform 0.1s ease-out 0s, -o-transform 0.1s ease-out 0s;
 }
+
 .slider:hover .handle.active .indicator-icon {
   display: block;
 }
+
 .icon-leftCaret:before {
   content: "\e868";
 }
+
 .icon-rightCaret:before {
   content: "\e867";
 }

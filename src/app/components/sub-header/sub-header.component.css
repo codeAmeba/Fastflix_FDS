@@ -27,6 +27,16 @@
   flex-grow: 1;
 }
 
+.sub-header .title {
+  font-size: 2.5rem;
+}
+
+.galleryHeader .title {
+  display: inline-block;
+  margin-right: 20px;
+  line-height: 36px;
+}
+
 .aro-gallery-header {
   padding-top: 3vw;
   min-height: 44px;
