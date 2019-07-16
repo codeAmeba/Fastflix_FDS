@@ -1,13 +1,20 @@
 @font-face {
   font-family: nf-icon;
   src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot);
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot?#iefix) format('embedded-opentype'), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff) format('woff'), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.ttf) format('truetype'), url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.svg#nf-icon-v1-93) format('svg');
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot?#iefix)
+      format("embedded-opentype"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff)
+      format("woff"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.ttf)
+      format("truetype"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.svg#nf-icon-v1-93)
+      format("svg");
   font-weight: 400;
-  font-style: normal
+  font-style: normal;
 }
 
 [class*=" icon-"],
-[class^=icon-] {
+[class^="icon-"] {
   font-family: nf-icon;
   font-style: normal;
   font-weight: 400;
@@ -16,43 +23,43 @@
   line-height: 1;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
-  transform: translateZ(0)
+  transform: translateZ(0);
 }
 
 .icon-logoUpdate:before {
-  content: '\e5d0'
+  content: "\e5d0";
 }
 
 .icon-close:before {
-  content: '\e762'
+  content: "\e762";
 }
 
 .icon-search:before {
-  content: '\e636'
+  content: "\e636";
 }
 
 .icon-circle-solid:before {
-  content: '\e622'
+  content: "\e622";
 }
 
 .icon-star-25-percent:before {
-  content: '\e637'
+  content: "\e637";
 }
 
 .icon-star-50-percent:before {
-  content: '\e638'
+  content: "\e638";
 }
 
 .icon-star-75-percent:before {
-  content: '\e639'
+  content: "\e639";
 }
 
 .icon-star:before {
-  content: '\e640'
+  content: "\e640";
 }
 
 .icon-add:before {
-  content: '\e641'
+  content: "\e641";
 }
 
 .nf-flat-button .nf-flat-button-icon-close,
@@ -67,13 +74,13 @@
 
 .nf-flat-button .nf-flat-button-icon {
   vertical-align: middle;
-  margin-right: .71em;
+  margin-right: 0.71em;
   background-color: transparent;
   font-size: inherit;
 }
 
 .nf-flat-button .nf-flat-button-icon-play:before {
-  content: '\e646';
+  content: "\e646";
 }
 
 .bigRowItem .forward-leaning .btn-flat,
@@ -104,5 +111,48 @@
 }
 
 .icon-button-mylist-add:before {
-  content: '\e885';
+  content: "\e885";
+}
+
+.slider .handle:focus {
+  outline: 0;
+}
+.slider:hover .handle:focus .indicator-icon:hover {
+  font-weight: 700;
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  transform: scale(1.25);
+  color: #fff;
+}
+.slider .handle > .indicator-icon {
+  display: none;
+  height: auto;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  font-size: 2.5vw;
+  -webkit-transition: -webkit-transform 0.1s ease-out 0s;
+  transition: -webkit-transform 0.1s ease-out 0s;
+  -o-transition: -o-transform 0.1s ease-out 0s;
+  -moz-transition: transform 0.1s ease-out 0s, -moz-transform 0.1s ease-out 0s;
+  transition: transform 0.1s ease-out 0s;
+  transition: transform 0.1s ease-out 0s, -webkit-transform 0.1s ease-out 0s,
+    -moz-transform 0.1s ease-out 0s, -o-transform 0.1s ease-out 0s;
+}
+.slider:hover .handle.active .indicator-icon {
+  display: block;
+}
+.icon-leftCaret:before {
+  content: "\e868";
+}
+.icon-rightCaret:before {
+  content: "\e867";
+  width: 100%;
+}
+
+.icon-tvuiAdd:before {
+  content: "\e716";
 }

@@ -1,1 +1,83 @@
-<p>slider works!</p>
+<div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
+  <!-- 슬라이드 이전 이동 버튼 -->
+  <ng-template [ngIf]="tabState !== 0 && tabShow">
+    <span
+      class="handle handlePrev active"
+      tabindex="0"
+      role="button"
+      aria-label="이전 콘텐츠 보기"
+    >
+      <b class="indicator-icon icon-leftCaret"></b>
+    </span>
+  </ng-template>
+  <ng-template [ngIf]="tabShow">
+    <ul class="pagination-indicator">
+      <li [class.active]="tabState === tab" *ngFor="let tab of tab"></li>
+    </ul>
+  </ng-template>
+  <div class="slider-container">
+    <div class="sliderMask showPeek">
+      <div class="sliderContent row-with-x-columns">
+        <!-- card -->
+        <div
+          class="slider-item slider-item-{{ movie.id }}"
+          *ngFor="let movie of movies"
+        >
+          <div class="title-card-container">
+            <div
+              id="title-card-2-{{ movie.id }}"
+              class="slider-refocus title-card"
+            >
+              <a role="link" tabindex="0" class="slider-refocus">
+                <div class="boxart-size-16x9 boxart-container">
+                  <img
+                    class="boxart-image boxart-image-in-padded-container"
+                    src="{{ movie.url }}"
+                    alt="{{ movie.title }}"
+                  />
+                </div>
+              </a>
+              <!-- hover시 확대 -->
+              <div>
+                <span>
+                  <div class="bob-card bob-card-adult">
+                    <div class="image-rotator bob-background">
+                      <span>
+                        <div class="image-rotator-image "></div>
+                      </span>
+                    </div>
+                    <div class="bob-overlay">
+                      <div class="bob-play-hitzone"></div>
+                      <!-- 영상 메인 이동....뭔지 일단 모르겠음 -->
+                      <a></a>
+                      <!-- 세부정보 -->
+                      <div class="bob-overview-wrapper"></div>
+                      <!-- 좋아요, 싫어요, 내찜콘 추가 -->
+                      <div class="bob-actions-wrapper"></div>
+                      <!-- 콘텐츠 상세 정보 보기 화면 (tab) -->
+                      <div class="bob-chevron-wrapper"></div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+              <!-- hover시 확대 끝 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contain">
+    <!-- 슬라이드 다음 이동 버튼 -->
+    <!-- <ng-template [ngIf]="tabStat"> -->
+    <span
+      class="handle handleNext active"
+      tabindex="0"
+      role="button"
+      aria-label="콘텐츠 더 보기"
+    >
+      <b class="indicator-icon icon-rightCaret"></b>
+    </span>
+    <!-- </ng-template> -->
+  </div>
+</div>
