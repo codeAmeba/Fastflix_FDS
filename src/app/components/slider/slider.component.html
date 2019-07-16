@@ -1,165 +1,75 @@
-<div class="slider">
+<div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
   <!-- 슬라이드 이전 이동 버튼 -->
-  <!-- <ng-component *ngIf="true"> -->
-  <span
-    class="handle handlePrev active"
-    tabindex="0"
-    role="button"
-    aria-label="이전 콘텐츠 보기"
-  >
-    <b class="indicator-icon icon-leftCaret"></b>
-  </span>
-  <!-- </ng-component> -->
-
-  <ul class="pagination-indicator">
-    <li class="active"></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  <div class="sliderMask showPeek">
-    <div class="sliderContent row-with-x-columns">
-      <div class="slider-item slider-item-0">
-        <div class="title-card-container">
-          <div id="title-card-2-0" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABXaGwBEssmNrvhe5QvscpnzAA8FQmntR5fI0WYL6QcYZLhCvPkCWNiU7GZjlHhWlBvH_RTljgJhVbh8cPamCt4Cd281fVkhJ.webp?r=1f3"
-                  alt="mamamia"
-                />
+  <ng-template [ngIf]="tabState !== 0 && tabShow">
+    <span
+      class="handle handlePrev active"
+      tabindex="0"
+      role="button"
+      aria-label="이전 콘텐츠 보기"
+    >
+      <b class="indicator-icon icon-leftCaret"></b>
+    </span>
+  </ng-template>
+  <ng-template [ngIf]="tabShow">
+    <ul class="pagination-indicator">
+      <li [class.active]="tabState === tab" *ngFor="let tab of tab"></li>
+    </ul>
+  </ng-template>
+  <div class="slider-container">
+    <div class="sliderMask showPeek">
+      <div class="sliderContent row-with-x-columns">
+        <!-- card -->
+        <div
+          class="slider-item slider-item-{{ movie.id }}"
+          *ngFor="let movie of movies"
+        >
+          <div class="title-card-container">
+            <div
+              id="title-card-2-{{ movie.id }}"
+              class="slider-refocus title-card"
+            >
+              <a role="link" tabindex="0" class="slider-refocus">
+                <div class="boxart-size-16x9 boxart-container">
+                  <img
+                    class="boxart-image boxart-image-in-padded-container"
+                    src="{{ movie.url }}"
+                    alt="{{ movie.title }}"
+                  />
+                </div>
+              </a>
+              <!-- hover시 확대 -->
+              <div>
+                <span>
+                  <div class="bob-card bob-card-adult">
+                    <div class="image-rotator bob-background">
+                      <span>
+                        <div class="image-rotator-image "></div>
+                      </span>
+                    </div>
+                    <div class="bob-overlay">
+                      <div class="bob-play-hitzone"></div>
+                      <!-- 영상 메인 이동....뭔지 일단 모르겠음 -->
+                      <a></a>
+                      <!-- 세부정보 -->
+                      <div class="bob-overview-wrapper"></div>
+                      <!-- 좋아요, 싫어요, 내찜콘 추가 -->
+                      <div class="bob-actions-wrapper"></div>
+                      <!-- 콘텐츠 상세 정보 보기 화면 (tab) -->
+                      <div class="bob-chevron-wrapper"></div>
+                    </div>
+                  </div>
+                </span>
               </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-1">
-        <div class="title-card-container">
-          <div id="title-card-2-1" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSutMRiJg2Zr7FKCHrNO4_sfkGbbPSdCKN5lWVXhUMkpy8MTSshI6_tTSPzHwo5uWErPGTJh3k5B2pohz2-D6Sae8EJ3Rj4l.webp?r=48b"
-                  alt="titanic"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-2">
-        <div class="title-card-container">
-          <div id="title-card-2-2" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABaHz8fTzwa2_UxsWPUCpUzSjB_tpTBYiTBpHRO77CkoXB-IbXM_rveYRCv8N6zkr-onKgqm4iR6XkxeDBb4FXfTlWlZ6XEhD.jpg?r=283"
-                  alt="건축학개론"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-3">
-        <div class="title-card-container">
-          <div id="title-card-2-3" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABUOADmsGnDEBa9vFBwJZIjJkYYPngtOpl5wHeNmbQe6Hd9BOccuVFHzoG256PQmJxmxPFTv8nPRDm9LQsgn0CGeWHNurdO5A.webp?r=6b9"
-                  alt="call me by your name"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-4">
-        <div class="title-card-container">
-          <div id="title-card-2-4" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABdyrpIMkdiFb7ml5Lgjnxr_FA_vVjiVFgQ_ZDu08SnC8KU3KbkDE5l7znCVTw8miwgizzghciJxDfNWUsI8Kr0MgP_CvGpA4.webp?r=54a"
-                  alt="월터의 상상은 현실이 된다"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-5">
-        <div class="title-card-container">
-          <div id="title-card-2-5" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABbiKZiwAN3U9UX0NZHhYRCEpGrs0_E7U6_1UMHSi_xahiIGGJ2TEATVYKEkLxgthrNcX-N218mXt_3AFS5qcXxWwyi1M2YnY.webp?r=1ba"
-                  alt="500일의 썸머"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-6">
-        <div class="title-card-container">
-          <div id="title-card-2-6" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABVeL6k-GWe---AxBQgF4_oSbskK_hAmjCQArTnGWNFcZp3SduDrRsnLfU9SH32g582FH9Mz4lYSv6dPQinjM85-7DcUHP0Wg.jpg?r=d12"
-                  alt="위대한 개츠비"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-7">
-        <div class="title-card-container">
-          <div id="title-card-2-7" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABXaGwBEssmNrvhe5QvscpnzAA8FQmntR5fI0WYL6QcYZLhCvPkCWNiU7GZjlHhWlBvH_RTljgJhVbh8cPamCt4Cd281fVkhJ.webp?r=1f3"
-                  alt="mamamia"
-                />
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="slider-item slider-item-8">
-        <div class="title-card-container">
-          <div id="title-card-2-8" class="slider-refocus title-card">
-            <a role="link" tabindex="0" class="slider-refocus">
-              <div class="boxart-size-16x9 boxart-container">
-                <img
-                  class="boxart-image boxart-image-in-padded-container"
-                  src="https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABXaGwBEssmNrvhe5QvscpnzAA8FQmntR5fI0WYL6QcYZLhCvPkCWNiU7GZjlHhWlBvH_RTljgJhVbh8cPamCt4Cd281fVkhJ.webp?r=1f3"
-                  alt="mamamia"
-                />
-              </div>
-            </a>
+              <!-- hover시 확대 끝 -->
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="contain">
     <!-- 슬라이드 다음 이동 버튼 -->
-    <!-- <ng-component *ngIf="true"> -->
+    <!-- <ng-template [ngIf]="tabStat"> -->
     <span
       class="handle handleNext active"
       tabindex="0"
@@ -168,6 +78,6 @@
     >
       <b class="indicator-icon icon-rightCaret"></b>
     </span>
-    <!-- </ng-component> -->
+    <!-- </ng-template> -->
   </div>
 </div>
