@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { style, animate, transition, trigger } from '@angular/animations'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-sub-header',
@@ -23,12 +24,15 @@ export class SubHeaderComponent implements OnInit {
   showGenre: boolean
   isGrid: boolean
   showGridMenu: boolean
+  currentRouting: string
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.showGenre = false
     this.isGrid = false
     this.showGridMenu = false
+    this.currentRouting = this.router.url
+    console.log(this.currentRouting)
   }
 }

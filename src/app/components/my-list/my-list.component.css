@@ -1,0 +1,47 @@
+.mainView {
+  position: relative;
+  min-height: 1000px;
+  z-index: 0;
+}
+
+
+.gallery {
+  margin: 0;
+  overflow: hidden;
+  min-height: 1000px;
+}
+
+.mainView .gallery,
+.mainView .rowListContainer {
+  padding-top: 5rem;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .mainView .gallery,
+  .mainView .rowListContainer {
+    margin-top: 5.25%;
+  }
+}
+
+.gallery .galleryContent {
+  position: relative;
+  z-index: 0;
+}
+
+.gallery .rowContainer {
+  margin: 0 0 48px 0;
+  margin-bottom: 4vw;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .gallery .rowContainer {
+    margin-bottom: 5.5vw;
+  }
+}
+
+.rowContainer .rowContent {
+  padding: 0;
+  box-sizing: border-box;
+}
