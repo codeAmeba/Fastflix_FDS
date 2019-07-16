@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { style, state, animate, transition, trigger } from '@angular/animations'
+import { style, animate, transition, trigger } from '@angular/animations'
 
 @Component({
   selector: 'app-sub-header',
