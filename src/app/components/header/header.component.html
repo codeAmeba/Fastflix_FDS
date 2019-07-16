@@ -20,6 +20,7 @@
         </li>
         <li class="nav-element">
           <div class="account-menu-item" (mouseenter)="showMenu($event)" (mouseleave)="hideMenu($event)">
+            <div class="background" *ngIf="showDropDown"></div>
             <div class="account-dropdown-button">
               <a routerLink="/profile" role="button" tabindex="0">
                 <span class="profile-link" role="presentation">
@@ -38,7 +39,7 @@
               </a>
               <span class="caret" role="presentation"></span>
             </div>
-            <div class="account-drop-down sub-menu theme-lakira"
+            <div class="account-drop-down sub-menu theme-lakira" *ngIf="showDropDown" [@fadeInOut]
               [ngStyle]="{opacity: showDropDown ? 1 : 0, 'transition-duration': '200ms'}">
               <div class="ptrack-content">
                 <div class="topbar"></div>
