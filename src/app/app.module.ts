@@ -21,11 +21,12 @@ import {
   CardComponent,
   DetailCardComponent,
   HeaderComponent,
-  FooterComponent
+  FooterComponent,
+  SubHeaderComponent
 } from './components'
 
 // Directives
-import { FixHeaderDirective } from './directives/fix-header.directive'
+import { FixHeaderDirective } from './directives/fix-header.directive';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FixHeaderDirective } from './directives/fix-header.directive'
   FooterComponent,
   MyListComponent,
   FixHeaderDirective,
-  ProfileManageComponent
+  ProfileManageComponent,
+  SubHeaderComponent
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
