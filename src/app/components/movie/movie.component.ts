@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
+  user: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.user = '사용자';
   }
 
 }

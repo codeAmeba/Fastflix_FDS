@@ -10,7 +10,8 @@ import {
   LoginComponent,
   WatchComponent,
   IndexComponent,
-  MyListComponent
+  MyListComponent,
+  ProfileManageComponent
 } from './components'
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'movie', component: MovieComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'profile/manage', component: ProfileManageComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'watch', component: WatchComponent },

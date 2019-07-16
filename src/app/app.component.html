@@ -1,2 +1,5 @@
 <!--Root에서는 Routing만-->
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<div [@routerfadeinout]="getRouterOutletState(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
