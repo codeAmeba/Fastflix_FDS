@@ -30,7 +30,7 @@ export class WatchComponent implements AfterViewInit {
                     src: this.video });
 
     myPlayer.ready(() => {
-      myPlayer.currentTime(300); // parameter에 재생된 시간 넣을 방법 강구
+      myPlayer.currentTime(); // parameter에 재생된 시간 넣을 방법 강구
       videojs.log(myPlayer.currentTime());
       // console.log(myPlayer.duration());
     });
