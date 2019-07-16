@@ -2,6 +2,7 @@
   <!-- 슬라이드 이전 이동 버튼 -->
   <ng-template [ngIf]="tabState !== 0 && tabShow">
     <span
+      (click)="tabStatePrev()"
       class="handle handlePrev active"
       tabindex="0"
       role="button"
@@ -15,13 +16,13 @@
       <li [class.active]="tabState === tab" *ngFor="let tab of tab"></li>
     </ul>
   </ng-template>
-  <div class="slider-container">
+  <div class="slider-container" [class.sliderContentTab]="sliderContentTab">
     <div class="sliderMask showPeek">
       <div class="sliderContent row-with-x-columns">
         <!-- card -->
         <div
           class="slider-item slider-item-{{ movie.id }}"
-          *ngFor="let movie of movies"
+          *ngFor="let movie of movies.sort(compare)"
         >
           <div class="title-card-container">
             <div
@@ -71,6 +72,7 @@
     <!-- 슬라이드 다음 이동 버튼 -->
     <!-- <ng-template [ngIf]="tabStat"> -->
     <span
+      (click)="tabStateNext()"
       class="handle handleNext active"
       tabindex="0"
       role="button"
