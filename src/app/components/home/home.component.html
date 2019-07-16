@@ -3,7 +3,7 @@
   <h1 class="visually-hidden">Fastflix 홈</h1>
   <span class="billboard-animations-container">
     <div class="billboard-row" role="region" aria-label="특별 소개 콘텐츠">
-      <div class="billboard">
+      <div class="billboard billboard-originals">
         <div class="billboard-trailer">
           <div class="trailer-background">
             <div class="FFPlayer" *ngIf="playBillBoard"></div>
@@ -27,15 +27,16 @@
                   title="Outlander" alt="Outlander" />
               </div>
               <div class="billboard-links button-layer forward-leaning">
-                <a routerLink="/watch" class="playLink" aria-label="Play">
-                  <span tabindex="-1" class="nf-icon-button nf-flat-button bf-flat button-uppercase">
+                <a role="link" aria-label="재생" class="playLink" routerLink="/watch">
+                  <span tabindex="-1" class="nf-icon-button nf-flat-button nf-flat-button-uppercase">
                     <span class="nf-flat-button-icon nf-flat-button-icon-play"></span>
-                    <span class="nf-flat-button-text">Play</span>
+                    <span class="nf-flat-button-text">재생</span>
                   </span>
                 </a>
-                <a tabindex="0" class="nf-icon-button mylist-button" aria-label="Add To My List"><span
-                    role="presentation" class="nf-icon-button-icon icon-button-mylist-add"></span><span
-                    class="nf-icon-button-label">My List</span></a>
+                <a role="button" tabindex="0" class="nf-icon-button mylist-button" aria-label="내가 찜한 콘텐츠에 추가">
+                  <span role="presentation" class="nf-icon-button-icon icon-button-mylist-add"></span>
+                  <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
+                </a>
               </div>
               <div class="synopsis-fade-container">
                 <div class="synopsis no-supplemental">

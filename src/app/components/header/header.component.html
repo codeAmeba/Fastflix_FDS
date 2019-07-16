@@ -89,6 +89,8 @@
         </li>
       </ul>
     </nav>
-    <app-sub-header></app-sub-header>
+    <ng-container *ngIf="!isHome">
+      <app-sub-header></app-sub-header>
+    </ng-container>
   </div>
 </header>
