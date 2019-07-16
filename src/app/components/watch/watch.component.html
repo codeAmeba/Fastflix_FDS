@@ -1,1 +1,8 @@
-<p>watch works!</p>
+<h1 class="text-center">watch works!</h1>
+<div class="container">
+  <video #myvid id="my-video" class="video-js 
+          vjs-fluid vjs-big-play-centered vjs-default-skin"
+         [poster]="poster">
+    <source [src]="video" type="video/mp4">
+  </video>
+</div>
