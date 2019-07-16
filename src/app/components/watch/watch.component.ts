@@ -7,9 +7,7 @@ declare let videojs: any;
   styleUrls: ['./watch.component.css']
 })
 export class WatchComponent implements AfterViewInit {
- vidObj: any;
-
-  // tslint:disable-next-line: max-line-length
+  vidObj: any;
   poster = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/poster.png';
   video = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4';
 
@@ -32,12 +30,9 @@ export class WatchComponent implements AfterViewInit {
                     src: this.video });
 
     myPlayer.ready(() => {
-      myPlayer.currentTime(120); // parameter에 재생된 시간 넣을 방법 강구
+      myPlayer.currentTime(300); // parameter에 재생된 시간 넣을 방법 강구
       videojs.log(myPlayer.currentTime());
       // console.log(myPlayer.duration());
     });
-
-
-
   }
 }
