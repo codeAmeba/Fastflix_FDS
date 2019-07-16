@@ -4,8 +4,8 @@ import {
   style,
   group,
   query,
-  transition
-} from '@angular/animations'
+  transition,
+} from '@angular/animations';
 
 export const routerfadeinout = trigger('routerfadeinout', [
   transition('* <=> *', [
@@ -19,14 +19,14 @@ export const routerfadeinout = trigger('routerfadeinout', [
       // block executes in parallel
       query(
         ':enter',
-        [style({ opacity: 0 }), animate('0.6s', style({ opacity: 1 }))],
+        [style({ opacity: 0 }), animate('1s', style({ opacity: 1 }))],
         { optional: true }
       ),
       query(
         ':leave',
-        [style({ opacity: 0 }), animate('0.6s', style({ opacity: 0 }))],
+        [style({ opacity: 0 }), animate('1s', style({ opacity: 0 }))],
         { optional: true }
-      )
-    ])
-  ])
-])
+      ),
+    ]),
+  ]),
+]);
