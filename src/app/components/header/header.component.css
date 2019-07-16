@@ -1,13 +1,8 @@
-:host {
-  display: block;
-  width: 100%;
+.pinning-header {
   height: 70px;
   line-height: 1.4;
-  background: transparent;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2;
+  display: block;
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .header-container {
@@ -16,7 +11,17 @@
   top: 0;
   position: relative;
   z-index: 1;
-  transition: all ease 1.5s;
+  transition: all ease 1s;
+}
+
+.pinning-header .main-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 4%;
+  z-index: 2;
+  font-size: 1.2rem;
+  transition: background-color .4s;
 }
 
 .header-container .main-header {

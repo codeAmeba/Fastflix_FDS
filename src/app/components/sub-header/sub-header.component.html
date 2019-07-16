@@ -1,6 +1,6 @@
 <nav class="sub-header">
   <div class="sub-header-wrapper">
-    <div class="aro-gallery-header">
+    <div class="aro-gallery-header" *ngIf="currentRouting === '/movie'">
       <div class="title"></div>
       <div class="aro-genre-details"><span class="genreTitle">영화</span>
         <div class="subgenres">
@@ -83,6 +83,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="galleryHeader" *ngIf="currentRouting === '/mylist'">
+      <div class="title">내가 찜한 콘텐츠</div>
     </div>
   </div>
 </nav>
