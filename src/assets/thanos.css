@@ -4,6 +4,38 @@
   z-index: 0;
 }
 
+.mainView .aro-genre .thanos.is-fullbleed,
+.mainView .aro-genre-loading.is-fullbleed {
+  padding-top: 0;
+  margin-top: -70px;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .mainView .aro-genre .lolomo,
+  .mainView .aro-genre-loading {
+    margin-top: 2.5%;
+  }
+}
+
+.mainView .aro-genre .thanos,
+.mainView .aro-genre-loading {
+  padding-top: 5rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.thanos.is-fullbleed {
+  margin-top: -70px;
+}
+
+.thanos {
+  padding: 0 0 50px;
+  z-index: 0;
+  overflow: hidden;
+}
+
 .billboard-animations-container {
   display: block;
   z-index: 1;
