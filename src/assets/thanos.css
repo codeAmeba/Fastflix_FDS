@@ -1,3 +1,9 @@
+.mainView {
+  position: relative;
+  min-height: 1000px;
+  z-index: 0;
+}
+
 .billboard-animations-container {
   display: block;
   z-index: 1;
