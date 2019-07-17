@@ -1,0 +1,203 @@
+.message {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.message .content {
+  margin: 20px 0 0;
+  background-color: #0071eb;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.content span {
+  margin: 10px 0;
+  color: #fff;
+  line-height: 1.3em;
+  vertical-align: middle;
+}
+
+.simpleContainer {
+  padding-bottom: 95px;
+}
+
+.centerContainer {
+  padding: 20px 32px 60px;
+  display: block;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  max-width: 978px;
+  box-sizing: border-box;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+  text-align: left;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.steps {
+  margin-top: 20px;
+}
+
+.step {
+  margin-top: 20px;
+  text-align: inherit;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+b {
+  font-weight: bold;
+}
+
+.step-title {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+.poromo span {
+  display: block;
+  line-height: 1.35em;
+  font-size: 19px;
+}
+
+.form-title {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.35em;
+  margin-top: 10px;
+}
+
+.sign-up-form li {
+  margin: 10px 0;
+}
+
+.input-container {
+  max-width: 500px;
+  position: relative;
+}
+
+.textField {
+  height: 60px;
+  padding: 10px 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: solid 1px #8c8c8c;
+  border-radius: 2px;
+  display: block;
+  color: #000;
+  padding: 10px 11px;
+}
+
+.textField.ng-valid {
+  border-color: #5fa53f;
+}
+
+.textField.ng-invalid.ng-touched {
+  border-color: #b92d2b;
+}
+
+.error-message {
+  font-size: 13px;
+  color: #b92d2b;
+}
+
+.placeLabel {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  color: #8c8c8c;
+  font-size: 16px;
+  transform: translateY(-50%);
+  transition: font .1s ease, top .1s ease, transform .1s ease, -webkit-transform .1s ease, -moz-transform .1s ease, -o-transform .1s ease;
+}
+
+.placeLabel.up {
+  top: 6px;
+  font-weight: 700;
+  font-size: 13px;
+  transform: translateY(0%);
+}
+
+.field-wrapper {
+  padding-left: 36px;
+}
+
+.field-wrapper input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.checkbox-label {
+  margin: 8px 0;
+  position: relative;
+  display: block;
+  line-height: 1.2;
+  padding: 6px 0;
+}
+
+.checkbox-label::before {
+  width: 25px;
+  height: 25px;
+  content: "";
+  position: absolute;
+  display: block;
+  top: 2px;
+  left: -36px;
+  padding: 0;
+  border: 1px solid;
+  background-color: #fff;
+}
+
+input:checked+.checkbox-label::after {
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: -32px;
+  height: 6px;
+  width: 14px;
+  color: #0071eb;
+  content: "";
+  border-bottom: 4px solid;
+  border-left: 4px solid;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.button-container {
+  margin-top: 24px;
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.submit {
+  color: #fff;
+  background-color: #e50914;
+  min-height: 48px;
+  font-weight: 400;
+  font-size: 17px;
+  border-radius: 2px;
+  padding: .75rem 25.33333333px;
+  min-width: 110px;
+  width: 100%;
+  line-height: 19px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+}

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 /* Components */
 import {
@@ -11,8 +11,10 @@ import {
   WatchComponent,
   IndexComponent,
   MyListComponent,
-  ProfileManageComponent
-} from './components'
+  ProfileManageComponent,
+  SignupStep1Component,
+  SignupStep2Component,
+} from './components';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,14 +23,22 @@ const routes: Routes = [
   { path: 'movie', component: MovieComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/manage', component: ProfileManageComponent },
-  { path: 'signup', component: SignupComponent },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    children: [
+      /* UserComponent의 <router-outlet>에 표시 */
+      { path: 'step1', component: SignupStep1Component },
+      { path: 'step2', component: SignupStep2Component },
+    ],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'watch', component: WatchComponent },
-  { path: 'mylist', component: MyListComponent }
-]
+  { path: 'mylist', component: MyListComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-  })
+  exports: [RouterModule],
+})
 export class AppRoutingModule {}
