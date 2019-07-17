@@ -62,3 +62,9 @@ html {
   cursor: default;
   -webkit-font-smoothing: antialiased;
 }
+
+
+body.signup {
+  background: #fff;
+  color: #141414;
+}
