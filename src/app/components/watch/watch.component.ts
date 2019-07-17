@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
 declare let videojs: any;
 @Component({
@@ -6,7 +6,7 @@ declare let videojs: any;
   templateUrl: './watch.component.html',
   styleUrls: ['./watch.component.css']
 })
-export class WatchComponent implements AfterViewInit {
+export class WatchComponent implements AfterViewInit, OnDestroy {
   vidObj: any;
   poster = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/poster.png';
   video = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4';
@@ -37,10 +37,10 @@ export class WatchComponent implements AfterViewInit {
     
     // *테스트* beforunload 이벤트 발생 시 localstorage에 현재 시간(초) 저장
     // 최종적으로 localstorage 대신 DB 적용해야 됨
-    window.addEventListener("beforeunload", function () {
-      const myPlayer = videojs('my-video');
-      localStorage.setItem('lastTime', myPlayer.currentTime());
-    });
+    // window.addEventListener("beforeunload", function () {
+    //   const myPlayer = videojs('my-video');
+    //   localStorage.setItem('lastTime', myPlayer.currentTime());
+    // });
 
     // history.back 이벤트 발생 현재 시간 저장
     // window.addEventListener("history.back", function () {
@@ -49,4 +49,9 @@ export class WatchComponent implements AfterViewInit {
     // });
   }
 
+  // OnDestroy 적용으로 컴포넌트 소멸 시(스트리밍 페이지 이탈 시) 시간 저장
+  ngOnDestroy() {
+    const myPlayer = videojs('my-video');
+    localStorage.setItem('lastTime', myPlayer.currentTime());
+  }
 }
