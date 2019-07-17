@@ -5,6 +5,10 @@
   font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.logo img {
+  height: 65px;
+}
+
 .header-container {
   left: 0;
   right: 0;
