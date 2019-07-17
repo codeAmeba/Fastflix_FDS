@@ -8,8 +8,8 @@ declare let videojs: any;
 })
 export class WatchComponent implements AfterViewInit, OnDestroy {
   vidObj: any;
-  poster = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/poster.png';
-  video = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4';
+  poster = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
+  video = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
   @ViewChild('myvid', null) vid: ElementRef;
 
