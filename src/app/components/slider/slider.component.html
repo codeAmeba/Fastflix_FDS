@@ -1,6 +1,6 @@
 <div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
   <!-- 슬라이드 이전 이동 버튼 -->
-  <ng-template [ngIf]="tabState !== 0 && tabShow">
+  <ng-template [ngIf]="tabState">
     <span
       (click)="tabStatePrev()"
       class="handle handlePrev active"
@@ -16,13 +16,17 @@
       <li [class.active]="tabState === tab" *ngFor="let tab of tab"></li>
     </ul>
   </ng-template>
-  <div class="slider-container" [class.sliderContentTab]="sliderContentTab">
+  <div
+    class="slider-container "
+    [class.sliderContentActive]="sliderContentActive"
+    [class.animating]="sliderContentActive"
+  >
     <div class="sliderMask showPeek">
-      <div class="sliderContent row-with-x-columns">
+      <div class="sliderContent row-with-x-columns ">
         <!-- card -->
         <div
           class="slider-item slider-item-{{ movie.id }}"
-          *ngFor="let movie of movies.sort(compare)"
+          *ngFor="let movie of movies"
         >
           <div class="title-card-container">
             <div
