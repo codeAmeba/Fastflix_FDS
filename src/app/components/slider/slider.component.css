@@ -20,7 +20,7 @@
     -o-transform 0.54s cubic-bezier(0.5, 0, 0.1, 1) 0s;
 }
 
-.slider .sliderMask .sliderContent.animating {
+.slider .slider-container.animating {
   -webkit-transition: -webkit-transform 0.75s ease 0s;
   transition: -webkit-transform 0.75s ease 0s;
   -o-transition: -o-transform 0.75s ease 0s;
@@ -34,7 +34,7 @@
   display: none;
 }
 
-.sliderContentTab {
+.sliderContentActive {
   -webkit-transform: translate3d(-100.66666666666667%, 0px, 0px);
   -ms-transform: translate3d(-99.8666666666667%, 0px, 0px);
   transform: translate3d(-99.8666666666667%, 0px, 0px);

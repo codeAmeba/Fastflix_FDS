@@ -124,31 +124,31 @@ export class SliderComponent implements OnInit {
       title: "블랙팬서",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABYSkjw8IEYs4nGPNBXSwX-LEWpmkbgAeV-QYaEGsbW2LcHwkQNwa1u5MHc9q0iAJTs0UEDbN16iLWACw6RZFSbP3JgvbH0ce.webp?r=7bc"
-    },
-    {
-      id: 18,
-      title: "친구와 연인사이",
-      url:
-        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSW71zHM_awT-YQvs_IeOKCVgVV4IfCxH1GIBocHUEIZk73kMMsavFaYntPtFV4g3ZRVbrqHlhrCe9P9nFpJqK-0o8SqCpTm.webp?r=e86"
-    },
-    {
-      id: 19,
-      title: "그랜드 부다페스트 호텔",
-      url:
-        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABTS4LAC0ecy3Qn8LVQTor7MYmWPBTl0WhbzUHahAcmz3oSX71_SUwBIz2Z6x5PTAV5iL-OWpudzPQkUlFVZThkcgRe1B9GgX.webp?r=ccb"
-    },
-    {
-      id: 20,
-      title: "포레스트 검프",
-      url:
-        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABRFnmYU4IONsd6sPx437eMqihH6qY18wQL-aOo5Ib6WPlNe4Nx8KL-A-nPgMBI9HSPe5OMYa0GXv2Zzf_1I2WUITtTuuO59Q.webp?r=056"
     }
+    // {
+    //   id: 18,
+    //   title: "친구와 연인사이",
+    //   url:
+    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSW71zHM_awT-YQvs_IeOKCVgVV4IfCxH1GIBocHUEIZk73kMMsavFaYntPtFV4g3ZRVbrqHlhrCe9P9nFpJqK-0o8SqCpTm.webp?r=e86"
+    // },
+    // {
+    //   id: 19,
+    //   title: "그랜드 부다페스트 호텔",
+    //   url:
+    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABTS4LAC0ecy3Qn8LVQTor7MYmWPBTl0WhbzUHahAcmz3oSX71_SUwBIz2Z6x5PTAV5iL-OWpudzPQkUlFVZThkcgRe1B9GgX.webp?r=ccb"
+    // },
+    // {
+    //   id: 20,
+    //   title: "포레스트 검프",
+    //   url:
+    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABRFnmYU4IONsd6sPx437eMqihH6qY18wQL-aOo5Ib6WPlNe4Nx8KL-A-nPgMBI9HSPe5OMYa0GXv2Zzf_1I2WUITtTuuO59Q.webp?r=056"
+    // }
   ];
   tab = [];
   tabState: number = 0;
   tabLength: number = Math.ceil(this.movies.length / 6);
   tabShow: boolean = false;
-  sliderContentTab = false;
+  sliderContentActive: boolean = false;
   num = 100;
   tabList(number) {
     this.tab = [];
@@ -157,7 +157,22 @@ export class SliderComponent implements OnInit {
     }
   }
   tabStatePrev() {
-    this.tabState--;
+    if (this.tabState === this.tab[0]) {
+      this.tabState = this.tab[this.tab.length - 1];
+    } else {
+      if (this.tab[0] === 0) {
+        this.tabList(1);
+        this.tabState++;
+      }
+      this.tabState--;
+    }
+    console.log(this.tabState);
+
+    if (this.tabState !== 2) return;
+    const copy = this.movies.slice(this.movies.length - 6);
+    this.movies.splice(this.movies.length - 6, 6);
+    const newC = copy.concat(this.movies);
+    this.movies = newC;
   }
   tabStateNext() {
     // console.log(this.tabLength);
@@ -169,12 +184,12 @@ export class SliderComponent implements OnInit {
     }
 
     // console.log(this.tabState);
-    this.sliderContentTab = true;
-    if (this.tabState !== 2) return;
+    this.sliderContentActive = true;
+
+    if (this.tabState === 1 && this.tab[0] === 0) return;
     const copy = this.movies.slice(0, 6);
     this.movies.splice(0, 6);
     const newC = this.movies.concat(copy);
     this.movies = newC;
   }
-  compare() {}
 }
