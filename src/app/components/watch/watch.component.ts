@@ -16,7 +16,7 @@ export class WatchComponent implements AfterViewInit {
   ngAfterViewInit() {
     const options = {
       controls: true,
-      autoplay: false,
+      autoplay: true,
       preload: 'auto',
       techOrder: ['html5']
     };
