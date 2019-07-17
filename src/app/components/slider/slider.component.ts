@@ -14,7 +14,7 @@ interface Movies {
 export class SliderComponent implements OnInit {
   constructor() {}
   ngOnInit() {
-    this.tabList();
+    this.tabList(0);
   }
   movies: Movies[] = [
     {
@@ -91,24 +91,105 @@ export class SliderComponent implements OnInit {
     },
     {
       id: 12,
-      title: "맘마미아",
+      title: "행오버",
       url:
-        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABb8Bpdf0K6jv3xbexJU_eSGPXADcs4_QRUouy7GWSE2S50apUVJKuAFcQbpIdY-Adrdn532te9UUZnWZJrM1hKOvnrQU8BTr.webp?r=5c4"
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSirfG_SWIlcGh4Pq3wAVesJj1tCng3xoOqs3xG5fIkEjkM3cZm_k93aYwWRaJqhPA-xL-roOFvbJcHaLy4_b55lFBUTwZSt.webp?r=386"
     },
     {
       id: 13,
-      title: "미드나잇 인 파리",
+      title: "럭키원",
       url:
-        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABcVHjCbVL9ZOQOBJhKaLn6-ScMYbJOY4kFudbDSsjLEyHjOqmTA28lRKaWlpHx_CbJd3SeBLfCuv-t_roGjoEwPztR09fw55.webp?r=619"
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABXlsUN18SBvFD75849pucNXeYsA48y-mZUSdvD9_hZgSsfj2QN-5ONQkdVNUOW-F_HzKctaXiRU7PK9BYCyW1xT7ExRtF0S7.webp?r=bd4"
+    },
+    {
+      id: 14,
+      title: "리틀 포레스트",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABW4bN5rSs9XChwHXaL77GJSYDOyYkrhojXK66Vdb3MRJMOZVTewhXoDiMcoGPXP4wdeU48dAWSpClLStPbvV2hjBqnSbXaH6.webp?r=452"
+    },
+    {
+      id: 15,
+      title: "암수살인",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABQrLGJoWj6d-CXNOUuNx5kdgQHeY5mDui2x-0q0qLGJEqbPrfaVMX4mq91L3AsRo228RWaTSvwLqF1op4RFB4Uh8EMRuXh1P.webp?r=2fb"
+    },
+    {
+      id: 16,
+      title: "신과 함께-인과 연",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSAdyNuhArmQ3GH3aFqwFP4gNee6dAbWJs2p2LXaukjJT0CAIUd1P-BKBgzYLPlFCTFUPe7v4dbis38O8urO7hKqBCZgeLVs.webp?r=2bf"
+    },
+    {
+      id: 17,
+      title: "블랙팬서",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABYSkjw8IEYs4nGPNBXSwX-LEWpmkbgAeV-QYaEGsbW2LcHwkQNwa1u5MHc9q0iAJTs0UEDbN16iLWACw6RZFSbP3JgvbH0ce.webp?r=7bc"
     }
+    // {
+    //   id: 18,
+    //   title: "친구와 연인사이",
+    //   url:
+    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSW71zHM_awT-YQvs_IeOKCVgVV4IfCxH1GIBocHUEIZk73kMMsavFaYntPtFV4g3ZRVbrqHlhrCe9P9nFpJqK-0o8SqCpTm.webp?r=e86"
+    // },
+    // {
+    //   id: 19,
+    //   title: "그랜드 부다페스트 호텔",
+    //   url:
+    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABTS4LAC0ecy3Qn8LVQTor7MYmWPBTl0WhbzUHahAcmz3oSX71_SUwBIz2Z6x5PTAV5iL-OWpudzPQkUlFVZThkcgRe1B9GgX.webp?r=ccb"
+    // },
+    // {
+    //   id: 20,
+    //   title: "포레스트 검프",
+    //   url:
+    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABRFnmYU4IONsd6sPx437eMqihH6qY18wQL-aOo5Ib6WPlNe4Nx8KL-A-nPgMBI9HSPe5OMYa0GXv2Zzf_1I2WUITtTuuO59Q.webp?r=056"
+    // }
   ];
   tab = [];
   tabState: number = 0;
   tabLength: number = Math.ceil(this.movies.length / 6);
   tabShow: boolean = false;
-  tabList() {
-    for (let i = 0; i < this.tabLength; i++) {
+  sliderContentActive: boolean = false;
+  num = 100;
+  tabList(number) {
+    this.tab = [];
+    for (let i = number; i < this.tabLength + number; i++) {
       this.tab = [...this.tab, i];
     }
+  }
+  tabStatePrev() {
+    if (this.tabState === this.tab[0]) {
+      this.tabState = this.tab[this.tab.length - 1];
+    } else {
+      if (this.tab[0] === 0) {
+        this.tabList(1);
+        this.tabState++;
+      }
+      this.tabState--;
+    }
+    console.log(this.tabState);
+
+    if (this.tabState !== 2) return;
+    const copy = this.movies.slice(this.movies.length - 6);
+    this.movies.splice(this.movies.length - 6, 6);
+    const newC = copy.concat(this.movies);
+    this.movies = newC;
+  }
+  tabStateNext() {
+    // console.log(this.tabLength);
+    if (this.tabState === this.tab[this.tabLength - 1]) {
+      this.tabList(1);
+      this.tabState = 1;
+    } else {
+      this.tabState++;
+    }
+
+    // console.log(this.tabState);
+    this.sliderContentActive = true;
+
+    if (this.tabState === 1 && this.tab[0] === 0) return;
+    const copy = this.movies.slice(0, 6);
+    this.movies.splice(0, 6);
+    const newC = this.movies.concat(copy);
+    this.movies = newC;
   }
 }
