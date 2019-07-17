@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,20 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailHolderUp: boolean;
   pwHolderUp: boolean;
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [
+      username: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50),
-        Validators.pattern(
-          '^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$'
-        ),
+        // Validators.pattern(
+        //   '^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$'
+        // ),
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -35,7 +39,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['subin/main']);
+    const user = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password,
+    };
+    // const user = this.loginForm.value;
+
+    this.authService.login(user).subscribe(token => {
+      console.log(token);
+      if (token) this.router.navigate(['/home']);
+    });
+    // this.router.navigate(['subin/main']);
   }
 
   emailFocus(value: string) {
@@ -45,8 +59,8 @@ export class LoginComponent implements OnInit {
   pwFocus(value: string) {
     this.pwHolderUp = value ? true : false;
   }
-  get email() {
-    return this.loginForm.get('email');
+  get username() {
+    return this.loginForm.get('username');
   }
 
   get password() {

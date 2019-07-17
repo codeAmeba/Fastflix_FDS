@@ -17,13 +17,13 @@
         <h1>로그인</h1>
         <form [formGroup]="loginForm">
           <div class="email-container">
-            <div class="input-container" [class.error]="email.invalid && email.touched">
-              <input type="text" class="textField" id="login-email" name="email" formControlName="email"
+            <div class="input-container" [class.error]="username.invalid && username.touched">
+              <input type="text" class="textField" id="login-email" name="username" formControlName="username"
                 (focusin)="emailHolderUp = true" (blur)="emailFocus($event.target.value)">
               <label for="login-email" class="placeLabel" [class.up]="emailHolderUp">이메일 주소</label>
             </div>
             <div
-              *ngIf="(email.errors?.required && email.touched) ||(email.errors?.minlength || email.errors?.maxlength) || email.errors?.pattern && email.touched"
+              *ngIf="(username.errors?.required && username.touched) ||(username.errors?.minlength || username.errors?.maxlength) || username.errors?.pattern && username.touched"
               class="error-message">정확한 이메일 주소를 입력하세요.</div>
           </div>
           <div class="pw-container">
