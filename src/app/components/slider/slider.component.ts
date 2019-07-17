@@ -168,7 +168,7 @@ export class SliderComponent implements OnInit {
     }
     console.log(this.tabState);
 
-    if (this.tabState !== 2) return;
+    // if (this.tabState !== 2) return;
     const copy = this.movies.slice(this.movies.length - 6);
     this.movies.splice(this.movies.length - 6, 6);
     const newC = copy.concat(this.movies);
