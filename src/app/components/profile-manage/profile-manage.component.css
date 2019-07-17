@@ -1,0 +1,122 @@
+.profile-gate-label {
+  width: 100%;
+  color: #fff;
+  font-size: 3.5vw;
+
+}
+
+.profiles-gate-container li.profile:not(:last-child) {
+  margin: 0 2vw 0 0;
+}
+
+.profiles-gate-container {
+  text-align: center;
+}
+
+.list-profiles .choose-profile {
+  margin: 2em 0;
+}
+.list-profiles {
+  background: #141414;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.profiles-gate-container li.profile {
+  width: 10vw;
+  max-width: 200px;
+  min-width: 84px;
+}
+
+.profiles-gate-container .profile-icon {
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 84px;
+  min-width: 84px;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  border: .3em solid rgba(0,0,0,.4);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #333;
+}
+
+.profiles-gate-container li {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.profiles-gate-container .profile-name {
+  line-height: 1.5;
+  min-height: 2.4em;
+  color: grey;
+  display: block;
+  text-align: center;
+  font-size: 1.3vw;
+  margin: .8em 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.profile-button {
+  display: block;
+  margin: 2em 0 1em 0;
+  font-size: 1.3vw;
+}
+
+.profile-button a ,.profile-button span {
+  border: 1px solid grey;
+  color: grey;
+  text-transform: uppercase;
+  padding: .5em 1.5em;
+  cursor: pointer;
+  font-size: .9em;
+}
+
+.profiles-gate-container .addProfileIcon {
+  font-size: 5vw;
+  color: grey;
+  text-align: center;
+  text-decoration: none;
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 84px;
+  min-width: 84px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+[class*=" icon-"] {
+  font-family: nf-icon;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: none;
+  text-transform: none;
+  line-height: 1;
+  transform: translateZ(0);
+}
+
+.pinning-header .main-header {
+  height: 68px;
+}
+
+.logo img {
+  height: 65px;
+ }
