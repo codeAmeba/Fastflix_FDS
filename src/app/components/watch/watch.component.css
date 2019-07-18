@@ -4,13 +4,15 @@
   height: 100%;
   width: 100%;
 }
-.container video {
-
-}
-.text-center {
-  display: none;
-}
 .video-js {
   color: white;
   font-size: 16px;
+}
+
+.history-back {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  float: right;
+  z-index: 10;
 }
