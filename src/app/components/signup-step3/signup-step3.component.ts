@@ -34,8 +34,8 @@ export class SignupStep3Component implements OnInit {
     };
     this.userService.setProfile(user).subscribe(
       data => {
-        console.log(data);
-        this.router.navigate(['/signup/step4']);
+        console.log('success', data);
+        // this.router.navigate(['/signup/step4']);
       },
       error => {
         console.error(error);

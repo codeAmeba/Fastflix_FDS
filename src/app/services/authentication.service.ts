@@ -19,11 +19,11 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    return localStorage.getItem(this.TOKEN_NAME);
+    return JSON.parse(localStorage.getItem(this.TOKEN_NAME));
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_NAME, token);
+    localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token['token']));
   }
 
   removeToken(): void {

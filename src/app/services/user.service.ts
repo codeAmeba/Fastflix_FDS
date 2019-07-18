@@ -1,9 +1,10 @@
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { UserProfile } from '../models/user-profile';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,10 @@ export class UserService implements OnInit {
   apiUrl = environment.apiUrl;
   userName: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.userName = '';
@@ -23,9 +27,14 @@ export class UserService implements OnInit {
   }
 
   setProfile(user: UserProfile): Observable<UserProfile> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+
     return this.http.post<UserProfile>(
       `${this.apiUrl}/accounts/create_sub_user/`,
-      user
+      user,
+      { headers }
     );
   }
 }
