@@ -1,41 +1,49 @@
-<header class="signup-header">
-  <a routerLink="/home" class="logo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="NETFLIX">
-  </a>
-  <a routerLink="/login" class="login">로그인</a>
-</header>
-<router-outlet></router-outlet>
-<footer class="signup-footer">
-  <div class="wrapper">
-    <div class="footer-divider"></div>
-    <div class="site-footer">
-      <p class="footer-top"><a class="footer-top-a" href="https://help.netflix.com/contactus">질문이 있으신가요? 고객 센터에
-          문의하세요.</a>
-      </p>
-      <ul class="footer-links structural">
-        <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/support/412"><span>자주 묻는
-              질문</span></a></li>
-        <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com"><span>고객 센터</span></a></li>
-        <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/legal/termsofuse"
-            placeholder="footer_responsive_link_terms"><span>이용 약관</span></a></li>
-        <li class="footer-link-item"><a class="footer-link"
-            href="https://help.netflix.com/legal/privacy"><span>개인정보</span></a></li>
-        <li class="footer-link-item"><a class="footer-link"
-            href="https://help.netflix.com/legal/privacy#cookies"><span>쿠키
-              설정</span></a></li>
-        <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/ko/node/2101"><span>회사
-              정보</span></a></li>
-      </ul>
-      <div class="lang-selection-container" id="lang-switcher">
-        <div class="nfSelectWrapper inFooter selectArrow prefix" data-uia="language-picker+container">
-          <div class="nfSelectPlacement globe">
-            <select data-uia="language-picker" class="nfSelect" name="__langSelect" tabindex="0">
-              <option label="한국어">한국어</option>
-              <option label="English">English</option>
-            </select>
-            <label class="placeLabel"></label></div>
+<div class="basicLayout modernInApp hasExtendedDiacritics signupSimplicity-registrationWithContext simplicity"
+  lang="ko-KR">
+  <header class="signup-header">
+    <a routerLink="/home" class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="NETFLIX">
+    </a>
+    <a routerLink="/login" class="login">로그인</a>
+  </header>
+  <div [@routeAnimations]="o && o.activatedRouteData 
+  && o.activatedRouteData['animation']">
+    <router-outlet #o="outlet"></router-outlet>
+  </div>
+  <footer class="signup-footer">
+    <div class="wrapper">
+      <div class="footer-divider"></div>
+      <div class="site-footer">
+        <p class="footer-top"><a class="footer-top-a" href="https://help.netflix.com/contactus">질문이 있으신가요? 고객 센터에
+            문의하세요.</a>
+        </p>
+        <ul class="footer-links structural">
+          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/support/412"><span>자주 묻는
+                질문</span></a></li>
+          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com"><span>고객 센터</span></a>
+          </li>
+          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/legal/termsofuse"
+              placeholder="footer_responsive_link_terms"><span>이용 약관</span></a></li>
+          <li class="footer-link-item"><a class="footer-link"
+              href="https://help.netflix.com/legal/privacy"><span>개인정보</span></a></li>
+          <li class="footer-link-item"><a class="footer-link"
+              href="https://help.netflix.com/legal/privacy#cookies"><span>쿠키
+                설정</span></a></li>
+          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/ko/node/2101"><span>회사
+                정보</span></a></li>
+        </ul>
+        <div class="lang-selection-container" id="lang-switcher">
+          <div class="nfSelectWrapper inFooter selectArrow prefix" data-uia="language-picker+container">
+            <div class="nfSelectPlacement globe">
+              <select data-uia="language-picker" class="nfSelect" name="__langSelect" tabindex="0">
+                <option label="한국어">한국어</option>
+                <option label="English">English</option>
+              </select>
+              <label class="placeLabel"></label></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+
+</div>
