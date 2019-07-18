@@ -7,7 +7,7 @@
     <a routerLink="/login" class="login">로그인</a>
   </header>
   <div [@routeAnimations]="o && o.activatedRouteData 
-  && o.activatedRouteData['animation']">
+  && o.activatedRouteData['animation']" style="height: 80vh">
     <router-outlet #o="outlet"></router-outlet>
   </div>
   <footer class="signup-footer">

@@ -54,9 +54,8 @@
 
 .our-story-container .our-story-cards {
   margin: 0 auto;
-  max-width: 1820px;
+  width: 100%;
   height: 90vh;
-
   box-sizing: border-box;
 }
 

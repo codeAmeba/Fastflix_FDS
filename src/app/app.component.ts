@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { routerfadeinout } from './animations/fadeinout-animation';
+import { routerfadeinout } from './animations/fadeinout.animation';
 
 @Component({
   selector: 'app-root',

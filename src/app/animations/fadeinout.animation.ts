@@ -12,7 +12,7 @@ export const routerfadeinout = trigger('routerfadeinout', [
     /* order */
     /* 1 */ query(
       ':enter, :leave',
-      style({ position: 'fixed', width: '100%' }),
+      style({ position: 'fixed', width: '100%', height: '100%' }),
       { optional: true }
     ),
     /* 2 */ group([
