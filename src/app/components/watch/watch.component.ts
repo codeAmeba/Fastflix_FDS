@@ -8,8 +8,8 @@ declare let videojs: any;
 })
 export class WatchComponent implements AfterViewInit, OnDestroy {
   vidObj: any;
-  poster = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/poster.png';
-  video = '//d2zihajmogu5jn.cloudfront.net/elephantsdream/ed_hd.mp4';
+  poster = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
+  video = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 
   @ViewChild('myvid', null) vid: ElementRef;
 
@@ -35,21 +35,17 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
       videojs.log(`마지막으로 저장된 시간 : ${myPlayer.currentTime()} 초`);
     });
     
-    // *테스트* beforunload 이벤트 발생 시 localstorage에 현재 시간(초) 저장
+    // *테스트* beforunload 이벤트(새로고침, url 변경) 발생 시 localstorage에 현재 시간(초) 저장
     // 최종적으로 localstorage 대신 DB 적용해야 됨
-    // window.addEventListener("beforeunload", function () {
-    //   const myPlayer = videojs('my-video');
-    //   localStorage.setItem('lastTime', myPlayer.currentTime());
-    // });
+    window.addEventListener("beforeunload", function () {
+      const myPlayer = videojs('my-video');
+      localStorage.setItem('lastTime', myPlayer.currentTime());
+    });
 
-    // history.back 이벤트 발생 현재 시간 저장
-    // window.addEventListener("history.back", function () {
-    //   const myPlayer = videojs('my-video');
-    //   localStorage.setItem('lastTime', myPlayer.currentTime());
-    // });
   }
 
   // OnDestroy 적용으로 컴포넌트 소멸 시(스트리밍 페이지 이탈 시) 시간 저장
+  // 뒤로가기 시 시간 저장
   ngOnDestroy() {
     const myPlayer = videojs('my-video');
     localStorage.setItem('lastTime', myPlayer.currentTime());
