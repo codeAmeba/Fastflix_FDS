@@ -1,3 +1,10 @@
+.basicLayout.simplicity {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
 /* header */
 .signup-header {
   display: block;

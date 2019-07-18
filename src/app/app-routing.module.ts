@@ -28,8 +28,16 @@ const routes: Routes = [
     component: SignupComponent,
     children: [
       /* UserComponent의 <router-outlet>에 표시 */
-      { path: 'step1', component: SignupStep1Component },
-      { path: 'step2', component: SignupStep2Component },
+      {
+        path: 'step1',
+        component: SignupStep1Component,
+        data: { animation: 'step1' },
+      },
+      {
+        path: 'step2',
+        component: SignupStep2Component,
+        data: { animation: 'step2' },
+      },
     ],
   },
   { path: 'login', component: LoginComponent },

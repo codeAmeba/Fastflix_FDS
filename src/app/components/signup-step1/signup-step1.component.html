@@ -1,22 +1,17 @@
-<div class="message">
-  <div class="content">
-    <span>첫 한 달 동안 마음껏 <strong>무료로 이용하세요. </strong></span>
-  </div>
-</div>
-<div class="simpleContainer">
-  <div class="centerContainer contextStep"
-    style="display: block; transform: none; opacity: 1; transition-duration: 250ms;">
-    <div class="regContainer">
+<div class="simpleContainer" data-transitioned-child="true">
+  <div class="centerContainer contextStep">
+    <div class="regContainer" data-uia="context-registration">
       <div class="stepLogoContainer"><span class="stepLogo regStepLogo"></span></div>
-      <div class="stepHeader-container">
-        <div class="stepHeader"><span class="stepIndicator"><b>2</b>/<b>3단계</b></span>
-          <h1 class="stepTitle">계정을 등록하세요.</h1>
+      <div class="stepHeader-container" data-uia="header">
+        <div class="stepHeader"><span class="stepIndicator"><b>1</b>/<b>1단계</b></span>
+          <h1 class="stepTitle" data-uia="stepTitle">계정을 등록하세요.</h1>
         </div>
       </div>
-      <div class="contextBody contextRow">맞춤형 콘텐츠 서비스, 넷플릭스! ID와 비밀번호를 설정하여 다⁠양⁠한 디⁠바⁠이⁠스⁠에⁠서 Fastflix⁠를 시⁠청⁠하⁠세⁠요.
+      <div class="contextBody contextRow">맞춤형 콘텐츠 서비스, 패스트플릭스! ID와 비밀번호를 설정하여 다⁠양⁠한 디⁠바⁠이⁠스⁠에⁠서 Fastflix⁠를 시⁠청⁠하⁠세⁠요.
       </div>
     </div>
-    <div class="submitBtnContainer"><button type="button" autocomplete="off"
-        class="nf-btn nf-btn-primary nf-btn-solid nf-btn-oversize">다음</button></div>
+    <div class="submitBtnContainer"><a routerLink="/signup/step2"><button type="button" autocomplete="off"
+          class="nf-btn nf-btn-primary nf-btn-solid nf-btn-oversize" data-uia="cta-continue-registration"
+          placeholder="registration_button_continue">다음</button></a></div>
   </div>
 </div>
