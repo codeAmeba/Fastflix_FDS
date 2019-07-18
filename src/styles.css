@@ -65,6 +65,11 @@ html {
 
 
 body.signup {
-  background: #fff;
-  color: #141414;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f3f3f3;
+  color: #333;
+  font-size: 16px;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

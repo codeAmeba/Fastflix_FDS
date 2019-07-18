@@ -1,42 +1,18 @@
-.message {
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-.message .content {
-  margin: 20px 0 0;
-  background-color: #0071eb;
-  padding: 20px 0;
-  text-align: center;
-}
-
-.content span {
-  margin: 10px 0;
-  color: #fff;
-  line-height: 1.3em;
-  vertical-align: middle;
+.simpleContainer {
+  width: 100%;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #fff;
 }
 
 .simpleContainer {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   padding-bottom: 95px;
-}
 
-.centerContainer {
-  padding: 20px 32px 60px;
-  display: block;
-  overflow: hidden;
-  margin: 0 auto 15px;
-  max-width: 978px;
-  box-sizing: border-box;
-}
-
-.centerContainer {
-  padding: 20px 32px 60px;
-}
-
-.centerContainer {
-  overflow: hidden;
-  display: none;
 }
 
 .centerContainer {
@@ -46,32 +22,146 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  overflow: hidden;
+  padding: 20px 32px 60px;
+
 }
 
-.button-container {
-  margin-top: 24px;
+.planContainer,
+.regContainer,
+.verifyCardContainer,
+.verifyCardPageContainer {
   text-align: center;
   max-width: 440px;
   margin: 0 auto;
 }
 
-.submit {
+.planContainer,
+.regContainer,
+.verifyCardContainer {
+  max-width: 340px;
+}
+
+.stepLogoContainer {
+  display: inline-block;
+}
+
+.regStepLogo {
+  background: url(https://assets.nflxext.com/ffe/siteui/acquisition/simplicity/Devices.png) no-repeat 50% 50%;
+  height: 90px;
+  -webkit-background-size: 260px 260px;
+  -moz-background-size: 260px;
+  -o-background-size: 260px;
+  background-size: 260px;
+}
+
+.planContainer .stepLogo,
+.regContainer .stepLogo,
+.verifyCardContainer .stepLogo,
+.verifyCardPageContainer .stepLogo {
+  display: block;
+  margin: 10% 0 10%;
+}
+
+.regStepLogo {
+  width: 260px;
+}
+
+.stepLogoContainer .stepLogo {
+  margin: 100px 0 20px;
+}
+
+.stepHeader {
+  display: inline-block;
+}
+
+.stepIndicator {
+  text-align: left;
+  display: block;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.stepIndicator {
+  text-align: inherit;
+  font-size: 13px;
+}
+
+.stepTitle {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 23px;
+  margin: 0 0 .4em;
+}
+
+.regContainer .contextBody {
+  margin: 0;
+  font-size: 17px;
+}
+
+.submitBtnContainer {
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.simpleContainer .submitBtnContainer {
+  margin-top: 24px;
+}
+
+.contextStep .submitBtnContainer {
+  max-width: 340px;
+}
+
+.nf-btn {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1rem;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: .025rem;
+  border-radius: 2px;
+  user-select: none;
+  text-align: center;
+  box-sizing: border-box;
+  border: none;
+  position: relative;
+  min-height: 48px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+  color: #000;
+}
+
+.nf-btn {
+  position: relative;
+  font-size: 1rem;
+  padding: .75rem 1.33333333rem;
+  min-width: 74px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.nf-btn-solid.nf-btn-primary,
+.nf-btn-twotone.nf-btn-primary {
   color: #fff;
   background-color: #e50914;
+}
+
+.nf-btn.nf-btn-oversize {
+  font-size: 19px;
+  padding: .75rem 25.33333333px;
+  min-width: 110px;
+  min-height: 60px;
+  width: 100%;
+  line-height: 19px;
+}
+
+.simpleContainer .nf-btn-primary,
+.simpleContainer .nf-btn-secondary {
   min-height: 48px;
   font-weight: 400;
   font-size: 17px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   border-radius: 2px;
-  padding: .75rem 25.33333333px;
-  min-width: 110px;
-  width: 100%;
-  line-height: 19px;
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  vertical-align: middle;
-  cursor: pointer;
-  box-sizing: border-box;
-  border: none;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
 }
