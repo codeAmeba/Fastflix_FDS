@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup-step2',
@@ -11,7 +12,8 @@ export class SignupStep2Component implements OnInit {
   signupForm: FormGroup;
   emailHolderUp: boolean;
   pwHolderUp: boolean;
-  constructor(private router: Router) {}
+
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -35,7 +37,15 @@ export class SignupStep2Component implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['subin/main']);
+    const user = this.signupForm.value;
+    this.userService.signup(user).subscribe(
+      data => {
+        this.router.navigate(['login']);
+      },
+      error => {
+        this.signupForm.get('username').setErrors({ exist: true });
+      }
+    );
   }
 
   emailFocus(value: string) {

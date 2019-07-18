@@ -7,11 +7,11 @@
   <div class="centerContainer">
     <form [formGroup]="signupForm">
       <div class="steps">
-        <span class="step"><b>2</b>/<b>3단계</b></span>
-        <h1 class="step-title">지금 가입하고 한 달 동안 무료로 이용하세요.</h1>
+        <span class="step"><b>1</b>/<b>1단계</b></span>
+        <h1 class="step-title">지금 가입하고 신명나게 즐겨보세요.</h1>
       </div>
       <div class="poromo">
-        <span>Netflix 가입, 복잡하지 않아요!</span>
+        <span>Fastflix 가입, 복잡하지 않아요!</span>
         <span>복잡한 단계는 모두 없앴습니다.</span>
       </div>
       <div class="form-title">계정을 등록하세요.</div>
@@ -30,6 +30,7 @@
             *ngIf="!(username.errors?.minlength || username.errors?.maxlength) &&username.errors?.pattern && username.touched"
             class="error-message">정확한 이메일
             주소를 입력하세요.</div>
+          <div *ngIf="username.errors?.exist && username.touched" class="error-message">이미 사용 중인 이메일입니다.</div>
         </li>
         <li class="field-pw-wrapper">
           <div class="input-container">
