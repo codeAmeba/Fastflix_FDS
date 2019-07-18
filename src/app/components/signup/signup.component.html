@@ -2,12 +2,12 @@
   lang="ko-KR">
   <header class="signup-header">
     <a routerLink="/home" class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="NETFLIX">
+      <img src="../../../assets/images/fastflix_logo_03.png" alt="NETFLIX">
     </a>
     <a routerLink="/login" class="login">로그인</a>
   </header>
   <div [@routeAnimations]="o && o.activatedRouteData 
-  && o.activatedRouteData['animation']">
+  && o.activatedRouteData['animation']" style="height: 100vh">
     <router-outlet #o="outlet"></router-outlet>
   </div>
   <footer class="signup-footer">

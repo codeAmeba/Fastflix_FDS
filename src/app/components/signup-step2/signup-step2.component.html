@@ -7,20 +7,28 @@
   <div class="centerContainer">
     <form [formGroup]="signupForm">
       <div class="steps">
-        <span class="step"><b>2</b>/<b>3단계</b></span>
-        <h1 class="step-title">지금 가입하고 한 달 동안 무료로 이용하세요.</h1>
+        <span class="step"><b>1</b>/<b>2단계</b></span>
+        <h1 class="step-title">지금 가입하고 신명나게 즐겨보세요.</h1>
       </div>
       <div class="poromo">
-        <span>Netflix 가입, 복잡하지 않아요!</span>
+        <span>Fastflix 가입, 복잡하지 않아요!</span>
         <span>복잡한 단계는 모두 없앴습니다.</span>
       </div>
       <div class="form-title">계정을 등록하세요.</div>
       <ul class="sign-up-form">
         <li class="field-email-wrapper">
           <div class="input-container">
+            <input type="text" name="ownername" id="name" class="textField" formControlName="ownername"
+              [class.hasText]="name.value !== ''" #name>
+            <label for="name" class="placeLabel">이름</label>
+          </div>
+          <div *ngIf="ownername.errors?.required && ownername.touched" class="error-message">이름을 입력해주세요.</div>
+        </li>
+        <li class="field-email-wrapper">
+          <div class="input-container">
             <input type="text" name="username" id="email" class="textField" formControlName="username"
-              (focusin)="emailHolderUp = true" (focusout)="emailFocus($event.target.value)">
-            <label for="email" class="placeLabel" [class.up]="emailHolderUp">이메일</label>
+              [class.hasText]="email.value !== ''" #email>
+            <label for="email" class="placeLabel">이메일</label>
           </div>
           <div *ngIf="username.errors?.required && username.touched" class="error-message">이메일 주소를 입력해 주세요.</div>
           <div *ngIf="(username.errors?.minlength || username.errors?.maxlength) && username.touched"
@@ -30,23 +38,24 @@
             *ngIf="!(username.errors?.minlength || username.errors?.maxlength) &&username.errors?.pattern && username.touched"
             class="error-message">정확한 이메일
             주소를 입력하세요.</div>
+          <div *ngIf="username.errors?.exist && username.touched" class="error-message">이미 사용 중인 이메일입니다.</div>
         </li>
         <li class="field-pw-wrapper">
           <div class="input-container">
             <input type="password" name="password" id="password" class="textField" formControlName="password"
-              (focusin)="pwHolderUp = true" (focusout)="pwFocus($event.target.value)">
-            <label for="password" class="placeLabel" [class.up]="pwHolderUp">비밀번호</label>
+              [class.hasText]="pw.value !== ''" #pw>
+            <label for="password" class="placeLabel">비밀번호</label>
           </div>
           <div *ngIf="password.errors?.required && password.touched" class="error-message">비밀번호를 입력해 주세요.</div>
           <div *ngIf="(password.errors?.minlength || password.errors?.maxlength )&& password.touched"
             class="error-message">비밀번호는 4~60자 사이여야 합니다.</div>
         </li>
-        <li class="field-wrapper">
+        <!-- <li class="field-wrapper">
           <div class="input-container">
             <input type="checkbox" name="check" id="check">
             <label class="checkbox-label" for="check">예, Netflix 특별 프로모션 알림 이메일을 보내주세요.</label>
           </div>
-        </li>
+        </li> -->
       </ul>
       <div class="button-container">
         <button type="submit" class="submit" [disabled]="signupForm.invalid" (click)="onSubmit()">다음</button>

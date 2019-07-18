@@ -9,14 +9,10 @@ import {
 } from '@angular/animations';
 
 export const slideInAnimation = trigger('routeAnimations', [
-  transition('step2 => *', [
-    query(
-      ':enter, :leave',
-      style({ position: 'fixed', width: '100%', height: '100%' }),
-      {
-        optional: true,
-      }
-    ),
+  transition('step3 => *', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
     group([
       query(
         ':enter',
@@ -37,13 +33,9 @@ export const slideInAnimation = trigger('routeAnimations', [
     ]),
   ]),
   transition('step1 => *', [
-    query(
-      ':enter, :leave',
-      style({ position: 'fixed', width: '100%', height: '100%' }),
-      {
-        optional: true,
-      }
-    ),
+    query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
+      optional: true,
+    }),
     group([
       query(
         ':enter',
@@ -66,7 +58,7 @@ export const slideInAnimation = trigger('routeAnimations', [
       ),
     ]),
   ]),
-  transition('step1 => step2', [
+  transition('step2 => step3', [
     query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
       optional: true,
     }),

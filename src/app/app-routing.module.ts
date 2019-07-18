@@ -14,6 +14,7 @@ import {
   ProfileManageComponent,
   SignupStep1Component,
   SignupStep2Component,
+  SignupStep3Component,
 } from './components';
 
 /* Guard */
@@ -44,6 +45,11 @@ const routes: Routes = [
         path: 'step2',
         component: SignupStep2Component,
         data: { animation: 'step2' },
+      },
+      {
+        path: 'step3',
+        component: SignupStep3Component,
+        data: { animation: 'step3' },
       },
     ],
   },
