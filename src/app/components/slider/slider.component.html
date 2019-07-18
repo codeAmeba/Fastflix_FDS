@@ -27,6 +27,7 @@
         <div
           class="slider-item slider-item-{{ movie.id }}"
           *ngFor="let movie of movies"
+          (mouseover)="bobup = true"
         >
           <div class="title-card-container">
             <div
@@ -42,28 +43,37 @@
                   />
                 </div>
               </a>
-              <!-- hover시 확대 -->
+              <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div>
-                <span>
-                  <div class="bob-card bob-card-adult">
-                    <div class="image-rotator bob-background">
-                      <span>
-                        <div class="image-rotator-image "></div>
-                      </span>
+                <ng-template [ngIf]="bobup">
+                  <span>
+                    <div
+                      class="bob-card bob-card-adult"
+                      [class.bobup]="bobup"
+                      (mouseleave)="bobup = false"
+                    >
+                      <div class="image-rotator bob-background">
+                        <span>
+                          <div
+                            class="image-rotator-image "
+                            [class.image-rotator-style]="bobup"
+                          ></div>
+                        </span>
+                      </div>
+                      <div class="bob-overlay">
+                        <div class="bob-play-hitzone"></div>
+                        <!-- 영상 메인 이동....뭔지 일단 모르겠음 -->
+                        <a></a>
+                        <!-- 세부정보 -->
+                        <div class="bob-overview-wrapper"></div>
+                        <!-- 좋아요, 싫어요, 내찜콘 추가 -->
+                        <div class="bob-actions-wrapper"></div>
+                        <!-- 콘텐츠 상세 정보 보기 화면 (tab) -->
+                        <div class="bob-chevron-wrapper"></div>
+                      </div>
                     </div>
-                    <div class="bob-overlay">
-                      <div class="bob-play-hitzone"></div>
-                      <!-- 영상 메인 이동....뭔지 일단 모르겠음 -->
-                      <a></a>
-                      <!-- 세부정보 -->
-                      <div class="bob-overview-wrapper"></div>
-                      <!-- 좋아요, 싫어요, 내찜콘 추가 -->
-                      <div class="bob-actions-wrapper"></div>
-                      <!-- 콘텐츠 상세 정보 보기 화면 (tab) -->
-                      <div class="bob-chevron-wrapper"></div>
-                    </div>
-                  </div>
-                </span>
+                  </span>
+                </ng-template>
               </div>
               <!-- hover시 확대 끝 -->
             </div>
