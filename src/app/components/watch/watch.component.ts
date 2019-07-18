@@ -18,7 +18,10 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
       controls: true,
       autoplay: true,
       preload: 'auto',
-      techOrder: ['html5']
+      techOrder: ['html5'],
+      controlBar: {
+        volumePanel: { inline: false }
+      }
     };
 
     this.vidObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
