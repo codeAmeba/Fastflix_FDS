@@ -1,0 +1,143 @@
+.simpleContainer {
+  overflow: hidden;
+  padding: 0;
+}
+
+.centerContainer {
+  display: block;
+}
+
+.addProfilesContainer,
+.kidsProfilesContainer {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.stepHeader {
+  display: inline-block;
+}
+
+.stepTitle {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+ul.structural {
+  padding: 0;
+  margin: 0;
+}
+
+ul.grid {
+  box-sizing: border-box;
+}
+
+.simpleContainer .simpleForm {
+  margin: 20px 0;
+}
+
+.nfFormSpace {
+  margin-bottom: 10px;
+}
+
+ul.structural>li {
+  list-style: none;
+  margin-left: 0;
+}
+
+.nfInput {
+  max-width: 500px;
+  position: relative;
+}
+
+.nfInput .nfInputPlacement {
+  position: relative;
+}
+
+.nfTextField {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 16px;
+  border: solid 1px #8c8c8c;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  display: block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  color: #000;
+  padding: 10px 11px;
+  height: 44px;
+}
+
+.nfTextField:invalid,
+.nfTextField:valid {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.nfInput .nfTextField {
+  height: 48px;
+  padding: 10px 10px 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 740px) {
+  .nfInput.nfInputResponsive .nfTextField {
+    height: 60px;
+  }
+}
+
+.nfInput .placeLabel {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  color: #8c8c8c;
+  font-size: 14px;
+  transition: font .1s ease, top .1s ease, transform .1s ease, -webkit-transform .1s ease, -moz-transform .1s ease, -o-transform .1s ease;
+  transform: translateY(-50%);
+}
+
+.nfTextField.ng-invalid.ng-touched {
+  border-color: #b92d2b;
+}
+
+.error-message {
+  font-size: 13px;
+  color: #b92d2b;
+}
+
+.nfInput .hasText+.placeLabel,
+.placeLabel.up {
+  top: 4px;
+  font-size: 11px;
+  transform: translateY(0);
+}
+
+@media screen and (min-width: 740px) {
+
+  .nfInput.nfInputResponsive .hasText+.placeLabel,
+  .nfInput.nfInputResponsive .nfTextField:focus+.placeLabel {
+    top: 6px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 740px) {
+  .nfInput .placeLabel {
+    font-size: 16px;
+  }
+}
+
+
+.submitBtnContainer {
+  text-align: center;
+  max-width: 440px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
