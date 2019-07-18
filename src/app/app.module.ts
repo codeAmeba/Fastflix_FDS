@@ -27,10 +27,12 @@ import {
   SubHeaderComponent,
   SignupStep1Component,
   SignupStep2Component,
+  SignupStep3Component,
 } from './components';
 
 // Directives
 import { FixHeaderDirective } from './directives/fix-header.directive';
+import { SignupStep4Component } from './components/signup-step4/signup-step4.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { FixHeaderDirective } from './directives/fix-header.directive';
     SubHeaderComponent,
     SignupStep1Component,
     SignupStep2Component,
+    SignupStep3Component,
+    SignupStep4Component,
   ],
   imports: [
     BrowserModule,

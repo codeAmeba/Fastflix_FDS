@@ -1,0 +1,80 @@
+<div class="simpleContainer" data-transitioned-child="true">
+  <div class="transitionContainer profilesContainer">
+    <div class="centerContainer">
+      <div class="addProfilesContainer">
+        <div class="stepHeader-container" data-uia="header">
+          <div class="stepHeader">
+            <h1 class="stepTitle" data-uia="stepTitle">Netflix를 시청할 프로필을 등록하세요.</h1>
+          </div>
+        </div>
+        <div id="" class="subtitle" data-uia="">각자의 취향에 맞춰 콘텐츠를 추천해 드리며, 특히 어린이에 맞춰 설정된 키즈 세상도 준비되어 있습니다.</div>
+        <form [formGroup]="profileForm">
+          <ul class="simpleForm structural ui-grid form-profiles">
+            <li class="nfFormSpace ui-input-owner">
+              <div class="nfInput nfInputResponsive">
+                <div class="nfInputPlacement">
+                  <label class="input_id">
+                    <input name="ownerName" formControlName="ownerName" class="nfTextField" id="id_ownerName"
+                      type="text" value="{{userName}}" [class.hasText]="owner.value !== undefined" #owner>
+                    <label for="id_ownerName" class="placeLabel">내 프로필</label>
+                  </label>
+                </div>
+                <div *ngIf="ownerName.errors?.required && ownerName.touched" class="error-message">죄송합니다. 기본 프로필은 삭제하실 수
+                  없습니다.</div>
+              </div>
+            </li>
+            <li class="nfFormSpace ui-input-name">
+              <div class="nfInput nfInputResponsive">
+                <div class="nfInputPlacement">
+                  <label class="input_id">
+                    <input name="profile1Name" formControlName="profile1Name" class="nfTextField" id="id_profile1Name"
+                      type="text" [class.hasText]="prof1.value !== ''" #prof1>
+                    <label for="id_profile1Name" class="placeLabel">이름</label>
+                  </label>
+                </div>
+              </div>
+            </li>
+            <li class="nfFormSpace ui-input-name">
+              <div class="nfInput nfInputResponsive">
+                <div class="nfInputPlacement">
+                  <label class="input_id">
+                    <input name="profile2Name" formControlName="profile2Name" class="nfTextField" id="id_profile2Name"
+                      type="text" [class.hasText]="prof2.value !== ''" #prof2>
+                    <label for="id_profile2Name" class="placeLabel">이름</label>
+                  </label>
+                </div>
+              </div>
+            </li>
+            <li class="nfFormSpace ui-input-name">
+              <div class="nfInput nfInputResponsive">
+                <div class="nfInputPlacement">
+                  <label class="input_id">
+                    <input name="profile3Name" formControlName="profile3Name" class="nfTextField" id="id_profile3Name"
+                      type="text" [class.hasText]="prof3.value !== ''" #prof3>
+                    <label for="id_profile3Name" class="placeLabel">이름</label>
+                  </label>
+                </div>
+              </div>
+            </li>
+            <li class="nfFormSpace ui-input-name">
+              <div class="nfInput nfInputResponsive">
+                <div class="nfInputPlacement">
+                  <label class="input_id">
+                    <input name="profile4Name" formControlName="profile4Name" class="nfTextField" id="id_profile4Name"
+                      type="text" [class.hasText]="prof4.value !== ''" #prof4>
+                    <label for="id_profile4Name" class="placeLabel">이름</label>
+                  </label>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="submitBtnContainer">
+            <button type="submit" class="nf-btn nf-btn-primary nf-btn-solid nf-btn-oversize"
+              [disabled]="profileForm.invalid" (click)="onSubmit()">다음</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
