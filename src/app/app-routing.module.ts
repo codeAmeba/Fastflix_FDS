@@ -16,13 +16,20 @@ import {
   SignupStep2Component,
 } from './components';
 
+/* Guard */
+import { AuthGuard } from './services/auth.guard';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'welcome', component: IndexComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'movie', component: MovieComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'profile/manage', component: ProfileManageComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'movie', component: MovieComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'profile/manage',
+    component: ProfileManageComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'signup',
     component: SignupComponent,
@@ -41,8 +48,8 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'watch', component: WatchComponent },
-  { path: 'mylist', component: MyListComponent },
+  { path: 'watch', component: WatchComponent, canActivate: [AuthGuard] },
+  { path: 'mylist', component: MyListComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

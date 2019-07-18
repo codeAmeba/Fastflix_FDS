@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -14,10 +14,13 @@ export class LoginComponent implements OnInit {
   pwHolderUp: boolean;
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
+    this.renderer.addClass(document.body.parentElement, 'signup');
+    this.renderer.addClass(document.body, 'signup');
     this.loginForm = new FormGroup({
       username: new FormControl('', [
         Validators.required,
@@ -39,14 +42,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const user = {
-      username: this.loginForm.value.username,
-      password: this.loginForm.value.password,
-    };
-    // const user = this.loginForm.value;
+    // const user = {
+    //   username: this.loginForm.value.username,
+    //   password: this.loginForm.value.password,
+    // };
+    const user = this.loginForm.value;
 
     this.authService.login(user).subscribe(token => {
-      console.log(token);
+      this.authService.setToken(token);
       if (token) this.router.navigate(['/home']);
     });
     // this.router.navigate(['subin/main']);
@@ -65,5 +68,10 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  ngOnDestroy(): void {
+    this.renderer.removeClass(document.body.parentElement, 'signup');
+    this.renderer.removeClass(document.body, 'signup');
   }
 }

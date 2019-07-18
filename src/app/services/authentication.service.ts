@@ -10,9 +10,23 @@ import { User } from '../models/user';
 })
 export class AuthenticationService {
   apiUrl = environment.apiUrl;
+  TOKEN_NAME = 'Token';
+
   constructor(private http: HttpClient) {}
 
   login(user: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/accounts/login`, user);
+    return this.http.post<any>(`${this.apiUrl}/accounts/login/`, user);
+  }
+
+  getToken(): string {
+    return localStorage.getItem(this.TOKEN_NAME);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.TOKEN_NAME, token);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(this.TOKEN_NAME);
   }
 }
