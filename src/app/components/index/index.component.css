@@ -115,7 +115,7 @@ only screen and (min-width: 1450px) {
 }
 
 .our-story-card .our-story-card-background .bg-image {
-  width: auto;
+  width: 100%;
   max-width: none;
   height: 100%;
 }
