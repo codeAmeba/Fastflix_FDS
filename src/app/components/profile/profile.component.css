@@ -116,3 +116,121 @@ ul {
 .pinning-header .main-header {
   height: 68px;
 }
+
+.logo img {
+  height: 65px;
+ }
+
+ .profile-actions-container h1 {
+   font-size: 4vw;
+   margin: 0;
+ }
+
+ .profile-actions-container h1, .profile-actions-container h2 {
+   font-weight: 400;
+ }
+
+ .profile-actions-container h2 {
+   font-size: 1.3vw;
+   color: #666;
+ }
+
+ h2 {
+   display: block;
+   margin-block-start: 0.83em;
+   margin-block-end: 0.83em;
+   margin-inline-start: 0px;
+   margin-inline-end: 0px;
+ }
+
+ .profile-metadata .main-profile-avatar {
+   white-space: nowrap;
+   margin-right: 1.5vw;
+   width: 8vw;
+   min-width: 80px;
+   max-width: 180px;
+ }
+
+.profile-metadata img {
+  height: 8vw;
+  width: 8vw;
+  max-height: 180px;
+  max-width: 180px;
+  min-height: 80px;
+  min-width: 80px;
+}
+
+.profile-metadata {
+  display: flex;
+  padding: 2em 0;
+}
+
+.profile-entry {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.profile-entry input[type=text] {
+  width: 18em;
+  height: 2em;
+  background: #666;
+  border: 1px solid transparent;
+  margin: 0 .8em 0 0;
+  padding: .2em .6em;
+  color: #fff;
+  font-size: 1.3vw;
+  box-sizing: border-box;
+  text-indent: .1vw;
+}
+
+img {
+  border: 0;
+}
+
+.profile-add-parent {
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.profile-entry input[type=checkbox]+label {
+  border: 1px solid #333;
+  border-radius: 0;
+  display: inline-block;
+  position: relative;
+  margin-right: .5em;
+  font-size: .8vw;
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.profile-entry input[type=checkbox] {
+  display: none;
+}
+
+.profile-metadata .add-kids-marker {
+  font-weight: 400;
+  font-size: 1.3vw;
+}
+
+.profile-actions-container .profile-button {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.profile-button {
+  margin: 2em 0 1em 0;
+  font-size: 1.3vw;
+}
+
+.profile-button a, .profile-button span {
+  border: 1px solid grey;
+  color: grey;
+  text-transform: uppercase;
+  padding: .5em 1.5em;
+  cursor: pointer;
+  font-size: .9em;
+}

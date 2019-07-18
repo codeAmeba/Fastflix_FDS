@@ -1,9 +1,12 @@
 <p>profile works!</p>
 <div class="pinning-header on-profiles-gate">
   <div class="main-header on-profiles-gate" role="navigation">
+    <a routerLink="/home" class="logo" routerLinkActive="active">
+      <img src="../../../assets/images/fastflix_logo_03.png" alt="">
+    </a>
   </div>
 </div>
-<div class="profiles-gate-container">
+<div class="profiles-gate-container" *ngIf="!isManage">
   <div class="list-profiles">
     <div class="profile-gate-label">Fastflix를 시청할 프로필을 선택하세요.</div>
     <div>
@@ -28,7 +31,7 @@
             </a>
           </div>
         </li>
-        <li class="profile">
+        <li class="profile" (click)="isManage = true">
           <div>
             <a role="link" tabindex="0">
               <div class="addProfileIcon icon-tvuiAdd">
@@ -44,6 +47,40 @@
     </span>
   </div>
   <div></div>
-  <div></div>
-  <div></div>
+</div>
+<div class="centered-div" *ngIf="isManage" 
+[ngStyle]="{opacity: isManage ? 1 : 0, transform: scale(1), 'transition-duration': '450ms', 'transition-delay': '200ms'}">
+  <div class="profile-actions-container">
+    <h1>프로필 추가</h1>
+    <h2>FastFlix를 시청할 다른 사용자를 등록하시려면 프로필을 추가하세요.</h2>
+    <div class="profile-metadata profile-entry">
+      <div class="main-profile-avatar">
+        <img src="https://art-s.nflximg.net/a7774/574ffd46d2bcef69802752f39db6320328fa7774.png" alt style="opacity: 1; transform: scale(1); transition-duration: 480ms;">
+      </div>
+      <div class="profile-add-parent">
+        <div class="profile-entry-inputs">
+          <input type="text" id="add-profile-name" class placeholder="이름">
+          <label for="add-profile-name" aria-label="이름"></label>
+          <input type="checkbox" id="add-kids-profile">
+          <label for="add-kids-profile">
+            <!-- <svg class="svg-icon svg-icon-check-mark" focusable="true">
+              <use filter xlink:href="#check-mark">
+                #shadow-root (closed)
+                <svg id="check-mark" viewBox="0 0 32 32">
+                  <path fill="currentColor" d="M14.133 23.5l12.767-12.467c0.033-0.033 0.1-0.1 0.133-0.167l-3.1-3.133c-0.067 0.033-0.133 0.1-0.2 0.167l-11.267 10.933-4.267-4.333-3.233 2.933c0.033 0 1.067 1.067 1.1 1.067l4.767 5 0.133 0.133c0.433 0.4 0.967 0.633 1.5 0.633s1.1-0.233 1.5-0.633z"></path>
+                </svg>
+              </use>
+            </svg> -->
+          </label>
+          <span class="add-kids-marker" role="checkbox" aria-checked="false" tabindex="0">어린이인가요?</span>
+        </div>
+      </div>
+    </div>
+    <span class="profile-button preferred-action" tabindex="0" role="button">
+      <span>다음</span>
+    </span>
+    <span class="profile-button" tabindex="0" role="button" (click)="isManage = false">
+      <span>취소</span>
+    </span>
+  </div>
 </div>
