@@ -1,6 +1,6 @@
 .slider {
   z-index: 2;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   position: relative;
   margin: 0;
   padding: 0.4% 4%;
@@ -169,21 +169,28 @@ img {
 }
 
 /* hover section */
+.bob-card {
+  position: absolute;
+  visibility: hidden;
+  z-index: 2;
+  background-color: #000;
+  color: #fff;
+}
 .bobup {
   transform: scale(0.99999);
   visibility: visible;
   width: 195%;
   height: 195%;
   top: -47.5%;
-  left: -47.5%;
   transition-duration: 400ms;
 }
-.bob-card {
+.bob-card-adult .bob-background {
   position: absolute;
-  /* visibility: hidden; */
-  z-index: 2;
-  background-color: #000;
-  color: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
 }
 .bob-card-adult .bob-background {
   position: absolute;
@@ -193,21 +200,7 @@ img {
   bottom: 0;
   z-index: 0;
 }
-.image-rotator-style {
-  background-image: url(https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8…t-s4LPDNMitCC7ujBJK5f0WgyNusS2Zye122nn9LQ4vaZqv-s4Oq5HJap9oK69A.webp?r=8fd);
-  z-index: 2;
-  opacity: 1;
-  transition-duration: 750ms;
-}
-.bob-card-adult .bob-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-.image-rotator .image-rotator-image {
+.image-rotator-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -218,6 +211,12 @@ img {
   -o-background-size: cover;
   background-size: cover;
   opacity: 0;
+}
+.image-rotator-style {
+  background-image: url("https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABdvpnlBIYGz5D8NBxb3CHkzv1eakMMx3gzI7kESmy-QiExgsYK7Kn8bQRFr40IrxgbCMGSGDGJ53t00PIq3zPC59kxhe9_3JHg.webp?r=42b");
+  z-index: 2;
+  opacity: 1;
+  transition-duration: 750ms;
 }
 .bob-card-adult .bob-overlay {
   position: absolute;

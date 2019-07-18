@@ -218,5 +218,24 @@ export class SliderComponent implements OnInit {
       }, 750);
     }
   }
-  bobup = false;
+  // hover한 카드 id
+  bobup: number;
+  // 슬라이더 당 카드 개수
+  cardCount: number = 6;
+  // hover한 카드 0 ~ 7
+  hoverCard: number = 0;
+  cardTransform: any;
+  cardTransition: any;
+  bobScale = "scale(0.52)";
+  cardHover(movieId) {
+    this.bobup = movieId;
+    this.hoverCard =
+      movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
+    this.bobScale = "scale(0.99999)";
+  }
+  bobupLeft() {
+    if (this.hoverCard === 1) return 0;
+    else if (this.hoverCard === 6) return -94.5;
+    return -47.5;
+  }
 }
