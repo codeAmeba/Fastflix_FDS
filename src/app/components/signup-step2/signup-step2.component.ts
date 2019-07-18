@@ -40,7 +40,7 @@ export class SignupStep2Component implements OnInit {
     const user = this.signupForm.value;
     this.userService.signup(user).subscribe(
       data => {
-        this.router.navigate(['login']);
+        this.router.navigate(['/signup/step3']);
       },
       error => {
         this.signupForm.get('username').setErrors({ exist: true });

@@ -27,6 +27,7 @@ import {
   SubHeaderComponent,
   SignupStep1Component,
   SignupStep2Component,
+  SignupStep3Component,
 } from './components';
 
 // Directives
@@ -53,6 +54,7 @@ import { FixHeaderDirective } from './directives/fix-header.directive';
     SubHeaderComponent,
     SignupStep1Component,
     SignupStep2Component,
+    SignupStep3Component,
   ],
   imports: [
     BrowserModule,

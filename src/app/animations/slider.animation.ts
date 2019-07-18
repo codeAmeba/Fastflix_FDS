@@ -9,7 +9,7 @@ import {
 } from '@angular/animations';
 
 export const slideInAnimation = trigger('routeAnimations', [
-  transition('step2 => *', [
+  transition('step3 => *', [
     query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
       optional: true,
     }),
@@ -58,7 +58,7 @@ export const slideInAnimation = trigger('routeAnimations', [
       ),
     ]),
   ]),
-  transition('step1 => step2', [
+  transition('step2 => step3', [
     query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
       optional: true,
     }),
