@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.renderer.addClass(document.body.parentElement, 'signup');
     this.renderer.addClass(document.body, 'signup');
     this.loginForm = new FormGroup({
-      username: new FormControl('', [
+      id: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50),
@@ -42,11 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // const user = {
-    //   username: this.loginForm.value.username,
-    //   password: this.loginForm.value.password,
-    // };
-    const user = this.loginForm.value;
+    const user = new FormData();
+    user.append('id', this.loginForm.get('id').value);
+    user.append('pw', this.loginForm.get('password').value);
 
     this.authService.login(user).subscribe(token => {
       this.authService.setToken(token);
@@ -62,8 +60,9 @@ export class LoginComponent implements OnInit {
   pwFocus(value: string) {
     this.pwHolderUp = value ? true : false;
   }
-  get username() {
-    return this.loginForm.get('username');
+
+  get id() {
+    return this.loginForm.get('id');
   }
 
   get password() {

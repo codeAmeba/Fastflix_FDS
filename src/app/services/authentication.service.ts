@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -14,7 +14,9 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: User): Observable<any> {
+  login(user: FormData): Observable<any> {
+    // const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
+
     return this.http.post<any>(`${this.apiUrl}/accounts/login/`, user);
   }
 
@@ -26,7 +28,7 @@ export class AuthenticationService {
     localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token['token']));
   }
 
-  removeToken(): void {
+  logout(): void {
     localStorage.removeItem(this.TOKEN_NAME);
   }
 }
