@@ -25,6 +25,7 @@
     "tslib": "^1.9.0",
     "video.js": "^7.6.0",
     "videojs": "^1.0.0",
+    "videojs-hotkeys": "^0.2.25",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
