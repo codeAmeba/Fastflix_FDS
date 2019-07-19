@@ -3,16 +3,9 @@
   margin: 0;
   height: 100%;
   width: 100%;
+  vertical-align: middle;
 }
 .video-js {
   color: white;
   font-size: 16px;
-}
-
-.history-back {
-  width: 100px;
-  height: 100px;
-  background-color: white;
-  float: right;
-  z-index: 10;
 }
