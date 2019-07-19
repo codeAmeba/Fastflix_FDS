@@ -10,6 +10,7 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   vidObj: any;
   poster = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
   video = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+  backArrow = document.querySelector('.back-arrow');
 
   @ViewChild('myvid', null) vid: ElementRef;
 
@@ -59,5 +60,9 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   moveBack(e) {
     const myPlayer = videojs('my-video');
     myPlayer.currentTime(myPlayer.currentTime() - 10);
+  }
+
+  historyBack() {
+    window.history.back();
   }
 }
