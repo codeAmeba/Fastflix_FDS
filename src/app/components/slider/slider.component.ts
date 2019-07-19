@@ -231,11 +231,55 @@ export class SliderComponent implements OnInit {
     this.bobup = movieId;
     this.hoverCard =
       movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
-    this.bobScale = "scale(0.99999)";
+    setTimeout(() => {
+      this.bobScale = "scale(0.99999)";
+    }, 100);
   }
+  cardHoverLeave() {
+    this.bobup = 0;
+    this.bobScale = "scale(0.52)";
+  }
+  // 보여주고 있는 카드 숫자 부여
+  showNumber(movieId) {
+    const showNumber = movieId % this.cardCount;
+    const quotient =
+      Math.floor(movieId / this.cardCount) === this.sliderState - 1
+        ? showNumber
+        : "";
+    if (this.sliderState === 1 && (movieId === 6 || movieId === 7)) {
+      return showNumber + 6;
+    }
+    if (this.sliderState === 1 && movieId === 18) {
+      return showNumber;
+    }
+    if (this.sliderState === 2 && (movieId === 12 || movieId === 13)) {
+      return showNumber + 6;
+    }
+    if (this.sliderState === 3 && (movieId === 18 || movieId === 1)) {
+      return showNumber + 6;
+    }
+    return quotient;
+  }
+  // bobup 시 left 값 주기
   bobupLeft() {
     if (this.hoverCard === 1) return 0;
     else if (this.hoverCard === 6) return -94.5;
     return -47.5;
+  }
+  // 어디서 bobup이 될 것인지 정해주기
+  bobupTransformOrigin() {
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
+    return;
+  }
+  cardHoverMove(showNumber) {
+    // style="transform: translate3d(278px, 0px, 0px);"
+    if (this.hoverCard === 1) {
+      if (showNumber > this.hoverCard) return "translate3d(278px, 0px, 0px);";
+    } else if (this.hoverCard === 6) {
+    } else {
+      if (showNumber < this.hoverCard) return "translate3d(-140px, 0px, 0px);";
+      if (showNumber > this.hoverCard) return "translate3d(139px, 0px, 0px);";
+    }
   }
 }
