@@ -20,7 +20,7 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
       preload: 'auto',
       techOrder: ['html5'],
       controlBar: {
-        volumePanel: { inline: false }
+        volumePanel: { inline: true }
       }
     };
 
