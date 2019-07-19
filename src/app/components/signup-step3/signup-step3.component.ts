@@ -16,7 +16,6 @@ export class SignupStep3Component implements OnInit {
 
   ngOnInit() {
     this.userName = this.userService.userName;
-    console.log(this.userName);
 
     this.profileForm = new FormGroup({
       ownerName: new FormControl('', [Validators.required]),
@@ -35,7 +34,7 @@ export class SignupStep3Component implements OnInit {
     this.userService.setProfile(user).subscribe(
       data => {
         console.log('success', data);
-        // this.router.navigate(['/signup/step4']);
+        this.router.navigate(['/signup/step4']);
       },
       error => {
         console.error(error);

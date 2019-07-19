@@ -116,6 +116,7 @@ b {
   transition: font .1s ease, top .1s ease, transform .1s ease, -webkit-transform .1s ease, -moz-transform .1s ease, -o-transform .1s ease;
 }
 
+input:focus+.placeLabel,
 .hasText+.placeLabel {
   top: 6px;
   font-weight: 700;
