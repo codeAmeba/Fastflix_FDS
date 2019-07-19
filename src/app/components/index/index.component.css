@@ -104,7 +104,7 @@
 (min-width: 1000px) {
   .concord #main-creative.bg:before {
     background: rgba(0, 0, 0, .5);
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .5) 100%), radial-gradient(50% 120%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .7) 100%);
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .5) 100%), radial-gradient(50% 120% at 0 0, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .7) 100%);
   }
 }
 

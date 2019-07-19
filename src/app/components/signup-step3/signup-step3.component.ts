@@ -18,7 +18,7 @@ export class SignupStep3Component implements OnInit {
     this.userName = this.userService.userName;
 
     this.profileForm = new FormGroup({
-      ownerName: new FormControl('', [Validators.required]),
+      ownerName: new FormControl(''),
       profile1Name: new FormControl(''),
       profile2Name: new FormControl(''),
       profile3Name: new FormControl(''),
