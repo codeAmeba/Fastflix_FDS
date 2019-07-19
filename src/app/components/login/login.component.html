@@ -1,8 +1,8 @@
 <div class="login-wrapper">
   <div class="login-bg">
     <img class="concord-img vlv-creative"
-      src="https://assets.nflxext.com/ffe/siteui/vlv3/cd4c21a2-994a-42f1-a6c4-2e0b57438223/2cb7463d-4566-4ef6-af27-9468f5db94aa/KR-ko-20190701-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-      srcset="https://assets.nflxext.com/ffe/siteui/vlv3/cd4c21a2-994a-42f1-a6c4-2e0b57438223/2cb7463d-4566-4ef6-af27-9468f5db94aa/KR-ko-20190701-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/cd4c21a2-994a-42f1-a6c4-2e0b57438223/2cb7463d-4566-4ef6-af27-9468f5db94aa/KR-ko-20190701-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/cd4c21a2-994a-42f1-a6c4-2e0b57438223/2cb7463d-4566-4ef6-af27-9468f5db94aa/KR-ko-20190701-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
+      src="https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_small.jpg"
+      srcset="https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
       alt="">
   </div>
   <header class="login-header">
@@ -17,13 +17,13 @@
         <h1>로그인</h1>
         <form [formGroup]="loginForm">
           <div class="email-container">
-            <div class="input-container" [class.error]="username.invalid && username.touched">
-              <input type="text" class="textField" id="login-email" name="username" formControlName="username"
+            <div class="input-container" [class.error]="id.invalid && id.touched">
+              <input type="text" class="textField" id="login-email" name="id" formControlName="id"
                 (focusin)="emailHolderUp = true" (blur)="emailFocus($event.target.value)">
               <label for="login-email" class="placeLabel" [class.up]="emailHolderUp">이메일 주소</label>
             </div>
             <div
-              *ngIf="(username.errors?.required && username.touched) ||(username.errors?.minlength || username.errors?.maxlength) || username.errors?.pattern && username.touched"
+              *ngIf="(id.errors?.required && id.touched) ||(id.errors?.minlength || id.errors?.maxlength) || id.errors?.pattern && id.touched"
               class="error-message">정확한 이메일 주소를 입력하세요.</div>
           </div>
           <div class="pw-container">

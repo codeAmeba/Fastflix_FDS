@@ -16,3 +16,5 @@ export * from './footer/footer.component';
 export * from './sub-header/sub-header.component';
 export * from './signup-step1/signup-step1.component';
 export * from './signup-step2/signup-step2.component';
+export * from './signup-step3/signup-step3.component';
+export * from './signup-step4/signup-step4.component';
