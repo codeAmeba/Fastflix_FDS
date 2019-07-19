@@ -127,24 +127,6 @@ export class SliderComponent implements OnInit {
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABYSkjw8IEYs4nGPNBXSwX-LEWpmkbgAeV-QYaEGsbW2LcHwkQNwa1u5MHc9q0iAJTs0UEDbN16iLWACw6RZFSbP3JgvbH0ce.webp?r=7bc"
     }
-    // {
-    //   id: 18,
-    //   title: "친구와 연인사이",
-    //   url:
-    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSW71zHM_awT-YQvs_IeOKCVgVV4IfCxH1GIBocHUEIZk73kMMsavFaYntPtFV4g3ZRVbrqHlhrCe9P9nFpJqK-0o8SqCpTm.webp?r=e86"
-    // },
-    // {
-    //   id: 19,
-    //   title: "그랜드 부다페스트 호텔",
-    //   url:
-    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABTS4LAC0ecy3Qn8LVQTor7MYmWPBTl0WhbzUHahAcmz3oSX71_SUwBIz2Z6x5PTAV5iL-OWpudzPQkUlFVZThkcgRe1B9GgX.webp?r=ccb"
-    // },
-    // {
-    //   id: 20,
-    //   title: "포레스트 검프",
-    //   url:
-    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABRFnmYU4IONsd6sPx437eMqihH6qY18wQL-aOo5Ib6WPlNe4Nx8KL-A-nPgMBI9HSPe5OMYa0GXv2Zzf_1I2WUITtTuuO59Q.webp?r=056"
-    // }
   ];
   tabShow: boolean = false;
   movies: Movies[] = [...this.moviesList];
@@ -203,7 +185,6 @@ export class SliderComponent implements OnInit {
       this.transform = `translate3d(${this.sliderPosition -
         this.OneSliderLength}%, 0px, 0px)`;
       this.transition = `transform 0.75s ease 0s`;
-      // this.sliderState++;
       this.sliderPosition = this.sliderPosition - this.OneSliderLength;
       console.log(this.sliderPosition - this.OneSliderLength);
     } else {
@@ -226,7 +207,6 @@ export class SliderComponent implements OnInit {
 
     if (this.sliderState === this.tabLength + 1) {
       this.sliderState = 1;
-      console.log("셋 탐 아웃 머거따!");
 
       // settimeout
       setTimeout(() => {
@@ -237,5 +217,25 @@ export class SliderComponent implements OnInit {
           this.XState - this.OneSliderLength * this.sliderState;
       }, 750);
     }
+  }
+  // hover한 카드 id
+  bobup: number;
+  // 슬라이더 당 카드 개수
+  cardCount: number = 6;
+  // hover한 카드 0 ~ 7
+  hoverCard: number = 0;
+  cardTransform: any;
+  cardTransition: any;
+  bobScale = "scale(0.52)";
+  cardHover(movieId) {
+    this.bobup = movieId;
+    this.hoverCard =
+      movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
+    this.bobScale = "scale(0.99999)";
+  }
+  bobupLeft() {
+    if (this.hoverCard === 1) return 0;
+    else if (this.hoverCard === 6) return -94.5;
+    return -47.5;
   }
 }
