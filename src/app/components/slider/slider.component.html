@@ -25,12 +25,11 @@
       <div class="sliderContent row-with-x-columns">
         <!-- card -->
         <div
-          class="slider-item slider-item-{{ movie.id }} show-number-{{
-            movie.id % cardCount
-          }}"
-          [class.show-number-6]="movie.id % cardCount === 0"
-          [class.show-number-7]="movie.id % cardCount === 1"
           *ngFor="let movie of movies"
+          class="slider-item slider-item-{{ movie.id }} show-number-{{
+            showNumber(movie.id)
+          }}"
+          [style.transform]="cardHoverMove(showNumber(movie.id))"
         >
           <div class="title-card-container">
             <div
@@ -50,12 +49,13 @@
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div>
                 <ng-template [ngIf]="bobup === movie.id">
-                  <span (mouseleave)="bobup = 0">
+                  <span (mouseleave)="cardHoverLeave()">
                     <div
                       class="bob-card bob-card-adult"
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
-                      [style.scale] = "bobScale"
+                      [style.transform]="bobScale"
+                      [style.transform-origin]="bobupTransformOrigin()"
                     >
                       <div class="image-rotator bob-background">
                         <span>
