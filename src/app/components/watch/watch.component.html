@@ -1,8 +1,5 @@
 <div class="container">
-  <div class="history-back">
-    
-  </div>
-  <video #myvid id="my-video" class="video-js 
+  <video (keyup.arrowright)="moveForword($event)" (keyup.arrowleft)="moveBack($event)" #myvid id="my-video" class="video-js 
           vjs-fluid vjs-big-play-centered vjs-styles-defaults"
          [poster]="poster">
     <source [src]="video" type="video/mp4">
