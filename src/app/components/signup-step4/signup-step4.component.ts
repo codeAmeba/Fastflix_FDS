@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-step4',
@@ -13,7 +14,7 @@ export class SignupStep4Component implements OnInit {
   count: number;
   userName: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.activeSubmit = false;
@@ -46,5 +47,9 @@ export class SignupStep4Component implements OnInit {
     setTimeout(() => {
       this.animate = false;
     }, 500);
+  }
+
+  onSubmit() {
+    this.router.navigate(['/home']);
   }
 }

@@ -42,10 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    const user = {
-      id: this.loginForm.get('id').value,
-      pw: this.loginForm.get('password').value,
-    };
+    const user = new FormData();
+    user.append('id', this.loginForm.get('id').value);
+    user.append('pw', this.loginForm.get('password').value);
 
     this.authService.login(user).subscribe(token => {
       this.authService.setToken(token);

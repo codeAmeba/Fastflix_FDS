@@ -39,7 +39,7 @@
           <button [disabled]="!activeSubmit" autocomplete="off"
             class="nf-btn nf-btn-primary nf-btn-solid nf-btn-oversize"
             [class.nf-btn-black]="!activeSubmit"
-            placeholder="button_continue">다음
+            placeholder="button_continue" (click)="onSubmit()">다음
           </button>
         </div>
       </div>
