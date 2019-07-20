@@ -111,8 +111,8 @@ ul.structural>li {
   color: #b92d2b;
 }
 
-.nfInput .hasText+.placeLabel,
-.placeLabel.up {
+.nfTextField:focus+.placeLabel,
+.nfInput .hasText+.placeLabel {
   top: 4px;
   font-size: 11px;
   transform: translateY(0);

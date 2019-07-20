@@ -12,6 +12,7 @@ import { AuthenticationService } from './authentication.service';
 export class UserService implements OnInit {
   apiUrl = environment.apiUrl;
   userName: string;
+  PROFILE_NAME = 'PID';
 
   constructor(
     private http: HttpClient,
@@ -26,7 +27,7 @@ export class UserService implements OnInit {
     return this.http.post<any>(`${this.apiUrl}/accounts/create_user/`, user);
   }
 
-  setProfile(user: UserProfile): Observable<UserProfile> {
+  createProfile(user: UserProfile): Observable<UserProfile> {
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
@@ -36,5 +37,13 @@ export class UserService implements OnInit {
       user,
       { headers }
     );
+  }
+
+  setProfile(profileId: any) {
+    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId['id']));
+  }
+
+  getProfile() {
+    return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
   }
 }
