@@ -88,10 +88,52 @@
                       </div>
                       <div class="bob-overlay">
                         <div class="bob-play-hitzone"></div>
-                        <!-- 영상 메인 이동....뭔지 일단 모르겠음 -->
+                        <!-- 영상 메인 이동....뭔지 일단 모르겠음, 아래 화살표 -->
                         <a></a>
+
                         <!-- 세부정보 -->
-                        <div class="bob-overview-wrapper"></div>
+                        <div class="bob-overview-wrapper">
+                          <div class="bob-overview">
+                            <!-- 동영상 play 버튼 -->
+                            <a></a>
+                            <div class="bob-title">
+                              {{ movie.title }}
+                            </div>
+
+                            <div class="bob-metadata-wrapper">
+                              <div
+                                class="meta video-meta video-meta--bob-overview"
+                              >
+                                <!-- match score 안에 좋아요, 싫어요 -->
+                                <span class="match-score-wrapper">
+                                  <div class="show-match-score rating-inner">
+                                    <span class="match-score">77% 일치</span>
+                                  </div>
+                                </span>
+                                <span class="maturity-rating "></span>
+                                <!-- 관람등급 -->
+                                <span class="duration">1시간 58분</span>
+                              </div>
+                            </div>
+                            <div class="bob-overview-evidence-wrapper">
+                              <div class="evidence-tags">
+                                <div class="evidence-list">
+                                  <ul class="evidence-item">
+                                    <li class="evidence-text">
+                                      *ngFor로 돌리기
+                                    </li>
+                                    <li class="evidence-text">
+                                      *ngFor로 돌리기
+                                    </li>
+                                    <li class="evidence-text">
+                                      *ngFor로 돌리기
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <!-- 좋아요, 싫어요, 내찜콘 추가 -->
                         <div class="bob-actions-wrapper"></div>
                         <!-- 콘텐츠 상세 정보 보기 화면 (tab) -->
