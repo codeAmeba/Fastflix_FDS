@@ -27,13 +27,29 @@ export class SignupStep3Component implements OnInit {
   }
 
   onSubmit() {
+    const names = [this.profileForm.get('ownerName').value || this.userName];
+    const kids = [false];
+
+    for (let i = 1; i < 5; i++) {
+      if (this.profileForm.get(`profile${i}Name`).value) {
+        names.push(this.profileForm.get(`profile${i}Name`).value);
+        kids.push(false);
+      }
+    }
+
     const user = {
-      name: this.profileForm.get('ownerName').value,
-      kid: false,
+      name: names,
+      kid: kids,
     };
-    this.userService.setProfile(user).subscribe(
-      data => {
-        console.log('success', data);
+
+    console.log(user);
+
+    this.userService.createProfile(user).subscribe(
+      profileId => {
+        console.log('success', profileId);
+        this.userService.setProfile(profileId);
+        if (this.profileForm.get('ownerName').value)
+          this.userService.userName = this.profileForm.get('ownerName').value;
         this.router.navigate(['/signup/step4']);
       },
       error => {

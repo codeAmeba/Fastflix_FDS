@@ -1,4 +1,4 @@
 export interface UserProfile {
-  name: string;
-  kid: boolean;
+  name: string[];
+  kid: boolean[];
 }
