@@ -1,6 +1,7 @@
 .simpleContainer {
   overflow: hidden;
   padding: 0;
+  padding-top: 5vh;
 }
 
 .centerContainer {

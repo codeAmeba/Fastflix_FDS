@@ -1,6 +1,7 @@
 .message {
   max-width: 440px;
   margin: 0 auto;
+  padding-top: 5vh;
 }
 
 .message .content {
