@@ -241,8 +241,11 @@ export class SliderComponent implements OnInit {
   }
 
   cardHoverLeave() {
-    this.bobup = 0;
     this.bobScale = "scale(0.52222)";
+
+    setTimeout(() => {
+      this.bobup = 0;
+    }, 300);
     this.toRight = false;
   }
 
