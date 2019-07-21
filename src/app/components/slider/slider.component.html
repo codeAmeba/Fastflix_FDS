@@ -29,7 +29,28 @@
           class="slider-item slider-item-{{ movie.id }} show-number-{{
             showNumber(movie.id)
           }}"
-          [style.transform]="cardHoverMove(showNumber(movie.id))"
+          [class.toRight]="
+            toRight && hoverCard === 1 && showNumber(movie.id) > hoverCard
+          "
+          [class.toRight1]="
+            toRight &&
+            hoverCard !== 1 &&
+            hoverCard !== 6 &&
+            showNumber(movie.id) > hoverCard
+          "
+          [class.toLeft1]="
+            toRight &&
+            hoverCard !== 6 &&
+            hoverCard !== 1 &&
+            showNumber(movie.id) < hoverCard
+          "
+          [class.toLeft]="
+            toRight &&
+            hoverCard === 6 &&
+            showNumber(movie.id) !== 0 &&
+            showNumber(movie.id) < hoverCard
+          "
+          [style.transform]="cardHoverMoveRet"
         >
           <div class="title-card-container">
             <div

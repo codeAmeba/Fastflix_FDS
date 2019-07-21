@@ -72,6 +72,9 @@
   vertical-align: top;
   padding: 0 2px;
 }
+.slider-item:hover {
+  width: 500px;
+}
 
 .title-card:not(.loadingTitle) {
   display: block;
@@ -169,7 +172,7 @@ img {
   height: 195%;
   top: -47.5%;
   /* transition-duration: 400ms; */
-  transition: 400ms all ease;
+  transition: transform ease 400ms;
 }
 .bob-card-adult .bob-background {
   position: absolute;
@@ -272,6 +275,12 @@ img {
   .slider .row-with-x-columns .slider-item {
     width: 16.66666667%;
   }
+  /* .slider .row-with-x-columns .slider-item:hover {
+    margin-left: 50px;
+    margin-right: 50px;
+    transition: margin-left 400ms;
+    transition: margin-right 400ms;
+  } */
 }
 @media screen and (min-width: 1500px) {
   .pagination-indicator {
@@ -303,4 +312,62 @@ img {
   .slider .row-with-x-columns .slider-item {
     width: 33.333333%;
   }
+}
+
+.true {
+  transform: translate3d(278px, 0px, 0px);
+  transition: all ease 400ms;
+}
+
+/* .show-number-1:hover + .show-number-2,
+.show-number-1:hover ~ .show-number-3,
+.show-number-1:hover ~ .show-number-4,
+.show-number-1:hover ~ .show-number-5,
+.show-number-1:hover ~ .show-number-6,
+.show-number-1:hover ~ .show-number-7 {
+  transform: translate3d(253px, 0px, 0px);
+  transition: transform ease 400ms;
+} */
+/* .show-number-1:hover + .show-number-2,
+.show-number-1:hover ~ .show-number-3,
+.show-number-1:hover ~ .show-number-4,
+.show-number-1:hover ~ .show-number-5,
+.show-number-1:hover ~ .show-number-6,
+.show-number-1:hover ~ .show-number-7 {
+  transform: translate3d(253px, 0px, 0px);
+  transition: transform ease 400ms;
+} */
+/* .show-number-6:hover ~ .show-number-2,
+.show-number-6:hover ~ .show-number-3,
+.show-number-6:hover ~ .show-number-4,
+.show-number-6:hover ~ .show-number-5,
+.show-number-6:hover ~ .show-number-0,
+.show-number-6:hover ~ .show-number-1 {
+  transform: translate3d(-279px, 0px, 0px);
+  transition: transform ease 400ms;
+} */
+/* .show-number-6:hover ~ .show-number-5 {
+  margin: 100px;
+} */
+.toRight {
+  transform: translate3d(253px, 0px, 0px);
+  transition: transform ease 540ms;
+  transition-delay: 0ms;
+}
+.toLeft {
+  transform: translate3d(-251px, 0px, 0px);
+  transition: transform ease 500ms;
+  transition-delay: 0ms;
+}
+
+.toRight1 {
+  transform: translate3d(126px, 0px, 0px);
+  transition: transform ease 500ms;
+  transition-delay: 0ms;
+}
+
+.toLeft1 {
+  transform: translate3d(-126px, 0px, 0px);
+  transition: transform ease 500ms;
+  transition-delay: 0ms;
 }
