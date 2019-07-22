@@ -2,7 +2,6 @@
   width: 100%;
   color: #fff;
   font-size: 3.5vw;
-
 }
 
 .profiles-gate-container li.profile:not(:last-child) {
@@ -120,3 +119,33 @@ ul {
 .logo img {
   height: 65px;
  }
+
+ .profile-button.preferred-action.preferred-active a, .profile-button.preferred-action.preferred-active span, .profile-button.preferred-action:hover a, .profile-button.preferred-action:hover span {
+  background: #c00;
+  border: 1px solid #c00;
+  color: #fff;
+ }
+
+.profile-button.preferred-action a, .profile-button.preferred-action span {
+  background: #fff;
+  color: #000;
+  border: 1px solid #fff;
+  font-weight: 700;
+}
+
+.profile-button a:hover, .profile-button span:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.profiles-gate-container li a.focused .addProfileIcon, .profiles-gate-container li a:focus .addProfileIcon, .profiles-gate-container li a:hover .addProfileIcon {
+  background-color: #e5e5e5;
+}
+
+.profiles-gate-container li a.focused .profile-name, .profiles-gate-container li a:focus .profile-name, .profiles-gate-container li a:hover .profile-name {
+  color: #e5e5e5;
+}
+
+.profiles-gate-container li a.focused .profile-icon, .profiles-gate-container li a:focus .profile-icon, .profiles-gate-container li a:hover .profile-icon {
+  color: #e5e5e5;
+}
