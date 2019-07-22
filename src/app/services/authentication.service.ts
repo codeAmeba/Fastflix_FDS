@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: FormData): Observable<any> {
+  login(user: any): Observable<any> {
     // const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
 
     return this.http.post<any>(`${this.apiUrl}/accounts/login/`, user);
