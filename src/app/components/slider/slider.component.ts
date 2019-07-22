@@ -223,10 +223,11 @@ export class SliderComponent implements OnInit {
   // 슬라이더 당 카드 개수
   cardCount: number = 6;
   // hover한 카드 0 ~ 7
-  hoverCard: number = 0;
+  hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = "scale(0.52)";
+  bobScale = "scale(0.52222)";
+  toRight: boolean = false;
   cardHover(movieId) {
     this.bobup = movieId;
     this.hoverCard =
@@ -234,31 +235,48 @@ export class SliderComponent implements OnInit {
     setTimeout(() => {
       this.bobScale = "scale(0.99999)";
     }, 100);
+    this.cardHoverMove(movieId);
+    this.toRight = true;
+    console.log(this.toRight);
   }
+
   cardHoverLeave() {
-    this.bobup = 0;
-    this.bobScale = "scale(0.52)";
+    this.bobScale = "scale(0.52222)";
+
+    setTimeout(() => {
+      this.bobup = 0;
+    }, 300);
+    this.toRight = false;
   }
+
+  cardShowNumber;
   // 보여주고 있는 카드 숫자 부여
   showNumber(movieId) {
     const showNumber = movieId % this.cardCount;
     const quotient =
       Math.floor(movieId / this.cardCount) === this.sliderState - 1
         ? showNumber
-        : "";
-    if (this.sliderState === 1 && (movieId === 6 || movieId === 7)) {
-      return showNumber + 6;
-    }
+        : 0;
+    // console.log(quotient);
     if (this.sliderState === 1 && movieId === 18) {
-      return showNumber;
+      this.cardShowNumber = showNumber;
+      return this.cardShowNumber;
+    }
+    if (this.sliderState === 1 && (movieId === 6 || movieId === 7)) {
+      this.cardShowNumber = showNumber + 6;
+      return this.cardShowNumber;
     }
     if (this.sliderState === 2 && (movieId === 12 || movieId === 13)) {
-      return showNumber + 6;
+      this.cardShowNumber = showNumber + 6;
+      return this.cardShowNumber;
     }
     if (this.sliderState === 3 && (movieId === 18 || movieId === 1)) {
-      return showNumber + 6;
+      this.cardShowNumber = showNumber + 6;
+      return this.cardShowNumber;
     }
-    return quotient;
+
+    this.cardShowNumber = quotient;
+    return this.cardShowNumber;
   }
   // bobup 시 left 값 주기
   bobupLeft() {
@@ -272,14 +290,26 @@ export class SliderComponent implements OnInit {
     else if (this.hoverCard === 6) return "right";
     return;
   }
-  cardHoverMove(showNumber) {
+  cardHoverMoveRet: any;
+  cardHoverMove(movieId) {
+    this.showNumber(movieId);
     // style="transform: translate3d(278px, 0px, 0px);"
+    console.log(this.hoverCard);
     if (this.hoverCard === 1) {
-      if (showNumber > this.hoverCard) return "translate3d(278px, 0px, 0px);";
+      console.log(this.cardShowNumber, this.hoverCard);
+      if (this.cardShowNumber > this.hoverCard) {
+        console.log(this.cardShowNumber, this.hoverCard);
+        this.cardHoverMoveRet = "translate3d(278px, 0px, 0px)";
+      }
     } else if (this.hoverCard === 6) {
     } else {
-      if (showNumber < this.hoverCard) return "translate3d(-140px, 0px, 0px);";
-      if (showNumber > this.hoverCard) return "translate3d(139px, 0px, 0px);";
+      console.log(this.cardShowNumber, this.hoverCard);
+      // console.log(this.cardShowNumber);
+      if (this.cardShowNumber < this.hoverCard)
+        this.cardHoverMoveRet = "translate3d(-140px, 0px, 0px)";
+      if (this.cardShowNumber > this.hoverCard)
+        this.cardHoverMoveRet = "translate3d(139px, 0px, 0px)";
     }
+    console.log(this.cardHoverMoveRet);
   }
 }
