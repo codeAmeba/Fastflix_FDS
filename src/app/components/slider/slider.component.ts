@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MoviePreview } from '../../models/movie-preview';
+import { Component, OnInit, Input } from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
 
 // interface Movies {
 //   id: number;
@@ -8,13 +8,46 @@ import { MoviePreview } from '../../models/movie-preview';
 // }
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css'],
+  selector: "app-slider",
+  templateUrl: "./slider.component.html",
+  styleUrls: ["./slider.component.css"]
 })
 export class SliderComponent implements OnInit {
   @Input() moviesList: MoviePreview[];
-
+  tabShow: boolean = false;
+  movies: MoviePreview[];
+  // slider의 총 개수
+  slider: number;
+  // Tab 배열
+  tab = [];
+  tabLength;
+  // 현재 slider
+  sliderState = 1;
+  // 현재 슬라이더 위치
+  sliderPosition = 0;
+  // padding 제거 후 기본 x 좌표
+  XState = -16.897;
+  // 한 slider 당 길이
+  OneSliderLength = 99.8766666666667;
+  // default 버튼, padding 삭제
+  default = false;
+  // transform, transition
+  transform: any;
+  transition: any;
+  // slice 배열 저장
+  sliderZero;
+  sliderForth;
+  // hover한 카드 id
+  bobup: number;
+  // 슬라이더 당 카드 개수
+  cardCount: number = 6;
+  // hover한 카드 0 ~ 7
+  hoverCard: number = 8;
+  cardTransform: any;
+  cardTransition: any;
+  bobScale = "scale(0.52222)";
+  toRight: boolean = false;
+  cardShowNumber;
   constructor() {}
 
   ngOnInit() {
@@ -22,6 +55,10 @@ export class SliderComponent implements OnInit {
     // console.log(this.tabLength);
     // console.log(this.tab);
     console.log(this.moviesList);
+  }
+  ngOnChange() {
+    this.movies = [...this.moviesList];
+    this.slider = this.movies.length / 6;
   }
   // moviesList: MoviePreview[] = [
   //   {
@@ -133,13 +170,7 @@ export class SliderComponent implements OnInit {
   //       "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABYSkjw8IEYs4nGPNBXSwX-LEWpmkbgAeV-QYaEGsbW2LcHwkQNwa1u5MHc9q0iAJTs0UEDbN16iLWACw6RZFSbP3JgvbH0ce.webp?r=7bc"
   //   }
   // ];
-  tabShow: boolean = false;
-  movies: MoviePreview[] = [...this.moviesList];
-  // slider의 총 개수
-  slider = this.movies.length / 6;
-  // Tab 배열
-  tab = [];
-  tabLength;
+
   tabArray() {
     for (let i = 1; i <= this.slider; i++) {
       this.tab = [...this.tab, i];
@@ -147,22 +178,7 @@ export class SliderComponent implements OnInit {
     // Tab의 길이
     this.tabLength = this.tab.length;
   }
-  // 현재 slider
-  sliderState = 1;
-  // 현재 슬라이더 위치
-  sliderPosition = 0;
-  // padding 제거 후 기본 x 좌표
-  XState = -16.897;
-  // 한 slider 당 길이
-  OneSliderLength = 99.8766666666667;
-  // default 버튼, padding 삭제
-  default = false;
-  // transform, transition
-  transform: any;
-  transition: any;
-  // slice 배열 저장
-  sliderZero;
-  sliderForth;
+
   prev() {
     this.transform = `translate3d(${this.sliderPosition +
       this.OneSliderLength}%, 0px, 0px)`;
@@ -223,36 +239,26 @@ export class SliderComponent implements OnInit {
       }, 750);
     }
   }
-  // hover한 카드 id
-  bobup: number;
-  // 슬라이더 당 카드 개수
-  cardCount: number = 6;
-  // hover한 카드 0 ~ 7
-  hoverCard: number = 8;
-  cardTransform: any;
-  cardTransition: any;
-  bobScale = 'scale(0.52222)';
-  toRight: boolean = false;
+
   cardHover(movieId) {
     this.bobup = movieId;
     this.hoverCard =
       movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
     setTimeout(() => {
-      this.bobScale = 'scale(0.99999)';
+      this.bobScale = "scale(0.99999)";
     }, 200);
     this.toRight = true;
     // console.log(this.toRight);
   }
 
   cardHoverLeave() {
-    this.bobScale = 'scale(0.52222)';
+    this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
     }, 300);
     this.toRight = false;
   }
 
-  cardShowNumber;
   // 보여주고 있는 카드 숫자 부여
   showNumber(movieId) {
     const showNumber = movieId % this.cardCount;
@@ -288,8 +294,8 @@ export class SliderComponent implements OnInit {
   }
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return 'left';
-    else if (this.hoverCard === 6) return 'right';
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
     return;
   }
 }
