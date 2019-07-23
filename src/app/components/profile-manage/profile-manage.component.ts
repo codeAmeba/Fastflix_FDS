@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileManageComponent implements OnInit {
 
-  isManage: boolean;
+  isManage: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.isManage = '';
   }
 
 }

@@ -1,3 +1,7 @@
+div {
+  display: block;
+}
+
 .profile-gate-label {
   width: 100%;
   color: #fff;
@@ -6,10 +10,6 @@
 
 .profiles-gate-container li.profile:not(:last-child) {
   margin: 0 2vw 0 0;
-}
-
-.profiles-gate-container {
-  text-align: center;
 }
 
 .list-profiles .choose-profile {
@@ -38,15 +38,20 @@ ul {
 .profiles-gate-container .profile-icon {
   height: 10vw;
   width: 10vw;
-  max-height: 200px;
+  max-height: 196px;
   max-width: 200px;
   min-height: 84px;
   min-width: 84px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
   text-decoration: none;
   border: .3em solid rgba(0,0,0,.4);
   background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-color: #333;
 }
@@ -272,6 +277,16 @@ img {
   font-weight: 700;
 }
 
+.profiles-gate-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background: #141414;
+  z-index: 0;
+}
+
 .centered-div {
   z-index: 100;
   position: absolute;
@@ -344,4 +359,8 @@ label {
   -moz-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.profile-icon:hover {
+  border: .3em solid #fff;
 }

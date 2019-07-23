@@ -9,14 +9,35 @@
 }
 
 .profiles-gate-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   text-align: center;
+  background: #141414;
+  z-index: 0;
 }
 
 .list-profiles .choose-profile {
   margin: 2em 0;
 }
+
+.list-profiles .choose-profile, .list-profiles .profile-gate-label {
+  opacity: 1;
+  -webkit-transition: opacity .4s ease-out;
+  -o-transition: opacity .4s ease-out;
+  -moz-transition: opacity .4s ease-out;
+  transition: opacity .4s ease-out;
+}
+
 .list-profiles {
   background: #141414;
+}
+
+.list-profiles .profile-gate-label {
+  width: 100%;
+  color: #fff;
+  font-size: 3.5vw;
 }
 
 ul {
@@ -38,17 +59,84 @@ ul {
 .profiles-gate-container .profile-icon {
   height: 10vw;
   width: 10vw;
-  max-height: 200px;
+  max-height: 196px;
   max-width: 200px;
   min-height: 84px;
   min-width: 84px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
   text-decoration: none;
   border: .3em solid rgba(0,0,0,.4);
   background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   background-color: #333;
+}
+
+.profile-icon:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.profiles-gate-container .profile-icon {
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 84px;
+  min-width: 84px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  border: .3em solid rgba(0,0,0,.4);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #333;
+}
+
+.profiles-gate-container .profile-edit-mode {
+  opacity: .5;
+  background-image: url(https://occ-0-2794-1009.1.nflxso.net/art/0d282/eb648e0….png);
+}
+
+
+.list-profiles .svg-edit-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.list-profiles .svg-edit-overlay .svg-icon-edit {
+  width: 3rem;
+  height: 3rem;
+  max-width: 70px;
+  max-height: 70px;
 }
 
 .profiles-gate-container li {
@@ -272,7 +360,17 @@ img {
   font-weight: 700;
 }
 
-.centered-div {
+.profiles-gate-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background: #141414;
+  z-index: 0;
+}
+
+.profiles-gate-container .centered-div{
   z-index: 100;
   position: absolute;
   top: 0;
@@ -312,6 +410,30 @@ img {
   background-color: #e5e5e5;
 }
 
+.profiles-gate-container li .addProfileIcon:hover {
+  background-color: #e5e5e5;
+}
+
 .profiles-gate-container li a.focused .profile-name, .profiles-gate-container li a:focus .profile-name, .profiles-gate-container li a:hover .profile-name {
   color: #e5e5e5;
+}
+
+:not(svg) {
+  transform-origin: 0px 0px;
+}
+
+.svg-icon-edit {
+  width: 3rem;
+  height: 3rem;
+  fill: #fff;
+}
+
+.svg-icon {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
 }
