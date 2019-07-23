@@ -247,6 +247,7 @@
 .billboard .info .logo-and-text .title-logo {
   margin: 0;
   width: 90%;
+  /* transform: translateY(50%); */
 }
 
 .billboard-row .billboard .info .synopsis {
@@ -389,6 +390,32 @@ a {
 .rowContainer {
   position: relative;
   z-index: 0;
+}
+
+.originalsRow .rowContainer {
+  min-height: 36.5vw;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .originalsRow .rowContainer {
+    min-height: 46.5vw;
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .originalsRow .rowContainer {
+    min-height: 91vw;
+  }
+}
+
+.originalsRow .slider .handle {
+  height: 346%;
+}
+
+@media screen and (max-width: 799px) and (min-width: 500px) {
+  .originalsRow .slider .handle {
+    height: 346%;
+  }
 }
 
 .thanosRow.thanosTitleCard {

@@ -9,13 +9,21 @@
             <div class="trailer-background">
               <div class="FFPlayer" *ngIf="playBillBoard"></div>
               <div class="hero-img-wrapper">
-                <img class="hero static-image image-layer"
-                  src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABftqikHHVsBvTOYxV0o3EE8dYirWwr9DQ23d-eoEjupkgYatFOWuE7ApLmR2j1R9QvPJcyADqn5rrc90uuTbSFo8NbcxHr0f0AE5f-E68AZ6M6ujCkRtl6O7h5A.webp?r=42b"
-                  alt="" />
+                <img
+                  class="hero static-image image-layer"
+                  src="{{ mainMovie?.image }}"
+                  alt=""
+                />
                 <div class="vignette-top vignette-layer"></div>
                 <div class="vignette-bottom vignette-layer"></div>
-                <div class="embedded-components button-layer"><span class="maturity-rating "><span><img
-                        src="http://www.kmrb.or.kr/img/01_guide/rating_15.png" alt=""></span></span></div>
+                <div class="embedded-components button-layer">
+                  <span class="maturity-rating "
+                    ><span
+                      ><img
+                        src="http://www.kmrb.or.kr/img/01_guide/rating_15.png"
+                        alt=""/></span
+                  ></span>
+                </div>
               </div>
             </div>
           </div>
@@ -23,26 +31,41 @@
             <div class="info meta-layer">
               <div class="logo-and-text meta-layer">
                 <div class="billboard-title">
-                  <img class="title-logo"
-                    src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/5e0byrbbfBPBmtxyXMpKqMuqOQY/AAAABffU_OjiiagHu5_JEJZYmB_MAqWeTyp1_BtX9MdN6TM41uxAyp-Um62vM19sx-I3JIwPKUX9PpYwrYy4qLOucOVgzr2RZEqzyYZA9PTKTQ.webp?r=0f3"
-                    title="어바웃타임" alt="어바웃타임" />
+                  <img
+                    class="title-logo"
+                    src="{{ mainMovie?.logo }}"
+                    title="{{ mainMovie?.title }}"
+                    alt="{{ mainMovie?.title }}"
+                  />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
                   <a routerLink="/watch" class="playLink" aria-label="Play">
-                    <span tabindex="-1" class="nf-icon-button nf-flat-button bf-flat button-uppercase">
-                      <span class="nf-flat-button-icon nf-flat-button-icon-play"></span>
+                    <span
+                      tabindex="-1"
+                      class="nf-icon-button nf-flat-button bf-flat button-uppercase"
+                    >
+                      <span
+                        class="nf-flat-button-icon nf-flat-button-icon-play"
+                      ></span>
                       <span class="nf-flat-button-text">재생</span>
                     </span>
                   </a>
-                  <a tabindex="0" class="nf-icon-button mylist-button" aria-label="Add To My List"><span
-                      role="presentation" class="nf-icon-button-icon icon-button-mylist-add"></span><span
-                      class="nf-icon-button-label">내가 찜한 콘텐츠</span></a>
+                  <a
+                    tabindex="0"
+                    class="nf-icon-button mylist-button"
+                    aria-label="Add To My List"
+                    ><span
+                      role="presentation"
+                      class="nf-icon-button-icon icon-button-mylist-add"
+                    ></span
+                    ><span class="nf-icon-button-label"
+                      >내가 찜한 콘텐츠</span
+                    ></a
+                  >
                 </div>
                 <div class="synopsis-fade-container">
                   <div class="synopsis no-supplemental">
-                    <!-- -->어두운 곳에서 주먹을 불끈 쥐면 원하는 과거의 순간으로 돌아갈 수 있단다. 21살이 된 팀에게 아버지가 전한 가문의 비밀. 사랑을 이루기 위한 팀의 특별한 여행이
-                    시작된다.
-                    <!-- -->
+                    {{ mainMovie?.synopsis }}
                   </div>
                 </div>
               </div>
@@ -51,74 +74,16 @@
         </div>
       </div>
     </span>
-    <div class="thanosRow thanosTitleCard">
+    <div
+      *ngFor="let category of movieCategory"
+      class="thanosRow thanosTitleCard"
+      [class.originalsRow]="category === '오리지널'"
+    >
       <h2 class="rowHeader">
         <span class="rowTitle">
           <div class="rowHeaderTitle">
-            Fastflix 인기 콘텐츠
+            {{ category }}
           </div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">
-            {{ user }} 님이 시청 중인 콘텐츠
-          </div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">지금 뜨는 콘텐츠</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">진심 어린 영화</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">스릴러</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">영화</div>
         </span>
       </h2>
       <div class="rowContainer rowContainerTitleCard">

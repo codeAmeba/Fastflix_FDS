@@ -51,13 +51,13 @@ export class SignupStep2Component implements OnInit {
 
     this.userService.signup(user).subscribe(
       data => {
-        // const loginData = {
-        //   id: this.signupForm.get('email').value,
-        //   pw: this.signupForm.get('password').value,
-        // };
-        const loginData = new FormData();
-        loginData.append('id', this.signupForm.get('email').value);
-        loginData.append('pw', this.signupForm.get('password').value);
+        const loginData = {
+          id: this.signupForm.get('email').value,
+          pw: this.signupForm.get('password').value,
+        };
+        // const loginData = new FormData();
+        // loginData.append('id', this.signupForm.get('email').value);
+        // loginData.append('pw', this.signupForm.get('password').value);
 
         // 회원가입 계정으로 로그인을 해서 Token을 받아와야 프로필 생성 가능
         this.authService.login(loginData).subscribe(token => {

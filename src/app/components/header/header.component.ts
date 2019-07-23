@@ -38,12 +38,10 @@ export class HeaderComponent implements OnInit {
   }
 
   showMenu(event: HTMLElement) {
-    console.log(event);
     this.showDropDown = true;
   }
 
   hideMenu(event: HTMLElement) {
-    console.log(event);
     this.showDropDown = false;
   }
 }

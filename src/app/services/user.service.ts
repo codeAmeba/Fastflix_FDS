@@ -40,7 +40,7 @@ export class UserService implements OnInit {
   }
 
   setProfile(profileId: any) {
-    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId['id']));
+    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
   }
 
   getProfile() {

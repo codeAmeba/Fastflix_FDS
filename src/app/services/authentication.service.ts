@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: FormData): Observable<any> {
+  login(user: any): Observable<any> {
     // const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
 
     return this.http.post<any>(`${this.apiUrl}/accounts/login/`, user);

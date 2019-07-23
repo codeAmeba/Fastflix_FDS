@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
 
-interface Movies {
-  id: number;
-  title: string;
-  url: string;
-}
+// interface Movies {
+//   id: number;
+//   title: string;
+//   url: string;
+// }
 
 @Component({
   selector: "app-slider",
@@ -15,19 +16,20 @@ export class SliderComponent implements OnInit {
   constructor() {}
   ngOnInit() {
     this.tabArray();
-    console.log(this.tabLength);
-    console.log(this.tab);
+    // console.log(this.tabLength);
+    // console.log(this.tab);
   }
-  moviesList: Movies[] = [
+  // @Input() moviesList: MoviePreview[];
+  moviesList: MoviePreview[] = [
     {
       id: 1,
-      title: "mamamia",
+      title: "맘마미아2",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABXaGwBEssmNrvhe5QvscpnzAA8FQmntR5fI0WYL6QcYZLhCvPkCWNiU7GZjlHhWlBvH_RTljgJhVbh8cPamCt4Cd281fVkhJ.webp?r=1f3"
     },
     {
       id: 2,
-      title: "titanic",
+      title: "타이타닉",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSutMRiJg2Zr7FKCHrNO4_sfkGbbPSdCKN5lWVXhUMkpy8MTSshI6_tTSPzHwo5uWErPGTJh3k5B2pohz2-D6Sae8EJ3Rj4l.webp?r=48b"
     },
@@ -129,7 +131,7 @@ export class SliderComponent implements OnInit {
     }
   ];
   tabShow: boolean = false;
-  movies: Movies[] = [...this.moviesList];
+  movies: MoviePreview[] = [...this.moviesList];
   // slider의 총 개수
   slider = this.movies.length / 6;
   // Tab 배열
@@ -163,7 +165,7 @@ export class SliderComponent implements OnInit {
       this.OneSliderLength}%, 0px, 0px)`;
     this.transition = `transform 0.75s ease 0s`;
     this.sliderPosition = this.sliderPosition + this.OneSliderLength;
-    console.log(this.sliderPosition + this.OneSliderLength);
+    // console.log(this.sliderPosition + this.OneSliderLength);
 
     this.sliderState--;
     if (this.sliderState === 0) {
@@ -175,7 +177,7 @@ export class SliderComponent implements OnInit {
         this.transition = `none`;
         this.sliderPosition =
           this.XState - this.OneSliderLength * this.sliderState;
-        console.log(this.XState - this.OneSliderLength * this.sliderState);
+        // console.log(this.XState - this.OneSliderLength * this.sliderState);
       }, 750);
     }
   }
@@ -186,7 +188,7 @@ export class SliderComponent implements OnInit {
         this.OneSliderLength}%, 0px, 0px)`;
       this.transition = `transform 0.75s ease 0s`;
       this.sliderPosition = this.sliderPosition - this.OneSliderLength;
-      console.log(this.sliderPosition - this.OneSliderLength);
+      // console.log(this.sliderPosition - this.OneSliderLength);
     } else {
       // movies 뒷부분 clone
       this.sliderZero = this.movies.slice(this.movies.length - 7);
@@ -201,9 +203,9 @@ export class SliderComponent implements OnInit {
       this.default = true;
       this.sliderPosition =
         this.XState - this.OneSliderLength * this.sliderState;
-      console.log(this.XState - this.OneSliderLength * this.sliderState);
+      // console.log(this.XState - this.OneSliderLength * this.sliderState);
     }
-    console.log(this.sliderState);
+    // console.log(this.sliderState);
 
     if (this.sliderState === this.tabLength + 1) {
       this.sliderState = 1;
@@ -234,15 +236,13 @@ export class SliderComponent implements OnInit {
       movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
     setTimeout(() => {
       this.bobScale = "scale(0.99999)";
-    }, 100);
-    this.cardHoverMove(movieId);
+    }, 200);
     this.toRight = true;
-    console.log(this.toRight);
+    // console.log(this.toRight);
   }
 
   cardHoverLeave() {
     this.bobScale = "scale(0.52222)";
-
     setTimeout(() => {
       this.bobup = 0;
     }, 300);
@@ -274,7 +274,6 @@ export class SliderComponent implements OnInit {
       this.cardShowNumber = showNumber + 6;
       return this.cardShowNumber;
     }
-
     this.cardShowNumber = quotient;
     return this.cardShowNumber;
   }
@@ -289,27 +288,5 @@ export class SliderComponent implements OnInit {
     if (this.hoverCard === 1) return "left";
     else if (this.hoverCard === 6) return "right";
     return;
-  }
-  cardHoverMoveRet: any;
-  cardHoverMove(movieId) {
-    this.showNumber(movieId);
-    // style="transform: translate3d(278px, 0px, 0px);"
-    console.log(this.hoverCard);
-    if (this.hoverCard === 1) {
-      console.log(this.cardShowNumber, this.hoverCard);
-      if (this.cardShowNumber > this.hoverCard) {
-        console.log(this.cardShowNumber, this.hoverCard);
-        this.cardHoverMoveRet = "translate3d(278px, 0px, 0px)";
-      }
-    } else if (this.hoverCard === 6) {
-    } else {
-      console.log(this.cardShowNumber, this.hoverCard);
-      // console.log(this.cardShowNumber);
-      if (this.cardShowNumber < this.hoverCard)
-        this.cardHoverMoveRet = "translate3d(-140px, 0px, 0px)";
-      if (this.cardShowNumber > this.hoverCard)
-        this.cardHoverMoveRet = "translate3d(139px, 0px, 0px)";
-    }
-    console.log(this.cardHoverMoveRet);
   }
 }
