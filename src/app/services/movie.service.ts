@@ -25,7 +25,7 @@ export class MovieService {
       .set('Authorization', `Token ${token}`)
       .set('subuserid', this.userService.getProfile());
 
-    console.dir(headers);
+    console.log(headers);
 
     return this.http.get<any>(`${this.apiUrl}/movies/genre_select_before/`, {
       headers,
