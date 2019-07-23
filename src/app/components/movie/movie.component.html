@@ -75,20 +75,20 @@
       </div>
     </span>
     <div
-      *ngFor="let category of movieCategory"
+      *ngFor="let previewCat of movieCategories"
       class="thanosRow thanosTitleCard"
-      [class.originalsRow]="category === '오리지널'"
+      [class.originalsRow]="previewCat.category === '오리지널'"
     >
       <h2 class="rowHeader">
         <span class="rowTitle">
           <div class="rowHeaderTitle">
-            {{ category }}
+            {{ previewCat.category }}
           </div>
         </span>
       </h2>
       <div class="rowContainer rowContainerTitleCard">
         <div class="rowContent">
-          <app-slider></app-slider>
+          <app-slider [moviesList]="previewCat.movies"></app-slider>
         </div>
       </div>
     </div>

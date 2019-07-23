@@ -710,12 +710,7 @@ a {
 svg:not(:root) {
   overflow: hidden;
 }
-.nf-svg-button-wrapper .nf-svg-button svg {
-  color: #fff;
-  fill: #fff;
-  width: 0.8em;
-  height: 0.8em;
-}
+
 polygon {
   fill: currentcolor;
 }
