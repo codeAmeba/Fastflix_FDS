@@ -33,6 +33,5 @@ export class SubHeaderComponent implements OnInit {
     this.isGrid = false
     this.showGridMenu = false
     this.currentRouting = this.router.url
-    console.log(this.currentRouting)
   }
 }
