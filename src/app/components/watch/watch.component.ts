@@ -73,6 +73,6 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   playVideo() {
     setTimeout(() => {
       this.isInactive = true;
-    }, 3000)
+    }, 2500)
   }
 }
