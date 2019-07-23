@@ -19,31 +19,29 @@
         <li class="field-email-wrapper">
           <div class="input-container">
             <input type="text" name="ownername" id="name" class="textField" formControlName="ownername"
-              [class.hasText]="name.value !== ''" #name>
+              [class.hasText]="name.value" #name>
             <label for="name" class="placeLabel">이름</label>
           </div>
           <div *ngIf="ownername.errors?.required && ownername.touched" class="error-message">이름을 입력해주세요.</div>
         </li>
         <li class="field-email-wrapper">
           <div class="input-container">
-            <input type="text" name="username" id="email" class="textField" formControlName="username"
-              [class.hasText]="email.value !== ''" #email>
+            <input type="text" name="email" id="email" class="textField" formControlName="email"
+              [class.hasText]="emailInput.value" #emailInput>
             <label for="email" class="placeLabel">이메일</label>
           </div>
-          <div *ngIf="username.errors?.required && username.touched" class="error-message">이메일 주소를 입력해 주세요.</div>
-          <div *ngIf="(username.errors?.minlength || username.errors?.maxlength) && username.touched"
-            class="error-message">이메일
+          <div *ngIf="email.errors?.required && email.touched" class="error-message">이메일 주소를 입력해 주세요.</div>
+          <div *ngIf="(email.errors?.minlength || email.errors?.maxlength) && email.touched" class="error-message">이메일
             주소는 5 ~ 50자 사이여야 합니다.</div>
-          <div
-            *ngIf="!(username.errors?.minlength || username.errors?.maxlength) &&username.errors?.pattern && username.touched"
+          <div *ngIf="!(email.errors?.minlength || email.errors?.maxlength) && email.errors?.pattern && email.touched"
             class="error-message">정확한 이메일
             주소를 입력하세요.</div>
-          <div *ngIf="username.errors?.exist && username.touched" class="error-message">이미 사용 중인 이메일입니다.</div>
+          <div *ngIf="email.errors?.exist && email.touched" class="error-message">이미 사용 중인 이메일입니다.</div>
         </li>
         <li class="field-pw-wrapper">
           <div class="input-container">
             <input type="password" name="password" id="password" class="textField" formControlName="password"
-              [class.hasText]="pw.value !== ''" #pw>
+              [class.hasText]="pw.value" #pw>
             <label for="password" class="placeLabel">비밀번호</label>
           </div>
           <div *ngIf="password.errors?.required && password.touched" class="error-message">비밀번호를 입력해 주세요.</div>

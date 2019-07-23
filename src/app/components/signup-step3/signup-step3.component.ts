@@ -16,10 +16,9 @@ export class SignupStep3Component implements OnInit {
 
   ngOnInit() {
     this.userName = this.userService.userName;
-    console.log(this.userName);
 
     this.profileForm = new FormGroup({
-      ownerName: new FormControl('', [Validators.required]),
+      ownerName: new FormControl(''),
       profile1Name: new FormControl(''),
       profile2Name: new FormControl(''),
       profile3Name: new FormControl(''),
@@ -28,14 +27,30 @@ export class SignupStep3Component implements OnInit {
   }
 
   onSubmit() {
+    const names = [this.profileForm.get('ownerName').value || this.userName];
+    const kids = [false];
+
+    for (let i = 1; i < 5; i++) {
+      if (this.profileForm.get(`profile${i}Name`).value) {
+        names.push(this.profileForm.get(`profile${i}Name`).value);
+        kids.push(false);
+      }
+    }
+
     const user = {
-      name: this.profileForm.get('ownerName').value,
-      kid: false,
+      name: names,
+      kid: kids,
     };
-    this.userService.setProfile(user).subscribe(
-      data => {
-        console.log('success', data);
-        // this.router.navigate(['/signup/step4']);
+
+    console.log(user);
+
+    this.userService.createProfile(user).subscribe(
+      profiles => {
+        console.log('success', profiles['sub_user_list']);
+        this.userService.setProfile(profiles['sub_user_list'][0].id);
+        if (this.profileForm.get('ownerName').value)
+          this.userService.userName = this.profileForm.get('ownerName').value;
+        this.router.navigate(['/signup/step4']);
       },
       error => {
         console.error(error);

@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
 
-interface Movies {
-  id: number;
-  title: string;
-  url: string;
-}
+// interface Movies {
+//   id: number;
+//   title: string;
+//   url: string;
+// }
 
 @Component({
   selector: "app-slider",
@@ -15,19 +16,20 @@ export class SliderComponent implements OnInit {
   constructor() {}
   ngOnInit() {
     this.tabArray();
-    console.log(this.tabLength);
-    console.log(this.tab);
+    // console.log(this.tabLength);
+    // console.log(this.tab);
   }
-  moviesList: Movies[] = [
+  // @Input() moviesList: MoviePreview[];
+  moviesList: MoviePreview[] = [
     {
       id: 1,
-      title: "mamamia",
+      title: "맘마미아2",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABXaGwBEssmNrvhe5QvscpnzAA8FQmntR5fI0WYL6QcYZLhCvPkCWNiU7GZjlHhWlBvH_RTljgJhVbh8cPamCt4Cd281fVkhJ.webp?r=1f3"
     },
     {
       id: 2,
-      title: "titanic",
+      title: "타이타닉",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSutMRiJg2Zr7FKCHrNO4_sfkGbbPSdCKN5lWVXhUMkpy8MTSshI6_tTSPzHwo5uWErPGTJh3k5B2pohz2-D6Sae8EJ3Rj4l.webp?r=48b"
     },
@@ -127,27 +129,9 @@ export class SliderComponent implements OnInit {
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABYSkjw8IEYs4nGPNBXSwX-LEWpmkbgAeV-QYaEGsbW2LcHwkQNwa1u5MHc9q0iAJTs0UEDbN16iLWACw6RZFSbP3JgvbH0ce.webp?r=7bc"
     }
-    // {
-    //   id: 18,
-    //   title: "친구와 연인사이",
-    //   url:
-    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABSW71zHM_awT-YQvs_IeOKCVgVV4IfCxH1GIBocHUEIZk73kMMsavFaYntPtFV4g3ZRVbrqHlhrCe9P9nFpJqK-0o8SqCpTm.webp?r=e86"
-    // },
-    // {
-    //   id: 19,
-    //   title: "그랜드 부다페스트 호텔",
-    //   url:
-    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABTS4LAC0ecy3Qn8LVQTor7MYmWPBTl0WhbzUHahAcmz3oSX71_SUwBIz2Z6x5PTAV5iL-OWpudzPQkUlFVZThkcgRe1B9GgX.webp?r=ccb"
-    // },
-    // {
-    //   id: 20,
-    //   title: "포레스트 검프",
-    //   url:
-    //     "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABRFnmYU4IONsd6sPx437eMqihH6qY18wQL-aOo5Ib6WPlNe4Nx8KL-A-nPgMBI9HSPe5OMYa0GXv2Zzf_1I2WUITtTuuO59Q.webp?r=056"
-    // }
   ];
   tabShow: boolean = false;
-  movies: Movies[] = [...this.moviesList];
+  movies: MoviePreview[] = [...this.moviesList];
   // slider의 총 개수
   slider = this.movies.length / 6;
   // Tab 배열
@@ -181,7 +165,7 @@ export class SliderComponent implements OnInit {
       this.OneSliderLength}%, 0px, 0px)`;
     this.transition = `transform 0.75s ease 0s`;
     this.sliderPosition = this.sliderPosition + this.OneSliderLength;
-    console.log(this.sliderPosition + this.OneSliderLength);
+    // console.log(this.sliderPosition + this.OneSliderLength);
 
     this.sliderState--;
     if (this.sliderState === 0) {
@@ -193,7 +177,7 @@ export class SliderComponent implements OnInit {
         this.transition = `none`;
         this.sliderPosition =
           this.XState - this.OneSliderLength * this.sliderState;
-        console.log(this.XState - this.OneSliderLength * this.sliderState);
+        // console.log(this.XState - this.OneSliderLength * this.sliderState);
       }, 750);
     }
   }
@@ -203,9 +187,8 @@ export class SliderComponent implements OnInit {
       this.transform = `translate3d(${this.sliderPosition -
         this.OneSliderLength}%, 0px, 0px)`;
       this.transition = `transform 0.75s ease 0s`;
-      // this.sliderState++;
       this.sliderPosition = this.sliderPosition - this.OneSliderLength;
-      console.log(this.sliderPosition - this.OneSliderLength);
+      // console.log(this.sliderPosition - this.OneSliderLength);
     } else {
       // movies 뒷부분 clone
       this.sliderZero = this.movies.slice(this.movies.length - 7);
@@ -220,13 +203,12 @@ export class SliderComponent implements OnInit {
       this.default = true;
       this.sliderPosition =
         this.XState - this.OneSliderLength * this.sliderState;
-      console.log(this.XState - this.OneSliderLength * this.sliderState);
+      // console.log(this.XState - this.OneSliderLength * this.sliderState);
     }
-    console.log(this.sliderState);
+    // console.log(this.sliderState);
 
     if (this.sliderState === this.tabLength + 1) {
       this.sliderState = 1;
-      console.log("셋 탐 아웃 머거따!");
 
       // settimeout
       setTimeout(() => {
@@ -237,5 +219,74 @@ export class SliderComponent implements OnInit {
           this.XState - this.OneSliderLength * this.sliderState;
       }, 750);
     }
+  }
+  // hover한 카드 id
+  bobup: number;
+  // 슬라이더 당 카드 개수
+  cardCount: number = 6;
+  // hover한 카드 0 ~ 7
+  hoverCard: number = 8;
+  cardTransform: any;
+  cardTransition: any;
+  bobScale = "scale(0.52222)";
+  toRight: boolean = false;
+  cardHover(movieId) {
+    this.bobup = movieId;
+    this.hoverCard =
+      movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
+    setTimeout(() => {
+      this.bobScale = "scale(0.99999)";
+    }, 200);
+    this.toRight = true;
+    // console.log(this.toRight);
+  }
+
+  cardHoverLeave() {
+    this.bobScale = "scale(0.52222)";
+    setTimeout(() => {
+      this.bobup = 0;
+    }, 300);
+    this.toRight = false;
+  }
+
+  cardShowNumber;
+  // 보여주고 있는 카드 숫자 부여
+  showNumber(movieId) {
+    const showNumber = movieId % this.cardCount;
+    const quotient =
+      Math.floor(movieId / this.cardCount) === this.sliderState - 1
+        ? showNumber
+        : 0;
+    // console.log(quotient);
+    if (this.sliderState === 1 && movieId === 18) {
+      this.cardShowNumber = showNumber;
+      return this.cardShowNumber;
+    }
+    if (this.sliderState === 1 && (movieId === 6 || movieId === 7)) {
+      this.cardShowNumber = showNumber + 6;
+      return this.cardShowNumber;
+    }
+    if (this.sliderState === 2 && (movieId === 12 || movieId === 13)) {
+      this.cardShowNumber = showNumber + 6;
+      return this.cardShowNumber;
+    }
+    if (this.sliderState === 3 && (movieId === 18 || movieId === 1)) {
+      this.cardShowNumber = showNumber + 6;
+      return this.cardShowNumber;
+    }
+    this.cardShowNumber = quotient;
+    return this.cardShowNumber;
+  }
+  // bobup 시 left 값 주기
+  bobupLeft() {
+    if (this.hoverCard === 1) return 0;
+    else if (this.hoverCard === 6) return -94.5;
+    return -47.5;
+  }
+  // 어디서 bobup이 될 것인지 정해주기
+  bobupTransformOrigin() {
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
+    return;
   }
 }

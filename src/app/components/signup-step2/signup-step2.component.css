@@ -1,6 +1,7 @@
 .message {
   max-width: 440px;
   margin: 0 auto;
+  padding-top: 5vh;
 }
 
 .message .content {
@@ -116,6 +117,7 @@ b {
   transition: font .1s ease, top .1s ease, transform .1s ease, -webkit-transform .1s ease, -moz-transform .1s ease, -o-transform .1s ease;
 }
 
+input:focus+.placeLabel,
 .hasText+.placeLabel {
   top: 6px;
   font-weight: 700;

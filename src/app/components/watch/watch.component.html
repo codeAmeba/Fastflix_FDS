@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="history-back">
-    
+  <div (click)="historyBack()" class="back-arrow">
+    <img alt="history-back" src="https://www.materialui.co/materialIcons/navigation/arrow_back_white_36x36.png">
   </div>
-  <video #myvid id="my-video" class="video-js 
+  <video (keyup.arrowright)="moveForword($event)" (keyup.arrowleft)="moveBack($event)" 
+          #myvid id="my-video" class="video-js 
           vjs-fluid vjs-big-play-centered vjs-styles-defaults"
          [poster]="poster">
     <source [src]="video" type="video/mp4">
