@@ -1,4 +1,6 @@
-export const MovieCategory = [
+import { MovieCategory } from './movie-category';
+
+export const MovieCategories: MovieCategory[] = [
   { category: '한국 영화', movies: [] },
   { category: '외국 영화', movies: [] },
   { category: '어린이', movies: [] },
