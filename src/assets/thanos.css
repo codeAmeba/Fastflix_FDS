@@ -244,7 +244,7 @@
 .billboard .info .logo-and-text .title-logo {
   margin: 0;
   width: 90%;
-  transform: translateY(50%);
+  /* transform: translateY(50%); */
 }
 
 .billboard-row .billboard .info .synopsis {

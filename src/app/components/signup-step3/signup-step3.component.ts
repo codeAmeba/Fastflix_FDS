@@ -45,9 +45,9 @@ export class SignupStep3Component implements OnInit {
     console.log(user);
 
     this.userService.createProfile(user).subscribe(
-      profileId => {
-        console.log('success', profileId);
-        this.userService.setProfile(profileId);
+      profiles => {
+        console.log('success', profiles['sub_user_list']);
+        this.userService.setProfile(profiles['sub_user_list'][0].id);
         if (this.profileForm.get('ownerName').value)
           this.userService.userName = this.profileForm.get('ownerName').value;
         this.router.navigate(['/signup/step4']);
