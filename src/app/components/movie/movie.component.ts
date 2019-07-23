@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { Main } from 'src/app/models/main';
-import { MovieCategory } from 'src/app/models/movieCategories';
+import { MovieCategories } from 'src/app/models/movieCategories';
 import { MoviePreview } from 'src/app/models/movie-preview';
+import { MovieCategory } from 'src/app/models/movie-category';
 
 @Component({
   selector: 'app-movie',
@@ -14,7 +15,7 @@ export class MovieComponent implements OnInit {
   playBillBoard: boolean;
   movies: object[];
   mainMovie: Main;
-  movieCategory: string[];
+  movieCategories: MovieCategory[];
 
   constructor(private movieService: MovieService) {}
 
@@ -31,16 +32,26 @@ export class MovieComponent implements OnInit {
     };
 
     this.getMovies();
-    this.movieCategory = MovieCategory;
+    this.movieCategories = MovieCategories;
   }
 
   getMovies() {
     this.movieService.getMainMovie().subscribe(
       movies => {
         this.movies = movies[0];
+        console.log('원본', this.movies);
+
         this.getMainMovie();
-        this.movieCategory.forEach(category => {
-          console.log(this.getCategoryMovie(category));
+        this.movieCategories = this.movieCategories.map(previewCat => {
+          console.log(
+            previewCat.category,
+            this.getCategoryMovie(previewCat.category)
+          );
+
+          return {
+            category: previewCat.category,
+            movies: this.getCategoryMovie(previewCat.category),
+          };
         });
       },
       error => {
@@ -58,12 +69,13 @@ export class MovieComponent implements OnInit {
     this.mainMovie.synopsis = this.movies['메인 영화']['synopsis'];
   }
 
-  getCategoryMovie(sliderCategory: string): MoviePreview[] {
-    console.log(
-      sliderCategory,
-      this.movies['장르별 영화리스트'][sliderCategory]
-    );
-
-    return this.movies['장르별 영화리스트'][sliderCategory];
+  getCategoryMovie(category: string): MoviePreview[] {
+    return this.movies['장르별 영화리스트'][category].map(movie => {
+      return {
+        id: movie.id,
+        title: movie.name,
+        url: movie['horizontal_image_path'],
+      };
+    });
   }
 }
