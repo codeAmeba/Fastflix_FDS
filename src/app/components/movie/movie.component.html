@@ -89,7 +89,7 @@
       <div class="rowContainer rowContainerTitleCard">
         <div class="rowContent">
           <app-slider
-            [moviesList]="getCategoryMovie(category) || []"
+            [moviesList]="movies ? getCategoryMovie(category) : []"
           ></app-slider>
         </div>
       </div>

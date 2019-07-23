@@ -39,9 +39,6 @@ export class MovieComponent implements OnInit {
       movies => {
         this.movies = movies[0];
         this.getMainMovie();
-        this.movieCategory.forEach(category => {
-          console.log(this.getCategoryMovie(category));
-        });
       },
       error => {
         console.log(error);
@@ -59,11 +56,17 @@ export class MovieComponent implements OnInit {
   }
 
   getCategoryMovie(sliderCategory: string): MoviePreview[] {
-    console.log(
-      sliderCategory,
-      this.movies['장르별 영화리스트'][sliderCategory]
-    );
+    // console.log(
+    //   sliderCategory,
+    //   this.movies['장르별 영화리스트'][sliderCategory]
+    // );
 
-    return this.movies['장르별 영화리스트'][sliderCategory];
+    return this.movies['장르별 영화리스트'][sliderCategory].map(movie => {
+      return {
+        id: movie.id,
+        title: movie.name,
+        url: movie['horizontal_image_path'],
+      };
+    });
   }
 }
