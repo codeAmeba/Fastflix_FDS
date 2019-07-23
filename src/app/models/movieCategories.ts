@@ -1,4 +1,4 @@
-export const movieCategory = [
+export const MovieCategory = [
   '한국 영화',
   '외국 영화',
   '어린이',

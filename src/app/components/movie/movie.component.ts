@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { Main } from 'src/app/models/main';
+import { MovieCategory } from 'src/app/models/movieCategories';
 
 @Component({
   selector: 'app-movie',
@@ -12,7 +13,7 @@ export class MovieComponent implements OnInit {
   playBillBoard: boolean;
   movies: object[];
   mainMovie: Main;
-  movieCategory: object;
+  movieCategory: string[];
 
   constructor(private movieService: MovieService) {}
 
@@ -29,6 +30,7 @@ export class MovieComponent implements OnInit {
     };
 
     this.getMovies();
+    this.movieCategory = MovieCategory;
   }
 
   getMovies() {
@@ -37,7 +39,6 @@ export class MovieComponent implements OnInit {
         this.movies = movies[0];
         console.log(this.movies['장르별 영화리스트']);
         this.getMainMovie();
-        this.getCategory();
       },
       error => {
         console.log(error);
@@ -54,7 +55,12 @@ export class MovieComponent implements OnInit {
     this.mainMovie.synopsis = this.movies['메인 영화']['synopsis'];
   }
 
-  getCategory() {
-    this.movieCategory = this.movies['장르별 영화리스트'];
+  getCategoryMovie(sliderCategory: string) {
+    console.log(
+      sliderCategory,
+      this.movies['장르별 영화리스트'][sliderCategory]
+    );
+
+    return this.movies['장르별 영화리스트'][sliderCategory];
   }
 }
