@@ -26,36 +26,36 @@
         <!-- card -->
         <div
           *ngFor="let movie of movies"
-          class="slider-item slider-item-{{ movie.id }} show-number-{{
-            showNumber(movie.id)
+          class="slider-item slider-item-{{ movie.order }} show-number-{{
+            showNumber(movie.order)
           }}"
           [class.toRight]="
-            toRight && hoverCard === 1 && showNumber(movie.id) > hoverCard
+            toRight && hoverCard === 1 && showNumber(movie.order) > hoverCard
           "
           [class.toRight1]="
             toRight &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
-            showNumber(movie.id) > hoverCard
+            showNumber(movie.order) > hoverCard
           "
           [class.toLeft1]="
             toRight &&
             hoverCard !== 6 &&
             hoverCard !== 1 &&
-            showNumber(movie.id) < hoverCard
+            showNumber(movie.order) < hoverCard
           "
           [class.toLeft]="
             toRight &&
             hoverCard === 6 &&
-            showNumber(movie.id) !== 0 &&
-            showNumber(movie.id) < hoverCard
+            showNumber(movie.order) !== 0 &&
+            showNumber(movie.order) < hoverCard
           "
         >
           <div class="title-card-container">
             <div
-              id="title-card-2-{{ movie.id }}"
+              id="title-card-2-{{ movie.order }}"
               class="slider-refocus title-card"
-              (mouseover)="cardHover(movie.id)"
+              (mouseover)="cardHover(movie.order)"
             >
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
@@ -70,7 +70,7 @@
               <div></div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div>
-                <ng-template [ngIf]="bobup === movie.id">
+                <ng-template [ngIf]="bobup === movie.order">
                   <span (mouseleave)="cardHoverLeave()">
                     <div
                       class="bob-card bob-card-adult"
