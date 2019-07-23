@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { MoviePreview } from "../../models/movie-preview";
+import { Component, OnInit, Input } from '@angular/core';
+import { MoviePreview } from '../../models/movie-preview';
 
 // interface Movies {
 //   id: number;
@@ -8,19 +8,21 @@ import { MoviePreview } from "../../models/movie-preview";
 // }
 
 @Component({
-  selector: "app-slider",
-  templateUrl: "./slider.component.html",
-  styleUrls: ["./slider.component.css"]
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.css'],
 })
 export class SliderComponent implements OnInit {
+  @Input() moviesList: MoviePreview[];
+
   constructor() {}
+
   ngOnInit() {
     this.tabArray();
     // console.log(this.tabLength);
     // console.log(this.tab);
     console.log(this.moviesList);
   }
-  @Input() moviesList: MoviePreview[];
   // moviesList: MoviePreview[] = [
   //   {
   //     id: 1,
@@ -229,21 +231,21 @@ export class SliderComponent implements OnInit {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = "scale(0.52222)";
+  bobScale = 'scale(0.52222)';
   toRight: boolean = false;
   cardHover(movieId) {
     this.bobup = movieId;
     this.hoverCard =
       movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
     setTimeout(() => {
-      this.bobScale = "scale(0.99999)";
+      this.bobScale = 'scale(0.99999)';
     }, 200);
     this.toRight = true;
     // console.log(this.toRight);
   }
 
   cardHoverLeave() {
-    this.bobScale = "scale(0.52222)";
+    this.bobScale = 'scale(0.52222)';
     setTimeout(() => {
       this.bobup = 0;
     }, 300);
@@ -286,8 +288,8 @@ export class SliderComponent implements OnInit {
   }
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return "left";
-    else if (this.hoverCard === 6) return "right";
+    if (this.hoverCard === 1) return 'left';
+    else if (this.hoverCard === 6) return 'right';
     return;
   }
 }
