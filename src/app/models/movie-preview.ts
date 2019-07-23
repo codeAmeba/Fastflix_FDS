@@ -1,0 +1,5 @@
+export interface MoviePreview {
+  id: number;
+  title: string;
+  url: string;
+}

@@ -15,7 +15,6 @@ export class FixHeaderDirective {
   ) {}
 
   @HostListener('window:scroll', ['$event']) fix() {
-    console.log(this.lastScrollTop, window.pageYOffset);
 
     if (this.lastScrollTop > window.pageYOffset) this.state = 'up';
     else this.state = 'down';

@@ -74,72 +74,16 @@
         </div>
       </div>
     </span>
-    <div class="thanosRow thanosTitleCard">
+    <div
+      *ngFor="let category of movieCategory"
+      class="thanosRow thanosTitleCard"
+      [class.originalsRow]="category === '오리지널'"
+    >
       <h2 class="rowHeader">
         <span class="rowTitle">
           <div class="rowHeaderTitle">
-            Fastflix 인기 콘텐츠
+            {{ category }}
           </div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">{{ user }} 님이 시청 중인 콘텐츠</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">지금 뜨는 콘텐츠</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">진심 어린 영화</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">스릴러</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">영화</div>
         </span>
       </h2>
       <div class="rowContainer rowContainerTitleCard">
