@@ -1,3 +1,46 @@
 <span class="jawBoneContent" [class.open]="isOpen">
-  <span class="jawBoneOpenContainer"> </span>
+  <span class="jawBoneOpenContainer">
+    <div class="jawBoneFadeInPlaceContainer">
+      <div class="jawBoneContainer slider-hover-trigger-layer">
+        <div class="background">
+          <div class="jawBoneBackground image-rotator">
+            <span>
+              <div
+                class="image-rotator-image "
+                style='background-image: url("https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYyXFjEuP-UUXBW41asHaT1tMR1DPPaJGuhhfsWSXP71AbW-Y4zu5qBVu85QO95uibYFSlZitqSIzn88HjzNybPhBpc6Y68e9w.webp?r=c9b"); z-index: 2; opacity: 1; transition-duration: 750ms;'
+              ></div>
+            </span>
+          </div>
+          <div class="vignette"></div>
+          <div class="nav-shadow"></div>
+        </div>
+        <div class="jawBone">
+          <h3>
+            <a class="jawbone-title-link" href="/title/80232040"
+              ><div
+                class="title has-jawbone-nav-transition"
+                [ngStyle]="{
+                  transform: 'translateX(0px)',
+                  opacity: 1,
+                  'transition-delay': '250ms',
+                  'transition-duration': '500ms'
+                }"
+              >
+                <img
+                  alt="The Spy Who Dumped Me"
+                  class="logo"
+                  src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/jsgGe9NCko3c-j0wGZ7FSwVlHs0/AAAABQBzRBHv6OAZJGdjUi5730L_4TgDSu1u3o68bbcUJWVHvqNIvmY3ZVtlmkS6dVD5So-NtMRxnxzFQXCLYWqgWcKH8TzSHpCV3z7SRmQ.webp?r=25e"
+                /></div
+            ></a>
+          </h3>
+        </div>
+        <button
+          class="close-button icon-close"
+          tabindex="0"
+          aria-label="Close"
+          (click)="detailClosed()"
+        ></button>
+      </div>
+    </div>
+  </span>
 </span>

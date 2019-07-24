@@ -78,6 +78,7 @@
       *ngFor="let previewCat of movieCategories"
       class="thanosRow thanosTitleCard"
       [class.originalsRow]="previewCat.category === '오리지널'"
+      [class.jawBoneOpen]="openedCategory === previewCat.category"
     >
       <h2 class="rowHeader">
         <span class="rowTitle">
@@ -88,7 +89,13 @@
       </h2>
       <div class="rowContainer rowContainerTitleCard">
         <div class="rowContent">
-          <app-slider [moviesList]="previewCat.movies"></app-slider>
+          <app-slider
+            [moviesList]="previewCat.movies"
+            [category]="previewCat.category"
+            [openCategory]="openedCategory"
+            (sliderOpen)="sliderOpened($event)"
+            (sliderClose)="sliderClosed($event)"
+          ></app-slider>
         </div>
       </div>
     </div>
