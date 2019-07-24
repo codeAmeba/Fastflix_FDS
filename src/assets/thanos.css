@@ -862,3 +862,15 @@ a {
 .icon-close:before {
   content: '\e762';
 }
+
+
+.thanos.has-open-jaw {
+  padding: 0 0 39vw;
+}
+
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .thanos.has-open-jaw {
+    padding: 0 0 44vw;
+  }
+}
