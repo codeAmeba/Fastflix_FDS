@@ -68,7 +68,7 @@
               </a>
               <!-- hover > 아래 버튼 클릭 시 card 테두리, 재생 버튼 -->
               <div class="title-card-jawbone-focus">
-                <div class="title-card-focus-ring" ></div>
+                <div class="title-card-focus-ring"></div>
               </div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div>
@@ -93,7 +93,11 @@
                       <div class="bob-overlay">
                         <div class="bob-play-hitzone"></div>
                         <!-- 영상 메인 이동..뭔지 일단 모르겠음, 아래 화살표 -->
-                        <a class="bob-jaw-hitzone" (click)="showDetail()"></a>
+                        <a
+                          class="bob-jaw-hitzone"
+                          (click)="showDetail()"
+                          Moveupdown
+                        ></a>
 
                         <!-- 세부정보 -->
                         <div class="bob-overview-wrapper">
