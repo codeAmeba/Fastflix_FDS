@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-detail-card',
   templateUrl: './detail-card.component.html',
-  styleUrls: ['./detail-card.component.css']
+  styleUrls: ['./detail-card.component.css'],
 })
 export class DetailCardComponent implements OnInit {
+  @Input() isOpen: boolean;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+    this.isOpen = false;
   }
-
 }
