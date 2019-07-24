@@ -70,7 +70,14 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
     window.history.back();
   }
 
+  // 뒤로가기 버튼 2.5초 후 사라짐
   playVideo() {
+    setTimeout(() => {
+      this.isInactive = true;
+    }, 2500)
+  }
+  moveMouse() {
+    this.isInactive = false;
     setTimeout(() => {
       this.isInactive = true;
     }, 2500)
