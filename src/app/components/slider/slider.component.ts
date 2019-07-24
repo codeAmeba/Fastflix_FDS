@@ -53,7 +53,7 @@ export class SliderComponent implements OnInit, OnChanges {
   cardTransform: any;
   cardTransition: any;
   bobScale = "scale(0.52222)";
-  toRight: boolean = false;
+  cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
 
@@ -154,10 +154,10 @@ export class SliderComponent implements OnInit, OnChanges {
 
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
-    this.toRight = true;
+    this.cardMove = true;
     console.log(this.hoverCard);
-
-    // console.log(this.toRight);
+    console.log(this.isOpen);
+    // console.log(this.cardMove);
   }
 
   cardHoverLeave() {
@@ -165,7 +165,8 @@ export class SliderComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.bobup = 0;
     }, 300);
-    this.toRight = false;
+    this.cardMove = false;
+    console.log(this.isOpen);
   }
 
   // 보여주고 있는 카드 숫자 부여
@@ -216,6 +217,7 @@ export class SliderComponent implements OnInit, OnChanges {
 
   detailClosed() {
     this.sliderClose.emit(this.category);
+    this.cardMove = false;
   }
   change() {
     console.log("바꼇당");
