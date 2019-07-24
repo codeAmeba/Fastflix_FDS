@@ -31,27 +31,27 @@
           }}"
           [class.toRight]="
             !isOpen &&
-            toRight &&
+            cardMove &&
             hoverCard === 1 &&
             showNumber(movie.order) > hoverCard
           "
           [class.toRight1]="
             !isOpen &&
-            toRight &&
+            cardMove &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
             showNumber(movie.order) > hoverCard
           "
           [class.toLeft1]="
             !isOpen &&
-            toRight &&
+            cardMove &&
             hoverCard !== 6 &&
             hoverCard !== 1 &&
             showNumber(movie.order) < hoverCard
           "
           [class.toLeft]="
             !isOpen &&
-            toRight &&
+            cardMove &&
             hoverCard === 6 &&
             showNumber(movie.order) !== 0 &&
             showNumber(movie.order) < hoverCard
