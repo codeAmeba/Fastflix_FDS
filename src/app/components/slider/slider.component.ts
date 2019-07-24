@@ -44,6 +44,7 @@ export class SliderComponent implements OnInit, OnChanges {
   bobScale = "scale(0.52222)";
   toRight: boolean = false;
   cardShowNumber;
+  isOpen : boolean;
   constructor() {}
 
   ngOnInit() {
