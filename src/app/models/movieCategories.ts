@@ -4,7 +4,7 @@ export const MovieCategories: MovieCategory[] = [
   { category: '한국 영화', movies: [] },
   { category: '외국 영화', movies: [] },
   { category: '어린이', movies: [] },
-  { category: '가족', movies: [] },
+  // { category: '가족', movies: [] },
   { category: '오리지널', movies: [] },
   { category: '액션', movies: [] },
   { category: '스릴러', movies: [] },

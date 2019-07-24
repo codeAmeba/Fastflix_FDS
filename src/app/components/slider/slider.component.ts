@@ -1,16 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { MoviePreview } from '../../models/movie-preview';
-
-// interface Movies {
-//   id: number;
-//   title: string;
-//   url: string;
-// }
+import { Component, OnInit, Input, OnChanges } from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css'],
+  selector: "app-slider",
+  templateUrl: "./slider.component.html",
+  styleUrls: ["./slider.component.css"]
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
@@ -47,7 +41,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = 'scale(0.52222)';
+  bobScale = "scale(0.52222)";
   toRight: boolean = false;
   cardShowNumber;
   constructor() {}
@@ -58,9 +52,12 @@ export class SliderComponent implements OnInit, OnChanges {
     // console.log(this.tab);
     // console.log(this.moviesList);
   }
-
   ngOnChanges() {
-    this.movies = [...this.moviesList];
+    this.movies = this.moviesList.map((movie, index) => ({
+      ...movie,
+      order: index + 1
+    }));
+    // this.movies = [...this.moviesList];
     this.slider = this.movies.length / 6;
     console.log(this.movies);
   }
@@ -244,19 +241,19 @@ export class SliderComponent implements OnInit, OnChanges {
     }
   }
 
-  cardHover(movieId) {
-    this.bobup = movieId;
+  cardHover(movieOrder) {
+    this.bobup = movieOrder;
     this.hoverCard =
-      movieId % this.cardCount !== 0 ? movieId % this.cardCount : 6;
+      movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
     setTimeout(() => {
-      this.bobScale = 'scale(0.99999)';
+      this.bobScale = "scale(0.99999)";
     }, 200);
     this.toRight = true;
     // console.log(this.toRight);
   }
 
   cardHoverLeave() {
-    this.bobScale = 'scale(0.52222)';
+    this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
     }, 300);
@@ -264,26 +261,26 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   // 보여주고 있는 카드 숫자 부여
-  showNumber(movieId) {
-    const showNumber = movieId % this.cardCount;
+  showNumber(movieOrder) {
+    const showNumber = movieOrder % this.cardCount;
     const quotient =
-      Math.floor(movieId / this.cardCount) === this.sliderState - 1
+      Math.floor(movieOrder / this.cardCount) === this.sliderState - 1
         ? showNumber
         : 0;
     // console.log(quotient);
-    if (this.sliderState === 1 && movieId === 18) {
+    if (this.sliderState === 1 && movieOrder === 18) {
       this.cardShowNumber = showNumber;
       return this.cardShowNumber;
     }
-    if (this.sliderState === 1 && (movieId === 6 || movieId === 7)) {
+    if (this.sliderState === 1 && (movieOrder === 6 || movieOrder === 7)) {
       this.cardShowNumber = showNumber + 6;
       return this.cardShowNumber;
     }
-    if (this.sliderState === 2 && (movieId === 12 || movieId === 13)) {
+    if (this.sliderState === 2 && (movieOrder === 12 || movieOrder === 13)) {
       this.cardShowNumber = showNumber + 6;
       return this.cardShowNumber;
     }
-    if (this.sliderState === 3 && (movieId === 18 || movieId === 1)) {
+    if (this.sliderState === 3 && (movieOrder === 18 || movieOrder === 1)) {
       this.cardShowNumber = showNumber + 6;
       return this.cardShowNumber;
     }
@@ -298,8 +295,8 @@ export class SliderComponent implements OnInit, OnChanges {
   }
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return 'left';
-    else if (this.hoverCard === 6) return 'right';
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
     return;
   }
 }
