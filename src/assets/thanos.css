@@ -614,6 +614,24 @@ a {
 
 /* DetailView */
 
+.thanosRow.jawBoneOpen~.thanosRow,
+.rowContainer.jawBoneOpen~.rowContainer {
+  -webkit-transform: translate3d(0, 37vw, 0);
+  -moz-transform: translate3d(0, 37vw, 0);
+  transform: translate3d(0, 37vw, 0);
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .thanosRow.jawBoneOpen~.thanosRow,
+  .rowContainer.jawBoneOpen~.rowContainer {
+    -webkit-transform: translate3d(0, 42vw, 0);
+    -moz-transform: translate3d(0, 42vw, 0);
+    transform: translate3d(0, 42vw, 0);
+  }
+}
+
+
 .jawBoneContent {
   background-color: #141414;
   position: absolute;
@@ -639,4 +657,208 @@ a {
 
 .jawBoneContent.open .jawBoneOpenContainer {
   opacity: 1;
+}
+
+.jawBoneContent .jawBoneOpenContainer .jawBoneFadeInPlaceContainer {
+  -webkit-transition: opacity 440ms cubic-bezier(.5, 0, .1, 1) 0s;
+  -o-transition: opacity 440ms cubic-bezier(.5, 0, .1, 1) 0s;
+  -moz-transition: opacity 440ms cubic-bezier(.5, 0, .1, 1) 0s;
+  transition: opacity 440ms cubic-bezier(.5, 0, .1, 1) 0s;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.jawBoneContainer {
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+  outline: 0;
+  height: 37vw;
+  -webkit-transition: height .54s cubic-bezier(.5, 0, .1, 1) 0s, opacity .44s cubic-bezier(.5, 0, .1, 1) .1s;
+  -o-transition: height .54s cubic-bezier(.5, 0, .1, 1) 0s, opacity .44s cubic-bezier(.5, 0, .1, 1) .1s;
+  -moz-transition: height .54s cubic-bezier(.5, 0, .1, 1) 0s, opacity .44s cubic-bezier(.5, 0, .1, 1) .1s;
+  transition: height .54s cubic-bezier(.5, 0, .1, 1) 0s, opacity .44s cubic-bezier(.5, 0, .1, 1) .1s;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .jawBoneContainer {
+    height: 42vw;
+  }
+}
+
+@media screen and (max-width: 1399px) and (min-width: 1100px) {
+  .jawBoneContainer {
+    height: 37vw;
+  }
+}
+
+.jawBoneContainer .background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-transition: opacity .3s cubic-bezier(.5, 0, .1, 1) 0s;
+  -o-transition: opacity .3s cubic-bezier(.5, 0, .1, 1) 0s;
+  -moz-transition: opacity .3s cubic-bezier(.5, 0, .1, 1) 0s;
+  transition: opacity .3s cubic-bezier(.5, 0, .1, 1) 0s;
+}
+
+.image-rotator {
+  position: relative;
+  overflow: hidden;
+}
+
+.jawBoneContainer .jawBoneBackground {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  width: 70%;
+}
+
+.image-rotator .image-rotator-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0;
+}
+
+.jawBoneContainer .jawBoneBackground .image-rotator-image {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  background-position: center 10%;
+}
+
+.image-rotator .image-rotator-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0;
+}
+
+.jawBoneContainer .background .vignette {
+  background: #000;
+  z-index: 2;
+  width: 30%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.jawBoneContainer .background .vignette::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  background-image: linear-gradient(to right, #000, transparent);
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 275px;
+}
+
+.jawBoneContainer .background .nav-shadow {
+  height: 114px;
+  background: url(https://assets.nflxext.com/en_us/akira/jawBone/nav-shadow.png) no-repeat center 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  -webkit-background-size: 100% 114px;
+  -moz-background-size: 100% 114px;
+  -o-background-size: 100% 114px;
+  background-size: 100% 114px;
+}
+
+.jawBoneContainer .jawBone {
+  padding: 18px 0 12px 4%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.jawBoneContainer h1,
+.jawBoneContainer h3 {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.jawBoneContainer .title {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  line-height: 1.3;
+  margin: 0 0 .2em 0;
+  font-weight: 700;
+  color: #fff;
+  font-size: 3vw;
+  width: 670px;
+}
+
+@media screen and (max-width: 499px) {
+  .jawBoneContainer .title {
+    font-size: 14px;
+    width: 55vw;
+  }
+}
+
+@media screen and (max-width: 799px) and (min-width: 500px) {
+  .jawBoneContainer .title {
+    font-size: 14px;
+    width: 55vw;
+  }
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .jawBoneContainer .title {
+    font-size: 3vw;
+    width: 55vw;
+  }
+}
+
+.jawBoneContainer .close-button {
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 1.3vw;
+  padding: 20px 20px 40px 40px;
+  z-index: 12;
+  cursor: pointer;
+  color: #fff;
+  -webkit-transform-origin: 60% 35%;
+  -moz-transform-origin: 60% 35%;
+  -ms-transform-origin: 60% 35%;
+  -o-transform-origin: 60% 35%;
+  transform-origin: 60% 35%;
+  background: -webkit-radial-gradient(top right ellipse, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+  background: -moz- oldradial-gradient(top right ellipse, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+  background: -o-radial-gradient(top right ellipse, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+  background: radial-gradient(ellipse at top right, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 100%);
+  background-position: 50% -50%;
+}
+
+.icon-close:before {
+  content: '\e762';
 }

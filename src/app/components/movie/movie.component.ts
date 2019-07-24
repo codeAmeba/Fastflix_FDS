@@ -16,6 +16,7 @@ export class MovieComponent implements OnInit {
   movies: object[];
   mainMovie: Main;
   movieCategories: MovieCategory[];
+  openedCategory: string;
 
   constructor(private movieService: MovieService) {}
 
@@ -30,7 +31,7 @@ export class MovieComponent implements OnInit {
       degree: '',
       synopsis: '',
     };
-
+    this.openedCategory = '';
     this.getMovies();
     this.movieCategories = MovieCategories;
   }
@@ -39,14 +40,14 @@ export class MovieComponent implements OnInit {
     this.movieService.getMainMovie().subscribe(
       movies => {
         this.movies = movies[0];
-        console.log('원본', this.movies);
+        // console.log('원본', this.movies);
 
         this.getMainMovie();
         this.movieCategories = this.movieCategories.map(previewCat => {
-          console.log(
-            previewCat.category,
-            this.getCategoryMovie(previewCat.category)
-          );
+          // console.log(
+          //   previewCat.category,
+          //   this.getCategoryMovie(previewCat.category)
+          // );
 
           return {
             category: previewCat.category,
@@ -77,5 +78,16 @@ export class MovieComponent implements OnInit {
         url: movie['horizontal_image_path'],
       };
     });
+  }
+
+  sliderOpened(category: string) {
+    console.log('opened', category);
+    this.openedCategory = category;
+  }
+
+  sliderClosed(category: string) {
+    console.log('closed', category);
+    this.openedCategory =
+      this.openedCategory === category ? '' : this.openedCategory;
   }
 }
