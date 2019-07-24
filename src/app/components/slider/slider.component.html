@@ -30,21 +30,27 @@
             showNumber(movie.order)
           }}"
           [class.toRight]="
-            toRight && hoverCard === 1 && showNumber(movie.order) > hoverCard
+            !isOpen &&
+            toRight &&
+            hoverCard === 1 &&
+            showNumber(movie.order) > hoverCard
           "
           [class.toRight1]="
+            !isOpen &&
             toRight &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
             showNumber(movie.order) > hoverCard
           "
           [class.toLeft1]="
+            !isOpen &&
             toRight &&
             hoverCard !== 6 &&
             hoverCard !== 1 &&
             showNumber(movie.order) < hoverCard
           "
           [class.toLeft]="
+            !isOpen &&
             toRight &&
             hoverCard === 6 &&
             showNumber(movie.order) !== 0 &&
@@ -67,8 +73,21 @@
                 </div>
               </a>
               <!-- hover > 아래 버튼 클릭 시 card 테두리, 재생 버튼 -->
-              <div class="title-card-jawbone-focus">
+              <div
+                class="title-card-jawbone-focus"
+                [ngStyle]="{
+                  opacity:
+                    isOpen && hoverCard === showNumber(movie.order) ? 1 : 0,
+                  'transition-duration.ms':
+                    isOpen && hoverCard === showNumber(movie.order) ? 300 : 0
+                }"
+              >
                 <div class="title-card-focus-ring"></div>
+                <a role="link" class="title-card-play playLink">
+                  <div class="playRing">
+                    <div class="play icon-play"></div>
+                  </div>
+                </a>
               </div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div>
