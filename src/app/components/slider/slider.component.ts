@@ -99,8 +99,10 @@ export class SliderComponent implements OnInit, OnChanges {
       ...movie,
       order: index + 1
     }));
-    // this.movies = [...this.moviesList];
-    this.slider = this.movies.length / 6;
+    if (this.default) {
+      this.moviesClone();
+    }
+    this.slider = this.movies.length / this.cardCount;
     // console.log(this.category, this.movies);
 
     this.isOpen = this.category === this.openCategory;
@@ -113,7 +115,11 @@ export class SliderComponent implements OnInit, OnChanges {
     // Tab의 길이
     this.tabLength = this.tab.length;
   }
-
+  moviesClone() {
+    this.sliderZero = this.movies.slice(this.movies.length - 7);
+    this.sliderForth = this.movies.slice(0, 7);
+    this.movies = this.sliderZero.concat(this.movies).concat(this.sliderForth);
+  }
   prev() {
     this.transform = `translate3d(${this.sliderPosition +
       this.OneSliderLength}%, 0px, 0px)`;
@@ -145,11 +151,7 @@ export class SliderComponent implements OnInit, OnChanges {
       // console.log(this.sliderPosition - this.OneSliderLength);
     } else {
       // movies 뒷부분 clone
-      this.sliderZero = this.movies.slice(this.movies.length - 7);
-      this.sliderForth = this.movies.slice(0, 7);
-      this.movies = this.sliderZero
-        .concat(this.movies)
-        .concat(this.sliderForth);
+      this.moviesClone();
 
       this.transform = `translate3d(${this.XState -
         this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
@@ -278,7 +280,8 @@ export class SliderComponent implements OnInit, OnChanges {
 
   showDetail() {
     // console.log(this.category);
-    // console.log(this.movies);
+    console.log(this.movies);
+    console.log(this.default);
     this.isOpen = true;
     this.sliderOpen.emit(this.category);
   }
