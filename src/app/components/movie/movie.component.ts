@@ -81,13 +81,21 @@ export class MovieComponent implements OnInit {
   }
 
   sliderOpened(category: string) {
-    console.log('opened', category);
+    const thanos = document.querySelector('.thanos');
+
     this.openedCategory = category;
+    thanos.classList.add('has-open-jaw');
+    console.log('opened', this.openedCategory);
   }
 
   sliderClosed(category: string) {
-    console.log('closed', category);
+    const thanos = document.querySelector('.thanos');
+
     this.openedCategory =
       this.openedCategory === category ? '' : this.openedCategory;
+
+    thanos.classList.remove('has-open-jaw');
+
+    console.log('closed', this.openedCategory);
   }
 }

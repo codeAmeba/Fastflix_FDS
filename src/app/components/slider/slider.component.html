@@ -116,6 +116,8 @@
                           class="bob-jaw-hitzone"
                           (click)="showDetail()"
                           Moveupdown
+                          category="{{ category }}"
+                          openedCategory="{{ openCategory }}"
                         ></a>
 
                         <!-- 세부정보 -->
@@ -137,8 +139,8 @@
                                     <span class="match-score"
                                       >{{
                                         moviesDetail
-                                          ? moviesDetail["match_rate"]
-                                          : ""
+                                          ? moviesDetail['match_rate']
+                                          : ''
                                       }}% 일치</span
                                     >
                                   </div>
@@ -147,8 +149,8 @@
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
                                   moviesDetail
-                                    ? moviesDetail["running_time"]
-                                    : ""
+                                    ? moviesDetail['running_time']
+                                    : ''
                                 }}</span>
                               </div>
                             </div>
@@ -167,7 +169,7 @@
                                         index as i
                                       "
                                     >
-                                      {{ feature ? feature.name : "" }}
+                                      {{ feature ? feature.name : '' }}
                                     </li>
                                     <!-- <li
                                       class="evidence-text evidence-text-list"
