@@ -46,19 +46,13 @@ export class MoveupdownDirective {
         left: 0,
       });
 
-      this.renderer.setStyle(
-        header,
-        'top',
-        `${window.pageYOffset + sliderTop + 70}px`
-      );
-      this.renderer.setStyle(header, 'position', 'absolute');
-      this.renderer.setStyle(header, 'background', 'rgb(20, 20, 20)');
+      // this.renderer.setStyle(
+      //   header,
+      //   'top',
+      //   `${window.pageYOffset + sliderTop + 70}px`
+      // );
+      // this.renderer.setStyle(header, 'position', 'absolute');
+      // this.renderer.setStyle(header, 'background', 'rgb(20, 20, 20)');
     }, 1000);
-  }
-
-  @HostListener('window:scroll', ['$event']) scroll() {
-    const slider = this.el.nativeElement.closest('.slider');
-    const mainView = this.el.nativeElement.closest('.mainView');
-    const thanos = this.el.nativeElement.closest('.thanos');
   }
 }
