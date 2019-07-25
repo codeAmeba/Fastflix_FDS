@@ -1,30 +1,7 @@
-#my-video {
-  position: relative;
-}
-#my-video.play-back, #my-video.play-forward {
-  display: inline-block;
-  position: absolute;
-  z-index: 1;
-  cursor: pointer;
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0.1s, opacity 0.1s;
-  left: 30em;
-  top: 41em;
-}
-.play-back {
-  
-}
-.play-forward {
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
-}
-.container {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  vertical-align: middle;
-}
+
+
 .vjs-matrix.video-js {
   color: white;
   font-size: 16px;
@@ -43,4 +20,8 @@
   visibility: visible;
   opacity: 0;
   transition: visibility 1s, opacity 1s;
+}
+.back-arrow:hover {
+  width: 2em;
+  height: 2em;
 }

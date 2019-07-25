@@ -2,11 +2,19 @@
   <div (click)="historyBack()" [class.user-inactive]="isInactive" class="back-arrow user-inactive">
     <img alt="뒤로가기" src="https://www.materialui.co/materialIcons/navigation/arrow_back_white_36x36.png">
   </div>
+  <!-- <div (click)="moveBack()" class="play-back">
+    <i class="material-icons">
+    replay_10
+    </i>
+  </div>
+  <div (click)="moveForward()" class="play-forward">
+    <i class="material-icons">
+    forward_10
+    </i>
+  </div> -->
   <video (keyup.arrowright)="moveForward($event)" (keyup.arrowleft)="moveBack($event)" 
           #myvid id="my-video" class="video-js vjs-matrix vjs-fluid vjs-big-play-centered"
-          [poster]="poster" (pause)="isInactive = false" (play)="playVideo()" (mousemove)="moveMouse()">
+          [poster]="poster" (pause)="isInactive = false" (play)="playVideo()">
     <source [src]="video" type="video/mp4"> 
-    <div (click)="moveBack()" class="play-back"><img src="#" alt="10초 뒤로가기"></div>
-    <div (click)="moveForward()" class="play-forward"><img src="#" alt="10초 앞으로로가기"></div>
   </video>
 </div>
