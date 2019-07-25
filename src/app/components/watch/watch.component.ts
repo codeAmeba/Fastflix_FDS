@@ -1,5 +1,4 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 declare let videojs: any;
 
@@ -22,10 +21,8 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   runningTime: string = '09:56';
   movieIntro: string = 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.';
 
-
-  
   @ViewChild('myvid', null) vid: ElementRef;
-
+  
   ngAfterViewInit() {
 
     const options = {
