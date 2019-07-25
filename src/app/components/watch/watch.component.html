@@ -7,7 +7,7 @@
       <p>시청 중인 콘텐츠</p>
       <h1>{{ movieTitle }}</h1>
       <span>{{ year }} {{ old }} {{ runningTime}}</span>
-      <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      <p>{{ movieIntro }}</p>
     </div>
     <p>일시 중지됨</p>
   </div>
@@ -22,7 +22,7 @@
     </i>
   </div> -->
   <video (keyup.arrowright)="moveForward($event)" (keyup.arrowleft)="moveBack($event)" 
-          #myvid id="my-video" class="video-js vjs-matrix vjs-fluid vjs-big-play-centered"
+          #myvid id="my-video" class="video-js vjs-matrix vjs-fluid"
           [poster]="poster" (pause)="isInactive = false" (play)="playVideo()" (pause)="pauseVideo()" (play)="pauseMovie = false">
     <source [src]="video" type="video/mp4"> 
   </video>
