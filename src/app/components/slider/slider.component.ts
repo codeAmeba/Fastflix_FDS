@@ -201,7 +201,7 @@ export class SliderComponent implements OnInit, OnChanges {
 
     setTimeout(() => {
       this.bobup = 0;
-      this.moviesDetail = [];
+      this.moviesDetail;
     }, 300);
     this.cardMove = false;
     console.log("호버 나갔당");
