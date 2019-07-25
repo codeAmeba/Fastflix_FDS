@@ -1,5 +1,4 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 declare let videojs: any;
 
@@ -10,19 +9,20 @@ declare let videojs: any;
 })
 export class WatchComponent implements AfterViewInit, OnDestroy {
   vidObj: any;
-  poster = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
-  video = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+  poster: string = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
+  video: string = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
   isInactive: boolean;
   pauseMovie: boolean;
+
+  // 데이터 받았다고 가정함
   movieTitle: string = 'Big Buck Bunny';
   year: number = 2019;
   old: string = "All";
   runningTime: string = '09:56';
+  movieIntro: string = 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.';
 
-
-  
   @ViewChild('myvid', null) vid: ElementRef;
-
+  
   ngAfterViewInit() {
 
     const options = {
@@ -36,13 +36,14 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
     };
 
     this.vidObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
-      videojs.log('player is working!');
+      videojs.log('FASTFLIX player is working!');
     });
 
     const myPlayer = videojs('my-video');
     myPlayer.src({ type: 'video/mp4', 
                     src: this.video });
 
+    // 10초 전, 후 이동 버튼 vjs-control-bar에 동적 추가
     const myControlBar = document.querySelector('.vjs-control-bar');
     const newDiv = document.createElement('div')
     let newButton = '';
@@ -75,7 +76,7 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
       document.querySelector('#moveback').addEventListener('click', this.moveBack);
       document.querySelector('#moveforward').addEventListener('click', this.moveForward);
 
-
+      // 플레이어 구동 시 lastTime부터 플레이 시작
       myPlayer.currentTime(localStorage.getItem('lastTime'));
       videojs.log(`마지막으로 저장된 시간 : ${myPlayer.currentTime()} 초`);
     });         
@@ -116,6 +117,7 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
     }, 2500)
   }
 
+  // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
   pauseVideo() {
     setTimeout(() => {
       this.pauseMovie = true;
