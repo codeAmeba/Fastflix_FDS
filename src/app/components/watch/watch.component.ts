@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 declare let videojs: any;
 
@@ -12,11 +13,18 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   poster = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
   video = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
   isInactive: boolean;
+  pauseMovie: boolean;
+  movieTitle: string = 'Big Buck Bunny';
+  year: number = 2019;
+  old: string = "All";
+  runningTime: string = '09:56';
+
 
   
   @ViewChild('myvid', null) vid: ElementRef;
 
   ngAfterViewInit() {
+
     const options = {
       controls: true,
       autoplay: true,
@@ -40,7 +48,6 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
     let newButton = '';
   
     myPlayer.ready(() => {
-      console.log(this.moveBack);
       newButton = `<div class="play-back"
                   style="position: absolute;
                   left: 67px;
@@ -106,6 +113,12 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   playVideo() {
     setTimeout(() => {
       this.isInactive = true;
+    }, 2500)
+  }
+
+  pauseVideo() {
+    setTimeout(() => {
+      this.pauseMovie = true;
     }, 2500)
   }
 }
