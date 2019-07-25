@@ -1,64 +1,78 @@
-import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Renderer2,
+  HostListener,
+  Input,
+} from '@angular/core';
+import { MovieCategories } from 'src/app/models/movieCategories';
 
 @Directive({
   selector: '[Moveupdown]',
 })
 export class MoveupdownDirective {
+  @Input() category: string;
+  @Input() openedCategory: string;
+
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
+  isDown() {
+    if (!this.openedCategory) return false;
+
+    const categories = MovieCategories.map(({ category }) => category);
+
+    return (
+      categories.indexOf(this.category) >
+      categories.indexOf(this.openedCategory)
+    );
+  }
+
   @HostListener('click') move() {
-    // console.log(this.el.nativeElement.closest('.slider'));
     const slider = this.el.nativeElement.closest('.slider');
     const sliderTop = slider.getBoundingClientRect().top;
     const mainView = this.el.nativeElement.closest('.mainView');
-    const thanos = this.el.nativeElement.closest('.thanos');
+    const thanos = document.querySelector('.thanos');
     const header = document.querySelector('.header-container');
 
-    console.log('position', sliderTop);
-    console.log('header', header);
-    console.log('thanos');
+    const detailHeight = document
+      .querySelector('.jawBoneContainer')
+      .getBoundingClientRect().height;
 
-    // this.renderer.setStyle(mainView);
-    // transform: translate3d(0px, {}px, 0px); transition-duration: 540ms; transition-delay: 50ms;
-    this.renderer.setStyle(
-      mainView,
-      'transform',
-      `translate3d(0px, -${sliderTop - 70}px, 0px)`
-    );
-    this.renderer.setStyle(mainView, 'transition-duration', '540ms');
-    this.renderer.setStyle(mainView, 'transition-delay', '50ms');
-
-    // top: 1160.8px; position: absolute; background: rgb(20, 20, 20);
-
-    if (thanos.classList.contains('has-open-jaw')) {
-      thanos.classList.remove('has-open-jaw');
-    } else {
-      thanos.classList.add('has-open-jaw');
-    }
-
-    setTimeout(() => {
-      this.renderer.removeStyle(mainView, 'transform');
-      this.renderer.removeStyle(mainView, 'transition-duration');
-      this.renderer.removeStyle(mainView, 'transition-delay');
-
-      window.scroll({
-        top: window.pageYOffset + sliderTop - 70,
-        left: 0,
-      });
-
+    const setTransition = (offset: number, smooth: boolean) => {
       this.renderer.setStyle(
-        header,
-        'top',
-        `${window.pageYOffset + sliderTop + 70}px`
+        mainView,
+        'transform',
+        `translate3d(0px, -${offset}px, 0px)`
       );
-      this.renderer.setStyle(header, 'position', 'absolute');
-      this.renderer.setStyle(header, 'background', 'rgb(20, 20, 20)');
-    }, 1000);
-  }
+      this.renderer.setStyle(mainView, 'transition-duration', '540ms');
+      this.renderer.setStyle(mainView, 'transition-delay', '50ms');
 
-  @HostListener('window:scroll', ['$event']) scroll() {
-    const slider = this.el.nativeElement.closest('.slider');
-    const mainView = this.el.nativeElement.closest('.mainView');
-    const thanos = this.el.nativeElement.closest('.thanos');
+      setTimeout(() => {
+        this.renderer.removeStyle(mainView, 'transform');
+        this.renderer.removeStyle(mainView, 'transition-duration');
+        this.renderer.removeStyle(mainView, 'transition-delay');
+
+        window.scroll({
+          top: window.pageYOffset + offset,
+          left: 0,
+          behavior: smooth ? 'smooth' : 'auto',
+        });
+
+        this.renderer.setStyle(header, 'top', '0');
+        this.renderer.setStyle(header, 'position', 'fixed');
+        this.renderer.setStyle(header, 'background', 'rgb(20, 20, 20)');
+      }, 1000);
+    };
+
+    if (thanos.classList.contains('has-open-jaw') && this.isDown()) {
+      // 열려있고 아래에 있으면
+      // console.log('Has open jaw and down');
+      setTransition(sliderTop - 70 - detailHeight, true);
+    } else {
+      // 열려있지 않거나 위에 있으면
+      // console.log('No open jaw or up');
+
+      setTransition(sliderTop - 70, false);
+    }
   }
 }

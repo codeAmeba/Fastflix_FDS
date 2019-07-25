@@ -78,7 +78,7 @@
       *ngFor="let previewCat of movieCategories"
       class="thanosRow thanosTitleCard"
       [class.originalsRow]="previewCat.category === '오리지널'"
-      [class.jawBoneOpen]="openedCategory === previewCat.category"
+      [class.jawBoneOpen]="previewCat.category === openedCategory"
     >
       <h2 class="rowHeader">
         <span class="rowTitle">

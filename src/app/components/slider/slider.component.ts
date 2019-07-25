@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 import { MoviePreview } from "../../models/movie-preview";
 
+import { MovieService } from "src/app/services/movie.service";
+
 @Component({
   selector: "app-slider",
   templateUrl: "./slider.component.html",
@@ -56,8 +58,8 @@ export class SliderComponent implements OnInit, OnChanges {
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
-
-  constructor() {}
+  moviesDetail;
+  constructor(private movieService: MovieService) {}
 
   ngOnInit() {
     this.tabArray();
@@ -70,7 +72,7 @@ export class SliderComponent implements OnInit, OnChanges {
     }));
     // this.movies = [...this.moviesList];
     this.slider = this.movies.length / 6;
-    console.log(this.movies);
+    // console.log(this.category, this.movies);
 
     this.isOpen = this.category === this.openCategory;
   }
@@ -144,19 +146,22 @@ export class SliderComponent implements OnInit, OnChanges {
     }
   }
 
-  cardHover(movieOrder) {
+  cardHover(movieOrder, movieId) {
+    if (this.cardMove) return;
     if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
         this.bobScale = "scale(0.99999)";
       }, 200);
     }
-
+    console.log("호버됬당");
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
     this.cardMove = true;
-    console.log(this.hoverCard);
-    console.log(this.isOpen);
+    this.hoverMoviesDetail(movieId);
+    // console.log(this.moviesDetail);
+    // console.log(this.hoverCard);
+    // console.log(this.isOpen);
     // console.log(this.cardMove);
   }
 
@@ -166,7 +171,9 @@ export class SliderComponent implements OnInit, OnChanges {
       this.bobup = 0;
     }, 300);
     this.cardMove = false;
-    console.log(this.isOpen);
+    console.log("호버 나갔당");
+
+    // console.log(this.isOpen);
   }
 
   // 보여주고 있는 카드 숫자 부여
@@ -210,7 +217,8 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   showDetail() {
-    console.log(this.category);
+    // console.log(this.category);
+    // console.log(this.movies);
     this.isOpen = true;
     this.sliderOpen.emit(this.category);
   }
@@ -219,7 +227,14 @@ export class SliderComponent implements OnInit, OnChanges {
     this.sliderClose.emit(this.category);
     this.cardMove = false;
   }
-  change() {
-    console.log("바꼇당");
+
+  hoverMoviesDetail(movieId) {
+    this.movieService.getMovieDetail(movieId).subscribe(
+      detail => (this.moviesDetail = detail),
+      error => {
+        console.log(error);
+      }
+    );
+    // console.log(this.moviesDetail);
   }
 }
