@@ -124,7 +124,7 @@
                             <!-- 동영상 play 버튼 -->
                             <a></a>
                             <div class="bob-title">
-                              {{ movie.title }}
+                              {{ moviesDetail ? moviesDetail.name : "" }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -134,13 +134,12 @@
                                 <!-- match score 안에 좋아요, 싫어요 -->
                                 <span class="match-score-wrapper">
                                   <div class="show-match-score rating-inner">
-                                    <span class="match-score"
-                                      >{{
-                                        moviesDetail
-                                          ? moviesDetail["match_rate"]
-                                          : ""
-                                      }}% 일치</span
-                                    >
+                                    <span class="match-score">{{
+                                      moviesDetail
+                                        ? moviesDetail["match_rate"]
+                                        : ""
+                                    }}{{moviesDetail
+                                      ? '% 일치' : ''}}</span>
                                   </div>
                                 </span>
                                 <span class="maturity-rating "></span>
