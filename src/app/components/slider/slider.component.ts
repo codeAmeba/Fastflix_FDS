@@ -147,13 +147,14 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   cardHover(movieOrder, movieId) {
+    if (this.cardMove) return;
     if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
         this.bobScale = "scale(0.99999)";
       }, 200);
     }
-
+    console.log("호버됬당");
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
     this.cardMove = true;
@@ -170,6 +171,8 @@ export class SliderComponent implements OnInit, OnChanges {
       this.bobup = 0;
     }, 300);
     this.cardMove = false;
+    console.log("호버 나갔당");
+
     // console.log(this.isOpen);
   }
 
@@ -223,9 +226,6 @@ export class SliderComponent implements OnInit, OnChanges {
   detailClosed() {
     this.sliderClose.emit(this.category);
     this.cardMove = false;
-  }
-  change() {
-    // console.log("바꼇당");
   }
 
   hoverMoviesDetail(movieId) {
