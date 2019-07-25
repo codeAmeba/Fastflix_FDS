@@ -61,7 +61,7 @@
             <div
               id="title-card-2-{{ movie.order }}"
               class="slider-refocus title-card"
-              (mouseover)="cardHover(movie.order)"
+              (mouseover)="cardHover(movie.order, movie.id)"
             >
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
@@ -134,22 +134,42 @@
                                 <!-- match score 안에 좋아요, 싫어요 -->
                                 <span class="match-score-wrapper">
                                   <div class="show-match-score rating-inner">
-                                    <span class="match-score">77% 일치</span>
+                                    <span class="match-score"
+                                      >{{
+                                        moviesDetail
+                                          ? moviesDetail["match_rate"]
+                                          : ""
+                                      }}% 일치</span
+                                    >
                                   </div>
                                 </span>
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
-                                <span class="duration">1시간 58분</span>
+                                <span class="duration">{{
+                                  moviesDetail
+                                    ? moviesDetail["running_time"]
+                                    : ""
+                                }}</span>
                               </div>
                             </div>
                             <div class="bob-overview-evidence-wrapper">
                               <div class="evidence-tags">
                                 <div class="evidence-list">
                                   <ul class="evidence-item">
-                                    <li class="evidence-text">
-                                      영화
-                                    </li>
                                     <li
+                                      class="evidence-text evidence-text-{{
+                                        i
+                                      }}"
+                                      *ngFor="
+                                        let feature of moviesDetail
+                                          ? moviesDetail.feature
+                                          : '';
+                                        index as i
+                                      "
+                                    >
+                                      {{ feature ? feature.name : "" }}
+                                    </li>
+                                    <!-- <li
                                       class="evidence-text evidence-text-list"
                                     >
                                       2시간 이하
@@ -158,7 +178,7 @@
                                       class="evidence-text evidence-text-list"
                                     >
                                       뮤지컬
-                                    </li>
+                                    </li> -->
                                   </ul>
                                 </div>
                               </div>
