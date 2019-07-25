@@ -30,22 +30,28 @@
             showNumber(movie.order)
           }}"
           [class.toRight]="
-            toRight && hoverCard === 1 && showNumber(movie.order) > hoverCard
+            !isOpen &&
+            cardMove &&
+            hoverCard === 1 &&
+            showNumber(movie.order) > hoverCard
           "
           [class.toRight1]="
-            toRight &&
+            !isOpen &&
+            cardMove &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
             showNumber(movie.order) > hoverCard
           "
           [class.toLeft1]="
-            toRight &&
+            !isOpen &&
+            cardMove &&
             hoverCard !== 6 &&
             hoverCard !== 1 &&
             showNumber(movie.order) < hoverCard
           "
           [class.toLeft]="
-            toRight &&
+            !isOpen &&
+            cardMove &&
             hoverCard === 6 &&
             showNumber(movie.order) !== 0 &&
             showNumber(movie.order) < hoverCard
@@ -67,7 +73,22 @@
                 </div>
               </a>
               <!-- hover > 아래 버튼 클릭 시 card 테두리, 재생 버튼 -->
-              <div></div>
+              <div
+                class="title-card-jawbone-focus"
+                [ngStyle]="{
+                  opacity:
+                    isOpen && hoverCard === showNumber(movie.order) ? 1 : 0,
+                  'transition-duration.ms':
+                    isOpen && hoverCard === showNumber(movie.order) ? 300 : 0
+                }"
+              >
+                <div class="title-card-focus-ring"></div>
+                <a role="link" class="title-card-play playLink">
+                  <div class="playRing">
+                    <div class="play icon-play"></div>
+                  </div>
+                </a>
+              </div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div>
                 <ng-template [ngIf]="bobup === movie.order">
@@ -91,7 +112,11 @@
                       <div class="bob-overlay">
                         <div class="bob-play-hitzone"></div>
                         <!-- 영상 메인 이동..뭔지 일단 모르겠음, 아래 화살표 -->
-                        <a class="bob-jaw-hitzone"></a>
+                        <a
+                          class="bob-jaw-hitzone"
+                          (click)="showDetail()"
+                          Moveupdown
+                        ></a>
 
                         <!-- 세부정보 -->
                         <div class="bob-overview-wrapper">
@@ -269,3 +294,7 @@
     <!-- </ng-template> -->
   </div>
 </div>
+<app-detail-card
+  [isOpen]="isOpen"
+  (detailClose)="detailClosed()"
+></app-detail-card>
