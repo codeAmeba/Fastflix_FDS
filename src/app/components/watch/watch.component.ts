@@ -40,12 +40,13 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
     let newButton = '';
   
     myPlayer.ready(() => {
+      console.log(this.moveBack);
       newButton = `<div class="play-back"
                   style="position: absolute;
                   left: 67px;
                   margin-top: 12px;
                   cursor: pointer;">
-                  <i onclick="${this.moveBack()}" 
+                  <i id="moveback" 
                   class="material-icons">
                   replay_10
                   </i>
@@ -55,7 +56,7 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
                   left: 103px;
                   margin-top: 12px;
                   cursor: pointer;">
-                  <i onclick="${this.moveForward()}" 
+                  <i id="moveforward" 
                   class="material-icons">
                   forward_10
                   </i>
@@ -64,19 +65,18 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
       myControlBar.appendChild(newDiv);
       newDiv.classList.add('back-forward-contain');
       newDiv.innerHTML = newButton;
+      document.querySelector('#moveback').addEventListener('click', this.moveBack);
+      document.querySelector('#moveforward').addEventListener('click', this.moveForward);
+
+
+      myPlayer.currentTime(localStorage.getItem('lastTime'));
+      videojs.log(`마지막으로 저장된 시간 : ${myPlayer.currentTime()} 초`);
     });         
 
-    
     // *테스트* beforunload 이벤트(새로고침, url 변경) 발생 시 localstorage에 현재 시간(초) 저장
     // 최종적으로 localstorage 대신 DB 적용해야 됨
     window.addEventListener('beforeunload', function () {
       localStorage.setItem('lastTime', myPlayer.currentTime());
-    });
-
-    // *테스트* 새로고침 후 재생 시 저장된 시간부터 시작       
-    myPlayer.ready(() => {
-      myPlayer.currentTime(localStorage.getItem('lastTime'));
-      videojs.log(`마지막으로 저장된 시간 : ${myPlayer.currentTime()} 초`);
     });
   }
 
@@ -97,7 +97,6 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
     myPlayer.currentTime(myPlayer.currentTime() - 10);
   }
 
-
   // 뒤로가기 버튼
   historyBack() {
     window.history.back();
@@ -109,5 +108,4 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
       this.isInactive = true;
     }, 2500)
   }
-
 }
