@@ -23,7 +23,7 @@
   </div> -->
   <video (keyup.arrowright)="moveForward($event)" (keyup.arrowleft)="moveBack($event)" 
           #myvid id="my-video" class="video-js vjs-matrix vjs-fluid vjs-big-play-centered"
-          [poster]="poster" (pause)="isInactive = false" (play)="playVideo()" (pause)="pauseVideo()">
+          [poster]="poster" (pause)="isInactive = false" (play)="playVideo()" (pause)="pauseVideo()" (play)="pauseMovie = false">
     <source [src]="video" type="video/mp4"> 
   </video>
 </div>
