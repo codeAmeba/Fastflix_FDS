@@ -435,7 +435,9 @@ img {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
   font-size: 0.8vw;
 }
-.evidence-list .evidence-text-list::before {
+.evidence-list .evidence-text-1::before,
+.evidence-list .evidence-text-2::before
+{
   color: #646464;
   content: "\2022";
   display: inline-block;

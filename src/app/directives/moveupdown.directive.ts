@@ -61,7 +61,7 @@ export class MoveupdownDirective {
         this.renderer.setStyle(header, 'top', '0');
         this.renderer.setStyle(header, 'position', 'fixed');
         this.renderer.setStyle(header, 'background', 'rgb(20, 20, 20)');
-      }, 1000);
+      }, 600);
     };
 
     if (thanos.classList.contains('has-open-jaw') && this.isDown()) {

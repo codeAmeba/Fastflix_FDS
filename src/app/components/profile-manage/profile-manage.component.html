@@ -1,4 +1,4 @@
-<p>profile-manage works!</p>
+
 <div class="pinning-header on-profiles-gate">
     <div class="main-header on-profiles-gate" role="navigation">
         <a routerLink="/home" class="logo" routerLinkActive="active">
@@ -6,7 +6,8 @@
         </a>
     </div>
 </div>
-<div class="profiles-gate-container">
+<div class="profiles-gate-container" *ngIf="!isManage">
+  <div class="centered-div list-profiles-container">
     <div class="list-profiles">
       <div class="profile-gate-label">프로필 관리</div>
       <div>
@@ -15,9 +16,14 @@
             <div>
               <a class="profile-link">
                 <div class="avatar-wrapper">
-                  <div class="profile-icon" style="background-image:url(https://occ-0-2794-1009.1.nflxso.net/art/0d282/eb648e0fd0b2676dbb7317310a48f9bdc2b0d282.png)"></div>
-                    <span class="profile-name">Profile Name</span>
+                  <div class="profile-icon profile-edit-mode" style="background-image:url(https://occ-0-2794-1009.1.nflxso.net/art/0d282/eb648e0fd0b2676dbb7317310a48f9bdc2b0d282.png)">
+                  </div>
+                  <div class="svg-edit-overlay"><svg class="svg-icon svg-icon-edit" focusable="true"><use filter="" xlink:href="#edit">
+                    <svg id="edit" viewBox="0 0 32 32">    <path fill="currentColor" d="M16 0c8.833 0 16 7.167 16 16 0 8.8-7.167 16-16 16s-16-7.2-16-16c0-8.833 7.167-16 16-16zM16 1.7c-7.9 0-14.3 6.4-14.3 14.3s6.4 14.3 14.3 14.3 14.3-6.4 14.3-14.3-6.4-14.3-14.3-14.3zM22.333 12.9l0.3-0.267 0.867-0.867c0.467-0.5 0.4-0.767 0-1.167l-1.767-1.767c-0.467-0.467-0.767-0.4-1.167 0l-0.867 0.867-0.267 0.3zM18.3 11.1l-8.6 8.6-0.833 3.767 3.767-0.833 0.967-1 7.633-7.6z"></path></svg>
+                  </use></svg>
+                  </div>
                 </div>
+                <span class="profile-name">Profile Name</span>
               </a>
             </div>
           </li>
@@ -25,13 +31,19 @@
             <div>
               <a class="profile-link">
                 <div class="avatar-wrapper">
-                  <div class="profile-icon" style="background-image: url(https://occ-0-2794-1009.1.nflxso.net/art/b546b/6e960989aa8d0c0ea64f90fb3a8d03b417ab546b.png);"></div>
-                    <span class="profile-name">키즈</span>
+                  <div class="profile-icon profile-edit-mode" style="background-image: url(https://occ-0-2794-1009.1.nflxso.net/art/b546b/6e960989aa8d0c0ea64f90fb3a8d03b417ab546b.png);"></div>
+                  <div class="svg-edit-overlay">
+                    <svg class="svg-icon svg-icon-edit" focusable="true">
+                      <use filter="" xlink:href="#edit">
+                      <svg id="edit" viewBox="0 0 32 32">    
+                      <path fill="currentColor" d="M16 0c8.833 0 16 7.167 16 16 0 8.8-7.167 16-16 16s-16-7.2-16-16c0-8.833 7.167-16 16-16zM16 1.7c-7.9 0-14.3 6.4-14.3 14.3s6.4 14.3 14.3 14.3 14.3-6.4 14.3-14.3-6.4-14.3-14.3-14.3zM22.333 12.9l0.3-0.267 0.867-0.867c0.467-0.5 0.4-0.767 0-1.167l-1.767-1.767c-0.467-0.467-0.767-0.4-1.167 0l-0.867 0.867-0.267 0.3zM18.3 11.1l-8.6 8.6-0.833 3.767 3.767-0.833 0.967-1 7.633-7.6z"></path></svg>
+                  </use></svg></div>
                 </div>
+                <span class="profile-name">키즈</span>
               </a>
             </div>
           </li>
-          <li class="profile">
+          <li class="profile" (click)="isManage = 'add'">
             <div>
               <a role="link" tabindex="0">
                 <div class="addProfileIcon icon-tvuiAdd">
@@ -42,11 +54,40 @@
           </li>
         </ul>
       </div>
-      <span class="profile-button">
+      <span class="profile-button preferred-action">
         <a routerLink="/profile/">완료</a>
       </span>
     </div>
-    <div></div>
-    <div></div>
-    <div></div>
   </div>
+</div>
+  <div class="centered-div"  
+[ngStyle]="{opacity: isManage ? 1 : 0, transform: scale(1), 'transition-duration': '450ms', 'transition-delay': '200ms'}">
+  <div class="profile-actions-container" *ngIf="isManage === 'add'">
+    <h1>프로필 추가</h1>
+    <h2>FastFlix를 시청할 다른 사용자를 등록하시려면 프로필을 추가하세요.</h2>
+    <div class="profile-metadata profile-entry">
+      <div class="main-profile-avatar">
+        <img src="https://art-s.nflximg.net/a7774/574ffd46d2bcef69802752f39db6320328fa7774.png" alt style="opacity: 1; transform: scale(1); transition-duration: 480ms;">
+      </div>
+      <div class="profile-add-parent">
+        <div class="profile-entry-inputs">
+          <input type="text" id="add-profile-name" class placeholder="이름">
+          <label for="add-profile-name" aria-label="이름"></label>
+          <input type="checkbox" id="add-kids-profile">
+          <label for="add-kids-profile">
+          </label>
+          <span class="add-kids-marker" role="checkbox" aria-checked="false" tabindex="0">어린이인가요?</span>
+        </div>
+      </div>
+    </div>
+    <span class="profile-button preferred-action" tabindex="0" role="button">
+      <span>다음</span>
+    </span>
+    <span class="profile-button" tabindex="0" role="button" (click)="isManage = false">
+      <span>취소</span>
+    </span>
+  </div>
+  <div class="profile-actions-container" *ngIf="isManage === 'modify'">
+    
+  </div>
+</div>
