@@ -126,7 +126,7 @@
                             <!-- 동영상 play 버튼 -->
                             <a></a>
                             <div class="bob-title">
-                              {{ moviesDetail ? moviesDetail.name : "" }}
+                              {{ moviesDetail.name ? moviesDetail.name : "" }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -136,20 +136,25 @@
                                 <!-- match score 안에 좋아요, 싫어요 -->
                                 <span class="match-score-wrapper">
                                   <div class="show-match-score rating-inner">
-                                    <span class="match-score">{{
-                                      moviesDetail
-                                        ? moviesDetail["match_rate"]
-                                        : ""
-                                    }}{{moviesDetail
-                                      ? '% 일치' : ''}}</span>
+                                    <span class="match-score"
+                                      >{{
+                                        moviesDetail["match_rate"]
+                                          ? moviesDetail["match_rate"]
+                                          : ""
+                                      }}{{
+                                        moviesDetail["match_rate"]
+                                          ? "% 일치"
+                                          : ""
+                                      }}</span
+                                    >
                                   </div>
                                 </span>
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail
-                                    ? moviesDetail['running_time']
-                                    : ''
+                                  moviesDetail["running_time"]
+                                    ? moviesDetail["running_time"]
+                                    : " "
                                 }}</span>
                               </div>
                             </div>
@@ -162,13 +167,13 @@
                                         i
                                       }}"
                                       *ngFor="
-                                        let feature of moviesDetail
+                                        let feature of moviesDetail.feature
                                           ? moviesDetail.feature
                                           : '';
                                         index as i
                                       "
                                     >
-                                      {{ feature ? feature.name : '' }}
+                                      {{ feature ? feature.name : "" }}
                                     </li>
                                     <!-- <li
                                       class="evidence-text evidence-text-list"
