@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  isManage: boolean;
+  isAdd: boolean;
   subUsers: SubUser[];
 
   constructor(
@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isAdd = false;
     this.subUsers = this.authService.subUsers;
     console.log(this.subUsers);
   }

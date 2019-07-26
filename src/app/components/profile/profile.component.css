@@ -1,4 +1,256 @@
-div {
+.bd {
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pinning-header {
+  height: 70px;
+}
+
+.pinning-header .pinning-header-container {
+  left: 0;
+  right: 0;
+  top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.logo img {
+  height: 65px;
+}
+
+.pinning-header .main-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 4%;
+  z-index: 2;
+  font-size: 1.2rem;
+  transition: background-color .4s;
+}
+
+.pinning-header .pinning-header-container .main-header {
+  z-index: 2;
+  height: 41px;
+}
+
+@media screen and (min-width: 950px) {
+  .pinning-header .pinning-header-container .main-header {
+    height: 68px;
+  }
+
+}
+
+.pinning-header .main-header.on-profiles-gate:not(.solid) {
+  background-color: transparent;
+}
+
+.profiles-gate-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background: #141414;
+  z-index: 0;
+}
+
+.profiles-gate-container .centered-div {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profiles-gate-container .centered-div.list-profiles-container:not(.js-transition-node) {
+  animation: animateProfileGate 450ms forwards;
+}
+
+@keyframes animateProfileGate {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.list-profiles {
+  max-width: 80%;
+  background: #141414;
+}
+
+.list-profiles .choose-profile,
+.list-profiles .profile-gate-label {
+  opacity: 1;
+  transition: opacity .4s ease-out;
+}
+
+.list-profiles .profile-gate-label {
+  width: 100%;
+  color: #fff;
+  font-size: 3.5vw;
+}
+
+.profiles-gate-container li a {
+  text-decoration: none;
+}
+
+.profiles-gate-container ul {
+  padding: 0;
+}
+
+.list-profiles .choose-profile,
+.list-profiles .profile-gate-label {
+  opacity: 1;
+  transition: opacity .4s ease-out;
+}
+
+.list-profiles .choose-profile {
+  margin: 2em 0;
+}
+
+.profiles-gate-container .addProfileIcon {
+  font-size: 5vw;
+  color: grey;
+  text-align: center;
+  text-decoration: none;
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 84px;
+  min-width: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-tvuiAdd:before {
+  content: '\e716';
+}
+
+.profiles-gate-container li {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.profiles-gate-container li.profile {
+  width: 10vw;
+  max-width: 200px;
+  min-width: 84px;
+}
+
+.profiles-gate-container li.profile:not(:last-child) {
+  margin: 0 2vw 0 0;
+}
+
+.list-profiles .avatar-wrapper {
+  position: relative;
+}
+
+.profiles-gate-container .profile-icon {
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 84px;
+  min-width: 84px;
+  box-sizing: border-box;
+  position: relative;
+  text-decoration: none;
+  border: .3em solid rgba(0, 0, 0, .4);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #333;
+}
+
+.profiles-gate-container .profile-name {
+  line-height: 1.2em;
+  min-height: 2.4em;
+  color: grey;
+  display: block;
+  text-align: center;
+  font-size: 1.3vw;
+  margin: .8em 0;
+  overflow: hidden;
+}
+
+.profiles-gate-container .profile-name {
+  line-height: 1.5;
+}
+
+.profiles-gate-container .profile-edit-mode {
+  opacity: .5;
+}
+
+.profile-button {
+  display: block;
+  margin: 2em 0 1em 0;
+  font-size: 1.3vw;
+}
+
+.profiles-gate-container li a.focused .addProfileIcon,
+.profiles-gate-container li a:focus .addProfileIcon,
+.profiles-gate-container li a:hover .addProfileIcon {
+  background-color: #e5e5e5;
+}
+
+.profiles-gate-container li a.focused .profile-name,
+.profiles-gate-container li a:focus .profile-name,
+.profiles-gate-container li a:hover .profile-name {
+  color: #e5e5e5;
+}
+
+.profile-button a:hover,
+.profile-button span:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.profile-button a,
+.profile-button span {
+  border: 1px solid grey;
+  color: grey;
+  text-transform: uppercase;
+  padding: .5em 1.5em;
+  letter-spacing: 2px;
+  letter-spacing: initial;
+  cursor: pointer;
+  font-size: .9em;
+}
+
+.list-profiles .svg-edit-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-profiles .svg-edit-overlay .svg-icon-edit {
+  width: 3rem;
+  height: 3rem;
+  max-width: 70px;
+  max-height: 70px;
+}
+
+/* 승현님 */
+/* div {
   display: block;
 }
 
@@ -15,6 +267,7 @@ div {
 .list-profiles .choose-profile {
   margin: 2em 0;
 }
+
 .list-profiles {
   background: #141414;
 }
@@ -47,7 +300,7 @@ ul {
   box-sizing: border-box;
   position: relative;
   text-decoration: none;
-  border: .3em solid rgba(0,0,0,.4);
+  border: .3em solid rgba(0, 0, 0, .4);
   background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -80,7 +333,8 @@ ul {
   font-size: 1.3vw;
 }
 
-.profile-button a ,.profile-button span {
+.profile-button a,
+.profile-button span {
   border: 1px solid grey;
   color: grey;
   text-transform: uppercase;
@@ -123,7 +377,7 @@ ul {
 
 .logo img {
   height: 65px;
- }
+}
 
 .profile-actions-container {
   text-align: left;
@@ -135,7 +389,8 @@ ul {
   margin: 0;
 }
 
-.profile-actions-container h1, .profile-actions-container h2 {
+.profile-actions-container h1,
+.profile-actions-container h2 {
   font-weight: 400;
 }
 
@@ -255,7 +510,8 @@ img {
   font-size: 1.3vw;
 }
 
-.profile-button a, .profile-button span {
+.profile-button a,
+.profile-button span {
   border: 1px solid grey;
   color: grey;
   text-transform: uppercase;
@@ -264,13 +520,17 @@ img {
   font-size: .9em;
 }
 
-.profile-button.preferred-action.preferred-active a, .profile-button.preferred-action.preferred-active span, .profile-button.preferred-action:hover a, .profile-button.preferred-action:hover span {
+.profile-button.preferred-action.preferred-active a,
+.profile-button.preferred-action.preferred-active span,
+.profile-button.preferred-action:hover a,
+.profile-button.preferred-action:hover span {
   background: #c00;
   border: 1px solid #c00;
   color: #fff;
 }
 
-.profile-button.preferred-action a, .profile-button.preferred-action span {
+.profile-button.preferred-action a,
+.profile-button.preferred-action span {
   background: #fff;
   color: #000;
   border: 1px solid #fff;
@@ -318,16 +578,21 @@ img {
   flex-direction: column;
 }
 
-.profile-button a:hover, .profile-button span:hover {
+.profile-button a:hover,
+.profile-button span:hover {
   color: #fff;
   border: 1px solid #fff;
 }
 
-.profiles-gate-container li a.focused .addProfileIcon, .profiles-gate-container li a:focus .addProfileIcon, .profiles-gate-container li a:hover .addProfileIcon {
+.profiles-gate-container li a.focused .addProfileIcon,
+.profiles-gate-container li a:focus .addProfileIcon,
+.profiles-gate-container li a:hover .addProfileIcon {
   background-color: #e5e5e5;
 }
 
-.profiles-gate-container li a.focused .profile-name, .profiles-gate-container li a:focus .profile-name, .profiles-gate-container li a:hover .profile-name {
+.profiles-gate-container li a.focused .profile-name,
+.profiles-gate-container li a:focus .profile-name,
+.profiles-gate-container li a:hover .profile-name {
   color: #e5e5e5;
 }
 
@@ -363,4 +628,4 @@ label {
 
 .profile-icon:hover {
   border: .3em solid #fff;
-}
+} */
