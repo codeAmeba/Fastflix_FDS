@@ -175,6 +175,26 @@
                                     >
                                       {{ feature ? feature.name : '' }}
                                     </li>
+                                    <ng-template
+                                      [ngIf]="moviesDetail.feature.length < 3"
+                                    >
+                                      <li
+                                        class="evidence-text evidence-text-{{
+                                          moviesDetail.feature.length + i
+                                        }}"
+                                        *ngFor="
+                                          let genre of moviesDetail.genre
+                                            ? moviesDetail.genre.slice(
+                                                0,
+                                                3 - moviesDetail.feature.length
+                                              )
+                                            : '';
+                                          index as i
+                                        "
+                                      >
+                                        {{ genre.name ? genre.name : "" }}
+                                      </li>
+                                    </ng-template>
                                     <!-- <li
                                       class="evidence-text evidence-text-list"
                                     >
@@ -192,7 +212,7 @@
                           </div>
                         </div>
                         <!-- 좋아요, 싫어요, 내찜콘 추가 -->
-                        <div class="bob-actions-wrapper">
+                        <div class="bob-actions-wrapper">  
                           <span class="ActionButtons">
                             <div
                               class="thumbs-component thumbs thumbs-vertical animated unrated"
