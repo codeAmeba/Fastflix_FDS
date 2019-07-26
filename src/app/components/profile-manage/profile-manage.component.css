@@ -234,14 +234,6 @@ h2 {
   margin-inline-end: 0px;
 }
 
-.profile-metadata .main-profile-avatar {
-  white-space: nowrap;
-  margin-right: 1.5vw;
-  width: 8vw;
-  min-width: 80px;
-  max-width: 180px;
-}
-
 .profile-metadata img {
   height: 8vw;
   width: 8vw;
@@ -513,4 +505,12 @@ svg:not(:root) {
 
 .nfDropDown.theme-lakira.widthRestricted .label {
   width: 100%;
+}
+
+div {
+  display: block;
+}
+
+.avatar-box {
+  position: relative;
 }
