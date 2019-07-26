@@ -23,10 +23,22 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.userService.getProfile()+'');
+      .set('subuserid', this.userService.getProfile() + '');
 
     console.log(headers);
 
-    return this.http.get<any>(`${this.apiUrl}/movies/genre_select_before/`, { headers});
+    return this.http.get<any>(`${this.apiUrl}/movies/genre_select_before/`, {
+      headers,
+    });
+  }
+
+  getMovieDetail(id: number): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.userService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/${id}/`, { headers });
   }
 }

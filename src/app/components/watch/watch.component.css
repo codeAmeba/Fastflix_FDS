@@ -1,19 +1,64 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
 .container {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  vertical-align: middle;
+  margin: auto 0;
 }
-.video-js {
+
+.vjs-matrix.video-js {
   color: white;
   font-size: 16px;
+  font-family: inherit;
 }
+
 .back-arrow {
-  display: inline-block;
   position: absolute;
   z-index: 1;
   margin: 15px;
   cursor: pointer;
-  /* visibility: hidden; */
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.1s, opacity 0.1s;
+}
+
+.user-inactive {
+  visibility: visible;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s;
+}
+
+.pause-message {
+  position: absolute;
+  max-width: 400px;
+  max-height: 300px;
+  font-size: 1.5em;
+  margin: 5em 8em;
+  z-index: 1;
+  visibility: visible;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s;
+}
+
+.pause-current-movie {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 1s, opacity 1s;
+}
+
+.movie-info {
+  text-align: left;
+}
+
+.movie-info > h1 {
+  font-size: 2.5em;
+  font-weight: 800;
+  margin: 15px 0;
+}
+
+.movie-info > p {
+  margin-top: 15px;
+}
+
+.pause-message > p {
+  margin-top: 50px;
+  text-align: right;
 }
