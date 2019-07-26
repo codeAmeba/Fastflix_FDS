@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { UserProfile } from '../models/user-profile';
 import { AuthenticationService } from './authentication.service';
+import { SubUser } from '../models/sub-user';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { AuthenticationService } from './authentication.service';
 export class UserService implements OnInit {
   apiUrl = environment.apiUrl;
   userName: string;
+  subUsers: SubUser[];
   PROFILE_NAME = 'PID';
 
   constructor(
