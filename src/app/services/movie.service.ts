@@ -41,4 +41,49 @@ export class MovieService {
 
     return this.http.get<any>(`${this.apiUrl}/movies/${id}/`, { headers });
   }
+
+  likeMovie(movieid: number): Observable<any> {
+    const subuserid = this.userService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/like/`,
+      {
+        movieid,
+        subuserid,
+      },
+      { headers }
+    );
+  }
+
+  dislikeMovie(movieid: number): Observable<any> {
+    const subuserid = this.userService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/dislike/`,
+      {
+        movieid,
+        subuserid,
+      },
+      { headers }
+    );
+  }
+
+  myList(movieid: number): Observable<any> {
+    const subuserid = this.userService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/add_delete_my_list/`,
+      {
+        movieid,
+        subuserid,
+      },
+      { headers }
+    );
+  }
 }
