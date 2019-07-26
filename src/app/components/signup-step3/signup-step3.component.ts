@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-signup-step3',
@@ -12,10 +13,14 @@ export class SignupStep3Component implements OnInit {
   profileForm: FormGroup;
   userName: string;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
-    this.userName = this.userService.userName;
+    this.userName = this.authService.userName;
 
     this.profileForm = new FormGroup({
       ownerName: new FormControl(''),
@@ -44,12 +49,12 @@ export class SignupStep3Component implements OnInit {
 
     console.log(user);
 
-    this.userService.createProfile(user).subscribe(
+    this.authService.createProfile(user).subscribe(
       profiles => {
         console.log('success', profiles['sub_user_list']);
-        this.userService.setProfile(profiles['sub_user_list'][0].id);
+        this.authService.setProfile(profiles['sub_user_list'][0].id);
         if (this.profileForm.get('ownerName').value)
-          this.userService.userName = this.profileForm.get('ownerName').value;
+          this.authService.userName = this.profileForm.get('ownerName').value;
         this.router.navigate(['/signup/step4']);
       },
       error => {

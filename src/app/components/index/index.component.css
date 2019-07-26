@@ -75,7 +75,6 @@
 (min-width: 1000px) {
   .concord {
     height: 100vh;
-    margin-bottom: -7vh;
   }
 }
 
@@ -160,6 +159,7 @@
   transform: translate(0, -50%);
   font-size: 1.8vw;
   z-index: 13;
+  top: 50%;
   left: 0;
   margin: 0 3%;
   width: 94%;
