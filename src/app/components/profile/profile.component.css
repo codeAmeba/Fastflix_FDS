@@ -249,6 +249,184 @@
   max-height: 70px;
 }
 
+/* Profile add */
+.profile-actions-container {
+  text-align: left;
+  position: relative;
+}
+
+.profile-actions-container h1,
+.profile-actions-container h2 {
+  font-weight: 400;
+}
+
+.profile-actions-container h1 {
+  font-size: 4vw;
+  margin: 0;
+}
+
+.profile-actions-container h2 {
+  font-size: 1.3vw;
+  color: #666;
+}
+
+
+
+
+.profile-entry {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.profile-metadata {
+  display: flex;
+  padding: 2em 0;
+}
+
+img {
+  border: 0;
+}
+
+.profile-metadata .main-profile-avatar {
+  white-space: nowrap;
+  margin-right: 1.5vw;
+  width: 8vw;
+  min-width: 80px;
+  max-width: 180px;
+}
+
+.profile-metadata .pulsate,
+.profile-metadata img {
+  height: 8vw;
+  width: 8vw;
+  max-height: 180px;
+  max-width: 180px;
+  min-height: 80px;
+  min-width: 80px;
+}
+
+.profile-metadata img {
+  transition-timing-function: cubic-bezier(.68, -.55, .265, 1.55);
+}
+
+.profile-add-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-metadata .profile-entry-inputs {
+  vertical-align: middle;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-entry input[type=text] {
+  width: 18em;
+  height: 2em;
+  background: #666;
+  border: 1px solid transparent;
+  margin: 0 .8em 0 0;
+  padding: .2em .6em;
+  color: #fff;
+  font-size: 1.3vw;
+  box-sizing: border-box;
+  text-indent: .1vw;
+}
+
+.svg-icon {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.profile-entry input[type=checkbox]:checked+label {
+  border: 1px solid #333;
+  color: #99a1a7;
+}
+
+.profile-entry label {
+  display: inline;
+}
+
+.profile-entry input[type=checkbox] {
+  display: none;
+}
+
+.profile-entry label {
+  display: inline;
+}
+
+.profile-entry-inputs input[type=checkbox]+label {
+  border: 1px solid #333;
+  border-radius: 0;
+  display: inline-block;
+  position: relative;
+  margin-right: .5em;
+  font-size: .8vw;
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.profile-metadata .add-kids-marker {
+  font-weight: 400;
+  font-size: 1.3vw;
+}
+
+.profile-actions-container .profile-button {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-entry input[type=text] {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profile-actions-container h1 {
+    font-size: 40px;
+  }
+
+  .profile-actions-container h2 {
+    font-size: 13px;
+  }
+
+  .profile-metadata .add-kids-marker {
+    font-size: 13px;
+  }
+
+  .list-profiles .profile-gate-label {
+    font-size: 30px;
+  }
+
+  .profiles-gate-container .profile-name {
+    font-size: 12px;
+  }
+
+  .profile-button {
+    font-size: 13px;
+  }
+
+  .profile-metadata .profile-entry-inputs {
+    margin-left: 15px;
+  }
+
+  .profile-entry input[type=checkbox]+label {
+    font-size: 7px;
+  }
+}
+
+@media screen and (max-width: 865px) {
+  .profiles-gate-container .addProfileIcon {
+    font-size: 50px;
+  }
+}
+
+
 /* 승현님 */
 /* div {
   display: block;

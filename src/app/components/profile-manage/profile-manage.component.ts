@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Renderer2,
+  OnDestroy,
+} from '@angular/core';
 import { SubUser } from 'src/app/models/sub-user';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -9,9 +15,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./profile-manage.component.css'],
 })
 export class ProfileManageComponent implements OnInit {
-  isAdd: boolean;
+  tabState: string;
   isChild: boolean;
   subUsers: SubUser[];
+  selectedUser: SubUser;
 
   constructor(
     private router: Router,
@@ -19,7 +26,7 @@ export class ProfileManageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.isAdd = false;
+    this.tabState = '';
     this.isChild = false;
     this.subUsers = this.authService.subUsers;
     console.log(this.subUsers);
@@ -28,5 +35,13 @@ export class ProfileManageComponent implements OnInit {
   secondLogin(id: number) {
     this.authService.setProfile(id);
     this.router.navigate(['home']);
+  }
+
+  changeProfile() {
+    if (!this.selectedUser) return;
+
+    console.log(this.selectedUser);
+
+    const name = this.selectedUser.name;
   }
 }

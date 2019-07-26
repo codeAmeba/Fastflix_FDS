@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   isAdd: boolean;
+  isChild: boolean;
   subUsers: SubUser[];
+  selectedUser: SubUser;
 
   constructor(
     private router: Router,
@@ -19,6 +21,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.isAdd = false;
+    this.isChild = false;
     this.subUsers = this.authService.subUsers;
     console.log(this.subUsers);
   }
@@ -26,5 +29,13 @@ export class ProfileComponent implements OnInit {
   secondLogin(id: number) {
     this.authService.setProfile(id);
     this.router.navigate(['home']);
+  }
+
+  changeProfile() {
+    if (!this.selectedUser) return;
+
+    console.log(this.selectedUser);
+
+    const name = this.selectedUser.name;
   }
 }
