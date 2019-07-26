@@ -12,40 +12,12 @@ import { SubUser } from '../models/sub-user';
 })
 export class UserService implements OnInit {
   apiUrl = environment.apiUrl;
-  userName: string;
-  subUsers: SubUser[];
-  PROFILE_NAME = 'PID';
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthenticationService
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.userName = '';
-  }
+  ngOnInit() {}
 
   signup(user: User): Observable<User> {
     return this.http.post<any>(`${this.apiUrl}/accounts/create_user/`, user);
-  }
-
-  createProfile(user: UserProfile): Observable<UserProfile> {
-    const token = this.authService.getToken();
-
-    const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
-
-    return this.http.post<UserProfile>(
-      `${this.apiUrl}/accounts/create_sub_user/`,
-      user,
-      { headers }
-    );
-  }
-
-  setProfile(profileId: any) {
-    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
-  }
-
-  getProfile() {
-    return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
   }
 }

@@ -7,6 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,10 @@ export class HeaderComponent implements OnInit {
   showDropDown: boolean;
   isHome: boolean;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.showDropDown = false;
@@ -43,5 +47,10 @@ export class HeaderComponent implements OnInit {
 
   hideMenu(event: HTMLElement) {
     this.showDropDown = false;
+  }
+
+  signOut() {
+    this.authService.logout();
+    this.router.navigate(['welcome']);
   }
 }

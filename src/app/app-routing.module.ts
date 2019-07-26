@@ -26,11 +26,10 @@ const routes: Routes = [
   { path: 'welcome', component: IndexComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'movie', component: MovieComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent },
   {
     path: 'profile/manage',
     component: ProfileManageComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'signup',

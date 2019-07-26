@@ -1,5 +1,341 @@
+<div class="bd dark-background" lang="ko-KR" data-uia="container-adult">
+  <div class="pinning-header on-profiles-gate">
+    <div
+      class="pinning-header-container"
+      style="top: 0px; position: relative; background: transparent;"
+    >
+      <div class="main-header on-profiles-gate" role="navigation">
+        <a routerLink="/home" class="logo" routerLinkActive="active">
+          <img src="../../../assets/images/fastflix_logo_03.png" alt="" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="profiles-gate-container">
+    <div
+      class="centered-div list-profiles-container"
+      *ngIf="!tabState"
+      [ngStyle]="
+        !tabState
+          ? {
+              opacity: '1',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+          : {
+              opacity: '0',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+      "
+    >
+      <div class="list-profiles">
+        <div class="profile-gate-label">
+          프로필 관리
+        </div>
+        <ul class="choose-profile">
+          <li
+            class="profile"
+            *ngFor="let subUser of subUsers"
+            (click)="selectedUser = subUser"
+          >
+            <div (click)="tabState = 'change'">
+              <a class="profile-link">
+                <div class="avatar-wrapper">
+                  <div
+                    class="profile-icon profile-edit-mode"
+                    [ngStyle]="{
+                      'background-image':
+                        'url(' +
+                        subUser['profile_info']['profile_image_path'] +
+                        ')'
+                    }"
+                  ></div>
+                  <div class="svg-edit-overlay">
+                    <svg class="svg-icon svg-icon-edit" focusable="true">
+                      <use filter="" xlink:href="#edit">
+                        <svg id="edit" viewBox="0 0 32 32">
+                          <path
+                            fill="currentColor"
+                            d="M16 0c8.833 0 16 7.167 16 16 0 8.8-7.167 16-16 16s-16-7.2-16-16c0-8.833 7.167-16 16-16zM16 1.7c-7.9 0-14.3 6.4-14.3 14.3s6.4 14.3 14.3 14.3 14.3-6.4 14.3-14.3-6.4-14.3-14.3-14.3zM22.333 12.9l0.3-0.267 0.867-0.867c0.467-0.5 0.4-0.767 0-1.167l-1.767-1.767c-0.467-0.467-0.767-0.4-1.167 0l-0.867 0.867-0.267 0.3zM18.3 11.1l-8.6 8.6-0.833 3.767 3.767-0.833 0.967-1 7.633-7.6z"
+                          ></path>
+                        </svg>
+                      </use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="profile-name">{{ subUser.name }}</span>
+              </a>
+            </div>
+          </li>
+          <li class="profile" (click)="tabState = 'add'">
+            <div>
+              <a role="link" tabindex="0">
+                <div class="addProfileIcon icon-tvuiAdd"></div>
+                <span class="profile-name">프로필 추가</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <span class="profile-button preferred-action">
+        <a routerLink="/profile/">완료</a>
+      </span>
+    </div>
+    <div
+      class="centered-div"
+      *ngIf="tabState === 'add'"
+      [ngStyle]="
+        tabState === 'add'
+          ? {
+              opacity: '1',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+          : {
+              opacity: '0',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+      "
+    >
+      <div class="profile-actions-container">
+        <h1>프로필 추가</h1>
+        <h2>
+          Fastflix를 시청할 다른 사용자를 등록하시려면 프로필을 추가하세요.
+        </h2>
+        <div class="profile-metadata profile-entry">
+          <div class="main-profile-avatar">
+            <img
+              src="https://art-s.nflximg.net/54ca6/ed554dd4d7fa20d41317a44065154d6010f54ca6.png"
+              alt=""
+              style="opacity: 1; transform: scale(1); transition-duration: 400ms;"
+            />
+          </div>
+          <div class="profile-add-parent">
+            <div class="profile-entry-inputs">
+              <input
+                type="text"
+                id="add-profile-name"
+                placeholder="이름"
+              /><label for="add-profile-name" aria-label="이름"> </label
+              ><input
+                type="checkbox"
+                id="add-kids-profile"
+                (change)="isChild = !isChild"
+              /><label for="add-kids-profile">
+                <svg
+                  *ngIf="isChild"
+                  class="svg-icon svg-icon-check-mark"
+                  focusable="true"
+                >
+                  <use filter="" xlink:href="#check-mark">
+                    <svg id="check-mark" viewBox="0 0 32 32">
+                      <path
+                        fill="currentColor"
+                        d="M14.133 23.5l12.767-12.467c0.033-0.033 0.1-0.1 0.133-0.167l-3.1-3.133c-0.067 0.033-0.133 0.1-0.2 0.167l-11.267 10.933-4.267-4.333-3.233 2.933c0.033 0 1.067 1.067 1.1 1.067l4.767 5 0.133 0.133c0.433 0.4 0.967 0.633 1.5 0.633s1.1-0.233 1.5-0.633z"
+                      ></path>
+                    </svg>
+                  </use>
+                </svg> </label
+              ><span
+                class="add-kids-marker"
+                role="checkbox"
+                aria-checked="false"
+                tabindex="0"
+                (click)="isChild = !isChild"
+                >어린이인가요?</span
+              >
+            </div>
+          </div>
+        </div>
+        <span
+          class="profile-button preferred-action"
+          tabindex="0"
+          role="button"
+          (click)="changeProfile()"
+        >
+          <span>다음</span>
+        </span>
+        <span class="profile-button" tabindex="0" role="button">
+          <span (click)="tabState = ''">취소</span>
+        </span>
+      </div>
+    </div>
+    <div
+      class="centered-div"
+      *ngIf="tabState === 'change'"
+      [ngStyle]="
+        tabState === 'change'
+          ? {
+              opacity: '1',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+          : {
+              opacity: '0',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+      "
+    >
+      <div class="profile-actions-container">
+        <h1>프로필 변경</h1>
+        <div class="profile-metadata profile-entry">
+          <div class="main-profile-avatar">
+            <div class="avatar-box">
+              <img
+                src="https://occ-0-3446-1361.1.nflxso.net/art/0d6b9/6c139bd2c216b7608148431203765747ce20d6b9.png"
+                alt=""
+                style="opacity: 1; transform: scale(1); transition-duration: 400ms;"
+              />
+              <div class="avatar-edit-icon" (click)="tabState = 'profileImage'">
+                <svg class="svg-icon svg-icon-edit" focusable="true">
+                  <use filter="" xlink:href="#edit">
+                    <svg id="edit" viewBox="0 0 32 32">
+                      <path
+                        fill="currentColor"
+                        d="M16 0c8.833 0 16 7.167 16 16 0 8.8-7.167 16-16 16s-16-7.2-16-16c0-8.833 7.167-16 16-16zM16 1.7c-7.9 0-14.3 6.4-14.3 14.3s6.4 14.3 14.3 14.3 14.3-6.4 14.3-14.3-6.4-14.3-14.3-14.3zM22.333 12.9l0.3-0.267 0.867-0.867c0.467-0.5 0.4-0.767 0-1.167l-1.767-1.767c-0.467-0.467-0.767-0.4-1.167 0l-0.867 0.867-0.267 0.3zM18.3 11.1l-8.6 8.6-0.833 3.767 3.767-0.833 0.967-1 7.633-7.6z"
+                      ></path>
+                    </svg>
+                  </use>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="profile-edit-parent">
+            <div class="profile-edit-inputs">
+              <input type="text" class="" placeholder="이름" value="g" /><span
+                ><input type="checkbox" id="add-kids-profile" /><label
+                  for="add-kids-profile"
+                ></label
+                ><span class="add-kids-marker">어린이인가요?</span></span
+              >
+            </div>
+            <div class="profile-entry-dropdowns">
+              <div class="profileDropDown">
+                <div class="profileDropDown-label">언어</div>
+                <div cols="2" class="nfDropDown theme-lakira">
+                  <div
+                    class="label"
+                    role="button"
+                    tabindex="0"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <a class="user-lang-link" tabindex="0" role="link">한국어</a
+                    ><span class="arrow"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="profileDropDown">
+                <div class="profileDropDown-label">
+                  볼 수 있는 TV 프로그램과 영화:
+                </div>
+                <div
+                  cols="1"
+                  data-uia="maturity-drop-down"
+                  class="nfDropDown widthRestricted theme-lakira"
+                >
+                  <div
+                    data-uia="maturity-drop-down"
+                    class="label"
+                    role="button"
+                    tabindex="0"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    모든 연령<span class="arrow"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span
+          data-uia="profile-save-button"
+          class="profile-button preferred-action"
+          ><span>저장</span></span
+        ><span data-uia="profile-cancel-button" class="profile-button"
+          ><span>취소</span></span
+        ><span data-uia="profile-delete-button" class="profile-button"
+          ><span>프로필 삭제</span></span
+        >
+      </div>
+    </div>
+    <div
+      class="centered-div list-profiles-container"
+      *ngIf="tabState === 'profileImage'"
+      [ngStyle]="
+        tabState === 'profileImage'
+          ? {
+              opacity: '1',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+          : {
+              opacity: '0',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+      "
+    >
+      <div class="profile-lolopi-header">
+        <div class="lolopi-go-back">
+          <button
+            class="nf-modal-dismiss-btn"
+            (click)="tabState = 'change'"
+            tabindex="1"
+          >
+            <span class="close-button icon-back"></span>
+          </button>
+          <div class="lolopi-header">
+            <h1 class="header-text">프로필 변경</h1>
+            <h2 class="sub-header-text">프로필 아이콘을 선택하세요.</h2>
+          </div>
+        </div>
+        <div class="lolopi-profile">
+          <span class="lolopi-profile-name">g</span
+          ><img
+            src="https://occ-0-3446-1361.1.nflxso.net/art/0d6b9/6c139bd2c216b7608148431203765747ce20d6b9.png"
+            alt=""
+            style="opacity: 1; transform: scale(1); transition-duration: 400ms;"
+          />
+        </div>
+      </div>
+      <div class="profile-lolopi-container">
+        <ul class="list-container">
+          <li class="lolopi-row slider-hover-trigger-layer lolopi-row-medium">
+            <h2 class="row-header">
+              <div class="lolopi-row-text">대표 아이콘</div>
+            </h2>
+            <app-profile-slider></app-profile-slider>
+          </li>
+          <li class="lolopi-row slider-hover-trigger-layer lolopi-row-medium">
+            <h2 class="row-header">
+              <div
+                class="lolopi-row-icon"
+                aria-label="기묘한 이야기"
+                style='background-image: url("https://occ-0-3446-1361.1.nflxso.net/art/2fb5d/69565e127389074b68ee2ffe5bab02a7f8e2fb5d.png");'
+              ></div>
+            </h2>
+            <app-profile-slider></app-profile-slider>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="pinning-header on-profiles-gate">
+<!-- <div class="pinning-header on-profiles-gate">
     <div class="main-header on-profiles-gate" role="navigation">
         <a routerLink="/home" class="logo" routerLinkActive="active">
           <img src="../../../assets\images\fastflix_logo_03.png" alt="">
@@ -90,4 +426,4 @@
   <div class="profile-actions-container" *ngIf="isManage === 'modify'">
     
   </div>
-</div>
+</div> -->
