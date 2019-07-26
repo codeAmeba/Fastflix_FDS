@@ -268,12 +268,14 @@ export class SliderComponent implements OnInit, OnChanges {
     this.cardShowNumber = quotient;
     return this.cardShowNumber;
   }
+
   // bobup 시 left 값 주기
   bobupLeft() {
     if (this.hoverCard === 1) return 0;
     else if (this.hoverCard === 6) return -94.5;
     return -47.5;
   }
+
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
     if (this.hoverCard === 1) return 'left';
@@ -301,5 +303,29 @@ export class SliderComponent implements OnInit, OnChanges {
         console.log(error);
       }
     );
+  }
+
+  likeMovie(id: number) {
+    console.log(id);
+
+    this.movieService.likeMovie(id).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  dislikeMovie(id: number) {
+    console.log(id);
+
+    this.movieService.dislikeMovie(id).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  myList(id: number) {
+    console.log(id);
+
+    this.movieService.myList(id).subscribe(response => {
+      console.log(response);
+    });
   }
 }

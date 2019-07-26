@@ -126,7 +126,7 @@
                             <!-- 동영상 play 버튼 -->
                             <a></a>
                             <div class="bob-title">
-                              {{ moviesDetail.name ? moviesDetail.name : "" }}
+                              {{ moviesDetail.name ? moviesDetail.name : '' }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -138,13 +138,13 @@
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
                                       >{{
-                                        moviesDetail["match_rate"]
-                                          ? moviesDetail["match_rate"]
-                                          : ""
+                                        moviesDetail['match_rate']
+                                          ? moviesDetail['match_rate']
+                                          : ''
                                       }}{{
-                                        moviesDetail["match_rate"]
-                                          ? "% 일치"
-                                          : ""
+                                        moviesDetail['match_rate']
+                                          ? '% 일치'
+                                          : ''
                                       }}</span
                                     >
                                   </div>
@@ -152,9 +152,9 @@
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail["running_time"]
-                                    ? moviesDetail["running_time"]
-                                    : " "
+                                  moviesDetail['running_time']
+                                    ? moviesDetail['running_time']
+                                    : ' '
                                 }}</span>
                               </div>
                             </div>
@@ -173,7 +173,7 @@
                                         index as i
                                       "
                                     >
-                                      {{ feature ? feature.name : "" }}
+                                      {{ feature ? feature.name : '' }}
                                     </li>
                                     <!-- <li
                                       class="evidence-text evidence-text-list"
@@ -205,6 +205,7 @@
                                   data-rating="2"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
+                                  (click)="likeMovie(movie.id)"
                                 >
                                   <svg
                                     data-rating="2"
@@ -230,6 +231,7 @@
                                   data-rating="1"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
+                                  (click)="dislikeMovie(movie.id)"
                                 >
                                   <svg
                                     data-rating="1"
@@ -256,6 +258,7 @@
                                 role="link"
                                 tabindex="0"
                                 class="nf-svg-button simpleround"
+                                (click)="myList(movie.id)"
                               >
                                 <svg
                                   class="svg-icon svg-icon-mylist-add"
