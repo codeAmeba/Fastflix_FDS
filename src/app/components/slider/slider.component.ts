@@ -181,12 +181,11 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   cardHover(movieOrder, movieId) {
-    // console.log(this.moviesDetail);
     if (!this.isOpen) {
       this.bobup = movieOrder;
-      setTimeout(() => {
-        this.bobScale = "scale(0.99999)";
-      }, 300);
+      // setTimeout(() => {
+      //   this.bobScale = "scale(0.99999)";
+      // }, 300);
     }
     // console.log("호버됬당");
     this.hoverCard =
@@ -194,16 +193,12 @@ export class SliderComponent implements OnInit, OnChanges {
     if (this.cardMove) return;
     this.hoverMoviesDetail(movieId);
     this.cardMove = true;
-
-    // console.log(this.hoverCard);
-    // console.log(this.isOpen);
-    // console.log(this.cardMove);
   }
 
   cardHoverLeave() {
     this.bobScale = "scale(0.52222)";
     // console.log(this.moviesDetail);
-
+    this.cardMove = false;
     setTimeout(() => {
       this.bobup = 0;
       this.moviesDetail = {
@@ -235,9 +230,8 @@ export class SliderComponent implements OnInit, OnChanges {
         can_i_store: false
       };
     }, 300);
-    this.cardMove = false;
-    // console.log("호버 나갔당");
 
+    // console.log("호버 나갔당");
     // console.log(this.isOpen);
   }
 

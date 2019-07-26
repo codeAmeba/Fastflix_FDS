@@ -35,14 +35,14 @@
             hoverCard === 1 &&
             showNumber(movie.order) > hoverCard
           "
-          [class.toRight1]="
+          [class.toRightSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
             showNumber(movie.order) > hoverCard
           "
-          [class.toLeft1]="
+          [class.toLeftSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 6 &&
@@ -56,6 +56,7 @@
             showNumber(movie.order) !== 0 &&
             showNumber(movie.order) < hoverCard
           "
+          [class.toDefault]="!cardMove"
         >
           <div class="title-card-container">
             <div
@@ -97,7 +98,7 @@
                       class="bob-card bob-card-adult"
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
-                      [style.transform]="bobScale"
+                      [class.bob-scale]="bobup"
                       [style.transform-origin]="bobupTransformOrigin()"
                     >
                       <div class="image-rotator bob-background">
@@ -126,7 +127,7 @@
                             <!-- 동영상 play 버튼 -->
                             <a></a>
                             <div class="bob-title">
-                              {{ moviesDetail.name ? moviesDetail.name : '' }}
+                              {{ moviesDetail.name ? moviesDetail.name : "" }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -138,13 +139,13 @@
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
                                       >{{
-                                        moviesDetail['match_rate']
-                                          ? moviesDetail['match_rate']
-                                          : ''
+                                        moviesDetail["match_rate"]
+                                          ? moviesDetail["match_rate"]
+                                          : ""
                                       }}{{
-                                        moviesDetail['match_rate']
-                                          ? '% 일치'
-                                          : ''
+                                        moviesDetail["match_rate"]
+                                          ? "% 일치"
+                                          : ""
                                       }}</span
                                     >
                                   </div>
@@ -152,9 +153,9 @@
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail['running_time']
-                                    ? moviesDetail['running_time']
-                                    : ' '
+                                  moviesDetail["running_time"]
+                                    ? moviesDetail["running_time"]
+                                    : " "
                                 }}</span>
                               </div>
                             </div>
@@ -173,7 +174,7 @@
                                         index as i
                                       "
                                     >
-                                      {{ feature ? feature.name : '' }}
+                                      {{ feature ? feature.name : "" }}
                                     </li>
                                     <ng-template
                                       [ngIf]="moviesDetail.feature.length < 3"
@@ -212,7 +213,7 @@
                           </div>
                         </div>
                         <!-- 좋아요, 싫어요, 내찜콘 추가 -->
-                        <div class="bob-actions-wrapper">  
+                        <div class="bob-actions-wrapper">
                           <span class="ActionButtons">
                             <div
                               class="thumbs-component thumbs thumbs-vertical animated unrated"
