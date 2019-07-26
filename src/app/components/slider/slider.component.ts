@@ -199,7 +199,7 @@ export class SliderComponent implements OnInit, OnChanges {
 
   cardHoverLeave() {
     this.bobScale = "scale(0.52222)";
-    // console.log(this.moviesDetail);
+    console.log(this.moviesDetail);
 
     setTimeout(() => {
       this.bobup = 0;
