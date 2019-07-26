@@ -4,17 +4,17 @@ import {
   Input,
   OnChanges,
   Output,
-  EventEmitter
-} from "@angular/core";
-import { MoviePreview } from "../../models/movie-preview";
-import { MovieDetail } from "src/app/models/movies-detail";
+  EventEmitter,
+} from '@angular/core';
+import { MoviePreview } from '../../models/movie-preview';
+import { MovieDetail } from 'src/app/models/movies-detail';
 
-import { MovieService } from "src/app/services/movie.service";
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
-  selector: "app-slider",
-  templateUrl: "./slider.component.html",
-  styleUrls: ["./slider.component.css"]
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.css'],
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
@@ -55,7 +55,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = "scale(0.52222)";
+  bobScale = 'scale(0.52222)';
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -66,38 +66,38 @@ export class SliderComponent implements OnInit, OnChanges {
     this.tabArray();
     this.moviesDetail = {
       id: 0,
-      name: "",
-      video_file: "",
-      sample_video_file: "",
-      production_date: "",
-      uploaded_date: "",
-      synopsis: "",
+      name: '',
+      video_file: '',
+      sample_video_file: '',
+      production_date: '',
+      uploaded_date: '',
+      synopsis: '',
       running_time: 0,
-      view_count: "",
-      logo_image_path: "",
-      horizontal_image_path: "",
-      vertical_image: "",
-      circle_image: "",
+      view_count: '',
+      logo_image_path: '',
+      horizontal_image_path: '',
+      vertical_image: '',
+      circle_image: '',
       degree: {},
       directors: [],
       actors: [],
       feature: [],
       author: [],
       genre: [],
-      marked: "",
+      marked: '',
       like: 0,
       total_minute: 0,
       match_rate: 0,
       to_be_continue: 0,
       remaining_time: 0,
-      can_i_store: false
+      can_i_store: false,
     };
   }
 
   ngOnChanges() {
     this.movies = this.moviesList.map((movie, index) => ({
       ...movie,
-      order: index + 1
+      order: index + 1,
     }));
     if (this.default) {
       this.moviesClone();
@@ -115,11 +115,13 @@ export class SliderComponent implements OnInit, OnChanges {
     // Tab의 길이
     this.tabLength = this.tab.length;
   }
+
   moviesClone() {
     this.sliderZero = this.movies.slice(this.movies.length - 7);
     this.sliderForth = this.movies.slice(0, 7);
     this.movies = this.sliderZero.concat(this.movies).concat(this.sliderForth);
   }
+
   prev() {
     this.transform = `translate3d(${this.sliderPosition +
       this.OneSliderLength}%, 0px, 0px)`;
@@ -141,6 +143,7 @@ export class SliderComponent implements OnInit, OnChanges {
       }, 750);
     }
   }
+
   next() {
     this.sliderState++;
     if (this.default) {
@@ -182,7 +185,7 @@ export class SliderComponent implements OnInit, OnChanges {
     if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobScale = "scale(0.99999)";
+        this.bobScale = 'scale(0.99999)';
       }, 300);
     }
     // console.log("호버됬당");
@@ -198,38 +201,38 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   cardHoverLeave() {
-    this.bobScale = "scale(0.52222)";
+    this.bobScale = 'scale(0.52222)';
     // console.log(this.moviesDetail);
 
     setTimeout(() => {
       this.bobup = 0;
       this.moviesDetail = {
         id: 0,
-        name: "",
-        video_file: "",
-        sample_video_file: "",
-        production_date: "",
-        uploaded_date: "",
-        synopsis: "",
+        name: '',
+        video_file: '',
+        sample_video_file: '',
+        production_date: '',
+        uploaded_date: '',
+        synopsis: '',
         running_time: 0,
-        view_count: "",
-        logo_image_path: "",
-        horizontal_image_path: "",
-        vertical_image: "",
-        circle_image: "",
+        view_count: '',
+        logo_image_path: '',
+        horizontal_image_path: '',
+        vertical_image: '',
+        circle_image: '',
         degree: {},
         directors: [],
         actors: [],
         feature: [],
         author: [],
         genre: [],
-        marked: "",
+        marked: '',
         like: 0,
         total_minute: 0,
         match_rate: 0,
         to_be_continue: 0,
         remaining_time: 0,
-        can_i_store: false
+        can_i_store: false,
       };
     }, 300);
     this.cardMove = false;
@@ -273,8 +276,8 @@ export class SliderComponent implements OnInit, OnChanges {
   }
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return "left";
-    else if (this.hoverCard === 6) return "right";
+    if (this.hoverCard === 1) return 'left';
+    else if (this.hoverCard === 6) return 'right';
     return;
   }
 
