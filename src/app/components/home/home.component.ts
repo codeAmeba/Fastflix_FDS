@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +10,11 @@ export class HomeComponent implements OnInit {
   user: string;
   playBillBoard: boolean;
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.user = '사용자';
+    this.user = this.userService.userName;
     this.playBillBoard = false;
+    console.log('sub users', this.userService.subUsers);
   }
 }
