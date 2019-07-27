@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  Renderer2,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SubUser } from 'src/app/models/sub-user';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -19,6 +13,7 @@ export class ProfileManageComponent implements OnInit {
   isChild: boolean;
   subUsers: SubUser[];
   selectedUser: SubUser;
+  tempName: string;
 
   constructor(
     private router: Router,
@@ -29,6 +24,13 @@ export class ProfileManageComponent implements OnInit {
     this.tabState = '';
     this.isChild = false;
     this.subUsers = this.authService.subUsers;
+    this.tempName = '';
+    this.selectedUser = {
+      id: 0,
+      kid: false,
+      name: '',
+      parent_user: 0,
+    };
     console.log(this.subUsers);
   }
 
@@ -37,11 +39,21 @@ export class ProfileManageComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
+  selectUser(subUser: SubUser) {
+    this.selectedUser = subUser;
+
+    console.log('selectedUser', this.selectedUser);
+  }
+
   changeProfile() {
     if (!this.selectedUser) return;
 
     console.log(this.selectedUser);
 
     const name = this.selectedUser.name;
+  }
+
+  saveProfile(name: string) {
+    console.log('save name', name);
   }
 }

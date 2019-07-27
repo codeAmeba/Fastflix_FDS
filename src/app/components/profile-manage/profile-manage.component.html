@@ -36,11 +36,7 @@
           프로필 관리
         </div>
         <ul class="choose-profile">
-          <li
-            class="profile"
-            *ngFor="let subUser of subUsers"
-            (click)="selectedUser = subUser"
-          >
+          <li class="profile" *ngFor="let subUser of subUsers">
             <div (click)="tabState = 'change'">
               <a class="profile-link">
                 <div class="avatar-wrapper">
@@ -53,7 +49,7 @@
                         ')'
                     }"
                   ></div>
-                  <div class="svg-edit-overlay">
+                  <div class="svg-edit-overlay" (click)="selectUser(subUser)">
                     <svg class="svg-icon svg-icon-edit" focusable="true">
                       <use filter="" xlink:href="#edit">
                         <svg id="edit" viewBox="0 0 32 32">
@@ -161,8 +157,13 @@
         >
           <span>다음</span>
         </span>
-        <span class="profile-button" tabindex="0" role="button">
-          <span (click)="tabState = ''">취소</span>
+        <span
+          class="profile-button"
+          tabindex="0"
+          role="button"
+          (click)="tabState = ''"
+        >
+          <span>취소</span>
         </span>
       </div>
     </div>
@@ -211,7 +212,14 @@
           </div>
           <div class="profile-edit-parent">
             <div class="profile-edit-inputs">
-              <input type="text" class="" placeholder="이름" value="g" /><span
+              <input
+                type="text"
+                class=""
+                placeholder="이름"
+                value="{{ selectedUser.name }}"
+                (keyup)="tempName = profileName.value"
+                #profileName
+              /><span
                 ><input type="checkbox" id="add-kids-profile" /><label
                   for="add-kids-profile"
                 ></label
@@ -259,14 +267,12 @@
           </div>
         </div>
         <span
-          data-uia="profile-save-button"
           class="profile-button preferred-action"
+          (click)="saveProfile(tempName)"
           ><span>저장</span></span
-        ><span data-uia="profile-cancel-button" class="profile-button"
+        ><span (click)="tabState = ''" class="profile-button"
           ><span>취소</span></span
-        ><span data-uia="profile-delete-button" class="profile-button"
-          ><span>프로필 삭제</span></span
-        >
+        ><span class="profile-button"><span>프로필 삭제</span></span>
       </div>
     </div>
     <div
@@ -303,7 +309,9 @@
           </div>
         </div>
         <div class="lolopi-profile">
-          <span class="lolopi-profile-name">g</span
+          <span class="lolopi-profile-name">{{
+            tempName ? tempName : selectedUser.name
+          }}</span
           ><img
             src="https://occ-0-3446-1361.1.nflxso.net/art/0d6b9/6c139bd2c216b7608148431203765747ce20d6b9.png"
             alt=""
