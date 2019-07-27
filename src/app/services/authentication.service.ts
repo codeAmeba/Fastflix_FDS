@@ -17,7 +17,7 @@ export class AuthenticationService implements OnInit {
   PROFILE_NAME = 'PID';
   TOKEN_NAME = 'Token';
 
-  constructor(private http: HttpClient, private userService: UserService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.userName = '';

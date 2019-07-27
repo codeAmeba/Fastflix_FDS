@@ -52,9 +52,14 @@ export class SignupStep3Component implements OnInit {
     this.authService.createProfile(user).subscribe(
       profiles => {
         console.log('success', profiles['sub_user_list']);
+
         this.authService.setProfile(profiles['sub_user_list'][0].id);
-        if (this.profileForm.get('ownerName').value)
+        this.authService.subUsers = profiles['sub_user_list'];
+
+        if (this.profileForm.get('ownerName').value) {
           this.authService.userName = this.profileForm.get('ownerName').value;
+        }
+
         this.router.navigate(['/signup/step4']);
       },
       error => {
