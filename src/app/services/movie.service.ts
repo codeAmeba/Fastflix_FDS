@@ -14,8 +14,7 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthenticationService,
-    private userService: UserService
+    private authService: AuthenticationService
   ) {}
 
   getMainMovie(): Observable<any> {
@@ -23,7 +22,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.userService.getProfile() + '');
+      .set('subuserid', this.authService.getProfile() + '');
 
     console.log(headers);
 
@@ -37,13 +36,13 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.userService.getProfile() + '');
+      .set('subuserid', this.authService.getProfile() + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/${id}/`, { headers });
   }
 
   likeMovie(movieid: number): Observable<any> {
-    const subuserid = this.userService.getProfile();
+    const subuserid = this.authService.getProfile();
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
@@ -58,7 +57,7 @@ export class MovieService {
   }
 
   dislikeMovie(movieid: number): Observable<any> {
-    const subuserid = this.userService.getProfile();
+    const subuserid = this.authService.getProfile();
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
@@ -73,7 +72,7 @@ export class MovieService {
   }
 
   myList(movieid: number): Observable<any> {
-    const subuserid = this.userService.getProfile();
+    const subuserid = this.authService.getProfile();
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
