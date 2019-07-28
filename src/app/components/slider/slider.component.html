@@ -1,6 +1,6 @@
 <div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
   <!-- 슬라이드 이전 이동 버튼 -->
-  <ng-template [ngIf]="default">
+  <ng-template [ngIf]="default && moviesLength > 6">
     <span
       (click)="prev()"
       class="handle handlePrev active"
@@ -98,7 +98,6 @@
                       class="bob-card bob-card-adult "
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
-                      
                       [style.transform-origin]="bobupTransformOrigin()"
                     >
                       <div class="image-rotator bob-background">
@@ -331,17 +330,17 @@
   </div>
   <div class="contain">
     <!-- 슬라이드 다음 이동 버튼 -->
-    <!-- <ng-template [ngIf]="tabStat"> -->
-    <span
-      (click)="next()"
-      class="handle handleNext active"
-      tabindex="0"
-      role="button"
-      aria-label="콘텐츠 더 보기"
-    >
-      <b class="indicator-icon icon-rightCaret"></b>
-    </span>
-    <!-- </ng-template> -->
+    <ng-template [ngIf]="moviesLength > 6">
+      <span
+        (click)="next()"
+        class="handle handleNext active"
+        tabindex="0"
+        role="button"
+        aria-label="콘텐츠 더 보기"
+      >
+        <b class="indicator-icon icon-rightCaret"></b>
+      </span>
+    </ng-template>
   </div>
 </div>
 <app-detail-card

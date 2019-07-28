@@ -10,6 +10,7 @@ import { MoviePreview } from "../../models/movie-preview";
 import { MovieDetail } from "src/app/models/movies-detail";
 
 import { MovieService } from "src/app/services/movie.service";
+import { log } from "util";
 
 @Component({
   selector: "app-slider",
@@ -25,7 +26,7 @@ export class SliderComponent implements OnInit, OnChanges {
 
   tabShow: boolean = false;
   movies: MoviePreview[];
-
+  moviesLength: number;
   // slider의 총 개수
   slider: number;
   // Tab 배열
@@ -99,6 +100,9 @@ export class SliderComponent implements OnInit, OnChanges {
       ...movie,
       order: index + 1
     }));
+    this.moviesLength = this.moviesList.length;
+    console.log(this.moviesLength);
+
     if (this.default) {
       this.moviesClone();
     }
