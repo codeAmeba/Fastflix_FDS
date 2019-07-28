@@ -1,14 +1,14 @@
 // Modules
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from "./app-routing.module";
 
 // Components
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 import {
   HomeComponent,
   MovieComponent,
@@ -29,12 +29,12 @@ import {
   SignupStep2Component,
   SignupStep3Component,
   SignupStep4Component,
-  ProfileSliderComponent,
-} from './components';
+  ProfileSliderComponent
+} from "./components";
 
 // Directives
-import { FixHeaderDirective } from './directives/fix-header.directive';
-import { MoveupdownDirective } from './directives/moveupdown.directive';
+import { FixHeaderDirective } from "./directives/fix-header.directive";
+import { MoveupdownDirective } from "./directives/moveupdown.directive";
 
 @NgModule({
   declarations: [
@@ -60,16 +60,16 @@ import { MoveupdownDirective } from './directives/moveupdown.directive';
     SignupStep3Component,
     SignupStep4Component,
     MoveupdownDirective,
-    ProfileSliderComponent,
+    ProfileSliderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
