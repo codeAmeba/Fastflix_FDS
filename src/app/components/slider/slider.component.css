@@ -119,29 +119,29 @@ img {
 .toRight {
   transform: translate3d(253px, 0px, 0px);
   transition: transform ease 540ms;
-  transition-delay: 0ms;
+  transition-delay: 100ms;
 }
 .toLeft {
   transform: translate3d(-251px, 0px, 0px);
   transition: transform ease 500ms;
-  transition-delay: 0ms;
+  transition-delay: 100ms;
 }
 
 .toRightSide {
   transform: translate3d(126px, 0px, 0px);
   transition: transform ease 500ms;
-  transition-delay: 0ms;
+  transition-delay: 100ms;
 }
 
 .toLeftSide {
   transform: translate3d(-126px, 0px, 0px);
   transition: transform ease 500ms;
-  transition-delay: 0ms;
+  transition-delay: 100ms;
 }
 .toDefault {
   transform: translate3d(0px, 0px, 0px);
   transition: transform ease 500ms;
-  transition-delay: 0ms;
+  transition-delay: 100ms;
 }
 
 /* 왼쪽 오른쪽 이동 버튼 */
@@ -204,16 +204,18 @@ img {
   width: 195%;
   height: 195%;
   top: -47.5%;
-  transition: transform ease 400ms;
+
   line-height: 1.4;
 }
-.bob-card-adult .bob-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
+.bob-card-adult {
+  transform: scale(0.52222);
+  transition: transform ease 400ms;
+}
+/* card hover시 scale */
+.title-card:hover .hoverDiv .ng-star-inserted .bob-card-adult {
+  transform: scale(0.99999);
+  transition: transform ease 400ms;
+  /* transition-delay: 300ms; */
 }
 .bob-card-adult .bob-background {
   position: absolute;
@@ -222,24 +224,6 @@ img {
   right: 0;
   bottom: 0;
   z-index: 0;
-}
-.image-rotator-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  opacity: 0;
-}
-.image-rotator-style {
-  /* background-image: url("https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABdvpnlBIYGz5D8NBxb3CHkzv1eakMMx3gzI7kESmy-QiExgsYK7Kn8bQRFr40IrxgbCMGSGDGJ53t00PIq3zPC59kxhe9_3JHg.webp?r=42b"); */
-  z-index: 2;
-  opacity: 1;
-  transition-duration: 750ms;
 }
 .bob-card-adult .bob-overlay {
   position: absolute;
@@ -303,6 +287,26 @@ img {
   cursor: pointer;
   height: 80%;
 }
+
+.image-rotator-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0;
+}
+.image-rotator-style {
+  /* background-image: url("https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABdvpnlBIYGz5D8NBxb3CHkzv1eakMMx3gzI7kESmy-QiExgsYK7Kn8bQRFr40IrxgbCMGSGDGJ53t00PIq3zPC59kxhe9_3JHg.webp?r=42b"); */
+  z-index: 2;
+  opacity: 1;
+  transition-duration: 750ms;
+}
+
 .bob-jaw-hitzone {
   position: absolute;
   bottom: 0;
@@ -884,11 +888,6 @@ svg:not(:root) {
 .title-card .title-card-play:focus .playRing,
 .title-card .title-card-play:hover .playRing {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
-}
-/* card hover시 scale */
-.bob-scale {
-  transform: scale(0.99999);
-  transition-delay: 300ms;
 }
 
 /* 미디어 screen */

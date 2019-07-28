@@ -199,39 +199,39 @@ export class SliderComponent implements OnInit, OnChanges {
     this.bobScale = "scale(0.52222)";
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    setTimeout(() => {
-      this.bobup = 0;
-      this.moviesDetail = {
-        id: 0,
-        name: "",
-        video_file: "",
-        sample_video_file: "",
-        production_date: "",
-        uploaded_date: "",
-        synopsis: "",
-        running_time: 0,
-        view_count: "",
-        logo_image_path: "",
-        horizontal_image_path: "",
-        vertical_image: "",
-        circle_image: "",
-        degree: {},
-        directors: [],
-        actors: [],
-        feature: [],
-        author: [],
-        genre: [],
-        marked: "",
-        like: 0,
-        total_minute: 0,
-        match_rate: 0,
-        to_be_continue: 0,
-        remaining_time: 0,
-        can_i_store: false
-      };
-    }, 300);
+    // setTimeout(() => {
+    this.bobup = 0;
+    this.moviesDetail = {
+      id: 0,
+      name: "",
+      video_file: "",
+      sample_video_file: "",
+      production_date: "",
+      uploaded_date: "",
+      synopsis: "",
+      running_time: 0,
+      view_count: "",
+      logo_image_path: "",
+      horizontal_image_path: "",
+      vertical_image: "",
+      circle_image: "",
+      degree: {},
+      directors: [],
+      actors: [],
+      feature: [],
+      author: [],
+      genre: [],
+      marked: "",
+      like: 0,
+      total_minute: 0,
+      match_rate: 0,
+      to_be_continue: 0,
+      remaining_time: 0,
+      can_i_store: false
+    };
+    // }, 300);
 
-    // console.log("호버 나갔당");
+    console.log("호버 나갔당");
     // console.log(this.isOpen);
   }
 

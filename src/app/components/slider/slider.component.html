@@ -91,14 +91,14 @@
                 </a>
               </div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
-              <div>
+              <div class="hoverDiv">
                 <ng-template [ngIf]="bobup === movie.order">
                   <span (mouseleave)="cardHoverLeave()">
                     <div
-                      class="bob-card bob-card-adult"
+                      class="bob-card bob-card-adult "
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
-                      [class.bob-scale]="bobup"
+                      
                       [style.transform-origin]="bobupTransformOrigin()"
                     >
                       <div class="image-rotator bob-background">
