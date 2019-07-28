@@ -65,7 +65,7 @@ export class SignupStep2Component implements OnInit {
           this.router.navigate(['/signup/step3']);
         });
 
-        this.userService.userName = this.signupForm.get('ownername').value;
+        this.authService.userName = this.signupForm.get('ownername').value;
       },
       error => {
         console.log(error);

@@ -29,6 +29,7 @@ import {
   SignupStep2Component,
   SignupStep3Component,
   SignupStep4Component,
+  ProfileSliderComponent,
 } from './components';
 
 // Directives
@@ -59,6 +60,7 @@ import { MoveupdownDirective } from './directives/moveupdown.directive';
     SignupStep3Component,
     SignupStep4Component,
     MoveupdownDirective,
+    ProfileSliderComponent,
   ],
   imports: [
     BrowserModule,

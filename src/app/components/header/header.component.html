@@ -2,15 +2,33 @@
   <div class="header-container" fixHeader>
     <nav class="main-header">
       <a routerLink="/home" class="logo" routerLinkActive="active">
-        <img src="../../../assets/images/fastflix_logo_03.png" alt="">
+        <img src="../../../assets/images/fastflix_logo_03.png" alt="" />
       </a>
       <ul class="main-navigation">
-        <li class="navigation-tab"><a routerLink="/home" [routerLinkActiveOptions]="{exact:
-          true}" routerLinkActive="current">홈</a></li>
-        <li class="navigation-tab"><a routerLink="/movie" [routerLinkActiveOptions]="{exact:
-          true}" routerLinkActive="current">영화</a></li>
-        <li class="navigation-tab"><a routerLink="/mylist" [routerLinkActiveOptions]="{exact:
-          true}" routerLinkActive="current">내가 찜한 콘텐츠</a></li>
+        <li class="navigation-tab">
+          <a
+            routerLink="/home"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="current"
+            >홈</a
+          >
+        </li>
+        <li class="navigation-tab">
+          <a
+            routerLink="/movie"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="current"
+            >영화</a
+          >
+        </li>
+        <li class="navigation-tab">
+          <a
+            routerLink="/mylist"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="current"
+            >내가 찜한 콘텐츠</a
+          >
+        </li>
       </ul>
       <ul class="secondary-navigation">
         <li class="nav-element">
@@ -21,68 +39,142 @@
           </div>
         </li>
         <li class="nav-element">
-          <div class="account-menu-item" (mouseenter)="showMenu($event)" (mouseleave)="hideMenu($event)">
+          <div
+            class="account-menu-item"
+            (mouseenter)="showMenu($event)"
+            (mouseleave)="hideMenu($event)"
+          >
             <div class="background" *ngIf="showDropDown"></div>
             <div class="account-dropdown-button">
               <a routerLink="/profile" role="button" tabindex="0">
                 <span class="profile-link" role="presentation">
-                  <div class="avatar-wrapper"
-                    [ngStyle]="{display : showDropDown ? 'block' : 'none', 'transition-duration': '200ms'}">
-                    <img class="profile-icon"
+                  <div
+                    class="avatar-wrapper"
+                    [ngStyle]="{
+                      display: showDropDown ? 'block' : 'none',
+                      'transition-duration': '200ms'
+                    }"
+                  >
+                    <img
+                      class="profile-icon"
                       src="https://occ-0-3451-1009.1.nflxso.net/art/5c6df/9dcbbf93bc90ed9752c79fa6b0b04bf0ad85c6df.png"
-                      alt="">
-                    <div class="callout-arrow" [ngStyle]="{opacity : showDropDown ? 1 : 0}"></div>
+                      alt=""
+                    />
+                    <div
+                      class="callout-arrow"
+                      [ngStyle]="{ opacity: showDropDown ? 1 : 0 }"
+                    ></div>
                   </div>
-                  <img class="profile-icon"
-                    [ngStyle]="{display : showDropDown ? 'none' : 'block', 'transition-duration': '200ms'}"
+                  <img
+                    class="profile-icon"
+                    [ngStyle]="{
+                      display: showDropDown ? 'none' : 'block',
+                      'transition-duration': '200ms'
+                    }"
                     src="https://occ-0-3451-1009.1.nflxso.net/art/5c6df/9dcbbf93bc90ed9752c79fa6b0b04bf0ad85c6df.png"
-                    alt="">
+                    alt=""
+                  />
                 </span>
               </a>
               <span class="caret" role="presentation"></span>
             </div>
-            <div class="account-drop-down sub-menu theme-lakira" *ngIf="showDropDown" [@fadeInOut]
-              [ngStyle]="{opacity: showDropDown ? 1 : 0, 'transition-duration': '200ms'}">
+            <div
+              class="account-drop-down sub-menu theme-lakira"
+              *ngIf="showDropDown"
+              [@fadeInOut]
+              [ngStyle]="{
+                opacity: showDropDown ? 1 : 0,
+                'transition-duration': '200ms'
+              }"
+            >
               <div class="ptrack-content">
                 <div class="topbar"></div>
-                <ul class="sub-menu-list profiles" role="list" aria-label="Profiles">
+                <ul
+                  class="sub-menu-list profiles"
+                  role="list"
+                  aria-label="Profiles"
+                >
                   <li class="sub-menu-item profile" role="listitem">
-                    <div><a class="profile-link" tabindex="0" routerLink="/profile">
-                        <div class="avatar-wrapper"><img class="profile-icon"
+                    <div>
+                      <a
+                        class="profile-link"
+                        tabindex="0"
+                        routerLink="/profile"
+                      >
+                        <div class="avatar-wrapper">
+                          <img
+                            class="profile-icon"
                             src="https://occ-0-3451-1009.1.nflxso.net/art/0a23d/bd81473c570e4f6898dae0375550d809c230a23d.png"
-                            alt=""></div><span class="profile-name">철수</span>
+                            alt=""
+                          />
+                        </div>
+
+                        <span class="profile-name">철수</span>
                       </a>
                       <div class="profile-children"></div>
                     </div>
                   </li>
                   <li class="sub-menu-item profile" role="listitem">
-                    <div><a class="profile-link" tabindex="0" routerLink="/profile">
-                        <div class="avatar-wrapper"><img class="profile-icon"
+                    <div>
+                      <a
+                        class="profile-link"
+                        tabindex="0"
+                        routerLink="/profile"
+                      >
+                        <div class="avatar-wrapper">
+                          <img
+                            class="profile-icon"
                             src="https://occ-0-3451-1009.1.nflxso.net/art/fdd25/09e0032f7e12b87ca39678df047c5261214fdd25.png"
-                            alt=""></div><span class="profile-name">영희</span>
+                            alt=""
+                          />
+                        </div>
+
+                        <span class="profile-name">영희</span>
                       </a>
                       <div class="profile-children"></div>
                     </div>
                   </li>
                   <li class="sub-menu-item profile" role="listitem">
-                    <div><a class="profile-link" tabindex="0" routerLink="/profile">
-                        <div class="avatar-wrapper"><img class="profile-icon"
+                    <div>
+                      <a
+                        class="profile-link"
+                        tabindex="0"
+                        routerLink="/profile"
+                      >
+                        <div class="avatar-wrapper">
+                          <img
+                            class="profile-icon"
                             src="https://occ-0-3451-1009.1.nflxso.net/art/c113e/849b23455c878b9e5c762339aaf7b70b19bc113e.png"
-                            alt=""></div><span class="profile-name">민지</span>
+                            alt=""
+                          />
+                        </div>
+
+                        <span class="profile-name">민지</span>
                       </a>
                       <div class="profile-children"></div>
                     </div>
                   </li>
-                  <li class="sub-menu-item profile-link" role="listitem"><a class="sub-menu-link"
-                      routerLink="/profile/manage">Manage Profiles</a></li>
+                  <li class="sub-menu-item profile-link" role="listitem">
+                    <a class="sub-menu-link" routerLink="/profile/manage"
+                      >프로필 관리</a
+                    >
+                  </li>
                 </ul>
                 <ul class="sub-menu-list "></ul>
                 <ul class="sub-menu-list responsive-links"></ul>
                 <ul class="account-links sub-menu-list" aria-label="Account">
-                  <li class="sub-menu-item"><a class="sub-menu-link" href="/profile">Account</a></li>
-                  <li class="sub-menu-item"><a class="sub-menu-link" href="https://help.netflix.com/">Help Center</a>
+                  <li class="sub-menu-item">
+                    <a class="sub-menu-link" routerLink="/profile">계정</a>
                   </li>
-                  <li class="sub-menu-item"><a class="sub-menu-link" href="/SignOut?lnkctr=mL">Sign out of Fastflix</a>
+                  <li class="sub-menu-item">
+                    <a class="sub-menu-link" href="https://help.netflix.com/"
+                      >고객 센터</a
+                    >
+                  </li>
+                  <li class="sub-menu-item">
+                    <a class="sub-menu-link" (click)="signOut()"
+                      >Fastflix에서 로그아웃</a
+                    >
                   </li>
                 </ul>
               </div>
