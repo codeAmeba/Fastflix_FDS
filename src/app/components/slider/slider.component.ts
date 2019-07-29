@@ -10,7 +10,6 @@ import { MoviePreview } from "../../models/movie-preview";
 import { MovieDetail } from "src/app/models/movies-detail";
 
 import { MovieService } from "src/app/services/movie.service";
-import { log } from "util";
 
 @Component({
   selector: "app-slider",
@@ -101,7 +100,7 @@ export class SliderComponent implements OnInit, OnChanges {
       order: index + 1
     }));
     this.moviesLength = this.moviesList.length;
-    console.log(this.moviesLength);
+    // console.log(this.moviesLength);
 
     if (this.default) {
       this.moviesClone();
@@ -186,54 +185,54 @@ export class SliderComponent implements OnInit, OnChanges {
 
   cardHover(movieOrder, movieId) {
     if (!this.isOpen) {
-      this.bobup = movieOrder;
-      // setTimeout(() => {
-      //   this.bobScale = "scale(0.99999)";
-      // }, 300);
+      setTimeout(() => {
+        this.bobup = movieOrder;
+        this.bobScale = "scale(0.99999)";
+      }, 300);
     }
-    // console.log("호버됬당");
+    this.cardMove = true;
+    console.log("호버됬당");
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
-    if (this.cardMove) return;
+    // if (this.cardMove) return;
     this.hoverMoviesDetail(movieId);
-    this.cardMove = true;
   }
 
   cardHoverLeave() {
-    this.bobScale = "scale(0.52222)";
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    // setTimeout(() => {
-    this.bobup = 0;
-    this.moviesDetail = {
-      id: 0,
-      name: "",
-      video_file: "",
-      sample_video_file: "",
-      production_date: "",
-      uploaded_date: "",
-      synopsis: "",
-      running_time: 0,
-      view_count: "",
-      logo_image_path: "",
-      horizontal_image_path: "",
-      vertical_image: "",
-      circle_image: "",
-      degree: {},
-      directors: [],
-      actors: [],
-      feature: [],
-      author: [],
-      genre: [],
-      marked: "",
-      like: 0,
-      total_minute: 0,
-      match_rate: 0,
-      to_be_continue: 0,
-      remaining_time: 0,
-      can_i_store: false
-    };
-    // }, 300);
+    this.bobScale = "scale(0.52222)";
+    setTimeout(() => {
+      this.bobup = 0;
+      this.moviesDetail = {
+        id: 0,
+        name: "",
+        video_file: "",
+        sample_video_file: "",
+        production_date: "",
+        uploaded_date: "",
+        synopsis: "",
+        running_time: 0,
+        view_count: "",
+        logo_image_path: "",
+        horizontal_image_path: "",
+        vertical_image: "",
+        circle_image: "",
+        degree: {},
+        directors: [],
+        actors: [],
+        feature: [],
+        author: [],
+        genre: [],
+        marked: "",
+        like: 0,
+        total_minute: 0,
+        match_rate: 0,
+        to_be_continue: 0,
+        remaining_time: 0,
+        can_i_store: false
+      };
+    }, 300);
 
     console.log("호버 나갔당");
     // console.log(this.isOpen);
@@ -283,8 +282,12 @@ export class SliderComponent implements OnInit, OnChanges {
 
   showDetail() {
     // console.log(this.category);
-    console.log(this.movies);
-    console.log(this.default);
+    // console.log(this.movies);
+    // console.log(this.default);
+    // console.log(this.bobup === order);
+    // console.log(this.bobup);
+    // console.log(order);
+    this.bobup = 0;
     this.isOpen = true;
     this.sliderOpen.emit(this.category);
   }

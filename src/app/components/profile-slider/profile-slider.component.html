@@ -1,1 +1,61 @@
-<p>{{ profile }}</p>
+<div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
+  <!-- 슬라이드 이전 이동 버튼 -->
+  <ng-template [ngIf]="default && moviesLength > 6">
+    <span
+      (click)="prev()"
+      class="handle handlePrev active"
+      tabindex="0"
+      role="button"
+      aria-label="이전 콘텐츠 보기"
+    >
+      <b class="indicator-icon icon-leftCaret"></b>
+    </span>
+  </ng-template>
+  <div
+    class="slider-container"
+    [style.transform]="transform"
+    [style.transition]="transition"
+  >
+    <div class="sliderMask showPeek">
+      <div class="sliderContent row-with-x-columns">
+        <!-- card -->
+        <div
+          *ngFor="let movie of movies"
+          class="slider-item slider-item-{{ 0 }} "
+        >
+          <div class="title-card-container">
+            <div
+              id="title-card-2-{{ 0 }}"
+              class="slider-refocus title-card"
+              (mouseover)="cardHover(movie.order, movie.id)"
+            >
+              <a role="link" tabindex="0" class="slider-refocus">
+                <div class="boxart-size-16x9 boxart-container">
+                  <img
+                    class="boxart-image boxart-image-in-padded-container"
+                    src=""
+                    alt=""
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contain">
+    <!-- 슬라이드 다음 이동 버튼 -->
+    <ng-template [ngIf]="moviesLength > 6">
+      <span
+        (click)="next()"
+        class="handle handleNext active"
+        tabindex="0"
+        role="button"
+        aria-label="콘텐츠 더 보기"
+      >
+        <b class="indicator-icon icon-rightCaret"></b>
+      </span>
+    </ng-template>
+  </div>
+</div>

@@ -62,7 +62,7 @@
             <div
               id="title-card-2-{{ movie.order }}"
               class="slider-refocus title-card"
-              (mouseover)="cardHover(movie.order, movie.id)"
+              (mouseenter)="cardHover(movie.order, movie.id)"
             >
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
@@ -98,6 +98,7 @@
                       class="bob-card bob-card-adult "
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
+                      [style.transform]="bobScale"
                       [style.transform-origin]="bobupTransformOrigin()"
                     >
                       <div class="image-rotator bob-background">
