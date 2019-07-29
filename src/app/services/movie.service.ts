@@ -14,8 +14,7 @@ export class MovieService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthenticationService,
-    private userService: UserService
+    private authService: AuthenticationService
   ) {}
 
   getMainMovie(): Observable<any> {
@@ -23,7 +22,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.userService.getProfile() + '');
+      .set('subuserid', this.authService.getProfile() + '');
 
     console.log(headers);
 
@@ -37,8 +36,53 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.userService.getProfile() + '');
+      .set('subuserid', this.authService.getProfile() + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/${id}/`, { headers });
+  }
+
+  likeMovie(movieid: number): Observable<any> {
+    const subuserid = this.authService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/like/`,
+      {
+        movieid,
+        subuserid,
+      },
+      { headers }
+    );
+  }
+
+  dislikeMovie(movieid: number): Observable<any> {
+    const subuserid = this.authService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/dislike/`,
+      {
+        movieid,
+        subuserid,
+      },
+      { headers }
+    );
+  }
+
+  myList(movieid: number): Observable<any> {
+    const subuserid = this.authService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/add_delete_my_list/`,
+      {
+        movieid,
+        subuserid,
+      },
+      { headers }
+    );
   }
 }

@@ -25,7 +25,7 @@ export class SliderComponent implements OnInit, OnChanges {
 
   tabShow: boolean = false;
   movies: MoviePreview[];
-
+  moviesLength: number;
   // slider의 총 개수
   slider: number;
   // Tab 배열
@@ -99,6 +99,9 @@ export class SliderComponent implements OnInit, OnChanges {
       ...movie,
       order: index + 1
     }));
+    this.moviesLength = this.moviesList.length;
+    // console.log(this.moviesLength);
+
     if (this.default) {
       this.moviesClone();
     }
@@ -115,11 +118,13 @@ export class SliderComponent implements OnInit, OnChanges {
     // Tab의 길이
     this.tabLength = this.tab.length;
   }
+
   moviesClone() {
     this.sliderZero = this.movies.slice(this.movies.length - 7);
     this.sliderForth = this.movies.slice(0, 7);
     this.movies = this.sliderZero.concat(this.movies).concat(this.sliderForth);
   }
+
   prev() {
     this.transform = `translate3d(${this.sliderPosition +
       this.OneSliderLength}%, 0px, 0px)`;
@@ -141,6 +146,7 @@ export class SliderComponent implements OnInit, OnChanges {
       }, 750);
     }
   }
+
   next() {
     this.sliderState++;
     if (this.default) {
@@ -178,29 +184,24 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   cardHover(movieOrder, movieId) {
-    // console.log(this.moviesDetail);
     if (!this.isOpen) {
-      this.bobup = movieOrder;
       setTimeout(() => {
+        this.bobup = movieOrder;
         this.bobScale = "scale(0.99999)";
       }, 300);
     }
-    // console.log("호버됬당");
+    this.cardMove = true;
+    console.log("호버됬당");
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
-    if (this.cardMove) return;
+    // if (this.cardMove) return;
     this.hoverMoviesDetail(movieId);
-    this.cardMove = true;
-
-    // console.log(this.hoverCard);
-    // console.log(this.isOpen);
-    // console.log(this.cardMove);
   }
 
   cardHoverLeave() {
-    this.bobScale = "scale(0.52222)";
     // console.log(this.moviesDetail);
-
+    this.cardMove = false;
+    this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
       this.moviesDetail = {
@@ -232,9 +233,8 @@ export class SliderComponent implements OnInit, OnChanges {
         can_i_store: false
       };
     }, 300);
-    this.cardMove = false;
-    // console.log("호버 나갔당");
 
+    console.log("호버 나갔당");
     // console.log(this.isOpen);
   }
 
@@ -265,12 +265,14 @@ export class SliderComponent implements OnInit, OnChanges {
     this.cardShowNumber = quotient;
     return this.cardShowNumber;
   }
+
   // bobup 시 left 값 주기
   bobupLeft() {
     if (this.hoverCard === 1) return 0;
     else if (this.hoverCard === 6) return -94.5;
     return -47.5;
   }
+
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
     if (this.hoverCard === 1) return "left";
@@ -280,8 +282,12 @@ export class SliderComponent implements OnInit, OnChanges {
 
   showDetail() {
     // console.log(this.category);
-    console.log(this.movies);
-    console.log(this.default);
+    // console.log(this.movies);
+    // console.log(this.default);
+    // console.log(this.bobup === order);
+    // console.log(this.bobup);
+    // console.log(order);
+    this.bobup = 0;
     this.isOpen = true;
     this.sliderOpen.emit(this.category);
   }
@@ -298,5 +304,29 @@ export class SliderComponent implements OnInit, OnChanges {
         console.log(error);
       }
     );
+  }
+
+  likeMovie(id: number) {
+    console.log(id);
+
+    this.movieService.likeMovie(id).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  dislikeMovie(id: number) {
+    console.log(id);
+
+    this.movieService.dislikeMovie(id).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  myList(id: number) {
+    console.log(id);
+
+    this.movieService.myList(id).subscribe(response => {
+      console.log(response);
+    });
   }
 }

@@ -209,15 +209,14 @@ img {
 }
 .bob-card-adult {
   transform: scale(0.52222);
-  transition: all 400ms ease;
+  transition: transform ease 400ms;
 }
 /* card hover시 scale */
-/* 기존에 있는 것이면 css로 */
-/* .title-card:hover .bob-card-adult {
+.title-card:hover .hoverDiv .ng-star-inserted .bob-card-adult {
   transform: scale(0.99999);
   transition: transform ease 400ms;
-  transition-delay: 300ms;
-} */
+  /* transition-delay: 300ms; */
+}
 .bob-card-adult .bob-background {
   position: absolute;
   top: 0;

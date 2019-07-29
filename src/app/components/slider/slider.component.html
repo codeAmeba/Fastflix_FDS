@@ -1,6 +1,6 @@
 <div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
   <!-- 슬라이드 이전 이동 버튼 -->
-  <ng-template [ngIf]="default">
+  <ng-template [ngIf]="default && moviesLength > 6">
     <span
       (click)="prev()"
       class="handle handlePrev active"
@@ -35,14 +35,14 @@
             hoverCard === 1 &&
             showNumber(movie.order) > hoverCard
           "
-          [class.toRight1]="
+          [class.toRightSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
             showNumber(movie.order) > hoverCard
           "
-          [class.toLeft1]="
+          [class.toLeftSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 6 &&
@@ -56,12 +56,13 @@
             showNumber(movie.order) !== 0 &&
             showNumber(movie.order) < hoverCard
           "
+          [class.toDefault]="!cardMove"
         >
           <div class="title-card-container">
             <div
               id="title-card-2-{{ movie.order }}"
               class="slider-refocus title-card"
-              (mouseover)="cardHover(movie.order, movie.id)"
+              (mouseenter)="cardHover(movie.order, movie.id)"
             >
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
@@ -90,11 +91,11 @@
                 </a>
               </div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
-              <div>
+              <div class="hoverDiv">
                 <ng-template [ngIf]="bobup === movie.order">
                   <span (mouseleave)="cardHoverLeave()">
                     <div
-                      class="bob-card bob-card-adult"
+                      class="bob-card bob-card-adult "
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
                       [style.transform]="bobScale"
@@ -175,6 +176,26 @@
                                     >
                                       {{ feature ? feature.name : "" }}
                                     </li>
+                                    <ng-template
+                                      [ngIf]="moviesDetail.feature.length < 3"
+                                    >
+                                      <li
+                                        class="evidence-text evidence-text-{{
+                                          moviesDetail.feature.length + i
+                                        }}"
+                                        *ngFor="
+                                          let genre of moviesDetail.genre
+                                            ? moviesDetail.genre.slice(
+                                                0,
+                                                3 - moviesDetail.feature.length
+                                              )
+                                            : '';
+                                          index as i
+                                        "
+                                      >
+                                        {{ genre.name ? genre.name : "" }}
+                                      </li>
+                                    </ng-template>
                                     <!-- <li
                                       class="evidence-text evidence-text-list"
                                     >
@@ -205,6 +226,7 @@
                                   data-rating="2"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
+                                  (click)="likeMovie(movie.id)"
                                 >
                                   <svg
                                     data-rating="2"
@@ -230,6 +252,7 @@
                                   data-rating="1"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
+                                  (click)="dislikeMovie(movie.id)"
                                 >
                                   <svg
                                     data-rating="1"
@@ -256,6 +279,7 @@
                                 role="link"
                                 tabindex="0"
                                 class="nf-svg-button simpleround"
+                                (click)="myList(movie.id)"
                               >
                                 <svg
                                   class="svg-icon svg-icon-mylist-add"
@@ -307,17 +331,17 @@
   </div>
   <div class="contain">
     <!-- 슬라이드 다음 이동 버튼 -->
-    <!-- <ng-template [ngIf]="tabStat"> -->
-    <span
-      (click)="next()"
-      class="handle handleNext active"
-      tabindex="0"
-      role="button"
-      aria-label="콘텐츠 더 보기"
-    >
-      <b class="indicator-icon icon-rightCaret"></b>
-    </span>
-    <!-- </ng-template> -->
+    <ng-template [ngIf]="moviesLength > 6">
+      <span
+        (click)="next()"
+        class="handle handleNext active"
+        tabindex="0"
+        role="button"
+        aria-label="콘텐츠 더 보기"
+      >
+        <b class="indicator-icon icon-rightCaret"></b>
+      </span>
+    </ng-template>
   </div>
 </div>
 <app-detail-card
