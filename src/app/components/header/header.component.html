@@ -30,12 +30,37 @@
           >
         </li>
       </ul>
-      <ul class="secondary-navigation">
+      <ul class="secondary-navigation" [class.search-focused]="isSearch">
         <li class="nav-element">
           <div class="searchBox">
-            <button class="searchTab" tabindex="0" aria-label="Search">
+            <button
+              class="searchTab"
+              *ngIf="!isSearch"
+              tabindex="0"
+              aria-label="Search"
+              (click)="isSearch = true"
+            >
               <span class="icon-search"></span>
             </button>
+            <div *ngIf="isSearch" class="searchInput">
+              <span
+                class="icon-search"
+                (click)="isSearch = searchValue ? true : false"
+              ></span
+              ><input
+                type="text"
+                placeholder="제목, 사람, 장르"
+                maxlength="80"
+                [(ngModel)]="searchValue"
+                (keyup)="search()"
+                (blur)="isSearch = searchValue ? true : false"
+                [ngStyle]="
+                  isSearch
+                    ? { opacity: '1', 'transition-duration': '300ms' }
+                    : { opacity: '0', 'transition-duration': '300ms' }
+                "
+              /><span class="icon-close" (click)="searchValue = ''"></span>
+            </div>
           </div>
         </li>
         <li class="nav-element">
