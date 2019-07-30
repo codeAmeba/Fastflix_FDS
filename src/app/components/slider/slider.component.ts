@@ -100,7 +100,7 @@ export class SliderComponent implements OnInit, OnChanges {
       ...movie,
       order: index + 1
     }));
-    console.log(this.movies);
+    console.log(this.category, this.movies);
 
     this.moviesLength = this.moviesList.length;
     // console.log(this.moviesLength);

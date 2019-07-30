@@ -17,6 +17,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   mainMovie: Main;
   movieCategories: MovieCategory[];
   openedCategory: string;
+  myLists: MoviePreview[];
 
   constructor(
     private renderer: Renderer2,
@@ -47,18 +48,35 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.movieService.getMainMovie().subscribe(
       movies => {
         this.movies = movies[0];
-        this.getMainMovie();
-        this.movieCategories = this.movieCategories.map(previewCat => {
-          return {
-            category: previewCat.category,
-            movies: this.getCategoryMovie(previewCat.category),
-          };
-        });
+        this.getMyListMovies();
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  getMyListMovies() {
+    this.movieService.getMyListMovies().subscribe(movies => {
+      this.myLists = movies.map(movie => {
+        const preMovie: MoviePreview = {
+          id: movie.id,
+          title: movie.name,
+          url: movie['horizontal_image_path'],
+          preview: movie['sample_video_file'],
+          marked: true,
+        };
+        return preMovie;
+      });
+      this.getMainMovie();
+      this.movieCategories = this.movieCategories.map(previewCat => {
+        return {
+          category: previewCat.category,
+          movies: this.getCategoryMovie(previewCat.category),
+        };
+      });
+      console.log('내가 찜한 목록', this.myLists);
+    });
   }
 
   getMainMovie() {
@@ -68,6 +86,11 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.mainMovie.title = this.movies['메인 영화']['name'];
     this.mainMovie.degree = this.movies['메인 영화']['degree'];
     this.mainMovie.synopsis = this.movies['메인 영화']['synopsis'];
+    this.mainMovie.marked = this.myLists.find(
+      ({ id }) => id === this.mainMovie.id
+    )
+      ? true
+      : false;
   }
 
   getCategoryMovie(category: string): MoviePreview[] {
@@ -76,6 +99,8 @@ export class MovieComponent implements OnInit, OnDestroy {
         id: movie.id,
         title: movie.name,
         url: movie['horizontal_image_path'],
+        preview: movie['sample_video_file'],
+        marked: this.myLists.find(({ id }) => id === movie.id) ? true : false,
       };
     });
   }

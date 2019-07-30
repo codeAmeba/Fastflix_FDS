@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   bigMovie: Main;
   homeCatogories: MovieCategory[];
   openedCategory: string;
+  myLists: MoviePreview[];
 
   constructor(
     private authService: AuthenticationService,
@@ -54,7 +55,6 @@ export class HomeComponent implements OnInit {
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
-    this.getCategoryMovies();
   }
 
   getMainMovie() {
@@ -65,11 +65,11 @@ export class HomeComponent implements OnInit {
       this.mainMovie.title = mainMovie[0]['메인 영화']['name'];
       this.mainMovie.degree = mainMovie[0]['메인 영화']['degree'];
       this.mainMovie.synopsis = mainMovie[0]['메인 영화']['synopsis'];
-      this.movieService.getMyListMovies().subscribe(myLists => {
-        this.mainMovie.marked = myLists.find(
-          ({ id }) => id === this.mainMovie.id
-        );
-      });
+      this.mainMovie.marked = this.myLists.find(
+        ({ id }) => id === this.mainMovie.id
+      )
+        ? true
+        : false;
     });
 
     this.movieService.getBigMovie().subscribe(bigMovie => {
@@ -79,12 +79,14 @@ export class HomeComponent implements OnInit {
       this.bigMovie.title = bigMovie['name'];
       // this.bigMovie.degree = bigMovie[0]['메인 영화']['degree'];
       // this.bigMovie.synopsis = bigMovie[0]['메인 영화']['synopsis'];
-      this.movieService.getMyListMovies().subscribe(myLists => {
-        this.bigMovie.marked = myLists.find(
-          ({ id }) => id === this.bigMovie.id
-        );
-      });
+      this.bigMovie.marked = this.myLists.find(
+        ({ id }) => id === this.mainMovie.id
+      )
+        ? true
+        : false;
     });
+
+    this.getMyListMovies();
   }
 
   toggleMyLsit(movie: Main) {
@@ -124,7 +126,6 @@ export class HomeComponent implements OnInit {
 
   getCategoryMovies() {
     this.getPopularMovies();
-    this.getMyListMovies();
     this.getLatestMovies();
     this.getFollowUpMovies();
   }
@@ -133,19 +134,16 @@ export class HomeComponent implements OnInit {
     const popularCategory = this.homeCatogories.find(
       ({ category }) => category === 'Fastflix 인기 콘텐츠'
     );
+
     this.movieService.getPopularMovies().subscribe(movies => {
       popularCategory.movies = movies.map(movie => {
-        const preMovie: MoviePreview = {
+        return {
           id: movie.id,
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: false,
+          marked: this.myLists.find(({ id }) => id === movie.id) ? true : false,
         };
-        this.movieService.getMyListMovies().subscribe(myLists => {
-          preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
-        });
-        return preMovie;
       });
     });
   }
@@ -155,20 +153,18 @@ export class HomeComponent implements OnInit {
       ({ category }) => category === '내가 찜한 콘텐츠'
     );
     this.movieService.getMyListMovies().subscribe(movies => {
-      myListCategory.movies = movies.map(movie => {
-        const preMovie: MoviePreview = {
+      this.myLists = movies.map(movie => {
+        return {
           id: movie.id,
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: false,
+          marked: true,
         };
-        this.movieService.getMyListMovies().subscribe(myLists => {
-          preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
-        });
-        return preMovie;
       });
+      myListCategory.movies = this.myLists;
       console.log('내가 찜한 목록', myListCategory.movies);
+      this.getCategoryMovies();
     });
   }
 
@@ -178,17 +174,13 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getLatestMovies().subscribe(movies => {
       latestCategory.movies = movies.map(movie => {
-        const preMovie: MoviePreview = {
+        return {
           id: movie.id,
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: false,
+          marked: this.myLists.find(({ id }) => id === movie.id) ? true : false,
         };
-        this.movieService.getMyListMovies().subscribe(myLists => {
-          preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
-        });
-        return preMovie;
       });
     });
   }
@@ -200,17 +192,15 @@ export class HomeComponent implements OnInit {
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
         follwUpCategory.movies = movies.map(movie => {
-          const preMovie: MoviePreview = {
+          return {
             id: movie.id,
             title: movie.name,
             url: movie['horizontal_image_path'],
             preview: movie['sample_video_file'],
-            marked: false,
+            marked: this.myLists.find(({ id }) => id === movie.id)
+              ? true
+              : false,
           };
-          this.movieService.getMyListMovies().subscribe(myLists => {
-            preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
-          });
-          return preMovie;
         });
       },
       error => console.error(error)
