@@ -79,20 +79,15 @@ export class HomeComponent implements OnInit {
       this.bigMovie.title = bigMovie['name'];
       // this.bigMovie.degree = bigMovie[0]['메인 영화']['degree'];
       // this.bigMovie.synopsis = bigMovie[0]['메인 영화']['synopsis'];
-      this.bigMovie.marked = this.myLists.find(
-        ({ id }) => id === this.mainMovie.id
-      )
-        ? true
-        : false;
+      this.bigMovie.marked = bigMovie['marked'];
     });
 
     this.getMyListMovies();
   }
 
   toggleMyLsit(movie: Main) {
-    movie.marked = !movie.marked;
-    this.movieService.myList(movie.id).subscribe(response => {
-      console.log(response);
+    this.movieService.myList(movie.id).subscribe(({ marked }) => {
+      movie.marked = marked;
       this.getMyListMovies();
       this.movieService.getMyListMovies().subscribe(myLists => {
         this.mainMovie.marked = myLists.find(

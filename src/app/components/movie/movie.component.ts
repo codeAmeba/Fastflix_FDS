@@ -124,8 +124,16 @@ export class MovieComponent implements OnInit, OnDestroy {
     console.log('closed', this.openedCategory);
   }
 
-  toggleMyLsit(id: number) {
-    this.movieService.myList(id).subscribe(response => console.log(response));
+  toggleMyLsit(movie: Main) {
+    this.movieService.myList(movie.id).subscribe(({ marked }) => {
+      movie.marked = marked;
+      this.getMyListMovies();
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.mainMovie.marked = myLists.find(
+          ({ id }) => id === this.mainMovie.id
+        );
+      });
+    });
   }
 
   ngOnDestroy() {
