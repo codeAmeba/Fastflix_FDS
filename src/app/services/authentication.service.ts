@@ -16,6 +16,8 @@ export class AuthenticationService implements OnInit {
   subUsers: SubUser[];
   PROFILE_NAME = 'PID';
   TOKEN_NAME = 'Token';
+  PROFILES_NAME = 'PUSERS';
+  MAINTAIN = 'Maintain';
 
   constructor(private http: HttpClient) {}
 
@@ -24,11 +26,11 @@ export class AuthenticationService implements OnInit {
   }
 
   getToken(): string {
-    return JSON.parse(localStorage.getItem(this.TOKEN_NAME));
+    return localStorage.getItem(this.TOKEN_NAME);
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token['token']));
+    localStorage.setItem(this.TOKEN_NAME, token);
   }
 
   createProfile(user: UserProfile): Observable<UserProfile> {
@@ -44,11 +46,27 @@ export class AuthenticationService implements OnInit {
   }
 
   setProfile(profileId: any) {
-    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
+    localStorage.setItem(this.PROFILE_NAME, profileId);
   }
 
   getProfile() {
-    return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
+    return localStorage.getItem(this.PROFILE_NAME);
+  }
+
+  setSubUsers(subUsers: SubUser[]) {
+    localStorage.setItem(this.PROFILES_NAME, JSON.stringify(subUsers));
+  }
+
+  getSubUsers(): SubUser[] {
+    return JSON.parse(localStorage.getItem(this.PROFILES_NAME));
+  }
+
+  setMaintainance(isMaintain: boolean) {
+    localStorage.setItem(this.MAINTAIN, JSON.stringify(isMaintain));
+  }
+
+  getMaintainance(): string {
+    return JSON.parse(localStorage.getItem(this.MAINTAIN));
   }
 
   login(user: any): Observable<any> {
@@ -60,5 +78,7 @@ export class AuthenticationService implements OnInit {
   logout(): void {
     localStorage.removeItem(this.TOKEN_NAME);
     localStorage.removeItem(this.PROFILE_NAME);
+    localStorage.removeItem(this.PROFILES_NAME);
+    localStorage.removeItem(this.MAINTAIN);
   }
 }

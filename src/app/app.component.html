@@ -1,6 +1,10 @@
 <!--Root에서는 Routing만-->
 <!-- <router-outlet></router-outlet> -->
 
-<div [@fadeAnimation]="getRouterOutletState(outlet)" style="min-height: 100vh;">
+<div
+  [@fadeAnimation]="getRouterOutletState(outlet)"
+  OnUnload
+  style="min-height: 100vh;"
+>
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
