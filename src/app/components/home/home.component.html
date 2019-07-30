@@ -103,7 +103,11 @@
         </h2>
         <div class="rowContainer rowContainerTitleCard">
           <div class="rowContent">
+            <app-original-slider
+              *ngIf="homeCategory.category === 'Fastflix 오리지널'"
+            ></app-original-slider>
             <app-slider
+              *ngIf="homeCategory.category !== 'Fastflix 오리지널'"
               [moviesList]="homeCategory.movies"
               [category]="homeCategory.category"
               [openCategory]="openedCategory"

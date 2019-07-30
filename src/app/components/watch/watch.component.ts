@@ -117,7 +117,10 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
       //test
       // 플레이어 구동 시 lastTime부터 플레이 시작
-      myPlayer.currentTime(localStorage.getItem(`${this.savePlayTime}`));
+      // myPlayer.currentTime(localStorage.getItem('lastTime'));
+      this.movieService.getMovieDetail(this.movieId).subscribe(detail => {
+        myPlayer.currentTime(detail['to_be_continue']);
+      });
       this.hourOfMovie = this.minOfMovie > 60 ? this.minOfMovie / 60 : 0;
       this.minOfMovie = Math.round(myPlayer.currentTime() / 60);
       this.secOfMovie = Math.round(myPlayer.currentTime() % 60);
