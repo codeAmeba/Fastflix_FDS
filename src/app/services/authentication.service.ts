@@ -26,11 +26,11 @@ export class AuthenticationService implements OnInit {
   }
 
   getToken(): string {
-    return JSON.parse(localStorage.getItem(this.TOKEN_NAME));
+    return localStorage.getItem(this.TOKEN_NAME);
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token));
+    localStorage.setItem(this.TOKEN_NAME, token);
   }
 
   createProfile(user: UserProfile): Observable<UserProfile> {
@@ -46,11 +46,11 @@ export class AuthenticationService implements OnInit {
   }
 
   setProfile(profileId: any) {
-    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
+    localStorage.setItem(this.PROFILE_NAME, profileId);
   }
 
   getProfile() {
-    return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
+    return localStorage.getItem(this.PROFILE_NAME);
   }
 
   setSubUsers(subUsers: SubUser[]) {
@@ -66,7 +66,7 @@ export class AuthenticationService implements OnInit {
   }
 
   getMaintainance(): string {
-    return localStorage.getItem(JSON.parse(this.MAINTAIN));
+    return JSON.parse(localStorage.getItem(this.MAINTAIN));
   }
 
   login(user: any): Observable<any> {
@@ -79,5 +79,6 @@ export class AuthenticationService implements OnInit {
     localStorage.removeItem(this.TOKEN_NAME);
     localStorage.removeItem(this.PROFILE_NAME);
     localStorage.removeItem(this.PROFILES_NAME);
+    localStorage.removeItem(this.MAINTAIN);
   }
 }

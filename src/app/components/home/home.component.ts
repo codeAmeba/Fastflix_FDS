@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.user = this.authService
       .getSubUsers()
-      .find(({ id }) => id === this.authService.getProfile()).name;
+      .find(({ id }) => id === +this.authService.getProfile()).name;
 
     this.playBillBoard = false;
     console.log('sub users', this.authService.getSubUsers());
