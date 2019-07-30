@@ -85,7 +85,7 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.mainMovie.title = this.movies['메인 영화']['name'];
     this.mainMovie.degree = this.movies['메인 영화']['degree'];
     this.mainMovie.synopsis = this.movies['메인 영화']['synopsis'];
-    this.mainMovie.marked = this.myLists['메인 영화']['marked'];
+    this.mainMovie.marked = this.movies['메인 영화']['marked'];
   }
 
   getCategoryMovie(category: string): MoviePreview[] {

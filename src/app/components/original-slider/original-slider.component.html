@@ -1,1 +1,405 @@
-<p>original-slider works!</p>
+<div class="slider" (mouseover)="tabShow = true" (mouseleave)="tabShow = false">
+    <!-- 슬라이드 이전 이동 버튼 -->
+    <ng-template [ngIf]="default && moviesLength > 6">
+      <span
+        (click)="prev()"
+        class="handle handlePrev active"
+        tabindex="0"
+        role="button"
+        aria-label="이전 콘텐츠 보기"
+      >
+        <b class="indicator-icon icon-leftCaret"></b>
+      </span>
+    </ng-template>
+    <ng-template [ngIf]="tabShow">
+      <ul class="pagination-indicator">
+        <li [class.active]="sliderState === tab" *ngFor="let tab of tab"></li>
+      </ul>
+    </ng-template>
+    <div
+      class="slider-container"
+      [style.transform]="transform"
+      [style.transition]="transition"
+    >
+      <div class="sliderMask showPeek">
+        <div class="sliderContent row-with-x-columns">
+          <!-- card -->
+          <div
+            *ngFor="let movie of movies"
+            class="slider-item slider-item-{{ movie.order }} show-number-{{
+              showNumber(movie.order)
+            }}"
+            [class.toRight]="
+              !isOpen &&
+              cardMove &&
+              hoverCard === 1 &&
+              showNumber(movie.order) > hoverCard
+            "
+            [class.toRightSide]="
+              !isOpen &&
+              cardMove &&
+              hoverCard !== 1 &&
+              hoverCard !== 6 &&
+              showNumber(movie.order) > hoverCard
+            "
+            [class.toLeftSide]="
+              !isOpen &&
+              cardMove &&
+              hoverCard !== 6 &&
+              hoverCard !== 1 &&
+              showNumber(movie.order) < hoverCard
+            "
+            [class.toLeft]="
+              !isOpen &&
+              cardMove &&
+              hoverCard === 6 &&
+              showNumber(movie.order) !== 0 &&
+              showNumber(movie.order) < hoverCard
+            "
+            [class.toDefault]="!cardMove"
+          >
+            <div class="title-card-container">
+              <div
+                id="title-card-2-{{ movie.order }}"
+                class="slider-refocus title-card"
+                (mouseenter)="hoverTimeout(movie.order, movie.id)"
+                (mouseleave)="hoverTimeoutClear()"
+              >
+                <a role="link" tabindex="0" class="slider-refocus">
+                  <div class="boxart-size-16x9 boxart-container">
+                    <img
+                      class="boxart-image boxart-image-in-padded-container"
+                      src="{{ movie.url }}"
+                      alt="{{ movie.title }}"
+                    />
+                  </div>
+                </a>
+                <!-- hover > 아래 버튼 클릭 시 card 테두리, 재생 버튼 -->
+                <div
+                  class="title-card-jawbone-focus"
+                  [ngStyle]="{
+                    opacity:
+                      isOpen && hoverCard === showNumber(movie.order) ? 1 : 0,
+                    'transition-duration.ms':
+                      isOpen && hoverCard === showNumber(movie.order) ? 300 : 0
+                  }"
+                >
+                  <div class="title-card-focus-ring"></div>
+                  <a role="link" class="title-card-play playLink">
+                    <div class="playRing">
+                      <div class="play icon-play"></div>
+                    </div>
+                  </a>
+                </div>
+                <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
+                <div class="hoverDiv">
+                  <ng-template [ngIf]="bobup === movie.order">
+                    <span (mouseleave)="cardHoverLeave()">
+                      <div
+                        class="bob-card bob-card-adult "
+                        [class.bobup]="bobup"
+                        [style.left.%]="bobupLeft()"
+                        [style.transform]="bobScale"
+                        [style.transform-origin]="bobupTransformOrigin()"
+                      >
+                        <div class="image-rotator bob-background">
+                          <span>
+                            <div
+                              class="image-rotator-image "
+                              [class.image-rotator-style]="bobup"
+                              [style.backgroundImage]="'url(' + movie.url + ')'"
+                            ></div>
+                          </span>
+                        </div>
+                        <div class="bob-overlay">
+                          <div class="bob-play-hitzone"></div>
+                          <!-- 영상 메인 이동..뭔지 일단 모르겠음, 아래 화살표 -->
+                          <a
+                            class="bob-jaw-hitzone"
+                            (click)="showDetail()"
+                            Moveupdown
+                            category="{{ category }}"
+                            openedCategory="{{ openCategory }}"
+                          ></a>
+  
+                          <!-- 세부정보 -->
+                          <div class="bob-overview-wrapper">
+                            <div class="bob-overview">
+                              <!-- 동영상 play 버튼 -->
+                              <a></a>
+                              <div class="bob-title">
+                                {{ moviesDetail.name ? moviesDetail.name : "" }}
+                              </div>
+  
+                              <div class="bob-metadata-wrapper">
+                                <div
+                                  class="meta video-meta video-meta--bob-overview"
+                                >
+                                  <!-- match score 안에 좋아요, 싫어요 -->
+                                  <span class="match-score-wrapper">
+                                    <div class="show-match-score rating-inner">
+                                      <span class="match-score"
+                                        >{{
+                                          moviesDetail["match_rate"]
+                                            ? moviesDetail["match_rate"]
+                                            : ""
+                                        }}{{
+                                          moviesDetail["match_rate"]
+                                            ? "% 일치"
+                                            : ""
+                                        }}</span
+                                      >
+                                    </div>
+                                  </span>
+                                  <span class="maturity-rating "></span>
+                                  <!-- 관람등급 -->
+                                  <span class="duration">{{
+                                    moviesDetail["running_time"]
+                                      ? moviesDetail["running_time"]
+                                      : " "
+                                  }}</span>
+                                </div>
+                              </div>
+                              <div class="bob-overview-evidence-wrapper">
+                                <div class="evidence-tags">
+                                  <div class="evidence-list">
+                                    <ul class="evidence-item">
+                                      <li
+                                        class="evidence-text evidence-text-{{
+                                          i
+                                        }}"
+                                        *ngFor="
+                                          let feature of moviesDetail.feature
+                                            ? moviesDetail.feature
+                                            : '';
+                                          index as i
+                                        "
+                                      >
+                                        {{ feature ? feature.name : "" }}
+                                      </li>
+                                      <ng-template
+                                        [ngIf]="moviesDetail.feature.length < 3"
+                                      >
+                                        <li
+                                          class="evidence-text evidence-text-{{
+                                            moviesDetail.feature.length + i
+                                          }}"
+                                          *ngFor="
+                                            let genre of moviesDetail.genre
+                                              ? moviesDetail.genre.slice(
+                                                  0,
+                                                  3 - moviesDetail.feature.length
+                                                )
+                                              : '';
+                                            index as i
+                                          "
+                                        >
+                                          {{ genre.name ? genre.name : "" }}
+                                        </li>
+                                      </ng-template>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- 좋아요, 싫어요, 내찜콘 추가 -->
+                          <div class="bob-actions-wrapper">
+                            <span class="ActionButtons">
+                              <div
+                                class="thumbs-component thumbs thumbs-vertical animated "
+                                [class.unrated]="!testgood && !testbad"
+                                [class.rated]="movieGood || movieBad"
+                                [class.rated-up]="movieGood"
+                                [class.rated-down]="movieBad"
+                              >
+                                <!-- rated rated-up -->
+                                <div
+                                  class="nf-svg-button-wrapper thumb-container thumb-up-container "
+                                >
+                                  <a
+                                    role="link"
+                                    data-rating="2"
+                                    tabindex="0"
+                                    class="nf-svg-button simpleround"
+                                    [class.clicked]="movieGood"
+                                    (click)="likeMovie(movie.id)"
+                                  >
+                                    <svg
+                                      *ngIf="!movieGood"
+                                      data-rating="2"
+                                      class="svg-icon "
+                                      [class.svg-icon-thumb-up]="!movieGood"
+                                      [class.svg-icon-thumb-up-filled]="movieGood"
+                                      focusable="true"
+                                    >
+                                      <use filter="" xlink:href="#thumb-up">
+                                        <svg id="thumb-up" viewBox="0 0 44 44">
+                                          <path
+                                            fill="currentColor"
+                                            d="M14.4914731,10.5133658 C14.5025232,10.3721258 14.5112703,10.2600368 14.5373244,9.92616603 C14.6065316,9.03836208 14.6757357,8.14414039 14.7403047,7.30077512 C14.7465683,7.21894322 14.7465683,7.21894322 14.752828,7.13707632 C14.9046548,5.15090242 15.0272627,3.45867565 15.0272627,3.40867664 L15.0272627,1.53263123 L16.7144227,0.711648736 C16.9560747,0.594059357 17.2924682,0.45883302 17.7131667,0.333356234 C19.0883517,-0.0768040048 20.5613519,-0.154799924 22.0533288,0.363315376 C24.5195179,1.21974305 26.1769774,3.46135556 26.8035959,6.84975024 C27.351817,9.81421638 27.5019717,12.9866944 27.3599098,16.0115829 L34.1297665,16.0259652 L34.2527202,16.036358 C37.3831944,16.3009647 40,18.0263548 40,21.50351 C40,22.0672808 39.9265137,22.5421505 39.8025926,23.0579114 C40.5520589,23.9178872 41,25.0573442 41,26.5026539 C41,28.4265345 40.1989133,29.8141446 38.9529692,30.7147706 C39,31.0829242 39,31.2285855 39,31.5017978 C39,33.4256784 38.1989133,34.8132885 36.9529692,35.7139145 C37,36.1120923 37,36.2277294 37,36.5009417 C37,39.978097 34.3831944,41.703487 31.2527202,41.9680938 L31.1299097,41.9784745 L31.0066614,41.9787481 L21.4308667,42 C17.3598399,42 15.3049785,41.5120961 12.3004159,40.2094732 C10.4281403,39.3976996 9.56555009,39.1413507 7.75086356,38.9901527 L5,38.7609533 L5,22.2682088 L9.98007986,19.4037917 L14.4914731,10.5133658 Z M23.8535989,7.39510873 C22.6962315,1.13672751 18.0272627,3.40867664 18.0272627,3.40867664 C18.0272627,3.82250684 17.4358448,11.340371 17.4358448,11.340371 L12.2509485,21.558043 L8,24.003082 L8,36.0010273 C14,36.5009417 13.6061821,39.0005137 21.4308667,39.0005137 L31,38.9792692 C32.339044,38.866085 34,38.2712124 34,36.5009417 C34,34.730671 32.339044,34.1357984 31,34.0013698 L33,33.9801253 C34.339044,33.8669411 36,33.2720686 36,31.5017978 C36,29.7315271 34.339044,29.1366545 33,29.0022259 L35,28.9809814 C36.339044,28.8677972 38,28.2729247 38,26.5026539 C38,24.7323832 36.339044,24.1375106 35,24.003082 L34,23.9818375 C35.339044,23.8686533 37,23.2737808 37,21.50351 C37,19.7332393 35.339044,19.1383668 34,19.0251826 L24.0526449,19.0040499 C24.2446335,18.1909366 24.845597,12.7592672 23.8535989,7.39510873 Z"
+                                          ></path>
+                                        </svg>
+                                      </use>
+                                    </svg>
+                                    <!-- 엄지척 흰색 -->
+                                    <svg
+                                      *ngIf="movieGood"
+                                      data-rating="0"
+                                      class="svg-icon svg-icon-thumb-up-filled"
+                                      focusable="true"
+                                    >
+                                      <use
+                                        filter=""
+                                        xlink:href="#thumb-up-filled"
+                                      >
+                                        <svg
+                                          id="thumb-up-filled"
+                                          viewBox="0 0 44 44"
+                                        >
+                                          <path
+                                            fill="currentColor"
+                                            d="M36.2259059,39.0138889 C36.2259059,41.128741 34.2435159,41.8394049 32.6453354,41.9746203 L21.0300552,42 C11.6911102,42 12.1611411,39.0138889 5,38.4166667 L5,24.0833333 L10.073607,21.1623699 L16.2619026,9.95583842 C16.2619026,9.95583842 16.9677739,0.974629541 16.9677739,0.480247712 C16.9677739,0.480247712 22.5402979,-2.23393403 23.9216431,5.2426348 C25.3029884,12.7192036 24.344293,17.3331909 24.0839076,17.9993896 L36.2134373,18.0247694 C37.8116178,18.1599847 39.8064765,18.9823701 39.8064765,21.0972222 C39.8064765,23.2120744 37.8240865,23.9227383 36.2259059,24.0579536 L37.4194295,24.0833333 C39.01761,24.2439284 41,24.9545923 41,27.0694444 C41,29.1842966 39.01761,29.8949605 37.4194295,30.0301758 L35.0323824,30.0555556 C36.6305629,30.2161506 38.612953,30.9268145 38.612953,33.0416667 C38.612953,35.1565188 36.6305629,35.8671827 35.0323824,36.002398 L32.6453354,36.0277778 C34.2435159,36.1883728 36.2259059,36.8990367 36.2259059,39.0138889 Z"
+                                          ></path>
+                                        </svg>
+                                      </use>
+                                    </svg>
+                                    <!-- 흰색 끝 -->
+                                  </a>
+                                </div>
+                                <div
+                                  class="nf-svg-button-wrapper thumb-container thumb-down-container"
+                                >
+                                  <a
+                                    role="link"
+                                    data-rating="1"
+                                    tabindex="0"
+                                    class="nf-svg-button simpleround"
+                                    (click)="dislikeMovie(movie.id)"
+                                  >
+                                    <svg
+                                      *ngIf="!movieBad"
+                                      data-rating="1"
+                                      class="svg-icon svg-icon-thumb-down"
+                                      focusable="true"
+                                    >
+                                      <use filter="" xlink:href="#thumb-down">
+                                        <svg id="thumb-down" viewBox="0 0 44 44">
+                                          <path
+                                            fill="currentColor"
+                                            d="M29.5085269,33.4866342 C29.4974768,33.6278742 29.4887297,33.7399632 29.4626756,34.073834 C29.3934684,34.9616379 29.3242643,35.8558596 29.2596953,36.6992249 C29.2534317,36.7810568 29.2534317,36.7810568 29.247172,36.8629237 C29.0953452,38.8490976 28.9727373,40.5413244 28.9727373,40.5913234 L28.9727373,42.4673688 L27.2855773,43.2883513 C27.0439253,43.4059406 26.7075318,43.541167 26.2868333,43.6666438 C24.9116483,44.076804 23.4386481,44.1547999 21.9466712,43.6366846 C19.4804821,42.780257 17.8230226,40.5386444 17.1964041,37.1502498 C16.648183,34.1857836 16.4980283,31.0133056 16.6400902,27.9884171 L9.87023353,27.9740348 L9.74727981,27.963642 C6.61680565,27.6990353 4,25.9736452 4,22.49649 C4,21.9327192 4.07348633,21.4578495 4.19740742,20.9420886 C3.44794109,20.0821128 3,18.9426558 3,17.4973461 C3,15.5734655 3.80108673,14.1858554 5.04703083,13.2852294 C5,12.9170758 5,12.7714145 5,12.4982022 C5,10.5743216 5.80108673,9.18671152 7.04703083,8.28608555 C7,7.88790771 7,7.77227059 7,7.49905828 C7,4.02190301 9.61680565,2.29651296 12.7472798,2.03190622 L12.8700903,2.02152553 L12.9933386,2.0212519 L22.5691333,2 C26.6401601,2 28.6950215,2.48790389 31.6995841,3.79052685 C33.5718597,4.60230044 34.4344499,4.8586493 36.2491364,5.00984729 L39,5.23904667 L39,21.7317912 L34.0199201,24.5962083 L29.5085269,33.4866342 Z M20.1464011,36.6048913 C21.3037685,42.8632725 25.9727373,40.5913234 25.9727373,40.5913234 C25.9727373,40.1774932 26.5641552,32.659629 26.5641552,32.659629 L31.7490515,22.441957 L36,19.996918 L36,7.99897267 C30,7.49905828 30.3938179,4.99948634 22.5691333,4.99948634 L13,5.02073084 C11.660956,5.133915 10,5.72878756 10,7.49905828 C10,9.26932901 11.660956,9.86420157 13,9.99863023 L11,10.0198747 C9.66095598,10.1330589 8,10.7279314 8,12.4982022 C8,14.2684729 9.66095598,14.8633455 11,14.9977741 L9,15.0190186 C7.66095598,15.1322028 6,15.7270753 6,17.4973461 C6,19.2676168 7.66095598,19.8624894 9,19.996918 L10,20.0181625 C8.66095598,20.1313467 7,20.7262192 7,22.49649 C7,24.2667607 8.66095598,24.8616332 10,24.9748174 L19.9473551,24.9959501 C19.7553665,25.8090634 19.154403,31.2407328 20.1464011,36.6048913 Z"
+                                          ></path>
+                                        </svg>
+                                      </use>
+                                    </svg>
+                                    <!-- 엄지 다운 흰색 -->
+                                    <svg 
+                                    *ngIf="movieBad"
+                                    data-rating="0" class="svg-icon svg-icon-thumb-down-filled" focusable="true">
+                                      <use filter="" xlink:href="#thumb-down-filled">
+                                        <svg id="thumb-down-filled" viewBox="0 0 44 44">    
+                                          <path fill="currentColor" d="M7.77409406,4.98611111 C7.77409406,2.87125897 9.75648409,2.16059507 11.3546646,2.02537973 L22.9699448,2 C32.3088898,2 31.8388589,4.98611111 39,5.58333333 L39,19.9166667 L33.926393,22.8376301 L27.7380974,34.0441616 C27.7380974,34.0441616 27.0322261,43.0253705 27.0322261,43.5197523 C27.0322261,43.5197523 21.4597021,46.233934 20.0783569,38.7573652 C18.6970116,31.2807964 19.655707,26.6668091 19.9160924,26.0006104 L7.78656274,25.9752306 C6.18838222,25.8400153 4.19352352,25.0176299 4.19352352,22.9027778 C4.19352352,20.7879256 6.17591354,20.0772617 7.77409406,19.9420464 L6.58057055,19.9166667 C4.98239002,19.7560716 3,19.0454077 3,16.9305556 C3,14.8157034 4.98239002,14.1050395 6.58057055,13.9698242 L8.96761758,13.9444444 C7.36943706,13.7838494 5.38704703,13.0731855 5.38704703,10.9583333 C5.38704703,8.84348119 7.36943706,8.13281729 8.96761758,7.99760195 L11.3546646,7.97222222 C9.75648409,7.81162716 7.77409406,7.10096325 7.77409406,4.98611111 Z">
+                                          </path>
+                                        </svg>
+                                    </use>
+                                    </svg>
+                                    <!-- 흰색 끝 -->
+                                  </a>
+                                </div>
+                              </div>
+                              <div
+                                class="nf-svg-button-wrapper mylist-button"
+                                data-uia="myListButton"
+                              >
+                                <a
+                                  role="link"
+                                  tabindex="0"
+                                  class="nf-svg-button simpleround"
+                                  (click)="myList(movie.id)"
+                                >
+                                  <svg
+                                    class="svg-icon svg-icon-mylist-add"
+                                    focusable="true"
+                                    *ngIf="!marked"
+                                  >
+                                    <use filter="" xlink:href="#mylist-add">
+                                      #shadow-root (closed)
+                                      <svg id="mylist-add" viewBox="0 0 14 14">
+                                        <polygon
+                                          fill="currentColor"
+                                          points="6.32918892 6.32913969 6.32918892 -4.92334366e-05 7.67086031 -4.92334366e-05 7.67086031 6.32913969 14.0000492 6.32913969 14.0000492 7.67081108 7.67086031 7.67081108 7.67086031 14 6.32918892 14 6.32918892 7.67081108 0 7.67081108 0 6.32913969"
+                                        ></polygon>
+                                      </svg>
+                                    </use>
+                                  </svg>
+                                  <svg 
+                                    class="svg-icon svg-icon-mylist-added" focusable="true"
+                                    *ngIf="marked">
+                                    <use filter="" xlink:href="#mylist-added">
+                                        <svg id="mylist-added" viewBox="0 0 14 14">   <polygon fill="currentColor" points="5.48335262 11.4770745 1.18125415 7.16039261 0 8.34164677 5.65835323 14 15.4146375 1.00620431 14.0729662 0.0145341512">
+                                        </polygon>
+                                      </svg>
+                                    </use>
+                                  </svg>
+                                </a>
+                                <span 
+                                *ngIf="!marked"
+                                class="nf-svg-button-tooltip" role="status" aria-live="assertive">
+                                  내가 찜한 콘텐츠에 추가
+                                </span>
+                                <span 
+                                *ngIf="marked"
+                                class="nf-svg-button-tooltip" role="status" aria-live="assertive">내가 찜한 콘텐츠에서 삭제</span>
+                              </div>
+                            </span>
+                          </div>
+                          <!-- 콘텐츠 상세 정보 보기 화면 (tab) -->
+                          <div class="bob-chevron-wrapper">
+                            <div class="bob-jawbone-chevron">
+                              <svg
+                                class="svg-icon svg-icon-chevron-down"
+                                focusable="true"
+                              >
+                                <use filter="" xlink:href="#chevron-down">
+                                  <svg id="chevron-down" viewBox="0 0 60 19">
+                                    <path
+                                      fill="currentColor"
+                                      d="M59.5615866,2.44258873 L31.1899791,17.6617954 C30.7515658,17.9123173 30.2505219,18.1002088 30.0626305,18.1002088 C29.874739,18.1002088 29.6242171,18.0375783 29.5615866,18.0375783 C29.4363257,17.9749478 28.9979123,17.7244259 28.559499,17.5365344 L0.501043841,2.44258873 C0.187891441,2.31732777 0,1.94154489 0,1.62839248 C0,1.50313152 0.0626304802,1.37787056 0.12526096,1.18997912 L0.501043841,0.501043841 C0.688935282,0.187891441 1.00208768,0 1.31524008,0 C1.50313152,0 1.62839248,0 1.75365344,0.12526096 L29.1858038,14.8434238 C29.3736952,14.9686848 29.6868476,15.0313152 30,15.0313152 C30.3131524,15.0313152 30.6263048,14.9686848 30.8141962,14.8434238 L58.2463466,0.12526096 C58.6847599,-0.12526096 59.2484342,0 59.4989562,0.501043841 L59.874739,1.18997912 C60.125261,1.62839248 60,2.19206681 59.5615866,2.44258873"
+                                    ></path>
+                                  </svg>
+                                </use>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </span>
+                  </ng-template>
+                </div>
+                <!-- hover시 확대 끝 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contain">
+      <!-- 슬라이드 다음 이동 버튼 -->
+      <ng-template [ngIf]="moviesLength > 6">
+        <span
+          (click)="next()"
+          class="handle handleNext active"
+          tabindex="0"
+          role="button"
+          aria-label="콘텐츠 더 보기"
+        >
+          <b class="indicator-icon icon-rightCaret"></b>
+        </span>
+      </ng-template>
+    </div>
+  </div>
+  <app-detail-card
+    [isOpen]="isOpen"
+    (detailClose)="detailClosed()"
+  ></app-detail-card>
+  

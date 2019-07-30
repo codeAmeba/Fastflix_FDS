@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     };
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
-    // this.getMainMovie();
+    this.getMainMovie();
     this.getMyListMovies();
   }
 
@@ -78,15 +78,12 @@ export class HomeComponent implements OnInit {
       this.bigMovie.degree = bigMovie['degree'];
       this.bigMovie.synopsis = bigMovie['synopsis'];
       this.bigMovie.marked = bigMovie['marked'];
-      console.log(bigMovie);
     });
   }
 
   toggleMyLsit(movie: Main) {
-    console.log(movie);
-
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log(marked);
+      this.getMyListMovies();
       movie.marked = marked;
     });
   }
@@ -96,7 +93,6 @@ export class HomeComponent implements OnInit {
 
     this.openedCategory = category;
     thanos.classList.add('has-open-jaw');
-    console.log('opened', this.openedCategory);
   }
 
   sliderClosed(category: string) {
@@ -106,8 +102,6 @@ export class HomeComponent implements OnInit {
       this.openedCategory === category ? '' : this.openedCategory;
 
     thanos.classList.remove('has-open-jaw');
-
-    console.log('closed', this.openedCategory);
   }
 
   getCategoryMovies() {
@@ -148,7 +142,6 @@ export class HomeComponent implements OnInit {
       });
       myListCategory.movies = this.myLists;
       console.log('내가 찜한 목록', myListCategory.movies);
-      this.getMainMovie();
     });
   }
 
@@ -174,12 +167,15 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
-        follwUpCategory.movies = movies.map(movie => {
+        console.log('시청 중', movies);
+
+        follwUpCategory.movies = movies.map(continueMovie => {
           return {
-            id: movie.id,
-            title: movie.name,
-            url: movie['horizontal_image_path'],
-            preview: movie['sample_video_file'],
+            id: continueMovie.movie.id,
+            title: continueMovie.movie.name,
+            url: continueMovie.movie['horizontal_image_path'],
+            preview: continueMovie.movie['sample_video_file'],
+            continue: continueMovie['to_be_continue'],
           };
         });
       },
