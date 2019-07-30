@@ -582,6 +582,30 @@ img {
   transition: opacity 150ms linear 550ms;
 }
 
+.thumbs-component.animated.thumbs-vertical.rated .thumb-up-container {
+  -webkit-transform: translate(0, 2.4em);
+  -moz-transform: translate(0, 2.4em);
+  -ms-transform: translate(0, 2.4em);
+  -o-transform: translate(0, 2.4em);
+  transform: translate(0, 2.4em);
+  -webkit-transition: opacity 150ms linear 550ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  transition: opacity 150ms linear 550ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  -o-transition: opacity 150ms linear 550ms,
+    -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  -moz-transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 550ms,
+    -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 550ms;
+  transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 550ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+}
+
 .nf-svg-button-wrapper .nf-svg-button {
   pointer-events: auto;
   display: -webkit-box;

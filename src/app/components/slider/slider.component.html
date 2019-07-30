@@ -206,8 +206,9 @@
                         <div class="bob-actions-wrapper">
                           <span class="ActionButtons">
                             <div
-                              class="thumbs-component thumbs thumbs-vertical animated unrated"
+                              class="thumbs-component thumbs thumbs-vertical animated "
                               [class.unrated]="!testgood && !testbad"
+                              [class.rated]="testgood || testbad"
                               [class.rated-up]="testgood"
                               [class.rated-down]="testbad"
                             >
