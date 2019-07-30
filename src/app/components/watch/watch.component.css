@@ -12,6 +12,11 @@
   font-family: inherit;
 }
 
+.video-js .vjs-tech {
+  height: 100%;
+  width: auto;
+}
+
 .back-arrow {
   position: absolute;
   z-index: 1;
