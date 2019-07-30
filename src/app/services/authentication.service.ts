@@ -16,6 +16,8 @@ export class AuthenticationService implements OnInit {
   subUsers: SubUser[];
   PROFILE_NAME = 'PID';
   TOKEN_NAME = 'Token';
+  PROFILES_NAME = 'PUSERS';
+  MAINTAIN = 'Maintain';
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +30,7 @@ export class AuthenticationService implements OnInit {
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token['token']));
+    localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token));
   }
 
   createProfile(user: UserProfile): Observable<UserProfile> {
@@ -51,6 +53,22 @@ export class AuthenticationService implements OnInit {
     return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
   }
 
+  setSubUsers(subUsers: SubUser[]) {
+    localStorage.setItem(this.PROFILES_NAME, JSON.stringify(subUsers));
+  }
+
+  getSubUsers(): SubUser[] {
+    return JSON.parse(localStorage.getItem(this.PROFILES_NAME));
+  }
+
+  setMaintainance(isMaintain: boolean) {
+    localStorage.setItem(this.MAINTAIN, JSON.stringify(isMaintain));
+  }
+
+  getMaintainance(): string {
+    return localStorage.getItem(JSON.parse(this.MAINTAIN));
+  }
+
   login(user: any): Observable<any> {
     // const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
 
@@ -60,5 +78,6 @@ export class AuthenticationService implements OnInit {
   logout(): void {
     localStorage.removeItem(this.TOKEN_NAME);
     localStorage.removeItem(this.PROFILE_NAME);
+    localStorage.removeItem(this.PROFILES_NAME);
   }
 }

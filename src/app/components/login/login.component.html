@@ -1,13 +1,19 @@
 <div class="login-wrapper">
   <div class="login-bg">
-    <img class="concord-img vlv-creative"
+    <img
+      class="concord-img vlv-creative"
       src="https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_small.jpg"
-      srcset="https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_large.jpg 1800w"
-      alt="">
+      srcset="
+        https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_small.jpg  1000w,
+        https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w,
+        https://assets.nflxext.com/ffe/siteui/vlv3/ba64c2ca-d0e9-4216-8d92-d0dc621ad5be/39fe941e-6b13-4553-9cd2-c7aa02efcebd/KR-ko-20190715-popsignuptwoweeks-perspective_alpha_website_large.jpg  1800w
+      "
+      alt=""
+    />
   </div>
   <header class="login-header">
     <a routerLink="/home" class="logo">
-      <img src="../../../assets/images/fastflix_logo_03.png" alt="FASTFLIX">
+      <img src="../../../assets/images/fastflix_logo_03.png" alt="FASTFLIX" />
     </a>
   </header>
 
@@ -17,30 +23,88 @@
         <h1>로그인</h1>
         <form [formGroup]="loginForm">
           <div class="email-container">
-            <div class="input-container" [class.error]="id.invalid && id.touched">
-              <input type="text" class="textField" id="login-email" name="id" formControlName="id"
-                (focusin)="emailHolderUp = true" (blur)="emailFocus($event.target.value)">
-              <label for="login-email" class="placeLabel" [class.up]="emailHolderUp">이메일 주소</label>
+            <div
+              class="input-container"
+              [class.error]="id.invalid && id.touched"
+            >
+              <input
+                type="text"
+                class="textField"
+                id="login-email"
+                name="id"
+                formControlName="id"
+                (focusin)="emailHolderUp = true"
+                (blur)="emailFocus($event.target.value)"
+              />
+              <label
+                for="login-email"
+                class="placeLabel"
+                [class.up]="emailHolderUp"
+                >이메일 주소</label
+              >
             </div>
             <div
-              *ngIf="(id.errors?.required && id.touched) ||(id.errors?.minlength || id.errors?.maxlength) || id.errors?.pattern && id.touched"
-              class="error-message">정확한 이메일 주소를 입력하세요.</div>
+              *ngIf="
+                (id.errors?.required && id.touched) ||
+                (id.errors?.minlength || id.errors?.maxlength) ||
+                (id.errors?.pattern && id.touched)
+              "
+              class="error-message"
+            >
+              정확한 이메일 주소를 입력하세요.
+            </div>
           </div>
           <div class="pw-container">
-            <div class="input-container" [class.error]="password.invalid && password.touched">
-              <input type="password" class="textField" id="login-password" name="password" formControlName="password"
-                (focusin)="pwHolderUp = true" (blur)="pwFocus($event.target.value)">
-              <label for="login-password" class="placeLabel" [class.up]="pwHolderUp">비밀번호</label>
+            <div
+              class="input-container"
+              [class.error]="password.invalid && password.touched"
+            >
+              <input
+                type="password"
+                class="textField"
+                id="login-password"
+                name="password"
+                formControlName="password"
+                (focusin)="pwHolderUp = true"
+                (blur)="pwFocus($event.target.value)"
+              />
+              <label
+                for="login-password"
+                class="placeLabel"
+                [class.up]="pwHolderUp"
+                >비밀번호</label
+              >
             </div>
             <div
-              *ngIf="(password.errors?.required && password.touched) ||(password.errors?.minlength || password.errors?.maxlength )&& password.touched"
-              class="error-message">비밀번호는 4~60자 사이여야 합니다.</div>
+              *ngIf="
+                (password.errors?.required && password.touched) ||
+                ((password.errors?.minlength || password.errors?.maxlength) &&
+                  password.touched)
+              "
+              class="error-message"
+            >
+              비밀번호는 4~60자 사이여야 합니다.
+            </div>
           </div>
-          <button type="submit" class="submit" [disabled]="loginForm.invalid" (click)="onSubmit()">로그인</button>
+          <button
+            type="submit"
+            class="submit"
+            [disabled]="loginForm.invalid"
+            (click)="onSubmit()"
+          >
+            로그인
+          </button>
           <div class="login-help">
             <div class="remember-me">
-              <input type="checkbox" name="remember" id="remember">
-              <label for="remember" class="remember-label">로그인 정보 저장</label>
+              <input
+                type="checkbox"
+                name="remember"
+                id="remember"
+                formControlName="maintainance"
+              />
+              <label for="remember" class="remember-label"
+                >로그인 정보 저장</label
+              >
             </div>
           </div>
         </form>
@@ -51,32 +115,65 @@
     <div class="footer-wrapper">
       <div class="footer-divider"></div>
       <div class="site-footer">
-        <p class="footer-top"><a class="footer-top-a" href="https://help.netflix.com/contactus">질문이 있으신가요? 고객 센터에
-            문의하세요.</a>
+        <p class="footer-top">
+          <a class="footer-top-a" href="https://help.netflix.com/contactus"
+            >질문이 있으신가요? 고객 센터에 문의하세요.</a
+          >
         </p>
         <ul class="footer-links structural">
-          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/support/412"><span>자주 묻는
-                질문</span></a></li>
-          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com"><span>고객 센터</span></a>
+          <li class="footer-link-item">
+            <a class="footer-link" href="https://help.netflix.com/support/412"
+              ><span>자주 묻는 질문</span></a
+            >
           </li>
-          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/legal/termsofuse"
-              placeholder="footer_responsive_link_terms"><span>이용 약관</span></a></li>
-          <li class="footer-link-item"><a class="footer-link"
-              href="https://help.netflix.com/legal/privacy"><span>개인정보</span></a></li>
-          <li class="footer-link-item"><a class="footer-link"
-              href="https://help.netflix.com/legal/privacy#cookies"><span>쿠키
-                설정</span></a></li>
-          <li class="footer-link-item"><a class="footer-link" href="https://help.netflix.com/ko/node/2101"><span>회사
-                정보</span></a></li>
+          <li class="footer-link-item">
+            <a class="footer-link" href="https://help.netflix.com"
+              ><span>고객 센터</span></a
+            >
+          </li>
+          <li class="footer-link-item">
+            <a
+              class="footer-link"
+              href="https://help.netflix.com/legal/termsofuse"
+              placeholder="footer_responsive_link_terms"
+              ><span>이용 약관</span></a
+            >
+          </li>
+          <li class="footer-link-item">
+            <a class="footer-link" href="https://help.netflix.com/legal/privacy"
+              ><span>개인정보</span></a
+            >
+          </li>
+          <li class="footer-link-item">
+            <a
+              class="footer-link"
+              href="https://help.netflix.com/legal/privacy#cookies"
+              ><span>쿠키 설정</span></a
+            >
+          </li>
+          <li class="footer-link-item">
+            <a class="footer-link" href="https://help.netflix.com/ko/node/2101"
+              ><span>회사 정보</span></a
+            >
+          </li>
         </ul>
         <div class="lang-selection-container" id="lang-switcher">
-          <div class="nfSelectWrapper inFooter selectArrow prefix" data-uia="language-picker+container">
+          <div
+            class="nfSelectWrapper inFooter selectArrow prefix"
+            data-uia="language-picker+container"
+          >
             <div class="nfSelectPlacement globe">
-              <select data-uia="language-picker" class="nfSelect" name="__langSelect" tabindex="0">
+              <select
+                data-uia="language-picker"
+                class="nfSelect"
+                name="__langSelect"
+                tabindex="0"
+              >
                 <option label="한국어">한국어</option>
                 <option label="English">English</option>
               </select>
-              <label class="placeLabel"></label></div>
+              <label class="placeLabel"></label>
+            </div>
           </div>
         </div>
       </div>

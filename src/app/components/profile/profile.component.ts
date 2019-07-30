@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.isAdd = false;
     this.isChild = false;
-    this.subUsers = this.authService.subUsers;
+    this.subUsers = this.authService.getSubUsers();
     console.log(this.subUsers);
   }
 
