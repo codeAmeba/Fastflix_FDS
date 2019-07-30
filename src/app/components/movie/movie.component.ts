@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { Main } from 'src/app/models/main';
 import { MovieCategories } from 'src/app/models/movieCategories';
@@ -10,7 +10,7 @@ import { MovieCategory } from 'src/app/models/movie-category';
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css'],
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
   user: string;
   playBillBoard: boolean;
   movies: object[];
@@ -18,9 +18,15 @@ export class MovieComponent implements OnInit {
   movieCategories: MovieCategory[];
   openedCategory: string;
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private renderer: Renderer2,
+    private movieService: MovieService
+  ) {}
 
   ngOnInit() {
+    this.renderer.addClass(document.body.parentElement, 'movie');
+    this.renderer.addClass(document.body, 'movie');
+
     this.user = '사용자';
     this.playBillBoard = false;
     this.mainMovie = {
@@ -90,5 +96,10 @@ export class MovieComponent implements OnInit {
     thanos.classList.remove('has-open-jaw');
 
     console.log('closed', this.openedCategory);
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body.parentElement, 'movie');
+    this.renderer.removeClass(document.body, 'movie');
   }
 }
