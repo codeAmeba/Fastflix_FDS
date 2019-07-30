@@ -4,17 +4,17 @@ import {
   Input,
   OnChanges,
   Output,
-  EventEmitter,
-} from '@angular/core';
-import { MoviePreview } from '../../models/movie-preview';
-import { MovieDetail } from 'src/app/models/movies-detail';
+  EventEmitter
+} from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
+import { MovieDetail } from "src/app/models/movies-detail";
 
-import { MovieService } from 'src/app/services/movie.service';
+import { MovieService } from "src/app/services/movie.service";
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css'],
+  selector: "app-slider",
+  templateUrl: "./slider.component.html",
+  styleUrls: ["./slider.component.css"]
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
@@ -56,7 +56,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = 'scale(0.52222)';
+  bobScale = "scale(0.52222)";
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -67,38 +67,38 @@ export class SliderComponent implements OnInit, OnChanges {
     this.tabArray();
     this.moviesDetail = {
       id: 0,
-      name: '',
-      video_file: '',
-      sample_video_file: '',
-      production_date: '',
-      uploaded_date: '',
-      synopsis: '',
+      name: "",
+      video_file: "",
+      sample_video_file: "",
+      production_date: "",
+      uploaded_date: "",
+      synopsis: "",
       running_time: 0,
-      view_count: '',
-      logo_image_path: '',
-      horizontal_image_path: '',
-      vertical_image: '',
-      circle_image: '',
+      view_count: "",
+      logo_image_path: "",
+      horizontal_image_path: "",
+      vertical_image: "",
+      circle_image: "",
       degree: {},
       directors: [],
       actors: [],
       feature: [],
       author: [],
       genre: [],
-      marked: '',
+      marked: "",
       like: 0,
       total_minute: 0,
       match_rate: 0,
       to_be_continue: 0,
       remaining_time: 0,
-      can_i_store: false,
+      can_i_store: false
     };
   }
 
   ngOnChanges() {
     this.movies = this.moviesList.map((movie, index) => ({
       ...movie,
-      order: index + 1,
+      order: index + 1
     }));
     console.log(this.category, this.movies);
 
@@ -189,7 +189,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverTimeout(movieOrder, movieId) {
     this.timer = setTimeout(() => {
       this.cardHover(movieOrder, movieId);
-    }, 700);
+    }, 600);
   }
   hoverTimeoutClear() {
     clearTimeout(this.timer);
@@ -197,15 +197,15 @@ export class SliderComponent implements OnInit, OnChanges {
   }
   cardHover(movieOrder, movieId) {
     if (!this.isOpen) {
-      console.log('안열렸당');
+      console.log("안열렸당");
 
       this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobScale = 'scale(0.99999)';
+        this.bobScale = "scale(0.99999)";
       }, 300);
     }
     this.cardMove = true;
-    console.log('호버됬당');
+    console.log("호버됬당");
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
     // if (this.cardMove) return;
@@ -215,40 +215,40 @@ export class SliderComponent implements OnInit, OnChanges {
   cardHoverLeave() {
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScale = 'scale(0.52222)';
+    this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
       this.moviesDetail = {
         id: 0,
-        name: '',
-        video_file: '',
-        sample_video_file: '',
-        production_date: '',
-        uploaded_date: '',
-        synopsis: '',
+        name: "",
+        video_file: "",
+        sample_video_file: "",
+        production_date: "",
+        uploaded_date: "",
+        synopsis: "",
         running_time: 0,
-        view_count: '',
-        logo_image_path: '',
-        horizontal_image_path: '',
-        vertical_image: '',
-        circle_image: '',
+        view_count: "",
+        logo_image_path: "",
+        horizontal_image_path: "",
+        vertical_image: "",
+        circle_image: "",
         degree: {},
         directors: [],
         actors: [],
         feature: [],
         author: [],
         genre: [],
-        marked: '',
+        marked: "",
         like: 0,
         total_minute: 0,
         match_rate: 0,
         to_be_continue: 0,
         remaining_time: 0,
-        can_i_store: false,
+        can_i_store: false
       };
     }, 300);
 
-    console.log('호버 나갔당');
+    console.log("호버 나갔당");
     // console.log(this.isOpen);
   }
 
@@ -289,18 +289,14 @@ export class SliderComponent implements OnInit, OnChanges {
 
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return 'left';
-    else if (this.hoverCard === 6) return 'right';
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
     return;
   }
 
   showDetail() {
-    // console.log(this.category);
-    // console.log(this.movies);
     // console.log(this.default);
     // console.log(this.bobup === order);
-    // console.log(this.bobup);
-    // console.log(order);
     this.bobup = 0;
     this.isOpen = true;
     this.sliderOpen.emit(this.category);
@@ -319,20 +315,20 @@ export class SliderComponent implements OnInit, OnChanges {
       }
     );
   }
-  testgood: boolean = false;
-  testbad: boolean = false;
+  movieGood: boolean = false;
+  movieBad: boolean = false;
   likeMovie(id: number) {
     console.log(id);
 
     this.movieService.likeMovie(id).subscribe(response => {
       console.log(response);
     });
-    if (this.testgood) {
-      this.testgood = false;
+    if (this.movieGood) {
+      this.movieGood = false;
     } else {
-      this.testgood = true;
+      this.movieGood = true;
     }
-    this.testbad = false;
+    this.movieBad = false;
   }
 
   dislikeMovie(id: number) {
@@ -342,17 +338,18 @@ export class SliderComponent implements OnInit, OnChanges {
       console.log(response);
     });
 
-    if (this.testbad) {
-      this.testbad = false;
+    if (this.movieBad) {
+      this.movieBad = false;
     } else {
-      this.testbad = true;
+      this.movieBad = true;
     }
-    this.testgood = false;
+    this.movieGood = false;
   }
-
+  marked;
   myList(id: number) {
     this.movieService.myList(id).subscribe(response => {
       console.log(response);
+      this.marked = response.marked;
       this.toggleMyList.emit();
     });
   }

@@ -209,9 +209,9 @@
                             <div
                               class="thumbs-component thumbs thumbs-vertical animated "
                               [class.unrated]="!testgood && !testbad"
-                              [class.rated]="testgood || testbad"
-                              [class.rated-up]="testgood"
-                              [class.rated-down]="testbad"
+                              [class.rated]="movieGood || movieBad"
+                              [class.rated-up]="movieGood"
+                              [class.rated-down]="movieBad"
                             >
                               <!-- rated rated-up -->
                               <div
@@ -222,15 +222,15 @@
                                   data-rating="2"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
-                                  [class.clicked]="testgood"
+                                  [class.clicked]="movieGood"
                                   (click)="likeMovie(movie.id)"
                                 >
                                   <svg
-                                    *ngIf="!testgood"
+                                    *ngIf="!movieGood"
                                     data-rating="2"
                                     class="svg-icon "
-                                    [class.svg-icon-thumb-up]="!testgood"
-                                    [class.svg-icon-thumb-up-filled]="testgood"
+                                    [class.svg-icon-thumb-up]="!movieGood"
+                                    [class.svg-icon-thumb-up-filled]="movieGood"
                                     focusable="true"
                                   >
                                     <use filter="" xlink:href="#thumb-up">
@@ -244,7 +244,7 @@
                                   </svg>
                                   <!-- 엄지척 흰색 -->
                                   <svg
-                                    *ngIf="testgood"
+                                    *ngIf="movieGood"
                                     data-rating="0"
                                     class="svg-icon svg-icon-thumb-up-filled"
                                     focusable="true"
@@ -278,7 +278,7 @@
                                   (click)="dislikeMovie(movie.id)"
                                 >
                                   <svg
-                                    *ngIf="!testbad"
+                                    *ngIf="!movieBad"
                                     data-rating="1"
                                     class="svg-icon svg-icon-thumb-down"
                                     focusable="true"
@@ -294,7 +294,7 @@
                                   </svg>
                                   <!-- 엄지 다운 흰색 -->
                                   <svg 
-                                  *ngIf="testbad"
+                                  *ngIf="movieBad"
                                   data-rating="0" class="svg-icon svg-icon-thumb-down-filled" focusable="true">
                                     <use filter="" xlink:href="#thumb-down-filled">
                                       <svg id="thumb-down-filled" viewBox="0 0 44 44">    
@@ -320,6 +320,7 @@
                                 <svg
                                   class="svg-icon svg-icon-mylist-add"
                                   focusable="true"
+                                  *ngIf="!marked"
                                 >
                                   <use filter="" xlink:href="#mylist-add">
                                     #shadow-root (closed)
@@ -331,7 +332,24 @@
                                     </svg>
                                   </use>
                                 </svg>
+                                <svg 
+                                  class="svg-icon svg-icon-mylist-added" focusable="true"
+                                  *ngIf="marked">
+                                  <use filter="" xlink:href="#mylist-added">
+                                      <svg id="mylist-added" viewBox="0 0 14 14">   <polygon fill="currentColor" points="5.48335262 11.4770745 1.18125415 7.16039261 0 8.34164677 5.65835323 14 15.4146375 1.00620431 14.0729662 0.0145341512">
+                                      </polygon>
+                                    </svg>
+                                  </use>
+                                </svg>
                               </a>
+                              <span 
+                              *ngIf="!marked"
+                              class="nf-svg-button-tooltip" role="status" aria-live="assertive">
+                                내가 찜한 콘텐츠에 추가
+                              </span>
+                              <span 
+                              *ngIf="marked"
+                              class="nf-svg-button-tooltip" role="status" aria-live="assertive">내가 찜한 콘텐츠에서 삭제</span>
                             </div>
                           </span>
                         </div>
