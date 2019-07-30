@@ -3,6 +3,6 @@ export interface Main {
   logo: string;
   title: string;
   image: string;
-  degree: string;
+  degree: object;
   synopsis: string;
 }
