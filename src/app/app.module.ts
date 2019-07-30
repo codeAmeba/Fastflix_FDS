@@ -36,6 +36,7 @@ import {
 // Directives
 import { FixHeaderDirective } from './directives/fix-header.directive';
 import { MoveupdownDirective } from './directives/moveupdown.directive';
+import { OnUnloadDirective } from './directives/on-unload.directive';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MoveupdownDirective } from './directives/moveupdown.directive';
     SignupStep4Component,
     MoveupdownDirective,
     ProfileSliderComponent,
+    OnUnloadDirective,
   ],
   imports: [
     BrowserModule,

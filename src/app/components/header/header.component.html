@@ -119,62 +119,28 @@
                   role="list"
                   aria-label="Profiles"
                 >
-                  <li class="sub-menu-item profile" role="listitem">
+                  <li
+                    *ngFor="let subUser of subUsers"
+                    class="sub-menu-item profile"
+                    role="listitem"
+                  >
                     <div>
                       <a
                         class="profile-link"
                         tabindex="0"
-                        routerLink="/profile"
+                        (click)="selectProfile(subUser)"
                       >
                         <div class="avatar-wrapper">
                           <img
                             class="profile-icon"
-                            src="https://occ-0-3451-1009.1.nflxso.net/art/0a23d/bd81473c570e4f6898dae0375550d809c230a23d.png"
-                            alt=""
+                            src="{{
+                              subUser['profile_info']['profile_image_path']
+                            }}"
+                            alt="{{ subUser.name }}"
                           />
                         </div>
 
-                        <span class="profile-name">철수</span>
-                      </a>
-                      <div class="profile-children"></div>
-                    </div>
-                  </li>
-                  <li class="sub-menu-item profile" role="listitem">
-                    <div>
-                      <a
-                        class="profile-link"
-                        tabindex="0"
-                        routerLink="/profile"
-                      >
-                        <div class="avatar-wrapper">
-                          <img
-                            class="profile-icon"
-                            src="https://occ-0-3451-1009.1.nflxso.net/art/fdd25/09e0032f7e12b87ca39678df047c5261214fdd25.png"
-                            alt=""
-                          />
-                        </div>
-
-                        <span class="profile-name">영희</span>
-                      </a>
-                      <div class="profile-children"></div>
-                    </div>
-                  </li>
-                  <li class="sub-menu-item profile" role="listitem">
-                    <div>
-                      <a
-                        class="profile-link"
-                        tabindex="0"
-                        routerLink="/profile"
-                      >
-                        <div class="avatar-wrapper">
-                          <img
-                            class="profile-icon"
-                            src="https://occ-0-3451-1009.1.nflxso.net/art/c113e/849b23455c878b9e5c762339aaf7b70b19bc113e.png"
-                            alt=""
-                          />
-                        </div>
-
-                        <span class="profile-name">민지</span>
+                        <span class="profile-name">{{ subUser.name }}</span>
                       </a>
                       <div class="profile-children"></div>
                     </div>

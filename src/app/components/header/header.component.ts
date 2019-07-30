@@ -8,6 +8,7 @@ import {
 } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { SubUser } from 'src/app/models/sub-user';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
   isHome: boolean;
   isSearch: boolean;
   searchValue: string;
+  subUsers: SubUser[];
 
   constructor(
     private router: Router,
@@ -43,6 +45,12 @@ export class HeaderComponent implements OnInit {
     this.isSearch = false;
     this.searchValue = '';
     this.isHome = this.router.url === '/home';
+    this.subUsers = this.authService.getSubUsers();
+  }
+
+  selectProfile(subUser: SubUser) {
+    this.authService.setProfile(subUser.id);
+    window.location.reload();
   }
 
   showMenu(event: HTMLElement) {
