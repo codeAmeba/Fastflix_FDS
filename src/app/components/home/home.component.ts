@@ -174,12 +174,13 @@ export class HomeComponent implements OnInit {
       movies => {
         console.log('시청 중', movies);
 
-        follwUpCategory.movies = movies.map(movie => {
+        follwUpCategory.movies = movies.map(continueMovie => {
           return {
-            id: movie.id,
-            title: movie.name,
-            url: movie['horizontal_image_path'],
-            preview: movie['sample_video_file'],
+            id: continueMovie.movie.id,
+            title: continueMovie.movie.name,
+            url: continueMovie.movie['horizontal_image_path'],
+            preview: continueMovie.movie['sample_video_file'],
+            continue: continueMovie['to_be_continue'],
           };
         });
       },
