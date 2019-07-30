@@ -17,6 +17,12 @@
   width: auto;
 }
 
+.video-js.vjs-16-9, .video-js.vjs-4-3, .video-js.vjs-fluid {
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+}
+
 .back-arrow {
   position: absolute;
   z-index: 1;
