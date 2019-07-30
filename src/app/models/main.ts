@@ -5,4 +5,5 @@ export interface Main {
   image: string;
   degree: object;
   synopsis: string;
+  marked: boolean;
 }
