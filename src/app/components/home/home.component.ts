@@ -51,29 +51,62 @@ export class HomeComponent implements OnInit {
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
+    this.getCategoryMovies();
   }
 
   getMainMovie() {
     this.movieService.getHomeMain().subscribe(mainMovie => {
-      console.log(mainMovie);
       this.mainMovie.id = mainMovie[0]['메인 영화']['id'];
       this.mainMovie.image = mainMovie[0]['메인 영화']['big_image_path'];
       this.mainMovie.logo = mainMovie[0]['메인 영화']['logo_image_path'];
       this.mainMovie.title = mainMovie[0]['메인 영화']['name'];
       this.mainMovie.degree = mainMovie[0]['메인 영화']['degree'];
       this.mainMovie.synopsis = mainMovie[0]['메인 영화']['synopsis'];
-      console.log('mainMovie', this.mainMovie);
     });
 
     this.movieService.getBigMovie().subscribe(bigMovie => {
-      console.log(bigMovie);
       this.bigMovie.id = bigMovie['id'];
       this.bigMovie.image = bigMovie['horizontal_image_path'];
       this.bigMovie.logo = bigMovie['logo_image_path'];
       this.bigMovie.title = bigMovie['name'];
       // this.bigMovie.degree = bigMovie[0]['메인 영화']['degree'];
       // this.bigMovie.synopsis = bigMovie[0]['메인 영화']['synopsis'];
-      console.log('bigMovie', this.bigMovie);
+    });
+  }
+
+  getCategoryMovies() {
+    this.getPopularMovies();
+  }
+
+  getPopularMovies() {
+    const popularCategory = this.homeCatogories.find(
+      ({ category }) => category === 'Fastflix 인기 콘텐츠'
+    );
+    this.movieService.getPopularMovies().subscribe(movies => {
+      popularCategory.movies = movies.map(movie => {
+        return {
+          id: movie.id,
+          title: movie.name,
+          url: movie['horizontal_image_path'],
+          preview: movie['sample_video_file'],
+        };
+      });
+    });
+  }
+
+  getMyListMovies() {
+    const popularCategory = this.homeCatogories.find(
+      ({ category }) => category === 'Fastflix 인기 콘텐츠'
+    );
+    this.movieService.getPopularMovies().subscribe(movies => {
+      popularCategory.movies = movies.map(movie => {
+        return {
+          id: movie.id,
+          title: movie.name,
+          url: movie['horizontal_image_path'],
+          preview: movie['sample_video_file'],
+        };
+      });
     });
   }
 }
