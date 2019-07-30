@@ -173,4 +173,22 @@ export class MovieService {
       { headers }
     );
   }
+
+  /* watch */
+  // 재생 시간 저장
+  saveWatchingTime(id: number, time: number) {
+    const subuserid = this.authService.getProfile();
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+    return this.http.post<any>(
+      `${this.apiUrl}/movies/paused_time/`,
+      {
+        sub_user_id: subuserid,
+        movie_id: id,
+        paused_time: time,
+      },
+      { headers }
+    );
+  }
 }
