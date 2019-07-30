@@ -36,6 +36,7 @@ export class MovieComponent implements OnInit, OnDestroy {
       image: '',
       degree: {},
       synopsis: '',
+      marked: false,
     };
     this.openedCategory = '';
     this.getMovies();
@@ -96,6 +97,10 @@ export class MovieComponent implements OnInit, OnDestroy {
     thanos.classList.remove('has-open-jaw');
 
     console.log('closed', this.openedCategory);
+  }
+
+  toggleMyLsit(id: number) {
+    this.movieService.myList(id).subscribe(response => console.log(response));
   }
 
   ngOnDestroy() {

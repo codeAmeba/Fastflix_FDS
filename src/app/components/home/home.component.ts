@@ -4,6 +4,7 @@ import { Main } from 'src/app/models/main';
 import { MovieService } from 'src/app/services/movie.service';
 import { HomeCategories } from 'src/app/models/HomeCategories';
 import { MovieCategory } from 'src/app/models/movie-category';
+import { MoviePreview } from 'src/app/models/movie-preview';
 
 @Component({
   selector: 'app-home',
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
       image: '',
       degree: {},
       synopsis: '',
+      marked: false,
     };
     this.bigMovie = {
       id: 0,
@@ -47,6 +49,7 @@ export class HomeComponent implements OnInit {
       image: '',
       degree: {},
       synopsis: '',
+      marked: false,
     };
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
@@ -62,6 +65,11 @@ export class HomeComponent implements OnInit {
       this.mainMovie.title = mainMovie[0]['메인 영화']['name'];
       this.mainMovie.degree = mainMovie[0]['메인 영화']['degree'];
       this.mainMovie.synopsis = mainMovie[0]['메인 영화']['synopsis'];
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.mainMovie.marked = myLists.find(
+          ({ id }) => id === this.mainMovie.id
+        );
+      });
     });
 
     this.movieService.getBigMovie().subscribe(bigMovie => {
@@ -71,7 +79,49 @@ export class HomeComponent implements OnInit {
       this.bigMovie.title = bigMovie['name'];
       // this.bigMovie.degree = bigMovie[0]['메인 영화']['degree'];
       // this.bigMovie.synopsis = bigMovie[0]['메인 영화']['synopsis'];
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.bigMovie.marked = myLists.find(
+          ({ id }) => id === this.bigMovie.id
+        );
+      });
     });
+  }
+
+  toggleMyLsit(movie: Main) {
+    movie.marked = !movie.marked;
+    this.movieService.myList(movie.id).subscribe(response => {
+      console.log(response);
+      this.getMyListMovies();
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.mainMovie.marked = myLists.find(
+          ({ id }) => id === this.mainMovie.id
+        );
+      });
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.bigMovie.marked = myLists.find(
+          ({ id }) => id === this.bigMovie.id
+        );
+      });
+    });
+  }
+
+  sliderOpened(category: string) {
+    const thanos = document.querySelector('.thanos');
+
+    this.openedCategory = category;
+    thanos.classList.add('has-open-jaw');
+    console.log('opened', this.openedCategory);
+  }
+
+  sliderClosed(category: string) {
+    const thanos = document.querySelector('.thanos');
+
+    this.openedCategory =
+      this.openedCategory === category ? '' : this.openedCategory;
+
+    thanos.classList.remove('has-open-jaw');
+
+    console.log('closed', this.openedCategory);
   }
 
   getCategoryMovies() {
@@ -87,12 +137,17 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getPopularMovies().subscribe(movies => {
       popularCategory.movies = movies.map(movie => {
-        return {
+        const preMovie: MoviePreview = {
           id: movie.id,
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
+          marked: false,
         };
+        this.movieService.getMyListMovies().subscribe(myLists => {
+          preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
+        });
+        return preMovie;
       });
     });
   }
@@ -103,13 +158,19 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getMyListMovies().subscribe(movies => {
       myListCategory.movies = movies.map(movie => {
-        return {
+        const preMovie: MoviePreview = {
           id: movie.id,
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
+          marked: false,
         };
+        this.movieService.getMyListMovies().subscribe(myLists => {
+          preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
+        });
+        return preMovie;
       });
+      console.log('내가 찜한 목록', myListCategory.movies);
     });
   }
 
@@ -119,12 +180,17 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getLatestMovies().subscribe(movies => {
       latestCategory.movies = movies.map(movie => {
-        return {
+        const preMovie: MoviePreview = {
           id: movie.id,
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
+          marked: false,
         };
+        this.movieService.getMyListMovies().subscribe(myLists => {
+          preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
+        });
+        return preMovie;
       });
     });
   }
@@ -136,12 +202,17 @@ export class HomeComponent implements OnInit {
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
         follwUpCategory.movies = movies.map(movie => {
-          return {
+          const preMovie: MoviePreview = {
             id: movie.id,
             title: movie.name,
             url: movie['horizontal_image_path'],
             preview: movie['sample_video_file'],
+            marked: false,
           };
+          this.movieService.getMyListMovies().subscribe(myLists => {
+            preMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id);
+          });
+          return preMovie;
         });
       },
       error => console.error(error)
