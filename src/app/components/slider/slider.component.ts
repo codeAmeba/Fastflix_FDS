@@ -20,6 +20,7 @@ export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
   @Input() category: string;
   @Input() openCategory: string;
+  @Input() isContinue: boolean;
   @Output() sliderOpen = new EventEmitter();
   @Output() sliderClose = new EventEmitter();
   @Output() toggleMyList = new EventEmitter();

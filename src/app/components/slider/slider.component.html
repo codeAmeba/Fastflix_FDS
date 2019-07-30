@@ -401,6 +401,15 @@
               </div>
               <!-- hover시 확대 끝 -->
             </div>
+            <div *ngIf="isContinue" class="progress ">
+              <span class="progress-bar"
+                ><span
+                  role="presentation"
+                  class="progress-completed"
+                  [ngStyle]="{ width: movie?.continue / 20 + '%' }"
+                ></span
+              ></span>
+            </div>
           </div>
         </div>
       </div>

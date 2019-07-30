@@ -5,4 +5,5 @@ export interface MoviePreview {
   order?: number;
   marked?: boolean;
   preview?: string;
+  continue?: number;
 }

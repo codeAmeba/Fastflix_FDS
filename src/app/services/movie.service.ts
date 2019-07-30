@@ -91,7 +91,7 @@ export class MovieService {
       .set('Authorization', `Token ${token}`)
       .set('subuserid', this.authService.getProfile() + '');
 
-    return this.http.get<any>(`${this.apiUrl}/movie/followup/`, {
+    return this.http.get<any>(`${this.apiUrl}/movies/followup/`, {
       headers,
     });
   }
