@@ -185,8 +185,10 @@ export class SliderComponent implements OnInit, OnChanges {
 
   cardHover(movieOrder, movieId) {
     if (!this.isOpen) {
+      console.log("안열렸당");
+
+      this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobup = movieOrder;
         this.bobScale = "scale(0.99999)";
       }, 300);
     }
@@ -305,13 +307,20 @@ export class SliderComponent implements OnInit, OnChanges {
       }
     );
   }
-
+  testgood: boolean = false;
+  testbad: boolean = false;
   likeMovie(id: number) {
     console.log(id);
 
     this.movieService.likeMovie(id).subscribe(response => {
       console.log(response);
     });
+    if (this.testgood) {
+      this.testgood = false;
+    } else {
+      this.testgood = true;
+    }
+    this.testbad = false;
   }
 
   dislikeMovie(id: number) {
@@ -320,6 +329,13 @@ export class SliderComponent implements OnInit, OnChanges {
     this.movieService.dislikeMovie(id).subscribe(response => {
       console.log(response);
     });
+
+    if (this.testbad) {
+      this.testbad = false;
+    } else {
+      this.testbad = true;
+    }
+    this.testgood = false;
   }
 
   myList(id: number) {

@@ -217,7 +217,11 @@
                           <span class="ActionButtons">
                             <div
                               class="thumbs-component thumbs thumbs-vertical animated unrated"
+                              [class.unrated]="!testgood && !testbad"
+                              [class.rated-up]="testgood"
+                              [class.rated-down]="testbad"
                             >
+                              <!-- rated rated-up -->
                               <div
                                 class="nf-svg-button-wrapper thumb-container thumb-up-container "
                               >
@@ -226,6 +230,7 @@
                                   data-rating="2"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
+                                  [class.clicked]="testgood"
                                   (click)="likeMovie(movie.id)"
                                 >
                                   <svg
