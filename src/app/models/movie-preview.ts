@@ -2,6 +2,7 @@ export interface MoviePreview {
   id: number;
   title: string;
   url: string;
-  order: number;
+  order?: number;
+  marked: boolean;
   preview?: string;
 }

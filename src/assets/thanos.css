@@ -364,6 +364,14 @@ a {
   content: '\e641';
 }
 
+.icon-button-mylist-added:before {
+  content: '\e888';
+}
+
+.billboard-row .billboard-originals .icon-button-mylist-added:before {
+  content: '\e804';
+}
+
 .nf-icon-button .nf-icon-button-label {
   display: inline-block;
   font-size: 1.1vw;

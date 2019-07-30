@@ -54,9 +54,12 @@
                     tabindex="0"
                     class="nf-icon-button mylist-button"
                     aria-label="Add To My List"
+                    (click)="toggleMyLsit(mainMovie)"
                     ><span
                       role="presentation"
-                      class="nf-icon-button-icon icon-button-mylist-add"
+                      class="nf-icon-button-icon"
+                      [class.icon-button-mylist-add]="!mainMovie?.marked"
+                      [class.icon-button-mylist-added]="mainMovie?.marked"
                     ></span
                     ><span class="nf-icon-button-label"
                       >내가 찜한 콘텐츠</span
