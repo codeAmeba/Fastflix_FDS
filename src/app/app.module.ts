@@ -37,6 +37,7 @@ import {
 import { FixHeaderDirective } from './directives/fix-header.directive';
 import { MoveupdownDirective } from './directives/moveupdown.directive';
 import { OriginalSliderComponent } from './components/original-slider/original-slider.component';
+import { OnUnloadDirective } from './directives/on-unload.directive';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,11 @@ import { OriginalSliderComponent } from './components/original-slider/original-s
     SignupStep4Component,
     MoveupdownDirective,
     ProfileSliderComponent,
+<<<<<<< HEAD
     OriginalSliderComponent,
+=======
+    OnUnloadDirective,
+>>>>>>> rmorigin/develop
   ],
   imports: [
     BrowserModule,

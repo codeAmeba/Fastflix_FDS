@@ -13,10 +13,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   emailHolderUp: boolean;
   pwHolderUp: boolean;
+
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private userService: UserService,
     private renderer: Renderer2
   ) {}
 
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(60),
       ]),
+      maintainance: new FormControl(false),
     });
 
     this.emailHolderUp = false;
@@ -44,10 +45,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // const user = new FormData();
-    // user.append('id', this.loginForm.get('id').value);
-    // user.append('pw', this.loginForm.get('password').value);
-
     const user = {
       id: this.loginForm.get('id').value,
       pw: this.loginForm.get('password').value,
@@ -56,14 +53,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(user).subscribe(response => {
       console.log('login response:', response);
 
-      this.authService.setToken(response);
-      this.authService.subUsers = response['sub_user_list'];
-      // this.userService.setProfile(response['sub_user_list'][0].id);
-      // this.userService.userName = response['sub_user_list'][0].name;
+      this.authService.setToken(response['token']);
+      this.authService.setSubUsers(response['sub_user_list']);
 
       if (response.token) this.router.navigate(['/home']);
     });
-    // this.router.navigate(['subin/main']);
+    this.authService.setMaintainance(this.loginForm.get('maintainance').value);
   }
 
   emailFocus(value: string) {

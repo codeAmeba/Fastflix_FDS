@@ -23,6 +23,7 @@
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
+    "video-js": "^0.7.0",
     "video.js": "^7.6.0",
     "videojs": "^1.0.0",
     "videojs-hotkeys": "^0.2.25",
