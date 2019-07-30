@@ -30,6 +30,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderComponent implements OnInit {
   showDropDown: boolean;
   isHome: boolean;
+  isSearch: boolean;
+  searchValue: string;
 
   constructor(
     private router: Router,
@@ -38,6 +40,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.showDropDown = false;
+    this.isSearch = false;
+    this.searchValue = '';
     this.isHome = this.router.url === '/home';
   }
 
@@ -52,5 +56,13 @@ export class HeaderComponent implements OnInit {
   signOut() {
     this.authService.logout();
     this.router.navigate(['welcome']);
+  }
+
+  search() {
+    console.log('search Input: ', this.searchValue);
+
+    // if (this.searchValue === '') this.isSearch = false;
+
+    // 값 있으면 searchValue로 검색
   }
 }
