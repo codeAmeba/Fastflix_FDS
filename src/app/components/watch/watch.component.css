@@ -1,6 +1,8 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 .container {
+  align-items: center;
+  justify-content: center;
   margin: auto 0;
 }
 
@@ -30,7 +32,7 @@
   position: absolute;
   max-width: 400px;
   max-height: 300px;
-  font-size: 1.5em;
+  font-size: 1.7em;
   margin: 5em 8em;
   z-index: 1;
   visibility: visible;
@@ -48,8 +50,8 @@
   text-align: left;
 }
 
-.movie-info > h1 {
-  font-size: 2.5em;
+.movie-title {
+  font-size: 3em;
   font-weight: 800;
   margin: 15px 0;
 }
@@ -61,4 +63,12 @@
 .pause-message > p {
   margin-top: 50px;
   text-align: right;
+}
+
+.movie-info span {
+  font-size: 1.7em;
+}
+
+.age-limit {
+  margin: auto 15px;
 }
