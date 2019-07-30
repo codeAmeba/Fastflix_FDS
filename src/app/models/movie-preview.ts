@@ -3,4 +3,5 @@ export interface MoviePreview {
   title: string;
   url: string;
   order: number;
+  preview?: string;
 }

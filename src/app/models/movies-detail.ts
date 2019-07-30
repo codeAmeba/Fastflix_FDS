@@ -24,5 +24,5 @@ export interface MovieDetail {
   match_rate: number;
   to_be_continue: number;
   remaining_time: number;
-  can_i_store: boolean;
+  can_i_store?: boolean;
 }
