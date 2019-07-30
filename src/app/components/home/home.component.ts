@@ -54,7 +54,8 @@ export class HomeComponent implements OnInit {
     };
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
-    this.getMainMovie();
+    // this.getMainMovie();
+    this.getMyListMovies();
   }
 
   getMainMovie() {
@@ -70,33 +71,39 @@ export class HomeComponent implements OnInit {
       )
         ? true
         : false;
+
+      this.getCategoryMovies();
     });
 
     this.movieService.getBigMovie().subscribe(bigMovie => {
       this.bigMovie.id = bigMovie['id'];
-      this.bigMovie.image = bigMovie['horizontal_image_path'];
+      this.bigMovie.image = bigMovie['big_image_path'];
       this.bigMovie.logo = bigMovie['logo_image_path'];
       this.bigMovie.title = bigMovie['name'];
-      // this.bigMovie.degree = bigMovie[0]['메인 영화']['degree'];
-      // this.bigMovie.synopsis = bigMovie[0]['메인 영화']['synopsis'];
+      this.bigMovie.degree = bigMovie['degree'];
+      this.bigMovie.synopsis = bigMovie['synopsis'];
       this.bigMovie.marked = bigMovie['marked'];
+      console.log(bigMovie);
     });
-
-    this.getMyListMovies();
   }
 
   toggleMyLsit(movie: Main) {
+    console.log(movie);
+
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
+      console.log(marked);
+
       movie.marked = marked;
-      this.getMyListMovies();
-      this.movieService.getMyListMovies().subscribe(myLists => {
-        this.mainMovie.marked = myLists.find(
-          ({ id }) => id === this.mainMovie.id
-        );
-        this.bigMovie.marked = myLists.find(
-          ({ id }) => id === this.bigMovie.id
-        );
-      });
+      // this.movieService.getMyListMovies().subscribe(myLists => {
+      //   this.mainMovie.marked = myLists.find(
+      //     ({ id }) => id === this.mainMovie.id
+      //   )
+      //     ? true
+      //     : false;
+      //   this.bigMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id)
+      //     ? true
+      //     : false;
+      // });
     });
   }
 
@@ -137,7 +144,6 @@ export class HomeComponent implements OnInit {
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: this.myLists.find(({ id }) => id === movie.id) ? true : false,
         };
       });
     });
@@ -154,12 +160,11 @@ export class HomeComponent implements OnInit {
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: true,
         };
       });
       myListCategory.movies = this.myLists;
       console.log('내가 찜한 목록', myListCategory.movies);
-      this.getCategoryMovies();
+      this.getMainMovie();
     });
   }
 
@@ -174,7 +179,6 @@ export class HomeComponent implements OnInit {
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: this.myLists.find(({ id }) => id === movie.id) ? true : false,
         };
       });
     });
@@ -192,9 +196,6 @@ export class HomeComponent implements OnInit {
             title: movie.name,
             url: movie['horizontal_image_path'],
             preview: movie['sample_video_file'],
-            marked: this.myLists.find(({ id }) => id === movie.id)
-              ? true
-              : false,
           };
         });
       },

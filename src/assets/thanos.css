@@ -2,6 +2,7 @@
   position: relative;
   min-height: 1000px;
   z-index: 0;
+  line-height: 1.4;
 }
 
 .mainView .aro-genre .thanos.is-fullbleed,
@@ -372,6 +373,16 @@ a {
   content: '\e804';
 }
 
+.billboard-row .billboard-originals .mylist-button .icon-button-mylist-added,
+.billboard-row .billboard-originals .mylist-button .icon-button-mylist-added-reverse {
+  transform: scale(1.5);
+}
+
+.bigRow .mylist-button .icon-button-mylist-added,
+.bigRow .mylist-button .icon-button-mylist-added-reverse {
+  transform: scale(1.5);
+}
+
 .nf-icon-button .nf-icon-button-label {
   display: inline-block;
   font-size: 1.1vw;
@@ -527,6 +538,11 @@ a {
 .bigRowItem .forward-leaning,
 .billboard-links.forward-leaning {
   margin-top: 1vw;
+}
+
+.bigRow .info .billboard-links.button-layer.forward-leaning {
+  margin-top: 1.875vw;
+  margin-bottom: 1.25vw;
 }
 
 .bigRow .video-component-container .button-container {
