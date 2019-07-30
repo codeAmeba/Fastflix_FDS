@@ -36,6 +36,7 @@ import {
 // Directives
 import { FixHeaderDirective } from './directives/fix-header.directive';
 import { MoveupdownDirective } from './directives/moveupdown.directive';
+import { OriginalSliderComponent } from './components/original-slider/original-slider.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MoveupdownDirective } from './directives/moveupdown.directive';
     SignupStep4Component,
     MoveupdownDirective,
     ProfileSliderComponent,
+    OriginalSliderComponent,
   ],
   imports: [
     BrowserModule,
