@@ -120,7 +120,9 @@
             <div class="bigRowItem">
               <div
                 class="background-image"
-                [style.background-image]="'url: (' + bigMovie?.image + ')'"
+                [ngStyle]="{
+                  'background-image': 'url(' + bigMovie?.image + ')'
+                }"
               ></div>
               <div class="video-component-container">
                 <img
@@ -168,8 +170,8 @@
                   <img
                     class="title-logo"
                     src="{{ bigMovie?.logo }}"
-                    title="Outlander"
-                    alt="Outlander"
+                    title="{{ bigMovie?.title }}"
+                    alt="{{ bigMovie?.title }}"
                   />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
@@ -194,10 +196,13 @@
                     tabindex="0"
                     class="nf-icon-button mylist-button"
                     aria-label="내가 찜한 콘텐츠에 추가"
+                    (click)="toggleMyLsit(bigMovie)"
                   >
                     <span
                       role="presentation"
-                      class="nf-icon-button-icon icon-button-mylist-add"
+                      class="nf-icon-button-icon"
+                      [class.icon-button-mylist-add]="!bigMovie?.marked"
+                      [class.icon-button-mylist-added]="bigMovie?.marked"
                     ></span>
                     <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
                   </a>

@@ -128,7 +128,7 @@
                             <!-- 동영상 play 버튼 -->
                             <a></a>
                             <div class="bob-title">
-                              {{ moviesDetail.name ? moviesDetail.name : "" }}
+                              {{ moviesDetail.name ? moviesDetail.name : '' }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -140,13 +140,13 @@
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
                                       >{{
-                                        moviesDetail["match_rate"]
-                                          ? moviesDetail["match_rate"]
-                                          : ""
+                                        moviesDetail['match_rate']
+                                          ? moviesDetail['match_rate']
+                                          : ''
                                       }}{{
-                                        moviesDetail["match_rate"]
-                                          ? "% 일치"
-                                          : ""
+                                        moviesDetail['match_rate']
+                                          ? '% 일치'
+                                          : ''
                                       }}</span
                                     >
                                   </div>
@@ -154,9 +154,9 @@
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail["running_time"]
-                                    ? moviesDetail["running_time"]
-                                    : " "
+                                  moviesDetail['running_time']
+                                    ? moviesDetail['running_time']
+                                    : ' '
                                 }}</span>
                               </div>
                             </div>
@@ -175,7 +175,7 @@
                                         index as i
                                       "
                                     >
-                                      {{ feature ? feature.name : "" }}
+                                      {{ feature ? feature.name : '' }}
                                     </li>
                                     <ng-template
                                       [ngIf]="moviesDetail.feature.length < 3"
@@ -194,7 +194,7 @@
                                           index as i
                                         "
                                       >
-                                        {{ genre.name ? genre.name : "" }}
+                                        {{ genre.name ? genre.name : '' }}
                                       </li>
                                     </ng-template>
                                   </ul>
@@ -293,15 +293,26 @@
                                     </use>
                                   </svg>
                                   <!-- 엄지 다운 흰색 -->
-                                  <svg 
-                                  *ngIf="movieBad"
-                                  data-rating="0" class="svg-icon svg-icon-thumb-down-filled" focusable="true">
-                                    <use filter="" xlink:href="#thumb-down-filled">
-                                      <svg id="thumb-down-filled" viewBox="0 0 44 44">    
-                                        <path fill="currentColor" d="M7.77409406,4.98611111 C7.77409406,2.87125897 9.75648409,2.16059507 11.3546646,2.02537973 L22.9699448,2 C32.3088898,2 31.8388589,4.98611111 39,5.58333333 L39,19.9166667 L33.926393,22.8376301 L27.7380974,34.0441616 C27.7380974,34.0441616 27.0322261,43.0253705 27.0322261,43.5197523 C27.0322261,43.5197523 21.4597021,46.233934 20.0783569,38.7573652 C18.6970116,31.2807964 19.655707,26.6668091 19.9160924,26.0006104 L7.78656274,25.9752306 C6.18838222,25.8400153 4.19352352,25.0176299 4.19352352,22.9027778 C4.19352352,20.7879256 6.17591354,20.0772617 7.77409406,19.9420464 L6.58057055,19.9166667 C4.98239002,19.7560716 3,19.0454077 3,16.9305556 C3,14.8157034 4.98239002,14.1050395 6.58057055,13.9698242 L8.96761758,13.9444444 C7.36943706,13.7838494 5.38704703,13.0731855 5.38704703,10.9583333 C5.38704703,8.84348119 7.36943706,8.13281729 8.96761758,7.99760195 L11.3546646,7.97222222 C9.75648409,7.81162716 7.77409406,7.10096325 7.77409406,4.98611111 Z">
-                                        </path>
+                                  <svg
+                                    *ngIf="movieBad"
+                                    data-rating="0"
+                                    class="svg-icon svg-icon-thumb-down-filled"
+                                    focusable="true"
+                                  >
+                                    <use
+                                      filter=""
+                                      xlink:href="#thumb-down-filled"
+                                    >
+                                      <svg
+                                        id="thumb-down-filled"
+                                        viewBox="0 0 44 44"
+                                      >
+                                        <path
+                                          fill="currentColor"
+                                          d="M7.77409406,4.98611111 C7.77409406,2.87125897 9.75648409,2.16059507 11.3546646,2.02537973 L22.9699448,2 C32.3088898,2 31.8388589,4.98611111 39,5.58333333 L39,19.9166667 L33.926393,22.8376301 L27.7380974,34.0441616 C27.7380974,34.0441616 27.0322261,43.0253705 27.0322261,43.5197523 C27.0322261,43.5197523 21.4597021,46.233934 20.0783569,38.7573652 C18.6970116,31.2807964 19.655707,26.6668091 19.9160924,26.0006104 L7.78656274,25.9752306 C6.18838222,25.8400153 4.19352352,25.0176299 4.19352352,22.9027778 C4.19352352,20.7879256 6.17591354,20.0772617 7.77409406,19.9420464 L6.58057055,19.9166667 C4.98239002,19.7560716 3,19.0454077 3,16.9305556 C3,14.8157034 4.98239002,14.1050395 6.58057055,13.9698242 L8.96761758,13.9444444 C7.36943706,13.7838494 5.38704703,13.0731855 5.38704703,10.9583333 C5.38704703,8.84348119 7.36943706,8.13281729 8.96761758,7.99760195 L11.3546646,7.97222222 C9.75648409,7.81162716 7.77409406,7.10096325 7.77409406,4.98611111 Z"
+                                        ></path>
                                       </svg>
-                                  </use>
+                                    </use>
                                   </svg>
                                   <!-- 흰색 끝 -->
                                 </a>
@@ -315,12 +326,12 @@
                                 role="link"
                                 tabindex="0"
                                 class="nf-svg-button simpleround"
-                                (click)="myList(movie.id)"
+                                (click)="myList(moviesDetail)"
                               >
                                 <svg
                                   class="svg-icon svg-icon-mylist-add"
                                   focusable="true"
-                                  *ngIf="!marked"
+                                  *ngIf="!moviesDetail?.marked"
                                 >
                                   <use filter="" xlink:href="#mylist-add">
                                     #shadow-root (closed)
@@ -332,24 +343,36 @@
                                     </svg>
                                   </use>
                                 </svg>
-                                <svg 
-                                  class="svg-icon svg-icon-mylist-added" focusable="true"
-                                  *ngIf="marked">
+                                <svg
+                                  class="svg-icon svg-icon-mylist-added"
+                                  focusable="true"
+                                  *ngIf="moviesDetail?.marked"
+                                >
                                   <use filter="" xlink:href="#mylist-added">
-                                      <svg id="mylist-added" viewBox="0 0 14 14">   <polygon fill="currentColor" points="5.48335262 11.4770745 1.18125415 7.16039261 0 8.34164677 5.65835323 14 15.4146375 1.00620431 14.0729662 0.0145341512">
-                                      </polygon>
+                                    <svg id="mylist-added" viewBox="0 0 14 14">
+                                      <polygon
+                                        fill="currentColor"
+                                        points="5.48335262 11.4770745 1.18125415 7.16039261 0 8.34164677 5.65835323 14 15.4146375 1.00620431 14.0729662 0.0145341512"
+                                      ></polygon>
                                     </svg>
                                   </use>
                                 </svg>
                               </a>
-                              <span 
-                              *ngIf="!marked"
-                              class="nf-svg-button-tooltip" role="status" aria-live="assertive">
+                              <span
+                                *ngIf="!moviesDetail?.marked"
+                                class="nf-svg-button-tooltip"
+                                role="status"
+                                aria-live="assertive"
+                              >
                                 내가 찜한 콘텐츠에 추가
                               </span>
-                              <span 
-                              *ngIf="marked"
-                              class="nf-svg-button-tooltip" role="status" aria-live="assertive">내가 찜한 콘텐츠에서 삭제</span>
+                              <span
+                                *ngIf="moviesDetail?.marked"
+                                class="nf-svg-button-tooltip"
+                                role="status"
+                                aria-live="assertive"
+                                >내가 찜한 콘텐츠에서 삭제</span
+                              >
                             </div>
                           </span>
                         </div>

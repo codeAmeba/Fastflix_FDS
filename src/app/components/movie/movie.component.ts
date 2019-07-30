@@ -64,7 +64,6 @@ export class MovieComponent implements OnInit, OnDestroy {
           title: movie.name,
           url: movie['horizontal_image_path'],
           preview: movie['sample_video_file'],
-          marked: true,
         };
         return preMovie;
       });
@@ -100,7 +99,6 @@ export class MovieComponent implements OnInit, OnDestroy {
         title: movie.name,
         url: movie['horizontal_image_path'],
         preview: movie['sample_video_file'],
-        marked: this.myLists.find(({ id }) => id === movie.id) ? true : false,
       };
     });
   }
