@@ -96,8 +96,6 @@ export class HomeComponent implements OnInit {
         this.mainMovie.marked = myLists.find(
           ({ id }) => id === this.mainMovie.id
         );
-      });
-      this.movieService.getMyListMovies().subscribe(myLists => {
         this.bigMovie.marked = myLists.find(
           ({ id }) => id === this.bigMovie.id
         );
