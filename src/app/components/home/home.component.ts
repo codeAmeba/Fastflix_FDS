@@ -78,13 +78,11 @@ export class HomeComponent implements OnInit {
       this.bigMovie.degree = bigMovie['degree'];
       this.bigMovie.synopsis = bigMovie['synopsis'];
       this.bigMovie.marked = bigMovie['marked'];
-      console.log(bigMovie);
     });
   }
 
   toggleMyLsit(movie: Main) {
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log(movie, marked);
       this.getMyListMovies();
       movie.marked = marked;
     });
@@ -95,7 +93,6 @@ export class HomeComponent implements OnInit {
 
     this.openedCategory = category;
     thanos.classList.add('has-open-jaw');
-    console.log('opened', this.openedCategory);
   }
 
   sliderClosed(category: string) {
@@ -105,8 +102,6 @@ export class HomeComponent implements OnInit {
       this.openedCategory === category ? '' : this.openedCategory;
 
     thanos.classList.remove('has-open-jaw');
-
-    console.log('closed', this.openedCategory);
   }
 
   getCategoryMovies() {
