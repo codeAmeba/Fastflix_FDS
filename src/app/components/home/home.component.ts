@@ -13,8 +13,12 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthenticationService) {}
 
   ngOnInit() {
-    this.user = this.authService.userName;
+    this.user = this.authService
+      .getSubUsers()
+      .find(({ id }) => id === +this.authService.getProfile()).name;
+
     this.playBillBoard = false;
-    console.log('sub users', this.authService.subUsers);
+    console.log('sub users', this.authService.getSubUsers());
+    console.log('user', this.user);
   }
 }

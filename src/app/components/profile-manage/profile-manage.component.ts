@@ -23,7 +23,7 @@ export class ProfileManageComponent implements OnInit {
   ngOnInit() {
     this.tabState = '';
     this.isChild = false;
-    this.subUsers = this.authService.subUsers;
+    this.subUsers = this.authService.getSubUsers();
     this.tempName = '';
     this.selectedUser = {
       id: 0,
