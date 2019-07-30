@@ -62,7 +62,8 @@
             <div
               id="title-card-2-{{ movie.order }}"
               class="slider-refocus title-card"
-              (mouseenter)="cardHover(movie.order, movie.id)"
+              (mouseenter)="hoverTimeout(movie.order, movie.id)"
+              (mouseleave)="hoverTimeoutClear()"
             >
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">

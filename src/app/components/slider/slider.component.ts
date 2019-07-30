@@ -182,7 +182,16 @@ export class SliderComponent implements OnInit, OnChanges {
       }, 750);
     }
   }
-
+  timer;
+  hoverTimeout(movieOrder, movieId) {
+    this.timer = setTimeout(() => {
+      this.cardHover(movieOrder, movieId);
+    }, 700);
+  }
+  hoverTimeoutClear() {
+    clearTimeout(this.timer);
+    this.cardHoverLeave();
+  }
   cardHover(movieOrder, movieId) {
     if (!this.isOpen) {
       console.log("안열렸당");
