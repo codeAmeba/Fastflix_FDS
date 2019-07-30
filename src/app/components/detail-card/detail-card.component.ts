@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MovieDetail } from 'src/app/models/movies-detail';
 
 @Component({
   selector: 'app-detail-card',
@@ -7,9 +8,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DetailCardComponent implements OnInit {
   @Input() isOpen: boolean;
+  @Input() movie: MovieDetail;
   @Output() detailClose = new EventEmitter();
 
   imageRotatorImage: object;
+  tabState: string;
 
   constructor() {}
 
@@ -27,6 +30,7 @@ export class DetailCardComponent implements OnInit {
       opacity: 1,
       'transition-duration': '750ms',
     };
+    this.tabState = 'content';
   }
 
   detailClosed() {

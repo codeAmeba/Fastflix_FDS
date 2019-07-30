@@ -66,12 +66,7 @@ export class HomeComponent implements OnInit {
       this.mainMovie.title = mainMovie[0]['메인 영화']['name'];
       this.mainMovie.degree = mainMovie[0]['메인 영화']['degree'];
       this.mainMovie.synopsis = mainMovie[0]['메인 영화']['synopsis'];
-      this.mainMovie.marked = this.myLists.find(
-        ({ id }) => id === this.mainMovie.id
-      )
-        ? true
-        : false;
-
+      this.mainMovie.marked = mainMovie[0]['메인 영화']['marked'];
       this.getCategoryMovies();
     });
 
@@ -92,18 +87,7 @@ export class HomeComponent implements OnInit {
 
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
       console.log(marked);
-
       movie.marked = marked;
-      // this.movieService.getMyListMovies().subscribe(myLists => {
-      //   this.mainMovie.marked = myLists.find(
-      //     ({ id }) => id === this.mainMovie.id
-      //   )
-      //     ? true
-      //     : false;
-      //   this.bigMovie.marked = myLists.find(({ id }) => id === this.bigMovie.id)
-      //     ? true
-      //     : false;
-      // });
     });
   }
 

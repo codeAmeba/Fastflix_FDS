@@ -901,3 +901,559 @@ a {
     padding: 0 0 44vw;
   }
 }
+
+.jawBoneContainer .title .logo {
+  height: 7vw;
+  transform-origin: 0 0;
+  transition: transform .3s, -webkit-transform .3s, -moz-transform .3s, -o-transform .3s;
+}
+
+
+.jawBoneContainer .jawBoneCommon {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 33.3vw;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .jawBoneContainer .jawBoneCommon {
+    height: 37.8vw;
+  }
+}
+
+.jawBoneContainer .jawBoneCommon {
+  height: 1.4vw;
+}
+
+.jawBoneContainer .jawBonePanes {
+  position: relative;
+  opacity: 1;
+  z-index: 2;
+  transition: transform .3s, -webkit-transform .3s, -moz-transform .3s, -o-transform .3s;
+}
+
+.jawBoneContainer .jawBonePanes .jawBonePane {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: grey;
+  opacity: 0;
+}
+
+.jawBonePane .content-warning,
+.jawBonePane .overview {
+  width: 36vw;
+  min-width: 330px;
+  color: #999;
+  line-height: 1.3;
+  font-size: 1.5vw;
+}
+
+.jawBonePane .overview {
+  margin-top: .3em;
+}
+
+.jawBonePane .overview,
+.jawBonePane .synopsis,
+.originals-panels-row .jawBonePane .overview .heroSynopsis {
+  line-height: 1.6;
+}
+
+
+.video-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.jawBoneContainer .jawBoneCommon .meta {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 1.1vw;
+  height: 1.1vw;
+  min-height: 1.1vw;
+  line-height: 1.1vw;
+  margin-bottom: .8em;
+}
+
+.match-score-wrapper {
+  color: #fff;
+}
+
+.video-meta>span,
+.video-meta>svg {
+  margin-right: .5em;
+  margin-bottom: .3vw;
+}
+
+.jawBoneContainer .jawBoneCommon .meta>span {
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.match-score-wrapper .rating-inner {
+  transition: margin-right 550ms cubic-bezier(.86, 0, .07, 1) 1.65s;
+  display: flex;
+}
+
+.jawBoneContainer .jawBoneCommon .meta .rating-inner {
+  height: 1.4vw;
+  line-height: 1.4vw;
+}
+
+.match-score-wrapper .meta-thumb-container {
+  display: inline-block;
+  margin-bottom: -2px;
+}
+
+.match-score-wrapper .meta-thumb-container svg {
+  width: .7em !important;
+  height: .7em !important;
+}
+
+.match-score-wrapper .show-match-score .thumb-down svg,
+.match-score-wrapper .show-match-score .thumb-up svg {
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0;
+  transition: width 550ms cubic-bezier(.86, 0, .07, 1) 1.1s, opacity 150ms linear 950ms;
+}
+
+.match-score-wrapper .match-score {
+  font-weight: 700;
+  color: #46d369;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.match-score-wrapper .show-match-score .match-score {
+  max-width: 300px;
+  opacity: 1;
+  transition: max-width 550ms cubic-bezier(.86, 0, .07, 1) 1.65s, opacity 150ms linear 2.2s;
+}
+
+.jawBonePane .overview .jawbone-actions {
+  margin: .8em 0;
+  display: flex;
+  align-items: center;
+}
+
+.nf-icon-button {
+  display: inline-block;
+  color: #fff;
+  position: relative;
+}
+
+.nf-flat-button {
+  font-size: 1vw;
+  font-weight: 700;
+  margin-right: .75em;
+  padding: .57em 1.35em;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  background-image: none;
+  background-color: rgba(0, 0, 0, .4);
+}
+
+.nf-flat-button-uppercase {
+  text-transform: uppercase;
+}
+
+.nf-flat-button-primary {
+  background-color: #e50914;
+  border-color: #ff0a16;
+}
+
+.jawBonePane .overview .jawbone-actions .thumbs-container {
+  margin: 0 0 0 .8em;
+  display: inline-block;
+}
+
+.thumbs-component {
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.nf-svg-button-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.thumbs-component .thumb-container {
+  display: flex;
+  cursor: pointer;
+  color: #fff;
+  position: relative;
+  pointer-events: auto;
+}
+
+.thumbs-component.animated.unrated .thumb-container {
+  opacity: 1;
+  transition: opacity 150ms linear 650ms;
+}
+
+.nf-svg-button-wrapper .nf-svg-button {
+  pointer-events: auto;
+  display: flex;
+  width: 1.2em;
+  height: 1.2em;
+  justify-content: center;
+  align-items: center;
+  transition: transform 350ms cubic-bezier(.86, 0, .07, 1), -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1), -moz-transform 350ms cubic-bezier(.86, 0, .07, 1), -o-transform 350ms cubic-bezier(.86, 0, .07, 1);
+}
+
+.nf-svg-button-wrapper .nf-svg-button.simpleround {
+  border: .1em solid rgba(255, 255, 255, .5);
+  border-radius: 50%;
+  padding: .3em;
+  margin: .25em;
+  background: rgba(0, 0, 0, .5);
+}
+
+.thumbs-component .nf-svg-button svg {
+  width: 1em;
+  height: 1em;
+}
+
+
+.jawBonePane .overview .evidence {
+  margin: 15px 0 0 0;
+  display: flex;
+  align-items: center;
+  font-size: .9em;
+}
+
+.jawBonePane .overview .evidence .evidence-icon {
+  font-size: 1.9em;
+  color: #666;
+  padding: 0 .3em 1px 0;
+  flex: 0 0 auto;
+}
+
+.icon-Talent:before {
+  content: '\e734';
+}
+
+.evidence-text {
+  color: #fff;
+  line-height: 1.3;
+  position: relative;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .7);
+  font-size: .8vw;
+}
+
+.evidence-text {
+  line-height: 1.4;
+}
+
+.jawBonePane .overview .evidence .evidence-text {
+  margin: 0;
+  color: #828282;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+  .evidence-text {
+    font-size: 1.28vw;
+  }
+}
+
+.jawBonePane .overview .meta-lists {
+  margin: 20px 0 0 0;
+}
+
+.jawBonePane .overview .inline-list {
+  font-size: .9em;
+  color: #828282;
+  margin: 2px 0 0 0;
+}
+
+.jawBonePane .overview .inline-list .list-label {
+  color: #828282;
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.jawBonePane .overview .inline-list a {
+  color: #828282;
+}
+
+.jaw-play-hitzone {
+  position: absolute;
+  right: 5%;
+  top: -5vw;
+  bottom: -6vw;
+  width: 55%;
+  z-index: 11;
+  cursor: pointer;
+}
+
+.jawBoneContainer .menu {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  font-size: 1vw;
+  z-index: 100;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  pointer-events: none;
+}
+
+.jawBoneContainer .menu li {
+  padding: 1em 1.5em 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: #ccc;
+  min-width: 5%;
+  pointer-events: auto;
+}
+
+.jawBoneContainer .menu li.current {
+  cursor: default;
+  color: #fff;
+}
+
+.jawBoneContainer .menu a {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  color: inherit;
+  font-weight: 700;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.jawBoneContainer .menu li span {
+  height: .33em;
+  display: block;
+  width: 100%;
+  margin-top: .66em;
+  transform: translateY(.4em);
+  transition: transform .2s linear, -webkit-transform .2s linear, -moz-transform .2s linear, -o-transform .2s linear;
+}
+
+.jawBoneContainer .menu li.current span {
+  transform: translateY(0);
+  background-color: #e50914;
+}
+
+.jawBoneContainer .menu li {
+  padding: 1em 1.5em 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  color: #ccc;
+  min-width: 5%;
+  pointer-events: auto;
+}
+
+.jawBoneContainer .slider {
+  overflow-y: hidden;
+  margin-left: -4%;
+}
+
+.jawBoneContainer .jawBoneDetails {
+  font-size: 14px;
+  margin-top: 12px;
+  white-space: nowrap;
+}
+
+.slider {
+  position: relative;
+  margin: 0;
+  padding: 0 4%;
+  touch-action: pan-y;
+}
+
+.slider .handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  width: 4%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  color: #fff;
+}
+
+.slider .handle.handlePrev {
+  left: 0;
+}
+
+.slider .handle>.indicator-icon {
+  display: none;
+  height: auto;
+  align-self: center;
+  font-size: 2.5vw;
+  transition: transform .1s ease-out 0s, -webkit-transform .1s ease-out 0s, -moz-transform .1s ease-out 0s, -o-transform .1s ease-out 0s;
+}
+
+.slider .handle.handlePrev .indicator-icon {
+  transform-origin: 55% 50%;
+}
+
+.slider .handle.active {
+  cursor: pointer;
+}
+
+.slider .handle.handleNext {
+  right: 0;
+}
+
+.jawBoneContainer .jawBoneDetails .handle.active>.indicator-icon {
+  display: block;
+}
+
+.slider .sliderMask {
+  overflow-x: hidden;
+  padding-bottom: 1px;
+}
+
+.jawBoneContainer .slider .sliderMask {
+  overflow-y: hidden;
+}
+
+.jawBoneContainer .episodeWrapper .slider .sliderMask,
+.jawBoneContainer .simsWrapper .slider .sliderMask,
+.jawBoneContainer .trailerWrapper .slider .sliderMask {
+  margin-right: -30px;
+}
+
+.slider .sliderMask .sliderContent {
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .episodeWrapper .loadingTitle,
+  .episodeWrapper .row-with-x-columns .slider-item,
+  .placeholderEpisodes .loadingTitle,
+  .placeholderEpisodes .row-with-x-columns .slider-item,
+  .simsWrapper .loadingTitle,
+  .simsWrapper .row-with-x-columns .slider-item,
+  .trailerWrapper .loadingTitle,
+  .trailerWrapper .row-with-x-columns .slider-item {
+    width: 33.333333%;
+  }
+}
+
+
+.slider .sliderMask .sliderContent .slider-item {
+  box-sizing: border-box;
+  z-index: 1;
+  display: inline-block;
+  position: relative;
+  white-space: normal;
+  vertical-align: top;
+  padding: 0 2px;
+}
+
+.slider .sliderMask .sliderContent .slider-item:first-child {
+  padding-left: 0;
+}
+
+.simsLockup,
+.trailerLockup {
+  padding-right: 30px;
+  font-size: .83333vw;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .simsLockup,
+  .trailerLockup {
+    font-size: 1.249995vw;
+  }
+}
+
+.title-artwork,
+.video-artwork {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  width: 100%;
+  padding: 28.125% 0;
+}
+
+.simsLockup .video-artwork,
+.trailerLockup .video-artwork {
+  margin-bottom: .5vw;
+  position: relative;
+  z-index: 3;
+  background-size: cover;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .simsLockup .video-artwork,
+  .trailerLockup .video-artwork {
+    margin-bottom: .75vw;
+  }
+
+}
+
+.simsLockup .sims-artwork,
+.simsLockup .trailer-artwork,
+.trailerLockup .sims-artwork,
+.trailerLockup .trailer-artwork {
+  background-color: #1a1a1a;
+}
+
+.simsLockup .simsPlay,
+.simsLockup .trailerPlay,
+.trailerLockup .simsPlay,
+.trailerLockup .trailerPlay {
+  left: 50%;
+  top: 50%;
+  font-size: 4vw;
+  height: 4.4vw;
+  width: 4.4vw;
+  margin-left: -2.1vw;
+  margin-top: -2.1vw;
+  border-radius: 50%;
+  color: #fff;
+  opacity: 0;
+  position: absolute;
+  z-index: 100;
+  box-sizing: border-box;
+  outline: 0;
+  transition: all 150ms ease;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .simsLockup .simsPlay,
+  .simsLockup .trailerPlay,
+  .trailerLockup .simsPlay,
+  .trailerLockup .trailerPlay {
+    font-size: 6vw;
+    height: 6.6vw;
+    width: 6.6vw;
+    margin-left: -3.15vw;
+    margin-top: -3.15vw;
+    border-radius: 50%;
+    color: #fff;
+    opacity: 0;
+    position: absolute;
+    z-index: 100;
+    box-sizing: border-box;
+    outline: 0;
+    transition: all 150ms ease;
+  }
+}
