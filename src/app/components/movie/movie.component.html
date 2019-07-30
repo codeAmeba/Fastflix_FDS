@@ -96,7 +96,10 @@
       </h2>
       <div class="rowContainer rowContainerTitleCard">
         <div class="rowContent">
+          <app-original-slider *ngIf="previewCat.category === '오리지널'">
+          </app-original-slider>
           <app-slider
+            *ngIf="previewCat.category !== '오리지널'"
             [moviesList]="previewCat.movies"
             [category]="previewCat.category"
             [openCategory]="openedCategory"
