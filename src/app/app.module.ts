@@ -1,15 +1,15 @@
 // Modules
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from './app-routing.module';
 
 // Components
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 import {
   HomeComponent,
   MovieComponent,
@@ -30,14 +30,14 @@ import {
   SignupStep2Component,
   SignupStep3Component,
   SignupStep4Component,
-  ProfileSliderComponent
-} from "./components";
+  ProfileSliderComponent,
+  OriginalSliderComponent,
+} from './components';
 
 // Directives
-import { FixHeaderDirective } from "./directives/fix-header.directive";
-import { MoveupdownDirective } from "./directives/moveupdown.directive";
-import { OriginalSliderComponent } from "./components/original-slider/original-slider.component";
-import { OnUnloadDirective } from "./directives/on-unload.directive";
+import { FixHeaderDirective } from './directives/fix-header.directive';
+import { MoveupdownDirective } from './directives/moveupdown.directive';
+import { OnUnloadDirective } from './directives/on-unload.directive';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,7 @@ import { OnUnloadDirective } from "./directives/on-unload.directive";
     MoveupdownDirective,
     ProfileSliderComponent,
     OriginalSliderComponent,
-    OnUnloadDirective
+    OnUnloadDirective,
   ],
   imports: [
     BrowserModule,
@@ -73,9 +73,9 @@ import { OnUnloadDirective } from "./directives/on-unload.directive";
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
