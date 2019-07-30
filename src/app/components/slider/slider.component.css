@@ -581,7 +581,6 @@ img {
   -moz-transition: opacity 150ms linear 550ms;
   transition: opacity 150ms linear 550ms;
 }
-
 .thumbs-component.animated.thumbs-vertical.rated .thumb-up-container {
   -webkit-transform: translate(0, 2.4em);
   -moz-transform: translate(0, 2.4em);
