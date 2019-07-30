@@ -172,6 +172,8 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
+        console.log('시청 중', movies);
+
         follwUpCategory.movies = movies.map(movie => {
           return {
             id: movie.id,
