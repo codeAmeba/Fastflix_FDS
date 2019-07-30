@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Main } from 'src/app/models/main';
 import { MovieService } from 'src/app/services/movie.service';
+import { HomeCategories } from 'src/app/models/HomeCategories';
+import { MovieCategory } from 'src/app/models/movie-category';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
   movies: object[];
   mainMovie: Main;
   bigMovie: Main;
+  homeCatogories: MovieCategory[];
   openedCategory: string;
 
   constructor(
@@ -45,6 +48,7 @@ export class HomeComponent implements OnInit {
       degree: {},
       synopsis: '',
     };
+    this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
   }
