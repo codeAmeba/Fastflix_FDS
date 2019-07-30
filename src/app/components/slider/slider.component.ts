@@ -345,10 +345,11 @@ export class SliderComponent implements OnInit, OnChanges {
     }
     this.movieGood = false;
   }
-
+  marked;
   myList(id: number) {
     this.movieService.myList(id).subscribe(response => {
       console.log(response);
+      this.marked = response.marked;
       this.toggleMyList.emit();
     });
   }
