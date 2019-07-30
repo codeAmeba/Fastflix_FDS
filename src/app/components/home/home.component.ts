@@ -79,11 +79,7 @@ export class HomeComponent implements OnInit {
       this.bigMovie.title = bigMovie['name'];
       // this.bigMovie.degree = bigMovie[0]['메인 영화']['degree'];
       // this.bigMovie.synopsis = bigMovie[0]['메인 영화']['synopsis'];
-      this.bigMovie.marked = this.myLists.find(
-        ({ id }) => id === this.mainMovie.id
-      )
-        ? true
-        : false;
+      this.bigMovie.marked = bigMovie['marked'];
     });
 
     this.getMyListMovies();
