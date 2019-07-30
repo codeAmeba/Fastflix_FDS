@@ -777,6 +777,42 @@ svg:not(:root) {
 polygon {
   fill: currentcolor;
 }
+.nf-svg-button-wrapper .nf-svg-button-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: 6px;
+  left: 50%;
+  background: #fff;
+  color: #000;
+  width: 8.5vw;
+  font-size: 0.9vw;
+  font-weight: 700;
+  padding: 2px 0 2px;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.nf-svg-button-wrapper.hovered .nf-svg-button-tooltip,
+.nf-svg-button-wrapper:hover .nf-svg-button-tooltip {
+  display: block;
+}
+.nf-svg-button-wrapper .nf-svg-button-tooltip:before {
+  border-color: transparent transparent #fff;
+  border-style: solid;
+  border-width: 0 3px 3px;
+  content: "";
+  height: 0;
+  left: 50%;
+  margin-left: -2px;
+  margin-top: -3px;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
 
 /* 하단 버튼 */
 .bob-chevron-wrapper {
