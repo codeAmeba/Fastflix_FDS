@@ -4,7 +4,7 @@
     <h1 class="visually-hidden">Fastflix 홈</h1>
     <span class="billboard-animations-container">
       <div class="billboard-row" role="region" aria-label="특별 소개 콘텐츠">
-        <div class="billboard">
+        <div class="billboard billboard-originals">
           <div class="billboard-trailer">
             <div class="trailer-background">
               <div class="FFPlayer" *ngIf="playBillBoard"></div>
@@ -20,8 +20,8 @@
                   <span class="maturity-rating "
                     ><span
                       ><img
-                        src="http://www.kmrb.or.kr/img/01_guide/rating_15.png"
-                        alt=""/></span
+                        src="{{ (mainMovie?.degree)['degree_image_path'] }}"
+                        alt="{{ (mainMovie?.degree)['name'] }}"/></span
                   ></span>
                 </div>
               </div>
@@ -39,7 +39,11 @@
                   />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
-                  <a routerLink="/watch" class="playLink" aria-label="Play">
+                  <a
+                    [routerLink]="['/watch', mainMovie?.id]"
+                    class="playLink"
+                    aria-label="Play"
+                  >
                     <span
                       tabindex="-1"
                       class="nf-icon-button nf-flat-button bf-flat button-uppercase"
@@ -54,9 +58,12 @@
                     tabindex="0"
                     class="nf-icon-button mylist-button"
                     aria-label="Add To My List"
+                    (click)="toggleMyLsit(mainMovie)"
                     ><span
                       role="presentation"
-                      class="nf-icon-button-icon icon-button-mylist-add"
+                      class="nf-icon-button-icon"
+                      [class.icon-button-mylist-add]="!mainMovie?.marked"
+                      [class.icon-button-mylist-added]="mainMovie?.marked"
                     ></span
                     ><span class="nf-icon-button-label"
                       >내가 찜한 콘텐츠</span
@@ -89,7 +96,10 @@
       </h2>
       <div class="rowContainer rowContainerTitleCard">
         <div class="rowContent">
+          <app-original-slider *ngIf="previewCat.category === '오리지널'">
+          </app-original-slider>
           <app-slider
+            *ngIf="previewCat.category !== '오리지널'"
             [moviesList]="previewCat.movies"
             [category]="previewCat.category"
             [openCategory]="openedCategory"

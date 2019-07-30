@@ -9,13 +9,21 @@
             <div class="trailer-background">
               <div class="FFPlayer" *ngIf="playBillBoard"></div>
               <div class="hero-img-wrapper">
-                <img class="hero static-image image-layer"
-                  src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABRJewj46ewk1GG7755f0p-zAiizaKO-B1-Ku8aIauHIw1H_MhASsR3fZrz630jHxwOl_Ng2-ERgvrqavnjarXjiDzBsFDibn7g.webp?r=7d4"
-                  alt="" />
+                <img
+                  class="hero static-image image-layer"
+                  src="{{ mainMovie?.image }}"
+                  alt="{{ mainMovie?.title }}"
+                />
                 <div class="vignette-top vignette-layer"></div>
                 <div class="vignette-bottom vignette-layer"></div>
-                <div class="embedded-components button-layer"><span class="maturity-rating "><span><img
-                        src="http://www.kmrb.or.kr/img/01_guide/rating_15.png" alt=""></span></span></div>
+                <div class="embedded-components button-layer">
+                  <span class="maturity-rating "
+                    ><span
+                      ><img
+                        src="{{ (mainMovie?.degree)['degree_image_path'] }}"
+                        alt="{{ (mainMovie?.degree)['name'] }}"/></span
+                  ></span>
+                </div>
               </div>
             </div>
           </div>
@@ -23,27 +31,49 @@
             <div class="info meta-layer">
               <div class="logo-and-text meta-layer">
                 <div class="billboard-title">
-                  <img class="title-logo"
-                    src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/5e0byrbbfBPBmtxyXMpKqMuqOQY/AAAABT0NCUJAm3n2Rk5ea_Rx8Xdh8MSUFm8BNoycSTMJGfClC9kA7T-YQ2XZPvlXcI_1fsVpeDh96XZQDyJOEK4OUGBNVsmgVTwigEbL_7PJ4eHhA6GFhuTgPmLlw2R-vc9d7J8ZEXcn2esX5bKqSTM10xhk3MGpV6lABe-MLmTcB9g0cg.webp?r=497"
-                    title="Outlander" alt="Outlander" />
+                  <img
+                    class="title-logo"
+                    src="{{ mainMovie?.logo }}"
+                    title="{{ mainMovie?.title }}"
+                    alt="{{ mainMovie?.title }}"
+                  />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
-                  <a role="link" aria-label="재생" class="playLink" routerLink="/watch">
-                    <span tabindex="-1" class="nf-icon-button nf-flat-button nf-flat-button-uppercase">
-                      <span class="nf-flat-button-icon nf-flat-button-icon-play"></span>
+                  <a
+                    role="link"
+                    aria-label="재생"
+                    class="playLink"
+                    [routerLink]="['/watch', mainMovie?.id]"
+                  >
+                    <span
+                      tabindex="-1"
+                      class="nf-icon-button nf-flat-button nf-flat-button-uppercase"
+                    >
+                      <span
+                        class="nf-flat-button-icon nf-flat-button-icon-play"
+                      ></span>
                       <span class="nf-flat-button-text">재생</span>
                     </span>
                   </a>
-                  <a role="button" tabindex="0" class="nf-icon-button mylist-button" aria-label="내가 찜한 콘텐츠에 추가">
-                    <span role="presentation" class="nf-icon-button-icon icon-button-mylist-add"></span>
+                  <a
+                    role="button"
+                    tabindex="0"
+                    class="nf-icon-button mylist-button"
+                    aria-label="내가 찜한 콘텐츠에 추가"
+                    (click)="toggleMyLsit(mainMovie)"
+                  >
+                    <span
+                      role="presentation"
+                      class="nf-icon-button-icon"
+                      [class.icon-button-mylist-add]="!mainMovie?.marked"
+                      [class.icon-button-mylist-added]="mainMovie?.marked"
+                    ></span>
                     <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
                   </a>
                 </div>
                 <div class="synopsis-fade-container">
                   <div class="synopsis no-supplemental">
-                    <!-- -->The Tenenbaums are one big ball of frayed nerves and basket cases, but they weren't always
-                    like this. Meet Dad.
-                    <!-- -->
+                    {{ mainMovie?.synopsis }}
                   </div>
                 </div>
               </div>
@@ -52,148 +82,141 @@
         </div>
       </div>
     </span>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">
-            Fastflix 인기 콘텐츠
+    <div
+      *ngFor="let homeCategory of homeCatogories"
+      class="thanosRow thanosTitleCard"
+      [class.originalsRow]="homeCategory.category === 'Fastflix 오리지널'"
+      [class.thanosBigRow]="homeCategory.category === '특별 소개 콘텐츠'"
+      [class.jawBoneOpen]="homeCategory.category === openedCategory"
+    >
+      <div *ngIf="homeCategory.category !== '특별 소개 콘텐츠'; else special">
+        <h2 class="rowHeader">
+          <span class="rowTitle">
+            <div class="rowHeaderTitle">
+              {{
+                homeCategory.category === '시청 중인 콘텐츠'
+                  ? user + ' 님이 ' + homeCategory?.category
+                  : homeCategory?.category
+              }}
+            </div>
+          </span>
+        </h2>
+        <div class="rowContainer rowContainerTitleCard">
+          <div class="rowContent">
+            <app-original-slider
+              *ngIf="homeCategory.category === 'Fastflix 오리지널'"
+            ></app-original-slider>
+            <app-slider
+              *ngIf="homeCategory.category !== 'Fastflix 오리지널'"
+              [moviesList]="homeCategory.movies"
+              [category]="homeCategory.category"
+              [openCategory]="openedCategory"
+              (sliderOpen)="sliderOpened($event)"
+              (sliderClose)="sliderClosed($event)"
+              (toggleMyList)="getMyListMovies()"
+            ></app-slider>
           </div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
         </div>
       </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">
-            내가 찜한 콘텐츠
-          </div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard thanosBigRow">
-      <div class="bigRow">
-        <div class="rowContent">
-          <div class="bigRowItem">
-            <div class="background-image"></div>
-            <div class="video-component-container">
-              <img class="foreground-image show-foreground"
-                src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/NYskjzLJzCNUfv50Bf8eKZdz4nA/AAAABbuPKDKFMHkhGpkdIZUxVdFzSo4DIWbgSGa2_TznMBFyKDnJ6VDUFPnWqb8Ed1Jnm79rhTh-sG7Teh7v2fTc4syEqt_MPjvH7w.webp?r=ee4"
-                alt="Outlander">
-              <div class="button-container forward-leaning">
-                <svg aria-label="다시 재생" tabindex="0"
-                  class="svg-icon svg-icon-restart-playback Billboard__replay-trailer-button" focusable="true">
-                  <use filter="" xlink:href="#restart-playback">
-                    <svg id="restart-playback" viewBox="0 0 24 24">
-                      <g transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000)">
-                        <path fill="currentColor"
-                          d="M13,3 C8.03,3 4,7.03 4,12 L4,14 L6,14 L6,12 C6,8.13 9.13,5 13,5 C16.87,5 20,8.13 20,12 C20,15.87 16.87,19 13,19 C11.07,19 9.32,18.21 8.06,16.94 L6.64,18.36 C8.27,19.99 10.51,21 13,21 C17.97,21 22,16.97 22,12 C22,7.03 17.97,3 13,3 Z">
-                        </path>
-                        <polyline stroke="currentColor" stroke-width="2"
-                          transform="translate(5.000000, 13.250000) rotate(-90.000000) translate(-5.000000, -13.250000) "
-                          points="6.25 9.75 3.75 13.25 6.25 16.75"></polyline>
-                      </g>
-                    </svg>
-                  </use>
-                </svg>
-                <span class="maturity-rating ">
-                  <svg class="svg-icon svg-icon-maturity-rating-KR-KMRB-124" focusable="true">
-                    <use filter="" xlink:href="#maturity-rating-KR-KMRB-124">
-                      <svg id="maturity-rating-KR-KMRB-124" viewBox="442.6 442.6 114.8 114.8">
-                        <path fill="#CC2E32"
-                          d="M500,557.4c31.7,0,57.4-25.7,57.4-57.4c0-31.7-25.7-57.4-57.4-57.4c-31.7,0-57.4,25.7-57.4,57.4 C442.6,531.6,468.3,557.4,500,557.4">
-                        </path>
-                        <path fill="#FFFFFF"
-                          d="M482,488.6c-1.6-0.3-4.3-1.9-5.2-3.3c-0.7,1.5-3.5,3.4-5.3,3.8l-1.5-1.7c4.8-1.6,5.5-4.2,5.5-5h-4.1v-1.8h10.7 v1.8h-4.2c0,0.8,1.6,3.6,5.2,4.4L482,488.6z M488.1,493.5c0,2.2-2.5,3.8-7.4,3.8s-7.5-1.6-7.5-3.8c0-2.2,2.6-3.8,7.4-3.8 C485.5,489.7,488.1,491.3,488.1,493.5z M473.7,479.1v-1.8h6.2v1.8H473.7z M480.7,491.4c-3.1,0-4.9,0.8-4.9,2.1 c0,1.2,1.8,2.1,4.9,2.1c3,0,4.8-0.8,4.8-2C485.5,492.2,483.7,491.4,480.7,491.4z M485.8,489.4v-4.7h-3.9v-1.8h3.9v-5.6h2.2v12.1 H485.8z M490.2,494.5v-1.9h8.7v-4.2h2.2v4.2h8.7v1.9H490.2z M492.8,489.1l-1.6-1.6c6.7-2.3,7.6-6.1,7.6-8v-1.6h2.4v1.6 c0,1.9,1.1,5.8,7.6,8l-1.6,1.6c-3-0.9-6.2-3.7-7.2-5.9C499.1,485.6,495.7,488.3,492.8,489.1z M517.1,488.7h-4.9v-10.6h2.2v8.7h2.7 c2.7,0,5.5-0.4,7-0.7v1.8C522.9,488.2,520.1,488.6,517.1,488.7z M514.4,496.5v-5.9h2.2v4.1h12.3v1.9h-14.5V496.5z M526.2,491.5 v-6.7h-5.6V483h5.6v-1.8h-5.6v-1.8h5.6v-2.1h2.2v14.2H526.2z">
-                        </path>
-                        <path fill="#FFFFFF"
-                          d="M462.1,515.6h-2.6v-1.9h3.8v-4.3h2.2v4.3c1.6,0,6.2-0.3,8.1-0.6v1.8C470.9,515.3,467,515.6,462.1,515.6z  M470.8,511.7h-2.2c0-0.2,0.7-2.9,0.8-5.1h-8.6v-1.9h11C471.8,506.1,471.4,510,470.8,511.7z M462.9,522.8V517h2.2v3.9h12.2v1.9 L462.9,522.8L462.9,522.8z M476.6,511.8v6.3h-2.2v-14.5h2.2v6.3h2.7v1.9L476.6,511.8L476.6,511.8z M486.2,514.5h-5v-5.8h7.5v-2.2 h-7.5v-1.9h9.7v5.8h-7.5v2.1h3.7c1.9,0,4.8-0.3,6.2-0.4v1.8C491.8,514.2,488.7,514.4,486.2,514.5z M483.2,523.1v-6.8h13.7v6.8 H483.2z M494.7,518.1h-9.3v3.1h9.3V518.1z M496.9,510.5v4.8h-2.2v-11.6h2.2v4.9h2.8v1.9L496.9,510.5L496.9,510.5z M509.1,513.8 h-8.6v-1.7h19.6v1.7h-8.7v1.6h6.1v4.7h-12.2v1.3H518v1.7h-15v-4.6h12.2v-1.3H503v-1.7h6.1L509.1,513.8L509.1,513.8z M503,510.7V504 h2.2v1.8h10.1V504h2.2v6.7H503z M515.3,507.4h-10.1v1.6h10.1V507.4z M523.1,519.9l-1.7-1.3c5.9-2.6,8-7.8,8.2-10.8h-7v-1.9h9.6 C532.2,510.5,529.3,517,523.1,519.9z M538,503.7v8.1h3v2h-3v9.5h-2.2v-19.6L538,503.7L538,503.7z">
-                        </path>
+      <ng-template #special>
+        <div class="bigRow">
+          <div class="rowContent">
+            <div class="bigRowItem">
+              <div
+                class="background-image"
+                [ngStyle]="{
+                  'background-image': 'url(' + bigMovie?.image + ')'
+                }"
+              ></div>
+              <div class="video-component-container">
+                <img
+                  class="foreground-image show-foreground"
+                  src="{{ bigMovie?.image }}"
+                  alt="{{ bigMovie?.title }}"
+                />
+                <div class="button-container forward-leaning">
+                  <svg
+                    aria-label="다시 재생"
+                    tabindex="0"
+                    class="svg-icon svg-icon-restart-playback Billboard__replay-trailer-button"
+                    focusable="true"
+                  >
+                    <use filter="" xlink:href="#restart-playback">
+                      <svg id="restart-playback" viewBox="0 0 24 24">
+                        <g
+                          transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000)"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M13,3 C8.03,3 4,7.03 4,12 L4,14 L6,14 L6,12 C6,8.13 9.13,5 13,5 C16.87,5 20,8.13 20,12 C20,15.87 16.87,19 13,19 C11.07,19 9.32,18.21 8.06,16.94 L6.64,18.36 C8.27,19.99 10.51,21 13,21 C17.97,21 22,16.97 22,12 C22,7.03 17.97,3 13,3 Z"
+                          ></path>
+                          <polyline
+                            stroke="currentColor"
+                            stroke-width="2"
+                            transform="translate(5.000000, 13.250000) rotate(-90.000000) translate(-5.000000, -13.250000) "
+                            points="6.25 9.75 3.75 13.25 6.25 16.75"
+                          ></polyline>
+                        </g>
                       </svg>
                     </use>
                   </svg>
-                </span>
-              </div>
-            </div>
-            <div class="info">
-              <div class="billboard-title"><img class="title-logo"
-                  src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/5e0byrbbfBPBmtxyXMpKqMuqOQY/AAAABV7uFiXD3Dk9qmA6AMhhezYuZ8pmn6Obzm-veqCBno904g9qTm09O2d_tntmz2HpPyfBu64E4ch59zb1ZI1IXffnr4wc9xdP2fjcCH4T-ps-P0o7P9lKVx66cB_SvizuqIOGedc4YYyT3kC-fgcYN3kJDSSidNWugaEMddYuTr-Peg.webp?r=731"
-                  title="Outlander" alt="Outlander">
-              </div>
-              <div class="billboard-links button-layer forward-leaning">
-                <a role="link" aria-label="재생" class=" playLink" routerLink="/watch">
-                  <span tabindex="-1" class="nf-icon-button nf-flat-button nf-flat-button-uppercase">
-                    <span class="nf-flat-button-icon nf-flat-button-icon-play"></span>
-                    <span class="nf-flat-button-text">재생</span>
+                  <span class="maturity-rating ">
+                    <span>
+                      <img
+                        src="{{ (bigMovie?.degree)['degree_image_path'] }}"
+                        alt="{{ (bigMovie?.degree)['name'] }}"
+                    /></span>
                   </span>
-                </a>
-                <a role="button" tabindex="0" class="nf-icon-button mylist-button" aria-label="내가 찜한 콘텐츠에 추가">
-                  <span role="presentation" class="nf-icon-button-icon icon-button-mylist-add"></span>
-                  <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
-                </a>
+                </div>
               </div>
-              <div class="synopsis">18세기 스코틀랜드로 타임슬립한 여성. 과거를 바꾸고 새로운 인연을 이어나갈 것인가, 현대로 돌아갈 것인가. 운명의 이야기가 시작된다.</div>
+              <div class="info">
+                <div class="billboard-title">
+                  <img
+                    class="title-logo"
+                    src="{{ bigMovie?.logo }}"
+                    title="{{ bigMovie?.title }}"
+                    alt="{{ bigMovie?.title }}"
+                  />
+                </div>
+                <div class="billboard-links button-layer forward-leaning">
+                  <a
+                    role="link"
+                    aria-label="재생"
+                    class=" playLink"
+                    [routerLink]="['/watch', bigMovie?.id]"
+                  >
+                    <span
+                      tabindex="-1"
+                      class="nf-icon-button nf-flat-button nf-flat-button-uppercase"
+                    >
+                      <span
+                        class="nf-flat-button-icon nf-flat-button-icon-play"
+                      ></span>
+                      <span class="nf-flat-button-text">재생</span>
+                    </span>
+                  </a>
+                  <a
+                    role="button"
+                    tabindex="0"
+                    class="nf-icon-button mylist-button"
+                    aria-label="내가 찜한 콘텐츠에 추가"
+                    (click)="toggleMyLsit(bigMovie)"
+                  >
+                    <span
+                      role="presentation"
+                      class="nf-icon-button-icon"
+                      [class.icon-button-mylist-add]="!bigMovie?.marked"
+                      [class.icon-button-mylist-added]="bigMovie?.marked"
+                    ></span>
+                    <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
+                  </a>
+                </div>
+                <div class="synopsis">{{ bigMovie?.synopsis }}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">최신 등록 콘텐츠</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">{{ user }} 님이 시청 중인 콘텐츠</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard originalsRow">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">Fastflix 오리지널</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
-    </div>
-    <div class="thanosRow thanosTitleCard">
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">영화</div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-slider></app-slider>
-        </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>

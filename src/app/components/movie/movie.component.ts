@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { Main } from 'src/app/models/main';
 import { MovieCategories } from 'src/app/models/movieCategories';
@@ -10,17 +10,24 @@ import { MovieCategory } from 'src/app/models/movie-category';
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css'],
 })
-export class MovieComponent implements OnInit {
+export class MovieComponent implements OnInit, OnDestroy {
   user: string;
   playBillBoard: boolean;
   movies: object[];
   mainMovie: Main;
   movieCategories: MovieCategory[];
   openedCategory: string;
+  myLists: MoviePreview[];
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private renderer: Renderer2,
+    private movieService: MovieService
+  ) {}
 
   ngOnInit() {
+    this.renderer.addClass(document.body.parentElement, 'movie');
+    this.renderer.addClass(document.body, 'movie');
+
     this.user = '사용자';
     this.playBillBoard = false;
     this.mainMovie = {
@@ -28,8 +35,9 @@ export class MovieComponent implements OnInit {
       logo: '',
       title: '',
       image: '',
-      degree: '',
+      degree: {},
       synopsis: '',
+      marked: false,
     };
     this.openedCategory = '';
     this.getMovies();
@@ -40,20 +48,7 @@ export class MovieComponent implements OnInit {
     this.movieService.getMainMovie().subscribe(
       movies => {
         this.movies = movies[0];
-        // console.log('원본', this.movies);
-
-        this.getMainMovie();
-        this.movieCategories = this.movieCategories.map(previewCat => {
-          // console.log(
-          //   previewCat.category,
-          //   this.getCategoryMovie(previewCat.category)
-          // );
-
-          return {
-            category: previewCat.category,
-            movies: this.getCategoryMovie(previewCat.category),
-          };
-        });
+        this.getMyListMovies();
       },
       error => {
         console.log(error);
@@ -61,13 +56,36 @@ export class MovieComponent implements OnInit {
     );
   }
 
+  getMyListMovies() {
+    this.movieService.getMyListMovies().subscribe(movies => {
+      this.myLists = movies.map(movie => {
+        const preMovie: MoviePreview = {
+          id: movie.id,
+          title: movie.name,
+          url: movie['horizontal_image_path'],
+          preview: movie['sample_video_file'],
+        };
+        return preMovie;
+      });
+      this.getMainMovie();
+      this.movieCategories = this.movieCategories.map(previewCat => {
+        return {
+          category: previewCat.category,
+          movies: this.getCategoryMovie(previewCat.category),
+        };
+      });
+      console.log('내가 찜한 목록', this.myLists);
+    });
+  }
+
   getMainMovie() {
     this.mainMovie.id = this.movies['메인 영화']['id'];
     this.mainMovie.image = this.movies['메인 영화']['big_image_path'];
     this.mainMovie.logo = this.movies['메인 영화']['logo_image_path'];
     this.mainMovie.title = this.movies['메인 영화']['name'];
-    this.mainMovie.degree = this.movies['메인 영화']['degree'].id;
+    this.mainMovie.degree = this.movies['메인 영화']['degree'];
     this.mainMovie.synopsis = this.movies['메인 영화']['synopsis'];
+    this.mainMovie.marked = this.myLists['메인 영화']['marked'];
   }
 
   getCategoryMovie(category: string): MoviePreview[] {
@@ -76,6 +94,7 @@ export class MovieComponent implements OnInit {
         id: movie.id,
         title: movie.name,
         url: movie['horizontal_image_path'],
+        preview: movie['sample_video_file'],
       };
     });
   }
@@ -97,5 +116,22 @@ export class MovieComponent implements OnInit {
     thanos.classList.remove('has-open-jaw');
 
     console.log('closed', this.openedCategory);
+  }
+
+  toggleMyLsit(movie: Main) {
+    this.movieService.myList(movie.id).subscribe(({ marked }) => {
+      movie.marked = marked;
+      this.getMyListMovies();
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.mainMovie.marked = myLists.find(
+          ({ id }) => id === this.mainMovie.id
+        );
+      });
+    });
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body.parentElement, 'movie');
+    this.renderer.removeClass(document.body, 'movie');
   }
 }

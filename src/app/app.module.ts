@@ -31,6 +31,7 @@ import {
   SignupStep3Component,
   SignupStep4Component,
   ProfileSliderComponent,
+  OriginalSliderComponent,
 } from './components';
 
 // Directives
@@ -63,6 +64,7 @@ import { OnUnloadDirective } from './directives/on-unload.directive';
     SignupStep4Component,
     MoveupdownDirective,
     ProfileSliderComponent,
+    OriginalSliderComponent,
     OnUnloadDirective,
   ],
   imports: [

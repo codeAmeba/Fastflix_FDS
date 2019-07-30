@@ -1,18 +1,32 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+  Input,
+  OnInit,
+} from '@angular/core';
+import { MovieDetail } from 'src/app/models/movies-detail';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MovieService } from 'src/app/services/movie.service';
 
 declare let videojs: any;
 
 @Component({
   selector: 'app-watch',
   templateUrl: './watch.component.html',
-  styleUrls: ['./watch.component.css']
+  styleUrls: ['./watch.component.css'],
 })
-export class WatchComponent implements AfterViewInit, OnDestroy {
+export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() movie: MovieDetail;
   vidObj: any;
+  movieId: number;
   poster: string = 'https://i.ytimg.com/vi/YE7VzlLtp-4/maxresdefault.jpg';
-  
+
   // 샘플 영상 링크
-  video: string = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+  video: string =
+    'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
   isInactive: boolean;
   pauseMovie: boolean;
 
@@ -21,40 +35,53 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   madeYear: number = 2019;
   ageLimit: string = '12';
   runningTime: string = '9분 56초';
-  movieIntro: string = 'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.';
+  movieIntro: string =
+    'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.';
 
   // 시간 저장 변수
   hourOfMovie: number;
   minOfMovie: number;
-  secOfMovie: number; 
+  secOfMovie: number;
 
   @ViewChild('myvid', null) vid: ElementRef;
-  
-  ngAfterViewInit() {
 
+  constructor(
+    private route: ActivatedRoute,
+    private movieService: MovieService
+  ) {}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => (this.movieId = +params.get('id')));
+    console.log('movieId', this.movieId);
+  }
+
+  ngAfterViewInit() {
     const options = {
       controls: true,
       autoplay: true,
       preload: 'auto',
       techOrder: ['html5'],
       controlBar: {
-        volumePanel: { inline: true }
-      }
+        volumePanel: { inline: true },
+      },
     };
 
-    this.vidObj = new videojs(this.vid.nativeElement, options, function onPlayerReady() {
-      videojs.log('FASTFLIX player is working!');
-    });
+    this.vidObj = new videojs(
+      this.vid.nativeElement,
+      options,
+      function onPlayerReady() {
+        videojs.log('FASTFLIX player is working!');
+      }
+    );
 
     const myPlayer = videojs('my-video');
-    myPlayer.src({ type: 'video/mp4', 
-                    src: this.video });
+    myPlayer.src({ type: 'video/mp4', src: this.video });
 
     // 10초 전, 후 이동 버튼 vjs-control-bar에 동적 추가
     const myControlBar = document.querySelector('.vjs-control-bar');
-    const newDiv = document.createElement('div')
+    const newDiv = document.createElement('div');
     let newButton = '';
-  
+
     myPlayer.ready(() => {
       newButton = `<div class="play-back"
                   style="position: absolute;
@@ -75,38 +102,52 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
                   class="material-icons">
                   forward_10
                   </i>
-                  </div>`
+                  </div>`;
 
       myControlBar.appendChild(newDiv);
       newDiv.classList.add('back-forward-contain');
       newDiv.innerHTML = newButton;
-      
-      document.querySelector('#moveback').addEventListener('click', this.moveBack);
-      document.querySelector('#moveforward').addEventListener('click', this.moveForward);
 
+      document
+        .querySelector('#moveback')
+        .addEventListener('click', this.moveBack);
+      document
+        .querySelector('#moveforward')
+        .addEventListener('click', this.moveForward);
 
       //test
       // 플레이어 구동 시 lastTime부터 플레이 시작
-      myPlayer.currentTime(localStorage.getItem('lastTime'));
+      // myPlayer.currentTime(localStorage.getItem('lastTime'));
+      this.movieService.getMovieDetail(this.movieId).subscribe(detail => {
+        myPlayer.currentTime(detail['to_be_continue']);
+      });
       this.hourOfMovie = this.minOfMovie > 60 ? this.minOfMovie / 60 : 0;
       this.minOfMovie = Math.round(myPlayer.currentTime() / 60);
       this.secOfMovie = Math.round(myPlayer.currentTime() % 60);
-      videojs.log(`마지막으로 저장된 시간 : ${ this.hourOfMovie < 10 ? '0'+this.hourOfMovie : this.hourOfMovie }:${ this.minOfMovie < 10 ? '0'+this.minOfMovie : this.minOfMovie }:${ this.secOfMovie < 10 ? '0'+this.secOfMovie : this.secOfMovie }`);
+      videojs.log(
+        `마지막으로 저장된 시간 : ${
+          this.hourOfMovie < 10 ? '0' + this.hourOfMovie : this.hourOfMovie
+        }:${this.minOfMovie < 10 ? '0' + this.minOfMovie : this.minOfMovie}:${
+          this.secOfMovie < 10 ? '0' + this.secOfMovie : this.secOfMovie
+        }`
+      );
       // videojs.log(`마지막으로 저장된 시간 : ${Math.round(myPlayer.currentTime())} 초`);
-    });         
+    });
 
     // *테스트* beforunload 이벤트(새로고침, url 변경) 발생 시 localstorage에 현재 시간(초) 저장
     // 최종적으로 localstorage 대신 DB 적용해야 됨
-    window.addEventListener('beforeunload', function () {
-      localStorage.setItem('lastTime', myPlayer.currentTime());
-    });
+    window.addEventListener('beforeunload', this.savePlayTime);
+    // window.addEventListener('beforeunload', function() {
+    //   localStorage.setItem('lastTime', myPlayer.currentTime());
+    // });
   }
 
   // OnDestroy 적용으로 컴포넌트 소멸 시(스트리밍 페이지 이탈 시) 시간 저장
   // 뒤로가기 시 시간 저장
   ngOnDestroy() {
-    const myPlayer = videojs('my-video');
-    localStorage.setItem('lastTime', myPlayer.currentTime());
+    this.savePlayTime();
+    // const myPlayer = videojs('my-video');
+    // localStorage.setItem('lastTime', myPlayer.currentTime());
   }
 
   // 10초 전,후 이동
@@ -128,13 +169,22 @@ export class WatchComponent implements AfterViewInit, OnDestroy {
   playVideo() {
     setTimeout(() => {
       this.isInactive = true;
-    }, 2500)
+    }, 2500);
   }
 
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
   pauseVideo() {
     setTimeout(() => {
       this.pauseMovie = true;
-    }, 2500)
+    }, 2500);
+  }
+
+  savePlayTime() {
+    const myPlayer = videojs('my-video');
+    this.movieService
+      .saveWatchingTime(this.movieId, Math.round(myPlayer.currentTime()))
+      .subscribe(({ saved }) => {
+        console.log('saved', saved);
+      });
   }
 }
