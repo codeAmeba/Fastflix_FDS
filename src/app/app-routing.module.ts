@@ -59,7 +59,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'watch', component: WatchComponent, canActivate: [AuthGuard] },
+  { path: 'watch/:id', component: WatchComponent, canActivate: [AuthGuard] },
   { path: 'mylist', component: MyListComponent, canActivate: [AuthGuard] },
 ];
 

@@ -39,7 +39,11 @@
                   />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
-                  <a routerLink="/watch" class="playLink" aria-label="Play">
+                  <a
+                    [routerLink]="['/watch', mainMovie?.id]"
+                    class="playLink"
+                    aria-label="Play"
+                  >
                     <span
                       tabindex="-1"
                       class="nf-icon-button nf-flat-button bf-flat button-uppercase"
