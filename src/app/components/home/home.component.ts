@@ -89,11 +89,20 @@ export class HomeComponent implements OnInit {
 
   toggleMyLsit(movie: Main) {
     movie.marked = !movie.marked;
-    this.movieService
-      .myList(movie.id)
-      .subscribe(response => console.log(response));
-
-    this.getMyListMovies();
+    this.movieService.myList(movie.id).subscribe(response => {
+      console.log(response);
+      this.getMyListMovies();
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.mainMovie.marked = myLists.find(
+          ({ id }) => id === this.mainMovie.id
+        );
+      });
+      this.movieService.getMyListMovies().subscribe(myLists => {
+        this.bigMovie.marked = myLists.find(
+          ({ id }) => id === this.bigMovie.id
+        );
+      });
+    });
   }
 
   sliderOpened(category: string) {

@@ -99,12 +99,10 @@ export class MovieComponent implements OnInit, OnDestroy {
     console.log('closed', this.openedCategory);
   }
 
-  toggleMyLsit(movie: Main) {
-    movie.marked = !movie.marked;
-    this.movieService
-      .myList(movie.id)
-      .subscribe(response => console.log(response));
+  toggleMyLsit(id: number) {
+    this.movieService.myList(id).subscribe(response => console.log(response));
   }
+
   ngOnDestroy() {
     this.renderer.removeClass(document.body.parentElement, 'movie');
     this.renderer.removeClass(document.body, 'movie');
