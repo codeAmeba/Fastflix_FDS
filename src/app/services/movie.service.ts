@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { AuthenticationService } from './authentication.service';
-import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +15,88 @@ export class MovieService {
     private http: HttpClient,
     private authService: AuthenticationService
   ) {}
+
+  /*Home View 구성 Movies */
+
+  // Home main 영화
+  getHomeMain(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/`, {
+      headers,
+    });
+  }
+
+  // 특별 소개 콘텐츠
+  getBigMovie(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/big_size_video/`, {
+      headers,
+    });
+  }
+
+  // Fastflix 인기 콘텐츠
+  getPopularMovies(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/most_likes/`, {
+      headers,
+    });
+  }
+
+  // 내가 찜한 영화
+  getMyListMovies(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/my_list/`, {
+      headers,
+    });
+  }
+
+  // 최신 등록 영화
+  getLatestMovies(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/brand_new/`, {
+      headers,
+    });
+  }
+
+  // 시청 중인 영화
+  getFollowUpMovies(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.getProfile() + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movie/followup/`, {
+      headers,
+    });
+  }
+
+  /* Movie View 구성 Movies */
 
   getMainMovie(): Observable<any> {
     const token = this.authService.getToken();
@@ -31,6 +112,8 @@ export class MovieService {
     });
   }
 
+  /* Slider에서 Detail Open 시 Detail 요청 */
+
   getMovieDetail(id: number): Observable<any> {
     const token = this.authService.getToken();
 
@@ -41,6 +124,9 @@ export class MovieService {
     return this.http.get<any>(`${this.apiUrl}/movies/${id}/`, { headers });
   }
 
+  /* 좋아요, 싫어요, 내가 찜 한 목록 */
+
+  // 좋아요
   likeMovie(movieid: number): Observable<any> {
     const subuserid = this.authService.getProfile();
     const token = this.authService.getToken();
@@ -56,6 +142,7 @@ export class MovieService {
     );
   }
 
+  // 싫어요
   dislikeMovie(movieid: number): Observable<any> {
     const subuserid = this.authService.getProfile();
     const token = this.authService.getToken();
@@ -71,6 +158,7 @@ export class MovieService {
     );
   }
 
+  // 찜하기
   myList(movieid: number): Observable<any> {
     const subuserid = this.authService.getProfile();
     const token = this.authService.getToken();
