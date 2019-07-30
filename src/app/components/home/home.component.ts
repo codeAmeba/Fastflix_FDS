@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     };
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
-    // this.getMainMovie();
+    this.getMainMovie();
     this.getMyListMovies();
   }
 
@@ -83,10 +83,9 @@ export class HomeComponent implements OnInit {
   }
 
   toggleMyLsit(movie: Main) {
-    console.log(movie);
-
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log(marked);
+      console.log(movie, marked);
+      this.getMyListMovies();
       movie.marked = marked;
     });
   }
@@ -148,7 +147,6 @@ export class HomeComponent implements OnInit {
       });
       myListCategory.movies = this.myLists;
       console.log('내가 찜한 목록', myListCategory.movies);
-      this.getMainMovie();
     });
   }
 
