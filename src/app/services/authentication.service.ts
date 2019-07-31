@@ -26,11 +26,11 @@ export class AuthenticationService implements OnInit {
   }
 
   getToken(): string {
-    return localStorage.getItem(this.TOKEN_NAME);
+    return JSON.parse(localStorage.getItem(this.TOKEN_NAME));
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.TOKEN_NAME, token);
+    localStorage.setItem(this.TOKEN_NAME, JSON.stringify(token));
   }
 
   createProfile(user: UserProfile): Observable<UserProfile> {
@@ -46,11 +46,11 @@ export class AuthenticationService implements OnInit {
   }
 
   setProfile(profileId: any) {
-    localStorage.setItem(this.PROFILE_NAME, profileId);
+    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
   }
 
   getProfile() {
-    return localStorage.getItem(this.PROFILE_NAME);
+    return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
   }
 
   setSubUsers(subUsers: SubUser[]) {

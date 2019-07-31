@@ -60,7 +60,7 @@ export class SignupStep2Component implements OnInit {
         // loginData.append('pw', this.signupForm.get('password').value);
 
         // 회원가입 계정으로 로그인을 해서 Token을 받아와야 프로필 생성 가능
-        this.authService.login(loginData).subscribe(token => {
+        this.authService.login(loginData).subscribe(({ token }) => {
           this.authService.setToken(token);
           this.router.navigate(['/signup/step3']);
         });
