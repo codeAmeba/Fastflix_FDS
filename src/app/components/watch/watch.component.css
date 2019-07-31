@@ -1,35 +1,18 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 .container {
-  /* align-items: center;
-  justify-content: center;
-  margin: auto 0; */
-  /* min-width: 100vw; */
-  /* height: 100vh; */
   height: 100vh;
-  /* overflow: hidden; */
+}
+
+video {
+  object-fit: scale-down;
 }
 
 .vjs-matrix.video-js {
   color: white;
   font-size: 16px;
   font-family: inherit;
-}
-
-.back-arrow {
-  position: absolute;
-  z-index: 1;
-  margin: 15px;
-  cursor: pointer;
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0.1s, opacity 0.1s;
-}
-
-.user-inactive {
-  visibility: visible;
-  opacity: 0;
-  transition: visibility 1s, opacity 1s;
+  overflow-y: hidden;
 }
 
 .pause-message {

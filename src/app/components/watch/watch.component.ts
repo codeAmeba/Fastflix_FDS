@@ -27,7 +27,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 샘플 영상 링크
   video: string =
     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-  isInactive: boolean;
   pauseMovie: boolean;
 
   // 영화정보 데이터 받았다고 가정함
@@ -65,6 +64,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       controlBar: {
         volumePanel: { inline: true },
       },
+      fluid: true
     };
 
     this.vidObj = new videojs(
@@ -189,13 +189,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 뒤로가기 버튼
   historyBack() {
     window.history.back();
-  }
-
-  // 뒤로가기 버튼 2.5초 후 사라짐
-  playVideo() {
-    setTimeout(() => {
-      this.isInactive = true;
-    }, 2500);
   }
 
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
