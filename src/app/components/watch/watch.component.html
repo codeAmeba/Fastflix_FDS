@@ -10,8 +10,10 @@
     </div>
     <p>일시 중지됨</p>
   </div>
-  <video #myvid id="my-video" (pause)="pauseVideo()" (play)="pauseMovie = false"
-    class="video-js vjs-matrix" [poster]="poster">
-    <source [src]="video" type="video/mp4"> 
-  </video>
+  <div class="video-contain">
+    <video #myvid id="my-video" (pause)="pauseVideo()" (play)="pauseMovie = false"
+      class="video-js vjs-matrix" [poster]="poster">
+      <source [src]="video" type="video/mp4"> 
+    </video>
+  </div>
 </div>

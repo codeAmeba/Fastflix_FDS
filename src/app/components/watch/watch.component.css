@@ -1,11 +1,17 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 .container {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
+}
+.video-contain {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 video {
-  object-fit: scale-down;
+  object-fit: contain;
 }
 
 .vjs-matrix.video-js {
