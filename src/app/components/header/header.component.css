@@ -155,6 +155,8 @@
   margin-right: 10px;
 }
 
+
+
 .pinning-header .secondary-navigation .icon-search {
   vertical-align: middle;
 }
@@ -188,14 +190,29 @@
   box-sizing: border-box;
   padding: 7px 14px 7px 7px;
   font-size: 14px;
-  width: 212px;
+  width: 0;
+  opacity: 0;
   outline: 0;
+  transition: all 300ms;
+}
+
+.searchInput input.show {
+  width: 212px;
+  opacity: 1;
+}
+
+.searchInput .icon-search {
+  padding: 0 6px;
 }
 
 .searchInput .icon-close {
   cursor: pointer;
   margin: 0 6px;
   font-size: 13px;
+}
+
+.searchInput .empty {
+  visibility: hidden;
 }
 
 .pinning-header .account-menu-item {

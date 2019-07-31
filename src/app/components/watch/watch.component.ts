@@ -27,7 +27,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 샘플 영상 링크
   video: string =
     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-  isInactive: boolean;
   pauseMovie: boolean;
 
   // 영화정보 데이터 받았다고 가정함
@@ -65,6 +64,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       controlBar: {
         volumePanel: { inline: true },
       },
+      fluid: true
     };
 
     this.vidObj = new videojs(
@@ -85,17 +85,20 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     // 10초 전, 후 이동 버튼 vjs-control-bar에 동적 추가
+    // 뒤로가기 버튼 추가
     const myControlBar = document.querySelector('.vjs-control-bar');
-    const newDiv = document.createElement('div');
-    let newButton = '';
+    const backForwardContain = document.createElement('div');
+    const backArrowContain = document.createElement('div');
+    let playBackForwardButton = '';
+    let backArrow = '';
 
     myPlayer.ready(() => {
-      newButton = `<div class="play-back"
+      playBackForwardButton = `<div class="play-back"
                   style="position: absolute;
                   left: 67px;
                   margin-top: 12px;
                   cursor: pointer;">
-                  <i id="moveback" 
+                  <i id="move-back" 
                   class="material-icons">
                   replay_10
                   </i>
@@ -105,22 +108,38 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
                   left: 103px;
                   margin-top: 12px;
                   cursor: pointer;">
-                  <i id="moveforward" 
+                  <i id="move-forward" 
                   class="material-icons">
                   forward_10
                   </i>
                   </div>`;
 
-      myControlBar.appendChild(newDiv);
-      newDiv.classList.add('back-forward-contain');
-      newDiv.innerHTML = newButton;
+        backArrow = `<div 
+                  class="back-arrow"
+                  style="position: fixed;
+                  left: 0;
+                  top: 0;
+                  margin: 15px;
+                  cursor: pointer;">
+                  <img id="back-to-home" alt="뒤로가기" src="https://www.materialui.co/materialIcons/navigation/arrow_back_white_36x36.png">
+                  </div>`
+
+      myControlBar.appendChild(backForwardContain);
+      backForwardContain.classList.add('back-forward-contain');
+      backForwardContain.innerHTML = playBackForwardButton;
 
       document
-        .querySelector('#moveback')
-        .addEventListener('click', this.moveBack);
+      .querySelector('#move-back')
+      .addEventListener('click', this.moveBack);
       document
-        .querySelector('#moveforward')
-        .addEventListener('click', this.moveForward);
+      .querySelector('#move-forward')
+      .addEventListener('click', this.moveForward);
+
+      myControlBar.appendChild(backArrowContain);
+      backArrowContain.classList.add('back-arrow-contain');
+      backArrowContain.innerHTML = backArrow;
+
+      document.querySelector('#back-to-home').addEventListener('click', this.historyBack);
 
       //test
       // 플레이어 구동 시 lastTime부터 플레이 시작
@@ -170,13 +189,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 뒤로가기 버튼
   historyBack() {
     window.history.back();
-  }
-
-  // 뒤로가기 버튼 2.5초 후 사라짐
-  playVideo() {
-    setTimeout(() => {
-      this.isInactive = true;
-    }, 2500);
   }
 
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출

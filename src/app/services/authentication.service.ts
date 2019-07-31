@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { UserService } from './user.service';
 import { SubUser } from '../models/sub-user';
 import { UserProfile } from '../models/user-profile';
 
@@ -37,6 +36,8 @@ export class AuthenticationService implements OnInit {
     const token = this.getToken();
 
     const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+
+    console.log('user', user);
 
     return this.http.post<UserProfile>(
       `${this.apiUrl}/accounts/create_sub_user/`,

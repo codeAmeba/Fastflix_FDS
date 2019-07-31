@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Main } from 'src/app/models/main';
 import { MovieService } from 'src/app/services/movie.service';
-import { HomeCategories } from 'src/app/models/HomeCategories';
+import { HomeCategories } from 'src/app/models/homeCategories';
 import { MovieCategory } from 'src/app/models/movie-category';
 import { MoviePreview } from 'src/app/models/movie-preview';
 
