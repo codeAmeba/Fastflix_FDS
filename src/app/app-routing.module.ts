@@ -20,16 +20,18 @@ import {
 
 /* Guard */
 import { AuthGuard } from './services/auth.guard';
+import { SecondGuard } from './services/second.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'welcome', component: IndexComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'movie', component: MovieComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [SecondGuard] },
   {
     path: 'profile/manage',
     component: ProfileManageComponent,
+    canActivate: [SecondGuard],
   },
   {
     path: 'signup',
