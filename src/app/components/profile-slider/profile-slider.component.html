@@ -29,7 +29,12 @@
               class="slider-refocus title-card"
               (mouseover)="cardHover(movie.order, movie.id)"
             >
-              <a role="link" tabindex="0" class="slider-refocus">
+              <a
+                role="link"
+                tabindex="0"
+                (click)="selectIcon(movie)"
+                class="slider-refocus"
+              >
                 <div class="boxart-size-16x9 boxart-container">
                   <img
                     class="boxart-image boxart-image-in-padded-container"

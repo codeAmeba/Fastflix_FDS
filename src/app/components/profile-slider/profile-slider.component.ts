@@ -1,4 +1,11 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { ProfileImage } from 'src/app/models/profile-image';
 
 @Component({
@@ -8,6 +15,7 @@ import { ProfileImage } from 'src/app/models/profile-image';
 })
 export class ProfileSliderComponent implements OnInit {
   @Input() profileData: ProfileImage[];
+  @Output() selectedIcon = new EventEmitter();
 
   tabShow: boolean = false;
   movies;
@@ -193,7 +201,6 @@ export class ProfileSliderComponent implements OnInit {
       order: index + 1,
     }));
     this.moviesLength = this.profileData.length;
-    console.log(this.moviesLength);
 
     if (this.default) {
       this.moviesClone();
@@ -341,5 +348,10 @@ export class ProfileSliderComponent implements OnInit {
     if (this.hoverCard === 1) return 'left';
     else if (this.hoverCard === 6) return 'right';
     return;
+  }
+
+  selectIcon(profile) {
+    console.log(profile);
+    this.selectedIcon.emit(profile);
   }
 }

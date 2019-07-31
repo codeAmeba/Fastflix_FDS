@@ -12,6 +12,12 @@ interface ProfileCategory {
   images: ProfileImage[];
 }
 
+interface TempUser {
+  name?: string;
+  kid?: boolean;
+  profile_image_path?: string;
+}
+
 @Component({
   selector: 'app-profile-manage',
   templateUrl: './profile-manage.component.html',
@@ -22,10 +28,11 @@ export class ProfileManageComponent implements OnInit {
   isChild: boolean;
   subUsers: SubUser[];
   selectedUser: SubUser;
-  tempName: string;
+  tempUser: TempUser;
   addForm: FormGroup;
   changeForm: FormGroup;
   profileCategories: ProfileCategory[];
+  standardIcons: ProfileImage[];
 
   constructor(
     private router: Router,
@@ -37,7 +44,6 @@ export class ProfileManageComponent implements OnInit {
     this.tabState = '';
     this.isChild = false;
     this.subUsers = this.authService.getSubUsers();
-    this.tempName = '';
     this.selectedUser = {
       id: 0,
       kid: false,
@@ -62,7 +68,13 @@ export class ProfileManageComponent implements OnInit {
 
   selectUser(subUser: SubUser) {
     this.selectedUser = subUser;
-
+    this.tempUser = {
+      name: this.selectedUser.name,
+      kid: this.selectedUser.kid,
+      profile_image_path: this.selectedUser['profile_info'][
+        'profile_image_path'
+      ],
+    };
     console.log('selectedUser', this.selectedUser);
   }
 
@@ -83,8 +95,12 @@ export class ProfileManageComponent implements OnInit {
     if (!this.selectedUser) return;
     this.userService.getProfileImages().subscribe(
       response => {
+        this.tempUser.name =
+          this.changeForm.get('name').value || this.tempUser.name;
         this.tabState = 'profileImage';
         console.log(response);
+
+        this.standardIcons = response['대표 아이콘'];
 
         this.profileCategories = response.logo.map(category => {
           return {
@@ -102,7 +118,46 @@ export class ProfileManageComponent implements OnInit {
     );
   }
 
+  profileImageSelected(selectedIcon: ProfileImage) {
+    console.log(selectedIcon);
+    this.tempUser.profile_image_path = selectedIcon.image_path;
+    console.log('tempUser', this.tempUser);
+
+    this.tabState = 'confirm';
+  }
+
+  confirmProfileImage() {
+    this.selectedUser['profile_info'][
+      'profile_image_path'
+    ] = this.tempUser.profile_image_path;
+    this.selectedUser.name = this.tempUser.name;
+    this.selectedUser.kid = this.tempUser.kid;
+    this.tabState = 'change';
+  }
+
+  cancelProfileImage() {
+    this.tempUser.profile_image_path = this.selectedUser['profile_info'][
+      'profile_image_path'
+    ];
+    this.tabState = 'profileImage';
+  }
+
   saveProfile() {
-    console.log('new Name', this.changeForm.value);
+    this.selectedUser.name =
+      this.changeForm.get('name').value || this.selectedUser.name;
+
+    const profileInfo = {
+      sub_user_id: this.selectedUser.id,
+      name: this.selectedUser.name,
+      kid: this.selectedUser.kid,
+      profile_image_path: this.selectedUser['profile_info'][
+        'profile_image_path'
+      ],
+    };
+
+    this.userService.changeProfile(profileInfo).subscribe(response => {
+      console.log(response);
+    });
+    console.log(this.selectedUser);
   }
 }
