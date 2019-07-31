@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  style,
-  state,
-  animate,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { style, animate, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SubUser } from 'src/app/models/sub-user';
@@ -22,6 +16,18 @@ import { SubUser } from 'src/app/models/sub-user';
       transition(':leave', [
         // :leave is alias to '* => void'
         animate(150, style({ opacity: 0 })),
+      ]),
+    ]),
+    trigger('slide', [
+      transition(':enter', [
+        // :enter is alias to 'void => *'
+        style({ width: 0, opacity: 0 }),
+        animate(200, style({ width: '212px', opacity: 1 })),
+      ]),
+      transition(':leave', [
+        // :leave is alias to '* => void'
+        style({ width: '212px', opacity: 1 }),
+        animate(200, style({ width: 0, opacity: 0 })),
       ]),
     ]),
   ],
@@ -64,6 +70,12 @@ export class HeaderComponent implements OnInit {
   signOut() {
     this.authService.logout();
     this.router.navigate(['welcome']);
+  }
+
+  onBlur() {
+    console.log(this.searchValue);
+    this.isSearch = this.searchValue ? true : false;
+    console.log(this.isSearch);
   }
 
   search() {
