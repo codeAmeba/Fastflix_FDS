@@ -24,7 +24,7 @@ export class AuthenticationService implements OnInit {
     this.userName = '';
   }
 
-  getToken(): string {
+  getToken(): string {    
     return JSON.parse(localStorage.getItem(this.TOKEN_NAME));
   }
 
