@@ -54,7 +54,9 @@ export class LoginComponent implements OnInit {
       console.log('login response:', response);
 
       this.authService.setToken(response['token']);
-      this.authService.setSubUsers(response['sub_user_list']);
+      this.authService.setSubUsers(
+        response['sub_user_list'].sort((a, b) => a.id - b.id)
+      );
 
       if (response.token) this.router.navigate(['/home']);
     });

@@ -33,9 +33,9 @@ export class ProfileManageComponent implements OnInit {
   changeForm: FormGroup;
   profileCategories: ProfileCategory[];
   standardIcons: ProfileImage[];
+  newProfileImage: string;
 
   constructor(
-    private router: Router,
     private authService: AuthenticationService,
     private userService: UserService
   ) {}
@@ -78,16 +78,31 @@ export class ProfileManageComponent implements OnInit {
     console.log('selectedUser', this.selectedUser);
   }
 
+  tabAdd() {
+    this.userService.getProfileImages().subscribe(response => {
+      const random = Math.floor(Math.random() * (5 - 0)) + 0;
+      this.newProfileImage = response.basic[random]['image_path'];
+    });
+    this.tabState = 'add';
+  }
+
   addProfile() {
     if (this.addForm.invalid) return;
-    console.log(this.addForm.value);
+
     const user = {
-      name: this.addForm.get('name').value,
-      kid: this.addForm.get('kid').value,
+      name: [this.addForm.get('name').value],
+      kid: [this.addForm.get('kid').value],
     };
+
+    console.log(user);
+
     this.authService.createProfile(user).subscribe(response => {
-      this.authService.setSubUsers(response['sub_user_list']);
+      this.authService.setSubUsers(
+        response['sub_user_list'].sort((a, b) => a.id - b.id)
+      );
       console.log(this.authService.getSubUsers());
+      this.subUsers = this.authService.getSubUsers();
+      this.tabState = '';
     });
   }
 
@@ -98,7 +113,6 @@ export class ProfileManageComponent implements OnInit {
         this.tempUser.name =
           this.changeForm.get('name').value || this.tempUser.name;
         this.tabState = 'profileImage';
-        console.log(response);
 
         this.standardIcons = response['대표 아이콘'];
 
@@ -109,8 +123,6 @@ export class ProfileManageComponent implements OnInit {
             images: response[category.name],
           };
         });
-
-        console.log(this.profileCategories);
       },
       error => {
         console.error(error);
@@ -119,10 +131,7 @@ export class ProfileManageComponent implements OnInit {
   }
 
   profileImageSelected(selectedIcon: ProfileImage) {
-    console.log(selectedIcon);
     this.tempUser.profile_image_path = selectedIcon.image_path;
-    console.log('tempUser', this.tempUser);
-
     this.tabState = 'confirm';
   }
 
@@ -155,9 +164,18 @@ export class ProfileManageComponent implements OnInit {
       ],
     };
 
-    this.userService.changeProfile(profileInfo).subscribe(response => {
-      console.log(response);
-    });
-    console.log(this.selectedUser);
+    this.userService.changeProfile(profileInfo).subscribe(
+      ({ response }) => {
+        if (!response) console.log('save Profile', response);
+        this.userService.getSubUsers().subscribe(subUsers => {
+          this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+          this.subUsers = this.authService.getSubUsers();
+          this.tabState = '';
+        });
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 }

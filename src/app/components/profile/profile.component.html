@@ -54,7 +54,7 @@
               </a>
             </div>
           </li>
-          <li class="profile" (click)="isAdd = true">
+          <li class="profile" (click)="tabAdd()">
             <div>
               <a role="link" tabindex="0">
                 <div class="addProfileIcon icon-tvuiAdd"></div>
@@ -95,21 +95,25 @@
         <div class="profile-metadata profile-entry">
           <div class="main-profile-avatar">
             <img
-              src="https://art-s.nflximg.net/54ca6/ed554dd4d7fa20d41317a44065154d6010f54ca6.png"
+              src="{{ newProfileImage }}"
               alt=""
               style="opacity: 1; transform: scale(1); transition-duration: 400ms;"
             />
           </div>
           <div class="profile-add-parent">
-            <div class="profile-entry-inputs">
+            <form [formGroup]="addForm" class="profile-entry-inputs">
               <input
                 type="text"
                 id="add-profile-name"
+                name="name"
+                formControlName="name"
                 placeholder="이름"
               /><label for="add-profile-name" aria-label="이름"> </label
               ><input
                 type="checkbox"
                 id="add-kids-profile"
+                name="kid"
+                formControlName="kid"
                 (change)="isChild = !isChild"
               /><label for="add-kids-profile">
                 <svg
@@ -134,14 +138,14 @@
                 (click)="isChild = !isChild"
                 >어린이인가요?</span
               >
-            </div>
+            </form>
           </div>
         </div>
         <span
           class="profile-button preferred-action"
           tabindex="0"
           role="button"
-          (click)="changeProfile()"
+          (click)="addProfile()"
         >
           <span>다음</span>
         </span>

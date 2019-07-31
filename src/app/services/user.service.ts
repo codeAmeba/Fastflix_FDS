@@ -41,13 +41,13 @@ export class UserService implements OnInit {
   }
 
   changeProfile(profileInfo: object): Observable<any> {
-    console.log(profileInfo);
+    console.log('payload', profileInfo);
 
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
 
-    console.log(headers);
+    console.log('header', headers);
 
     return this.http.patch<any>(
       `${this.apiUrl}/accounts/change_sub_user/`,
@@ -56,5 +56,15 @@ export class UserService implements OnInit {
         headers,
       }
     );
+  }
+
+  getSubUsers(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+
+    return this.http.get<any>(`${this.apiUrl}/accounts/sub_user_list/`, {
+      headers,
+    });
   }
 }

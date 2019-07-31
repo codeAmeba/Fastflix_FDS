@@ -15,7 +15,6 @@ export class SignupStep3Component implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
     private authService: AuthenticationService
   ) {}
 
