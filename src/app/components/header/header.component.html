@@ -42,23 +42,17 @@
             >
               <span class="icon-search"></span>
             </button>
-            <div *ngIf="isSearch" class="searchInput">
-              <span
-                class="icon-search"
-                (click)="isSearch = searchValue ? true : false"
-              ></span
+            <div *ngIf="isSearch" [@slide] class="searchInput">
+              <span class="icon-search" (click)="onBlur()"></span
               ><input
                 type="text"
                 placeholder="제목, 사람, 장르"
                 maxlength="80"
+                autofocus
                 [(ngModel)]="searchValue"
                 (keyup)="search()"
-                (blur)="isSearch = searchValue ? true : false"
-                [ngStyle]="
-                  isSearch
-                    ? { opacity: '1', 'transition-duration': '300ms' }
-                    : { opacity: '0', 'transition-duration': '300ms' }
-                "
+                (blur)="onBlur()"
+                [class.show]="isSearch"
               /><span
                 [class.empty]="!searchValue"
                 class="icon-close"

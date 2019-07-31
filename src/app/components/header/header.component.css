@@ -190,8 +190,15 @@
   box-sizing: border-box;
   padding: 7px 14px 7px 7px;
   font-size: 14px;
-  width: 212px;
+  width: 0;
+  opacity: 0;
   outline: 0;
+  transition: all 300ms;
+}
+
+.searchInput input.show {
+  width: 212px;
+  opacity: 1;
 }
 
 .searchInput .icon-search {
