@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { style, animate, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -35,11 +35,13 @@ import { SubUser } from 'src/app/models/sub-user';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  @Output() profileSelected = new EventEmitter();
   showDropDown: boolean;
   isHome: boolean;
   isSearch: boolean;
   searchValue: string;
   subUsers: SubUser[];
+  subUser: SubUser;
 
   constructor(
     private router: Router,
@@ -52,11 +54,18 @@ export class HeaderComponent implements OnInit {
     this.searchValue = '';
     this.isHome = this.router.url === '/home';
     this.subUsers = this.authService.getSubUsers();
+    this.subUser = this.subUsers.find(
+      ({ id }) => id === this.authService.getProfile()
+    );
   }
 
   selectProfile(subUser: SubUser) {
     this.authService.setProfile(subUser.id);
-    window.location.reload();
+    this.subUser = this.subUsers.find(
+      ({ id }) => id === this.authService.getProfile()
+    );
+    this.ngOnInit();
+    this.profileSelected.emit();
   }
 
   showMenu(event: HTMLElement) {

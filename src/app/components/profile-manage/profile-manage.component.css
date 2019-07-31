@@ -810,6 +810,27 @@ img {
   font-weight: 700;
 }
 
+.profile-delete-warning {
+  width: 25rem;
+  text-align: center;
+  font-size: 1.1vw;
+}
+
+.profile-delete-warning {
+  width: 25vw;
+  text-align: initial;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 /* .profile-gate-label {
   width: 100%;
   color: #fff;

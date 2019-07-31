@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.isAdd = false;
     this.isChild = false;
-    this.subUsers = this.authService.getSubUsers();
+    this.getSubUsers();
     this.addForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       kid: new FormControl(false),
@@ -35,9 +35,24 @@ export class ProfileComponent implements OnInit {
     console.log(this.subUsers);
   }
 
+  getSubUsers() {
+    this.userService.getSubUsers().subscribe(subUsers => {
+      this.authService.setSubUsers(subUsers);
+      this.subUsers = subUsers;
+      console.log('get subUsers', this.authService.getSubUsers());
+    });
+    this.selectedUser = {
+      id: 0,
+      kid: false,
+      name: '',
+      parent_user: 0,
+      profile_info: {},
+    };
+  }
+
   secondLogin(id: number) {
     this.authService.setProfile(id);
-    this.router.navigate(['home']);
+    this.router.navigate(['/home']);
   }
 
   tabAdd() {
@@ -56,13 +71,11 @@ export class ProfileComponent implements OnInit {
       kid: [this.addForm.get('kid').value],
     };
 
-    console.log(user);
-
     this.authService.createProfile(user).subscribe(response => {
       this.authService.setSubUsers(
         response['sub_user_list'].sort((a, b) => a.id - b.id)
       );
-      console.log(this.authService.getSubUsers());
+      console.log('after added', this.authService.getSubUsers());
       this.subUsers = this.authService.getSubUsers();
       this.isAdd = false;
     });
