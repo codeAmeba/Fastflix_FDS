@@ -24,7 +24,7 @@ export class AuthenticationService implements OnInit {
     this.userName = '';
   }
 
-  getToken(): string {    
+  getToken(): string {
     return JSON.parse(localStorage.getItem(this.TOKEN_NAME));
   }
 
@@ -36,6 +36,8 @@ export class AuthenticationService implements OnInit {
     const token = this.getToken();
 
     const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+
+    console.log('user', user);
 
     return this.http.post<UserProfile>(
       `${this.apiUrl}/accounts/create_sub_user/`,
