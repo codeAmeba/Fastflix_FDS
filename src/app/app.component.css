@@ -2,8 +2,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 ::ng-deep div>router-outlet~app-signup {
@@ -14,8 +14,8 @@
   position: static;
   top: 0;
   left: 0;
-  width: 100%;
-  min-height: 100%;
+  width: 100vw;
+  min-height: 100vh;
   height: auto;
   padding-top: 91px;
 }
