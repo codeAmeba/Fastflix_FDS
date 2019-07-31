@@ -70,8 +70,6 @@ export class AuthenticationService implements OnInit {
   }
 
   login(user: any): Observable<any> {
-    // const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
-
     return this.http.post<any>(`${this.apiUrl}/accounts/login/`, user);
   }
 
