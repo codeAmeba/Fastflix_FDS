@@ -52,6 +52,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => (this.movieId = +params.get('id')));
+
     console.log('movieId', this.movieId);
   }
 
@@ -75,7 +76,13 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     const myPlayer = videojs('my-video');
-    myPlayer.src({ type: 'video/mp4', src: this.video });
+
+    this.movieService.getMovieDetail(this.movieId).subscribe(detail => {
+      this.video = detail['video_file'] || this.video;
+
+      myPlayer.src({ type: 'video/mp4', src: this.video });
+      console.log('video url', this.video);
+    });
 
     // 10초 전, 후 이동 버튼 vjs-control-bar에 동적 추가
     const myControlBar = document.querySelector('.vjs-control-bar');
