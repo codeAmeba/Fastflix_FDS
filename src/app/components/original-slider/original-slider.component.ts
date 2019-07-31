@@ -182,15 +182,6 @@ export class OriginalSliderComponent implements OnInit {
       tallUrl:
         "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABaLkdgYQBQCeFBf9AztXzeqDjGvkajlLFAQ8AUbbF-lVxpgtRHlz9v8ADc0yRlzXZVm3ojKnHT9JWdBFOU-D1p2XrHoreVSuBlm2AWE-9iKeSk-a7OTKdnL2yNj0w1LrH7rU3rssgJah4mxUjpidnHbG8GkSCRgcXCB1NbMt-b-1mChZxNHXGzC1zfyOt6iA4p-WWVLb.webp?r=c39",
       marked: false
-    },
-    {
-      id: 225,
-      title: "블랙 미러 : 밴더스내치",
-      url:
-        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
-      tallUrl:
-        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABQvvPDORA_CcXZyoeEY19fHOxMKv_vb0nFizQeUKu5niasNRmFREKq6qhHIztAOWJeRzAst4S8HtZpMeH8MJgo6pb3FVilrRw-cezRhDIs83AOTiC8cdQx_yNkPifn7pwaYRy_6Q8InaWiQNu3VGDSWyz9kKqEwoLUWPhiQuBShp-Bp-fEKrImb8Ge0o-NcrWib0xzLtXMxc_ykrrsNSIe6T1LDvs2WKIt3IIjnWnSm21ohgoPuvQmJ4qC9H.webp?r=b3b",
-      marked: false
     }
   ];
   movies: MoviePreview[] = this.originalMovies.map((movie, index) => ({
@@ -359,22 +350,27 @@ export class OriginalSliderComponent implements OnInit {
     }
   }
   timer;
-  hoverTimeout(movieOrder, movieId) {
+  hoverTimeout(movieOrder) {
     this.timer = setTimeout(() => {
-      this.cardHover(movieOrder, movieId);
+      this.cardHover(movieOrder);
     }, 600);
   }
   hoverTimeoutClear() {
     clearTimeout(this.timer);
     this.cardHoverLeave();
   }
-  cardHover(movieOrder, movieId) {
+  cardHover(movieOrder) {
     if (!this.isOpen) {
       console.log("안열렸당");
 
       this.bobup = movieOrder;
+      console.log(this.movies);
+
+      console.log(this.bobup);
+      console.log(movieOrder);
+
       setTimeout(() => {
-        this.bobScale = "scale(0.99999)";
+        this.bobScale = "scale(0.977777)";
       }, 300);
     }
     this.cardMove = true;
@@ -388,7 +384,7 @@ export class OriginalSliderComponent implements OnInit {
   cardHoverLeave() {
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScale = "scale(0.52222)";
+    this.bobScale = "scale(0.836)";
     setTimeout(() => {
       this.bobup = 0;
       this.moviesDetail = {
@@ -456,8 +452,8 @@ export class OriginalSliderComponent implements OnInit {
   // bobup 시 left 값 주기
   bobupLeft() {
     if (this.hoverCard === 1) return 0;
-    else if (this.hoverCard === 6) return -94.5;
-    return -47.5;
+    else if (this.hoverCard === 6) return -20;
+    return -10;
   }
 
   // 어디서 bobup이 될 것인지 정해주기

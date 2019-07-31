@@ -25,7 +25,7 @@
       <div class="sliderContent row-with-x-columns">
         <!-- card -->
         <div
-          *ngFor="let movie of originalMovies"
+          *ngFor="let movie of movies ? movies : ''"
           class="slider-item slider-item-{{ movie.order }} show-number-{{
             showNumber(movie.order)
           }}"
@@ -61,10 +61,11 @@
           <div class="title-card-container">
             <div
               id="title-card-2-{{ movie.order }}"
-              class="slider-refocus title-card"
-              (mouseenter)="hoverTimeout(movie.order, movie.id)"
+              class="slider-refocus title-card title-card-tall-panel"
+              (mouseenter)="hoverTimeout(movie.order)"
               (mouseleave)="hoverTimeoutClear()"
             >
+              <!-- , movie.id -->
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
                   <img
@@ -81,6 +82,7 @@
                   src="{{ movie.tallUrl }}"
                   alt=""
                 />
+
                 <div class="fallback-text-container" aria-hidden="true">
                   <div class="fallback-text">
                     내가 사랑했던 모든 남자들에게
@@ -89,8 +91,204 @@
               </div>
               <!-- original card 끝 -->
 
+              <div class="bob-container-tall-panel">
+                <span>
+                  <!-- tall-hover-card -->
+                  <div
+                    class="bob-card bob-card-adult-tall-panel-video-merch"
+                    *ngIf="bobup === movie.order"
+                    [class.bobup]="bobup"
+                    [style.left.%]="bobupLeft()"
+                    [style.transform]="bobScale"
+                    [style.transform-origin]="bobupTransformOrigin()"
+                  >
+                    <!-- style="transform: scale(0.99999); visibility: visible; width: 120%; height: 120%; top: -10%; left: -10%; transition-duration: 400ms;" -->
+                    <div>
+                      <div class="bob-background image-rotator">
+                        <div
+                          class="image-rotator-image"
+                          [class.image-rotator-style]="bobup"
+                          [style.backgroundImage]="'url(' + movie.tallUrl + ')'"
+                        ></div>
+                      </div>
+                      <div class="bob-overlay">
+                        <div class="bob-play-hitzone"></div>
+                        <a class="bob-jaw-hitzone" href="/title/80196789"> </a>
+                        <!-- hover시 나타나는 detail 정보 -->
+                        <div class="bob-overview-wrapper">
+                          <div class="bob-overview">
+                            <a tabindex="0" data-uia="play-button" class="bob-play-button playLink">
+                              <span class="play-button">
+                                <svg
+                                  class="svg-icon svg-icon-play-with-ring"
+                                  focusable="true"
+                                >
+                                  <use filter="" xlink:href="#play-with-ring">
+                                    <svg
+                                      id="play-with-ring"
+                                      viewBox="0 0 28 28"
+                                    >
+                                      <g fill="none" fill-rule="evenodd">
+                                        <circle
+                                          stroke="#FFF"
+                                          class="ring"
+                                          fill="#000"
+                                          fill-opacity="0.5"
+                                          stroke-width="1"
+                                          cx="14"
+                                          cy="14"
+                                          r="13"
+                                        ></circle>
+                                        <polygon
+                                          fill="currentColor"
+                                          class="arrow"
+                                          points="10 20 10 8 20 14"
+                                        ></polygon>
+                                      </g>
+                                    </svg>
+                                  </use>
+                                </svg>
+                              </span>
+                            </a>
+                            <div class="bob-title">
+                              {{ movie.title }}
+                            </div>
+                            <div
+                              class="bob-overview-resume-title-wrapper"
+                            ></div>
+                            <div class="bob-metadata-wrapper">
+                              <div
+                                class="meta video-meta video-meta--bob-overview"
+                              >
+                                <span class="match-score-wrapper">
+                                  <div class="show-match-score rating-inner">
+                                    <div
+                                      class="meta-thumb-container thumb-down"
+                                    >
+                                      <svg
+                                        class="svg-icon svg-icon-thumb-down-filled thumb thumb-down-filled"
+                                        focusable="true"
+                                      >
+                                        <use
+                                          filter=""
+                                          xlink:href="#thumb-down-filled"
+                                        ></use>
+                                      </svg>
+                                    </div>
+                                    <div class="meta-thumb-container thumb-up">
+                                      <svg
+                                        class="svg-icon svg-icon-thumb-up-filled thumb thumb-up-filled"
+                                        focusable="true"
+                                      >
+                                        <use
+                                          filter=""
+                                          xlink:href="#thumb-up-filled"
+                                        ></use>
+                                      </svg>
+                                    </div>
+                                    <span class="match-score">
+                                      98% 일치
+                                    </span>
+                                  </div>
+                                </span>
+                                <span class="maturity-rating ">
+                                  <span>
+                                    <svg
+                                      class="svg-icon svg-icon-maturity-rating-KR-KMRB-95"
+                                      focusable="true"
+                                    >
+                                      <use
+                                        filter=""
+                                        xlink:href="#maturity-rating-KR-KMRB-95"
+                                      ></use>
+                                    </svg>
+                                  </span>
+                                </span>
+                                <span class="duration">
+                                  2시간 4분
+                                </span>
+                              </div>
+                            </div>
+                            <div class="bob-overview-evidence-wrapper">
+                              <div class="evidence-tags">
+                                <div class="evidence-list">
+                                  <ul class="evidence-item">
+                                    <li class="evidence-text evidence-text-">
+                                      ngFor로 돌리기
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="bob-content-warning-wrapper"></div>
+                          </div>
+                        </div>
+                        <!-- 오디오 토글 -->
+                        <span class="bob-audio-toggle-wrapper"> </span>
+                        <!-- detail view 버튼 -->
+                        <div class="bob-chevron-wrapper">
+                          <div class="bob-jawbone-chevron">
+                            <svg
+                              class="svg-icon svg-icon-chevron-down"
+                              focusable="true"
+                            >
+                              <use filter="" xlink:href="#chevron-down">
+                                <svg id="chevron-down" viewBox="0 0 60 19">
+                                  <path
+                                    fill="currentColor"
+                                    d="M59.5615866,2.44258873 L31.1899791,17.6617954 C30.7515658,17.9123173 30.2505219,18.1002088 30.0626305,18.1002088 C29.874739,18.1002088 29.6242171,18.0375783 29.5615866,18.0375783 C29.4363257,17.9749478 28.9979123,17.7244259 28.559499,17.5365344 L0.501043841,2.44258873 C0.187891441,2.31732777 0,1.94154489 0,1.62839248 C0,1.50313152 0.0626304802,1.37787056 0.12526096,1.18997912 L0.501043841,0.501043841 C0.688935282,0.187891441 1.00208768,0 1.31524008,0 C1.50313152,0 1.62839248,0 1.75365344,0.12526096 L29.1858038,14.8434238 C29.3736952,14.9686848 29.6868476,15.0313152 30,15.0313152 C30.3131524,15.0313152 30.6263048,14.9686848 30.8141962,14.8434238 L58.2463466,0.12526096 C58.6847599,-0.12526096 59.2484342,0 59.4989562,0.501043841 L59.874739,1.18997912 C60.125261,1.62839248 60,2.19206681 59.5615866,2.44258873"
+                                  ></path>
+                                </svg>
+                              </use>
+                            </svg>
+                          </div>
+                        </div>
+                        <!-- 내가 찜한 콘텐츠 버튼 -->
+                        <div class="bob-mylist-wrapper">
+                          <div class="ptrack-content">
+                            <div
+                              class="nf-svg-button-wrapper mylist-button"
+                              data-uia="myListButton"
+                            >
+                              <a
+                                role="link"
+                                tabindex="0"
+                                class="nf-svg-button simpleround"
+                              >
+                                <svg
+                                  class="svg-icon svg-icon-mylist-add"
+                                  focusable="true"
+                                >
+                                  <use filter="" xlink:href="#mylist-add">
+                                    #shadow-root (closed)
+                                    <svg id="mylist-add" viewBox="0 0 14 14">
+                                      <polygon
+                                        fill="currentColor"
+                                        points="6.32918892 6.32913969 6.32918892 -4.92334366e-05 7.67086031 -4.92334366e-05 7.67086031 6.32913969 14.0000492 6.32913969 14.0000492 7.67081108 7.67086031 7.67081108 7.67086031 14 6.32918892 14 6.32918892 7.67081108 0 7.67081108 0 6.32913969"
+                                      ></polygon>
+                                    </svg>
+                                  </use>
+                                </svg>
+                              </a>
+                              <!-- <span
+                                class="nf-svg-button-tooltip"
+                                role="status"
+                                aria-live="assertive"
+                              >
+                                내가 찜한 콘텐츠에 추가
+                              </span> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- tall-hover-card 끝 -->
+                </span>
+              </div>
+
               <!-- hover > 아래 버튼 클릭 시 card 테두리, 재생 버튼 -->
-              <div
+              <!-- <div
                 class="title-card-jawbone-focus"
                 [ngStyle]="{
                   opacity:
@@ -105,12 +303,12 @@
                     <div class="play icon-play"></div>
                   </div>
                 </a>
-              </div>
+              </div> -->
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
 
               <!-- hover시 확대 끝 -->
             </div>
-            <div *ngIf="isContinue" class="progress ">
+            <!-- <div *ngIf="isContinue" class="progress ">
               <span class="progress-bar"
                 ><span
                   role="presentation"
@@ -118,7 +316,7 @@
                   [ngStyle]="{ width: movie?.continue / 20 + '%' }"
                 ></span
               ></span>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
