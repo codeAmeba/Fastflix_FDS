@@ -3,4 +3,5 @@ export interface SubUser {
   kid: boolean;
   name: string;
   parent_user: number;
+  profile_info: object;
 }

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { UserService } from './user.service';
 import { SubUser } from '../models/sub-user';
 import { UserProfile } from '../models/user-profile';
 
