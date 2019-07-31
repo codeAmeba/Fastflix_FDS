@@ -56,9 +56,9 @@ export class ProfileManageComponent implements OnInit {
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
       console.log(subUsers);
-      // this.authService.setSubUsers(subUsers);
-      // this.subUsers = subUsers;
-      this.subUsers = this.authService.getSubUsers();
+      this.authService.setSubUsers(subUsers);
+      this.subUsers = subUsers;
+      // this.subUsers = this.authService.getSubUsers();
       console.log('get subUsers', this.authService.getSubUsers());
     });
     this.selectedUser = {
@@ -97,17 +97,26 @@ export class ProfileManageComponent implements OnInit {
   addProfile() {
     if (this.addForm.invalid) return;
 
+    const names = [this.addForm.get('name').value];
+    const kids = [this.addForm.get('kid').value];
+
     const user = {
-      name: [this.addForm.get('name').value],
-      kid: [this.addForm.get('kid').value],
+      name: names,
+      kid: kids,
     };
 
-    this.authService.createProfile(user).subscribe(response => {
+    this.authService.createProfile(user).subscribe(profiles => {
+      console.log('success', profiles['sub_user_list']);
+
       this.authService.setSubUsers(
-        response['sub_user_list'].sort((a, b) => a.id - b.id)
+        profiles['sub_user_list'].sort((a, b) => a.id - b.id)
       );
+
       console.log('after added', this.authService.getSubUsers());
-      this.subUsers = this.authService.getSubUsers();
+
+      // this.subUsers = this.authService.getSubUsers();
+      this.getSubUsers();
+
       this.tabState = '';
     });
   }

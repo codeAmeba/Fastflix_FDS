@@ -54,7 +54,7 @@
               </a>
             </div>
           </li>
-          <li class="profile" (click)="tabAdd()">
+          <li *ngIf="subUsers?.length < 5" class="profile" (click)="tabAdd()">
             <div>
               <a role="link" tabindex="0">
                 <div class="addProfileIcon icon-tvuiAdd"></div>

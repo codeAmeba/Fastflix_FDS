@@ -2,7 +2,6 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -54,11 +53,6 @@ export class LoginComponent implements OnInit {
       console.log('login response:', response);
 
       this.authService.setToken(response['token']);
-
-      console.log(
-        'sorted',
-        response['sub_user_list'].sort((a, b) => a.id - b.id)
-      );
 
       this.authService.setSubUsers(
         response['sub_user_list'].sort((a, b) => a.id - b.id)
