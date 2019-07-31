@@ -56,9 +56,9 @@ export class ProfileManageComponent implements OnInit {
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
       console.log(subUsers);
-
-      this.authService.setSubUsers(subUsers);
-      this.subUsers = subUsers;
+      // this.authService.setSubUsers(subUsers);
+      // this.subUsers = subUsers;
+      this.subUsers = this.authService.getSubUsers();
       console.log('get subUsers', this.authService.getSubUsers());
     });
     this.selectedUser = {

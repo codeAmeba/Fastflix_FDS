@@ -54,6 +54,12 @@ export class LoginComponent implements OnInit {
       console.log('login response:', response);
 
       this.authService.setToken(response['token']);
+
+      console.log(
+        'sorted',
+        response['sub_user_list'].sort((a, b) => a.id - b.id)
+      );
+
       this.authService.setSubUsers(
         response['sub_user_list'].sort((a, b) => a.id - b.id)
       );
