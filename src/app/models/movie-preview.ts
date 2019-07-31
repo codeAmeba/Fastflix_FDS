@@ -6,4 +6,5 @@ export interface MoviePreview {
   marked?: boolean;
   preview?: string;
   continue?: number;
+  tallUrl?: string;
 }
