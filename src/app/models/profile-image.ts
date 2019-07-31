@@ -1,4 +1,4 @@
 export interface ProfileImage {
   name: string;
-  image: string;
+  image_path: string;
 }

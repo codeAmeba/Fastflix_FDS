@@ -35,8 +35,26 @@ export class UserService implements OnInit {
   getProfileImages(): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
-    return this.http.get<any>(`${this.apiUrl}/accounts/change_profile/`, {
+    return this.http.get<any>(`${this.apiUrl}/accounts/change_profile_image/`, {
       headers,
     });
+  }
+
+  changeProfile(profileInfo: object): Observable<any> {
+    console.log(profileInfo);
+
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
+
+    console.log(headers);
+
+    return this.http.patch<any>(
+      `${this.apiUrl}/accounts/change_sub_user/`,
+      profileInfo,
+      {
+        headers,
+      }
+    );
   }
 }

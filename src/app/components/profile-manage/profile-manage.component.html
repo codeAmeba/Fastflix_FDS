@@ -330,7 +330,10 @@
             <h2 class="row-header">
               <div class="lolopi-row-text">대표 아이콘</div>
             </h2>
-            <app-profile-slider></app-profile-slider>
+            <app-profile-slider
+              [profileData]="standardIcons"
+              (selectedIcon)="profileImageSelected($event)"
+            ></app-profile-slider>
           </li>
           <li
             *ngFor="let profileCategory of profileCategories"
@@ -344,9 +347,69 @@
                 }"
               ></div>
             </h2>
-            <app-profile-slider></app-profile-slider>
+            <app-profile-slider
+              [profileData]="profileCategory.images"
+              (selectedIcon)="profileImageSelected($event)"
+            ></app-profile-slider>
           </li>
         </ul>
+      </div>
+    </div>
+    <div
+      class="centered-div list-profiles-container"
+      *ngIf="tabState === 'confirm'"
+      [ngStyle]="
+        tabState === 'confirm'
+          ? {
+              opacity: '1',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+          : {
+              opacity: '0',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+      "
+    >
+      <div class="profile-lolopi-confirm">
+        <h1>프로필 아이콘을 변경하시겠어요?</h1>
+        <div class="lolopi-confirm-icons">
+          <div>
+            <span
+              class="lolopi-icon"
+              [ngStyle]="{
+                'background-image':
+                  'url(' +
+                  selectedUser['profile_info']['profile_image_path'] +
+                  ')'
+              }"
+            ></span
+            ><span>현재 아이콘</span>
+          </div>
+          <span class="indicator-icon icon-rightCaret"></span>
+          <div>
+            <span
+              class="lolopi-icon"
+              [ngStyle]="{
+                'background-image':
+                  'url(' + tempUser['profile_image_path'] + ')'
+              }"
+            ></span
+            ><span>새 아이콘</span>
+          </div>
+        </div>
+        <div class="lolopi-confirm-buttons">
+          <span
+            class="profile-button preferred-action"
+            (click)="confirmProfileImage()"
+            ><span>예, 좋아요</span></span
+          ><span class="profile-button" (click)="cancelProfileImage()"
+            ><span>아니요</span></span
+          >
+        </div>
       </div>
     </div>
   </div>
