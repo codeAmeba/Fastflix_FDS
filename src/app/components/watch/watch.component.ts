@@ -65,6 +65,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       controlBar: {
         volumePanel: { inline: true },
       },
+      fluid: true
     };
 
     this.vidObj = new videojs(
