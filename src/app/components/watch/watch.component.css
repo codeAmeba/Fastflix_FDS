@@ -16,6 +16,7 @@ video {
 }
 
 .pause-message {
+  pointer-events: none;
   position: absolute;
   max-width: 400px;
   max-height: 300px;
