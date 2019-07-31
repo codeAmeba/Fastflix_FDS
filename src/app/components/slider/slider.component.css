@@ -97,6 +97,13 @@
 .title-card:not(.loadingTitle) {
   display: block;
 }
+.title-card-tall-panel .bob-container-tall-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 200% 0 0;
+}
 
 a {
   text-decoration: none;
