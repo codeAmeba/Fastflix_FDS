@@ -37,7 +37,7 @@ export class AuthenticationService implements OnInit {
 
     const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
 
-    console.log('user', user);
+    console.log('create user', user);
 
     return this.http.post<UserProfile>(
       `${this.apiUrl}/accounts/create_sub_user/`,
