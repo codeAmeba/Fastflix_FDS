@@ -67,7 +67,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 229,
+      id: 162,
       title: "퍼펙트 데이트",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -76,7 +76,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 163,
       title: "리얼리티하이",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -85,7 +85,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 274,
       title: "캠 걸스",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -94,7 +94,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 368,
       title: "리얼리티하이",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -103,7 +103,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 256,
       title: "라스트 썸머",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -112,7 +112,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 362,
       title: "상사에 대처하는 로맨틱한 자세",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -121,7 +121,7 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 274,
       title: "옥자",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
@@ -130,12 +130,66 @@ export class OriginalSliderComponent implements OnInit {
       marked: false
     },
     {
-      id: 252,
+      id: 263,
       title: "먼 훗날 우리",
       url:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
       tallUrl:
         "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABeeVT35LefYnqJy7hgOf9SPY1hwskOBycmsKOYiCQtgyFH-onRxziNJ0FgCB7g7lyCioOWyg8kaQ_uqa_rwOsXX2CYpnXfuqCZ70oUC5xavL8sdk408R21epyagfGOMeAI7No33N4X9FhlL9XWbbJtd9H017kOu-AmFdfp8jcnV4bR-lPAzBSd1G-LX7Ef6k2_Fm8R7L.webp?r=c2e",
+      marked: false
+    },
+    {
+      id: 235,
+      title: "배드 맘스",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
+      tallUrl:
+        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABc_5_wzL0rpkPkR6_gXg4qhLuPovOEqqbTHV2cXjunPqUMa2sSC39LJ8w2yamwXIfA2MCUBwv1YBga9OXgyiSElf43n6aHsHMezqumzKiaGPRyMEXslbh_NjRiW0L1qMJxzPABaaiiOeL4si9QG4DmJF57Nx9Tu7BjidpVngFoXeoli6NkZNLf2-eng4WEBBw2M_T1c-.webp?r=4b0",
+      marked: false
+    },
+    {
+      id: 343,
+      title: "오! 라모나",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
+      tallUrl:
+        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABS_t3gx665hnnQ2YMvid4V541Gw5Hvq8Ea7irUhq_qIh10IvPWIB4d7Me62kDzlfT_Y0cMXAgKr356x6eirIERT3Hs47L0_kSCrKcBXYy5FeAvrLG-xXveemXcVjKnWjUIoK2EvKn4uzjMZfGIwaQ3q_LZbGWEggVwYGhr9E4jY1b10VGicNc0s_WoS3xJC8jBahMFjS.webp?r=5a5",
+      marked: false
+    },
+    {
+      id: 123,
+      title: "나의 마더",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
+      tallUrl:
+        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABXiI2ANwRbZ-_NoLn92BN7c3DvbwBu77M_4ZIj31YLYutt58-wh7y9V0iJlQlSQJAHXx91LDBudewYVGPD0Pl2CFYE4xciRtTKBVwESMLC55Hi2TSHTl7ly4lT7OxYQXptsoPpY4kIrRExoQWPAiwrRcFuScTYCpjMEU87iIbfrzniUgbnEbUuoJscV3fuGFZIWXfrRQ.webp?r=2e0",
+      marked: false
+    },
+    {
+      id: 461,
+      title: "나는 악마를 사랑했다",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
+      tallUrl:
+        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABUrg4QSzdFsILgSY206U4CuG-QFUbCIOTaZJ0lKWeJn6jTj7YHSN91WhJglDnmojzaT7f1KIQNyXF6LLhqeNeV-WVsuVyhv4RubCT5do2ROHHF-1kzs68FFj1G6ItcGdlTgwpxJBryyqvn352RHEIz8MxzQrCZ7xkH1n1iwJpgzqS8aw6xV0vSN5iKsqZQ6hICkHKoM3.webp?r=dc4",
+      marked: false
+    },
+    {
+      id: 367,
+      title: "썸원 그레이트",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
+      tallUrl:
+        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABaLkdgYQBQCeFBf9AztXzeqDjGvkajlLFAQ8AUbbF-lVxpgtRHlz9v8ADc0yRlzXZVm3ojKnHT9JWdBFOU-D1p2XrHoreVSuBlm2AWE-9iKeSk-a7OTKdnL2yNj0w1LrH7rU3rssgJah4mxUjpidnHbG8GkSCRgcXCB1NbMt-b-1mChZxNHXGzC1zfyOt6iA4p-WWVLb.webp?r=c39",
+      marked: false
+    },
+    {
+      id: 225,
+      title: "블랙 미러 : 밴더스내치",
+      url:
+        "https://occ-0-3446-1007.1.nflxso.net/dnm/api/v6/0DW6CdE4gYtYx8iy3aj8gs9WtXE/AAAABZuP4XdcnjAJSDd_6DL2cwR6aHzqOpiyflFfM1qX2fQhSRMchyMss9diRYpu1Ek3OshwHim6I_9rlCplPYEhDMfjy3uqyrQg5Pw2cDPB_wbSGByg6LBqyxv8t9fT.jpg?r=50b",
+      tallUrl:
+        "https://occ-0-988-993.1.nflxso.net/dnm/api/v6/CFXrEYtXxhcqF3ItF4DehdUbQjk/AAAABQvvPDORA_CcXZyoeEY19fHOxMKv_vb0nFizQeUKu5niasNRmFREKq6qhHIztAOWJeRzAst4S8HtZpMeH8MJgo6pb3FVilrRw-cezRhDIs83AOTiC8cdQx_yNkPifn7pwaYRy_6Q8InaWiQNu3VGDSWyz9kKqEwoLUWPhiQuBShp-Bp-fEKrImb8Ge0o-NcrWib0xzLtXMxc_ykrrsNSIe6T1LDvs2WKIt3IIjnWnSm21ohgoPuvQmJ4qC9H.webp?r=b3b",
       marked: false
     }
   ];
@@ -279,6 +333,7 @@ export class OriginalSliderComponent implements OnInit {
     } else {
       // movies 뒷부분 clone
       this.moviesClone();
+      console.log(this.movies);
 
       this.transform = `translate3d(${this.XState -
         this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
