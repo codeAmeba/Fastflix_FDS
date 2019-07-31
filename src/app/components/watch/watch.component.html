@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (mousemove)="pauseMovie = false">
   <div class="pause-message pause-current-movie" [class.pause-current-movie]="pauseMovie">
     <div class="movie-info">
       <p>시청 중인 콘텐츠</p>
@@ -12,7 +12,7 @@
   </div>
   <div class="video-contain">
     <video #myvid id="my-video" (pause)="pauseVideo()" (play)="pauseMovie = false"
-      class="video-js vjs-matrix" [poster]="poster">
+      class="video-js vjs-matrix">
       <source [src]="video" type="video/mp4"> 
     </video>
   </div>

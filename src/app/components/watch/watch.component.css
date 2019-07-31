@@ -1,12 +1,12 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
 .container {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 .video-contain {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
 }
 
@@ -23,9 +23,9 @@ video {
 
 .pause-message {
   pointer-events: none;
-  position: absolute;
-  max-width: 400px;
-  max-height: 300px;
+  position: fixed;
+  max-width: 50vw;
+  max-height: 50vh;
   font-size: 1.7em;
   margin: 5em 8em;
   z-index: 1;
