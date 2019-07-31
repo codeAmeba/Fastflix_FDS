@@ -1,5 +1,5 @@
 <div class="container">
-  <!-- <div class="pause-message pause-current-movie" [class.pause-current-movie]="pauseMovie">
+  <div class="pause-message pause-current-movie" [class.pause-current-movie]="pauseMovie">
     <div class="movie-info">
       <p>시청 중인 콘텐츠</p>
       <h1 class="movie-title">{{ movieTitle }}</h1>
@@ -9,8 +9,9 @@
       <p class="movie-intro">{{ movieIntro }}</p>
     </div>
     <p>일시 중지됨</p>
-  </div> -->
-  <video #myvid id="my-video" class="video-js vjs-matrix" [poster]="poster">
+  </div>
+  <video #myvid id="my-video" (pause)="pauseVideo()" (play)="pauseMovie = false"
+    class="video-js vjs-matrix" [poster]="poster">
     <source [src]="video" type="video/mp4"> 
   </video>
 </div>
