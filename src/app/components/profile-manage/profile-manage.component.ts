@@ -2,6 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { SubUser } from 'src/app/models/sub-user';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { ProfileImage } from 'src/app/models/profile-image';
+
+interface ProfileCategory {
+  name: string;
+  logo: string;
+  images: ProfileImage[];
+}
+
+interface TempUser {
+  name?: string;
+  kid?: boolean;
+  profile_image_path?: string;
+}
 
 @Component({
   selector: 'app-profile-manage',
@@ -13,47 +28,154 @@ export class ProfileManageComponent implements OnInit {
   isChild: boolean;
   subUsers: SubUser[];
   selectedUser: SubUser;
-  tempName: string;
+  tempUser: TempUser;
+  addForm: FormGroup;
+  changeForm: FormGroup;
+  profileCategories: ProfileCategory[];
+  standardIcons: ProfileImage[];
+  newProfileImage: string;
 
   constructor(
-    private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
     this.tabState = '';
     this.isChild = false;
     this.subUsers = this.authService.getSubUsers();
-    this.tempName = '';
     this.selectedUser = {
       id: 0,
       kid: false,
       name: '',
       parent_user: 0,
+      profile_info: {},
     };
-    console.log(this.subUsers);
+    this.addForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      kid: new FormControl(false),
+    });
+    this.changeForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      kid: new FormControl(false),
+    });
   }
 
-  secondLogin(id: number) {
-    this.authService.setProfile(id);
-    this.router.navigate(['home']);
-  }
+  // secondLogin(id: number) {
+  //   this.authService.setProfile(id);
+  //   this.router.navigate(['home']);
+  // }
 
   selectUser(subUser: SubUser) {
     this.selectedUser = subUser;
-
+    this.tempUser = {
+      name: this.selectedUser.name,
+      kid: this.selectedUser.kid,
+      profile_image_path: this.selectedUser['profile_info'][
+        'profile_image_path'
+      ],
+    };
     console.log('selectedUser', this.selectedUser);
+  }
+
+  tabAdd() {
+    this.userService.getProfileImages().subscribe(response => {
+      const random = Math.floor(Math.random() * (5 - 0)) + 0;
+      this.newProfileImage = response.basic[random]['image_path'];
+    });
+    this.tabState = 'add';
+  }
+
+  addProfile() {
+    if (this.addForm.invalid) return;
+
+    const user = {
+      name: [this.addForm.get('name').value],
+      kid: [this.addForm.get('kid').value],
+    };
+
+    console.log(user);
+
+    this.authService.createProfile(user).subscribe(response => {
+      this.authService.setSubUsers(
+        response['sub_user_list'].sort((a, b) => a.id - b.id)
+      );
+      console.log(this.authService.getSubUsers());
+      this.subUsers = this.authService.getSubUsers();
+      this.tabState = '';
+    });
   }
 
   changeProfile() {
     if (!this.selectedUser) return;
+    this.userService.getProfileImages().subscribe(
+      response => {
+        this.tempUser.name =
+          this.changeForm.get('name').value || this.tempUser.name;
+        this.tabState = 'profileImage';
 
-    console.log(this.selectedUser);
+        this.standardIcons = response['대표 아이콘'];
 
-    const name = this.selectedUser.name;
+        this.profileCategories = response.logo.map(category => {
+          return {
+            name: category.name,
+            logo: category['image_path'],
+            images: response[category.name],
+          };
+        });
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
-  saveProfile(name: string) {
-    console.log('save name', name);
+  profileImageSelected(selectedIcon: ProfileImage) {
+    this.tempUser.profile_image_path = selectedIcon.image_path;
+    this.tabState = 'confirm';
+  }
+
+  confirmProfileImage() {
+    this.selectedUser['profile_info'][
+      'profile_image_path'
+    ] = this.tempUser.profile_image_path;
+    this.selectedUser.name = this.tempUser.name;
+    this.selectedUser.kid = this.tempUser.kid;
+    this.tabState = 'change';
+  }
+
+  cancelProfileImage() {
+    this.tempUser.profile_image_path = this.selectedUser['profile_info'][
+      'profile_image_path'
+    ];
+    this.tabState = 'profileImage';
+  }
+
+  saveProfile() {
+    this.selectedUser.name =
+      this.changeForm.get('name').value || this.selectedUser.name;
+
+    const profileInfo = {
+      sub_user_id: this.selectedUser.id,
+      name: this.selectedUser.name,
+      kid: this.selectedUser.kid,
+      profile_image_path: this.selectedUser['profile_info'][
+        'profile_image_path'
+      ],
+    };
+
+    this.userService.changeProfile(profileInfo).subscribe(
+      ({ response }) => {
+        if (!response) console.log('save Profile', response);
+        this.userService.getSubUsers().subscribe(subUsers => {
+          this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+          this.subUsers = this.authService.getSubUsers();
+          this.tabState = '';
+        });
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 }
