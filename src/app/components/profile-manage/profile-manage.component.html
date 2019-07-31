@@ -277,7 +277,9 @@
           ><span>저장</span></span
         ><span (click)="tabState = ''" class="profile-button"
           ><span>취소</span></span
-        ><span class="profile-button"><span>프로필 삭제</span></span>
+        ><span (click)="tabDelete()" class="profile-button"
+          ><span>프로필 삭제</span></span
+        >
       </div>
     </div>
     <div
@@ -410,6 +412,52 @@
             ><span>아니요</span></span
           >
         </div>
+      </div>
+    </div>
+    <div
+      class="centered-div"
+      *ngIf="tabState === 'delete'"
+      [ngStyle]="
+        tabState === 'delete'
+          ? {
+              opacity: '1',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+          : {
+              opacity: '0',
+              transform: 'scale(1)',
+              'transition-duration': '450ms',
+              'transition-delay': '200ms'
+            }
+      "
+    >
+      <div class="profile-actions-container">
+        <h1>프로필을 삭제할까요?</h1>
+        <div class="profile-metadata profile-entry">
+          <div class="main-profile-avatar">
+            <img
+              src="{{ selectedUser['profile_info']['profile_image_path'] }}"
+              alt=""
+              style="opacity: 1; transform: scale(1); transition-duration: 400ms;"
+            />
+            <div class="profile-name">ㅇㅇ</div>
+          </div>
+          <div class="profile-delete-warning">
+            내가 찜한 콘텐츠, 평가, 시청 기록을 포함한 이 프로필의 모든 정보가
+            완전히 삭제되고 다시 복구하실 수 없습니다.
+          </div>
+        </div>
+        <span
+          (click)="tabState = 'change'"
+          role="button"
+          tabindex="0"
+          class="profile-button preferred-action"
+          ><span>프로필 삭제 취소</span></span
+        ><span role="button" tabindex="0" class="profile-button"
+          ><span (click)="removeProfile()">프로필 삭제</span></span
+        >
       </div>
     </div>
   </div>

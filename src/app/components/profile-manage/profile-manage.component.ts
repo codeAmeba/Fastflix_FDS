@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SubUser } from 'src/app/models/sub-user';
-import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
@@ -43,14 +42,7 @@ export class ProfileManageComponent implements OnInit {
   ngOnInit() {
     this.tabState = '';
     this.isChild = false;
-    this.subUsers = this.authService.getSubUsers();
-    this.selectedUser = {
-      id: 0,
-      kid: false,
-      name: '',
-      parent_user: 0,
-      profile_info: {},
-    };
+    this.getSubUsers();
     this.addForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       kid: new FormControl(false),
@@ -61,6 +53,22 @@ export class ProfileManageComponent implements OnInit {
     });
   }
 
+  getSubUsers() {
+    this.userService.getSubUsers().subscribe(subUsers => {
+      console.log(subUsers);
+
+      this.authService.setSubUsers(subUsers);
+      this.subUsers = subUsers;
+      console.log('get subUsers', this.authService.getSubUsers());
+    });
+    this.selectedUser = {
+      id: 0,
+      kid: false,
+      name: '',
+      parent_user: 0,
+      profile_info: {},
+    };
+  }
   // secondLogin(id: number) {
   //   this.authService.setProfile(id);
   //   this.router.navigate(['home']);
@@ -94,14 +102,24 @@ export class ProfileManageComponent implements OnInit {
       kid: [this.addForm.get('kid').value],
     };
 
-    console.log(user);
-
     this.authService.createProfile(user).subscribe(response => {
       this.authService.setSubUsers(
         response['sub_user_list'].sort((a, b) => a.id - b.id)
       );
-      console.log(this.authService.getSubUsers());
+      console.log('after added', this.authService.getSubUsers());
       this.subUsers = this.authService.getSubUsers();
+      this.tabState = '';
+    });
+  }
+
+  tabDelete() {
+    this.tabState = 'delete';
+  }
+
+  removeProfile() {
+    this.userService.removeProfile(this.selectedUser.id).subscribe(response => {
+      console.log('remove', response);
+      this.getSubUsers();
       this.tabState = '';
     });
   }
@@ -166,10 +184,11 @@ export class ProfileManageComponent implements OnInit {
 
     this.userService.changeProfile(profileInfo).subscribe(
       ({ response }) => {
-        if (!response) console.log('save Profile', response);
+        console.log('save Profile OK', response);
+        if (!response) console.log('save Profile FAIL', response);
         this.userService.getSubUsers().subscribe(subUsers => {
           this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
-          this.subUsers = this.authService.getSubUsers();
+          this.getSubUsers();
           this.tabState = '';
         });
       },

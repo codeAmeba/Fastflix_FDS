@@ -41,13 +41,12 @@ export class UserService implements OnInit {
   }
 
   changeProfile(profileInfo: object): Observable<any> {
-    console.log('payload', profileInfo);
-
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
 
     console.log('header', headers);
+    console.log('payload', profileInfo);
 
     return this.http.patch<any>(
       `${this.apiUrl}/accounts/change_sub_user/`,
@@ -56,6 +55,20 @@ export class UserService implements OnInit {
         headers,
       }
     );
+  }
+
+  removeProfile(subuserid: number): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', subuserid + '');
+
+    console.log('remove header', headers);
+
+    return this.http.delete<any>(`${this.apiUrl}/accounts/delete_sub_user/`, {
+      headers,
+    });
   }
 
   getSubUsers(): Observable<any> {
