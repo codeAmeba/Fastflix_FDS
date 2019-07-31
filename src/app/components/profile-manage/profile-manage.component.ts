@@ -4,11 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-
-interface ProfileImage {
-  name: string;
-  image: string;
-}
+import { ProfileImage } from 'src/app/models/profile-image';
 
 interface ProfileCategory {
   name: string;
