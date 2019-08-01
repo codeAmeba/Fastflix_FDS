@@ -9,8 +9,9 @@
               <div class="FFPlayer" *ngIf="playBillBoard"></div>
               <div class="hero-img-wrapper">
                 <img
+                  *ngIf="mainMovie"
                   class="hero static-image image-layer"
-                  src="{{ mainMovie?.image }}"
+                  [src]="mainMovie?.image"
                   alt="{{ mainMovie?.title }}"
                 />
                 <div class="vignette-top vignette-layer"></div>
@@ -19,8 +20,15 @@
                   <span class="maturity-rating "
                     ><span
                       ><img
-                        src="{{ (mainMovie?.degree)['degree_image_path'] }}"
-                        alt="{{ (mainMovie?.degree)['name'] }}"/></span
+                        *ngIf="mainMovie"
+                        [src]="
+                          mainMovie?.degree
+                            ? (mainMovie?.degree)['degree_image_path']
+                            : ''
+                        "
+                        alt="{{
+                          mainMovie?.degree ? (mainMovie?.degree)['name'] : ''
+                        }}"/></span
                   ></span>
                 </div>
               </div>
@@ -32,13 +40,15 @@
                 <div class="billboard-title">
                   <img
                     class="title-logo"
-                    src="{{ mainMovie?.logo }}"
+                    *ngIf="mainMovie"
+                    [src]="mainMovie?.logo"
                     title="{{ mainMovie?.title }}"
                     alt="{{ mainMovie?.title }}"
                   />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
                   <a
+                    *ngIf="mainMovie"
                     role="link"
                     aria-label="재생"
                     class="playLink"
@@ -62,6 +72,7 @@
                     (click)="toggleMyLsit(mainMovie)"
                   >
                     <span
+                      *ngIf="mainMovie"
                       role="presentation"
                       class="nf-icon-button-icon"
                       [class.icon-button-mylist-add]="!mainMovie?.marked"
@@ -71,7 +82,7 @@
                   </a>
                 </div>
                 <div class="synopsis-fade-container">
-                  <div class="synopsis no-supplemental">
+                  <div *ngIf="mainMovie" class="synopsis no-supplemental">
                     {{ mainMovie?.synopsis }}
                   </div>
                 </div>
@@ -84,16 +95,21 @@
     <div
       *ngFor="let homeCategory of homeCatogories"
       class="thanosRow thanosTitleCard"
-      [class.originalsRow]="homeCategory.category === 'Fastflix 오리지널'"
-      [class.thanosBigRow]="homeCategory.category === '특별 소개 콘텐츠'"
-      [class.jawBoneOpen]="homeCategory.category === openedCategory"
+      [class.originalsRow]="homeCategory?.category === 'Fastflix 오리지널'"
+      [class.thanosBigRow]="homeCategory?.category === '특별 소개 콘텐츠'"
+      [class.jawBoneOpen]="homeCategory?.category === openedCategory"
     >
-      <div *ngIf="homeCategory.category !== '특별 소개 콘텐츠'; else special">
+      <div
+        *ngIf="
+          homeCategory && homeCategory?.category !== '특별 소개 콘텐츠';
+          else special
+        "
+      >
         <h2 class="rowHeader">
           <span class="rowTitle">
-            <div class="rowHeaderTitle">
+            <div class="rowHeaderTitle" *ngIf="homeCategory">
               {{
-                homeCategory.category === '시청 중인 콘텐츠'
+                homeCategory?.category === '시청 중인 콘텐츠'
                   ? user + ' 님이 ' + homeCategory?.category
                   : homeCategory?.category
               }}
@@ -103,15 +119,19 @@
         <div class="rowContainer rowContainerTitleCard">
           <div class="rowContent">
             <app-original-slider
-              *ngIf="homeCategory.category === 'Fastflix 오리지널'"
+              *ngIf="
+                homeCategory && homeCategory?.category === 'Fastflix 오리지널'
+              "
             ></app-original-slider>
             <app-slider
-              *ngIf="homeCategory.category !== 'Fastflix 오리지널'"
+              *ngIf="
+                homeCategory && homeCategory?.category !== 'Fastflix 오리지널'
+              "
               [moviesList]="homeCategory.movies"
               [category]="homeCategory.category"
               [openCategory]="openedCategory"
               [isContinue]="
-                homeCategory.category === '시청 중인 콘텐츠' ? true : false
+                homeCategory?.category === '시청 중인 콘텐츠' ? true : false
               "
               (sliderOpen)="sliderOpened($event)"
               (sliderClose)="sliderClosed($event)"
@@ -125,6 +145,7 @@
           <div class="rowContent">
             <div class="bigRowItem">
               <div
+                *ngIf="bigMovie"
                 class="background-image"
                 [ngStyle]="{
                   'background-image': 'url(' + bigMovie?.image + ')'
@@ -132,8 +153,9 @@
               ></div>
               <div class="video-component-container">
                 <img
+                  *ngIf="bigMovie"
                   class="foreground-image show-foreground"
-                  src="{{ bigMovie?.image }}"
+                  [src]="bigMovie?.image"
                   alt="{{ bigMovie?.title }}"
                 />
                 <div class="button-container forward-leaning">
@@ -165,8 +187,15 @@
                   <span class="maturity-rating ">
                     <span>
                       <img
-                        src="{{ (bigMovie?.degree)['degree_image_path'] }}"
-                        alt="{{ (bigMovie?.degree)['name'] }}"
+                        *ngIf="bigMovie"
+                        [src]="
+                          bigMovie?.degree
+                            ? (bigMovie?.degree)['degree_image_path']
+                            : ''
+                        "
+                        alt="{{
+                          bigMovie?.degree ? (bigMovie?.degree)['name'] : ''
+                        }}"
                     /></span>
                   </span>
                 </div>
@@ -175,13 +204,15 @@
                 <div class="billboard-title">
                   <img
                     class="title-logo"
-                    src="{{ bigMovie?.logo }}"
+                    *ngIf="bigMovie"
+                    [src]="bigMovie?.logo"
                     title="{{ bigMovie?.title }}"
                     alt="{{ bigMovie?.title }}"
                   />
                 </div>
                 <div class="billboard-links button-layer forward-leaning">
                   <a
+                    *ngIf="bigMovie"
                     role="link"
                     aria-label="재생"
                     class=" playLink"
@@ -205,6 +236,7 @@
                     (click)="toggleMyLsit(bigMovie)"
                   >
                     <span
+                      *ngIf="bigMovie"
                       role="presentation"
                       class="nf-icon-button-icon"
                       [class.icon-button-mylist-add]="!bigMovie?.marked"
@@ -213,7 +245,9 @@
                     <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
                   </a>
                 </div>
-                <div class="synopsis">{{ bigMovie?.synopsis }}</div>
+                <div *ngIf="bigMovie" class="synopsis">
+                  {{ bigMovie?.synopsis }}
+                </div>
               </div>
             </div>
           </div>

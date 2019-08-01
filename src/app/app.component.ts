@@ -40,8 +40,6 @@ export class AppComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         // Hide loading indicator
         // Home, Movie, MyList, Search일 때만 header 필요
-        console.log(this.router.url);
-
         if (
           this.router.url.slice(0, 7) === '/search' ||
           this.router.url === '/home' ||
@@ -50,15 +48,11 @@ export class AppComponent implements OnInit, OnDestroy {
         )
           this.showHeader = true;
         else this.showHeader = false;
-
-        console.log(this.router.url, 'show Header', this.showHeader);
       }
 
       if (event instanceof NavigationError) {
         // Hide loading indicator
-
         // Present error to user
-        console.log(event.error);
       }
     });
   }

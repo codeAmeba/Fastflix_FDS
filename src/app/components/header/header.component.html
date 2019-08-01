@@ -81,8 +81,9 @@
                     }"
                   >
                     <img
+                      *ngIf="subUser"
                       class="profile-icon"
-                      src="{{ subUser['profile_info']['profile_image_path'] }}"
+                      [src]="subUser['profile_info']['profile_image_path']"
                       alt=""
                     />
                     <div
@@ -92,11 +93,12 @@
                   </div>
                   <img
                     class="profile-icon"
+                    *ngIf="subUser"
                     [ngStyle]="{
                       display: showDropDown ? 'none' : 'block',
                       'transition-duration': '200ms'
                     }"
-                    src="{{ subUser['profile_info']['profile_image_path'] }}"
+                    [src]="subUser['profile_info']['profile_image_path']"
                     alt=""
                   />
                 </span>
@@ -132,10 +134,11 @@
                       >
                         <div class="avatar-wrapper">
                           <img
+                            *ngIf="subUser"
                             class="profile-icon"
-                            src="{{
+                            [src]="
                               subUser['profile_info']['profile_image_path']
-                            }}"
+                            "
                             alt="{{ subUser.name }}"
                           />
                         </div>
