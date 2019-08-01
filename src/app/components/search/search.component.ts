@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviePreview } from 'src/app/models/movie-preview';
-import { MovieService } from 'src/app/services/movie.service';
 import { ActivatedRoute } from '@angular/router';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -16,20 +16,28 @@ export class SearchComponent implements OnInit {
   sliderLines: MoviePreview[][];
 
   openedCategory: string;
+  relatedContents: string[];
 
   constructor(
     private route: ActivatedRoute,
-    private movieService: MovieService
+    private searchService: SearchService
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => (this.query = params.get('query')));
-
-    console.log('query', this.query);
-  }
-
-  getSearchResult() {
-    // Do Something
+    this.route.paramMap.subscribe(params => {
+      this.query = params.get('query');
+      console.log('query', this.query);
+      this.searchService.searchMovies(this.query).subscribe(
+        response => {
+          console.log('search response', response);
+          this.relatedContents = response.contents;
+          console.log('content', this.relatedContents);
+        },
+        error => {
+          console.error(error);
+        }
+      );
+    });
   }
 
   parseMyList() {

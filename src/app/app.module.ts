@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -77,7 +77,12 @@ import { OnUnloadDirective } from './directives/on-unload.directive';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: COMPOSITION_BUFFER_MODE,
+      useValue: false,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
