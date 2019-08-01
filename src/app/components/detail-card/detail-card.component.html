@@ -38,12 +38,12 @@
           </h3>
           <div class="jawBoneCommon">
             <div class="jawBonePanes">
+              <!-- 콘텐츠 정보 tab -->
               <div
                 *ngIf="tabState === 'content'"
                 class="jawBonePane"
                 tabindex="-1"
-                style="opacity: 1; transition-duration: 300ms;"
-              >
+                style="opacity: 1; transition-duration: 300ms;">
                 <div class="overview">
                   <div class="meta video-meta">
                   <span class="match-score-wrapper">
@@ -235,8 +235,9 @@
                 </div>
                 <div class="jaw-play-hitzone" role="presentation"></div>
               </div>
+              <!-- 상세 정보 tab -->
               <div
-                *ngIf="tabState !== 'content'"
+                *ngIf="tabState === 'detail'"
                 class="jawBonePane"
                 tabindex="-1"
                 style="opacity: 1; transition-duration: 300ms;"
