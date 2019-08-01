@@ -1,4 +1,8 @@
-<div class="container" (mousemove)="pauseMovie = false">
+<div class="container"
+ (keyup.arrowright)="moveForward()"
+ (keyup.arrowleft)="moveBack()"
+ (keyup.backspace)="historyBack()"
+ (mousemove)="pauseMovie = false">
   <div class="pause-message pause-current-movie" [class.pause-current-movie]="pauseMovie">
     <div class="movie-info">
       <p>시청 중인 콘텐츠</p>
