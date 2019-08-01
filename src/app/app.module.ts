@@ -33,6 +33,7 @@ import {
   ProfileSliderComponent,
   OriginalSliderComponent,
   SearchComponent,
+  DetailSliderComponent,
 } from './components';
 
 // Directives
@@ -68,6 +69,7 @@ import { OnUnloadDirective } from './directives/on-unload.directive';
     OriginalSliderComponent,
     OnUnloadDirective,
     SearchComponent,
+    DetailSliderComponent,
   ],
   imports: [
     BrowserModule,
