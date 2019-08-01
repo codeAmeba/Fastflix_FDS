@@ -176,15 +176,18 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     const myPlayer = videojs('my-video');
     myPlayer.currentTime(myPlayer.currentTime() - 10);
   }
+  
   // 뒤로가기 버튼
   historyBack() {
     window.history.back();
   }
+
   // 엔터키 -> 전체화면 
   enterFullScreen() {
     const myPlayer = videojs('my-video');
     myPlayer.requestFullscreen();
   }
+
   // 스페이스바 -> 일시정지 or 재생
   playOrPause() {
     const myPlayer = videojs('my-video');
@@ -195,7 +198,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   
-
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
   pauseVideo() {
     this.pauseMovie = false;
@@ -206,7 +208,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }, 2000);
     } 
-
 
   savePlayTime() {
     const myPlayer = videojs('my-video');
