@@ -77,3 +77,12 @@
   list-style: none;
   padding: 0 .5em;
 }
+
+.noResultsWrapper {
+  text-align: center;
+}
+
+.noResultsWrapper .noResults {
+  display: inline-block;
+  text-align: left;
+}

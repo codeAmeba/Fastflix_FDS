@@ -4,7 +4,7 @@
       <div class="gallery row-with-x-columns">
         <div class="search-title-header">
           <div class="rail">
-            <div class="suggestions">
+            <div *ngIf="searchOK" class="suggestions">
               <div class="suggestionRailContainer">
                 <span class="suggestionsLabel">다음과 관련된 콘텐츠:</span>
                 <ul>
@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="galleryContent">
-          <div class="galleryLockups">
+          <div *ngIf="searchOK; else noResult" class="galleryLockups">
             <div
               *ngFor="let sliderLine of sliderLines; let i = index"
               class="thanosRow thanosTitleCard"
@@ -36,6 +36,28 @@
               </div>
             </div>
           </div>
+          <ng-template #noResult>
+            <div class="noResultsWrapper">
+              <div class="noResults">
+                <p>
+                  입력하신 검색어 "{{ query }}"(와)과 일치하는 결과가 없습니다.
+                </p>
+                <p>추천 검색어:</p>
+                <ul>
+                  <li>다른 키워드를 입력해 보세요.</li>
+                  <li>TV 프로그램이나 영화를 찾고 있으신가요?</li>
+                  <li>
+                    영화 제목, TV 프로그램 제목, 또는 배우나 감독의 이름으로
+                    검색해 보세요.
+                  </li>
+                  <li>
+                    코미디, 로맨스, 스포츠 또는 드라마와 같은 장르명으로 검색해
+                    보세요.
+                  </li>
+                </ul>
+              </div>
+            </div></ng-template
+          >
         </div>
       </div>
     </div>
