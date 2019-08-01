@@ -2,13 +2,19 @@
   <div class="thanos is-fullbleed">
     <h1 class="visually-hidden">Fastflix 홈</h1>
     <span class="billboard-animations-container">
-      <div class="billboard-row" role="region" aria-label="특별 소개 콘텐츠">
+      <div
+        *ngIf="mainMovie"
+        class="billboard-row"
+        role="region"
+        aria-label="특별 소개 콘텐츠"
+      >
         <div class="billboard billboard-originals">
           <div class="billboard-trailer">
             <div class="trailer-background">
               <div class="FFPlayer" *ngIf="playBillBoard"></div>
               <div class="hero-img-wrapper">
                 <img
+                  *ngIf="mainMovie"
                   class="hero static-image image-layer"
                   src="{{ mainMovie?.image }}"
                   alt=""
@@ -19,6 +25,7 @@
                   <span class="maturity-rating "
                     ><span
                       ><img
+                        *ngIf="mainMovie"
                         src="{{ (mainMovie?.degree)['degree_image_path'] }}"
                         alt="{{ (mainMovie?.degree)['name'] }}"/></span
                   ></span>
@@ -31,6 +38,7 @@
               <div class="logo-and-text meta-layer">
                 <div class="billboard-title">
                   <img
+                    *ngIf="mainMovie"
                     class="title-logo"
                     src="{{ mainMovie?.logo }}"
                     title="{{ mainMovie?.title }}"
