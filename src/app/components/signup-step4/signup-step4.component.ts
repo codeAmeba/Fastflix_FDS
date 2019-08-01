@@ -87,6 +87,6 @@ export class SignupStep4Component implements OnInit {
       });
     });
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['home']);
   }
 }
