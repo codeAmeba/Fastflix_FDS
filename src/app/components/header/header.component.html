@@ -42,13 +42,15 @@
             >
               <span class="icon-search"></span>
             </button>
-            <div *ngIf="isSearch" [@slide] class="searchInput">
+            <div *ngIf="isSearch" class="searchInput">
               <span class="icon-search" (click)="onBlur()"></span
               ><input
+                id="searchInput"
                 type="text"
                 placeholder="제목, 사람, 장르"
                 maxlength="80"
                 autofocus
+                [@slide]
                 [(ngModel)]="searchValue"
                 (keyup)="search()"
                 (blur)="onBlur()"
@@ -172,7 +174,7 @@
         </li>
       </ul>
     </nav>
-    <ng-container *ngIf="!isHome">
+    <ng-container *ngIf="isSubHeader">
       <app-sub-header></app-sub-header>
     </ng-container>
   </div>

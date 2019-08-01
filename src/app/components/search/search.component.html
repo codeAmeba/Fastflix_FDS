@@ -1,0 +1,43 @@
+<div class="mainView" role="main">
+  <div class="thanos">
+    <div class="search">
+      <div class="gallery row-with-x-columns">
+        <div class="search-title-header">
+          <div class="rail">
+            <div class="suggestions">
+              <div class="suggestionRailContainer">
+                <span class="suggestionsLabel">다음과 관련된 콘텐츠:</span>
+                <ul>
+                  <li *ngFor="let content of relatedContents" class="">
+                    <a routerLink="/search/{{ content }}">{{ content }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="galleryContent">
+          <div class="galleryLockups">
+            <div
+              *ngFor="let sliderLine of sliderLines; let i = index"
+              class="thanosRow thanosTitleCard"
+              [class.jawBoneOpen]="i + '' === openedCategory"
+            >
+              <div class="rowContainer rowContainer_title_card" id="row-0">
+                <div class="rowContent slider-hover-trigger-layer">
+                  <app-slider
+                    [moviesList]="sliderLine"
+                    [category]="i + ''"
+                    [openCategory]="null"
+                    (sliderOpen)="sliderOpened($event)"
+                    (sliderClose)="sliderClosed($event)"
+                  ></app-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

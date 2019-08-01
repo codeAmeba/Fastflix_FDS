@@ -16,6 +16,7 @@ import {
   SignupStep2Component,
   SignupStep3Component,
   SignupStep4Component,
+  SearchComponent,
 } from './components';
 
 /* Guard */
@@ -25,14 +26,6 @@ import { SecondGuard } from './services/second.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'welcome', component: IndexComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'movie', component: MovieComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [SecondGuard] },
-  {
-    path: 'profile/manage',
-    component: ProfileManageComponent,
-    canActivate: [SecondGuard],
-  },
   {
     path: 'signup',
     component: SignupComponent,
@@ -61,8 +54,22 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [SecondGuard] },
+  {
+    path: 'profile/manage',
+    component: ProfileManageComponent,
+    canActivate: [SecondGuard],
+  },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'movie', component: MovieComponent, canActivate: [AuthGuard] },
+
   { path: 'watch/:id', component: WatchComponent, canActivate: [AuthGuard] },
   { path: 'mylist', component: MyListComponent, canActivate: [AuthGuard] },
+  {
+    path: 'search/:query',
+    component: SearchComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

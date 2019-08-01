@@ -1,8 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  AfterViewChecked,
+  AfterViewInit,
+} from '@angular/core';
 import { style, animate, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SubUser } from 'src/app/models/sub-user';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -34,10 +42,10 @@ import { SubUser } from 'src/app/models/sub-user';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, AfterViewChecked {
   @Output() profileSelected = new EventEmitter();
   showDropDown: boolean;
-  isHome: boolean;
+  isSubHeader: boolean;
   isSearch: boolean;
   searchValue: string;
   subUsers: SubUser[];
@@ -45,18 +53,31 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit() {
     this.showDropDown = false;
-    this.isSearch = false;
-    this.searchValue = '';
-    this.isHome = this.router.url === '/home';
+    this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
+    this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : '';
+    this.isSubHeader = this.checkRoute();
     this.subUsers = this.authService.getSubUsers();
     this.subUser = this.subUsers.find(
       ({ id }) => id === this.authService.getProfile()
     );
+    if (document.getElementById('#searchInput') && this.isSearch)
+      document.getElementById('#searchInput').focus();
+  }
+
+  ngAfterViewChecked() {
+    if (document.getElementById('#searchInput') && this.isSearch)
+      document.getElementById('#searchInput').focus();
+  }
+
+  checkRoute() {
+    if (this.router.url === '/home' || this.isSearch) return false;
+    else return true;
   }
 
   selectProfile(subUser: SubUser) {
@@ -82,16 +103,24 @@ export class HeaderComponent implements OnInit {
   }
 
   onBlur() {
-    console.log(this.searchValue);
     this.isSearch = this.searchValue ? true : false;
-    console.log(this.isSearch);
   }
 
   search() {
     console.log('search Input: ', this.searchValue);
-
-    // if (this.searchValue === '') this.isSearch = false;
-
-    // 값 있으면 searchValue로 검색
+    if (!this.searchValue && this.router.url.slice(0, 7) === '/search') {
+      console.log(
+        'no search value! go back to',
+        this.searchService.beforeSearch
+      );
+      this.router.navigate([this.searchService.beforeSearch]);
+    } else {
+      if (this.router.url.slice(0, 7) !== '/search') {
+        console.log('remember now', this.router.url);
+        this.searchService.rememberBefore(this.router.url);
+      }
+      this.searchService.setSearchQuery(this.searchValue);
+      this.router.navigate([`search/${this.searchValue}`]);
+    }
   }
 }
