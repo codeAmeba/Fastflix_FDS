@@ -73,11 +73,11 @@ import { OnUnloadDirective } from './directives/on-unload.directive';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    AppRoutingModule,
   ],
   providers: [
     {

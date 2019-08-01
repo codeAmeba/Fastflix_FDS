@@ -21,7 +21,8 @@
   padding-top: 91px;
 }
 
-::ng-deep div>router-outlet~app-login {
+::ng-deep div>router-outlet~app-login,
+::ng-deep div>router-outlet~app-watch {
   position: static;
   top: 0;
   left: 0;
