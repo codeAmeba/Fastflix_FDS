@@ -1,14 +1,21 @@
 interface actor {
-  name: string;
   id: number;
+  name: string;
 }
 interface genre {
-  name: string;
   id: number;
+  name: string;
 }
 interface feature {
-  name: string;
   id: number;
+  name: string;
+}
+export interface similarMovies {
+  id: number;
+  name: string;
+  horizontal_image_path: string;
+  marked: boolean;
+  vertical_image: string;
 }
 
 export interface MovieDetail {
@@ -33,7 +40,7 @@ export interface MovieDetail {
   remaining_time: number;
   running_time: number;
   sample_video_file: string;
-  similar_movies: string[];
+  similar_movies: similarMovies[];
   synopsis: string;
   to_be_continue: number;
   total_minute: number;
