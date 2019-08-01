@@ -196,7 +196,11 @@
           <div class="main-profile-avatar">
             <div class="avatar-box">
               <img
-                src="{{ selectedUser['profile_info']['profile_image_path'] }}"
+                src="{{
+                  imageChanged
+                    ? tempUser.profile_image_path
+                    : selectedUser['profile_info']['profile_image_path']
+                }}"
                 alt=""
                 style="opacity: 1; transform: scale(1); transition-duration: 400ms;"
               />
@@ -222,14 +226,33 @@
                 name="name"
                 autofocus
                 formControlName="name"
-                value="{{ selectedUser.name }}"
+                value="{{ nameChanged ? tempUser.name : selectedUser.name }}"
               /><span
                 ><input
                   type="checkbox"
                   id="add-kids-profile"
                   name="kid"
                   formControlName="kid"
-                /><label for="add-kids-profile"></label
+                  checked="{{ kidChanged ? tempUser.kid : selectedUser.kid }}"
+                  (change)="
+                    kidChanged = true;
+                    tempUser.kid = changeForm?.get('kid').value
+                  "
+                /><label for="add-kids-profile">
+                  <svg
+                    *ngIf="changeForm?.get('kid').value"
+                    class="svg-icon svg-icon-check-mark"
+                    focusable="true"
+                  >
+                    <use filter="" xlink:href="#check-mark">
+                      <svg id="check-mark" viewBox="0 0 32 32">
+                        <path
+                          fill="currentColor"
+                          d="M14.133 23.5l12.767-12.467c0.033-0.033 0.1-0.1 0.133-0.167l-3.1-3.133c-0.067 0.033-0.133 0.1-0.2 0.167l-11.267 10.933-4.267-4.333-3.233 2.933c0.033 0 1.067 1.067 1.1 1.067l4.767 5 0.133 0.133c0.433 0.4 0.967 0.633 1.5 0.633s1.1-0.233 1.5-0.633z"
+                        ></path>
+                      </svg>
+                    </use>
+                  </svg> </label
                 ><span class="add-kids-marker">어린이인가요?</span></span
               >
             </form>
@@ -317,7 +340,7 @@
         </div>
         <div class="lolopi-profile">
           <span class="lolopi-profile-name">{{
-            changeForm.get('name').value || selectedUser.name
+            nameChanged ? tempUser.name : selectedUser.name
           }}</span
           ><img
             src="{{ selectedUser['profile_info']['profile_image_path'] }}"

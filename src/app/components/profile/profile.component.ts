@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
 
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
-      this.authService.setSubUsers(subUsers);
+      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
       this.subUsers = subUsers;
       // this.subUsers = this.authService.getSubUsers();
       console.log('get subUsers', this.authService.getSubUsers());
