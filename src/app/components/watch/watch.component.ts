@@ -148,9 +148,9 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.movieService.getMovieDetail(this.movieId).subscribe(detail => {
         myPlayer.currentTime(detail['to_be_continue']);
       });
-      this.hourOfMovie = this.minOfMovie > 60 ? this.minOfMovie / 60 : 0;
-      this.minOfMovie = Math.round(myPlayer.currentTime() / 60);
-      this.secOfMovie = Math.round(myPlayer.currentTime() % 60);
+      // this.hourOfMovie = this.minOfMovie > 60 ? this.minOfMovie / 60 : 0;
+      // this.minOfMovie = Math.round(myPlayer.currentTime() / 60);
+      // this.secOfMovie = Math.round(myPlayer.currentTime() % 60);
     });
 
     window.addEventListener('beforeunload', this.savePlayTime);
@@ -176,11 +176,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     const myPlayer = videojs('my-video');
     myPlayer.currentTime(myPlayer.currentTime() - 10);
   }
-  
-  // 뒤로가기 버튼
-  historyBack() {
-    window.history.back();
-  }
 
   // 엔터키 -> 전체화면 
   enterFullScreen() {
@@ -191,17 +186,18 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 스페이스바 -> 일시정지 or 재생
   playOrPause() {
     const myPlayer = videojs('my-video');
-    if (myPlayer.paused()) {
-      myPlayer.play();
-    } else {
-      myPlayer.pause();
-    }
+    myPlayer.paused() ? myPlayer.play() : myPlayer.paused();
   }
   
+  // 뒤로가기 버튼
+  historyBack() {
+    window.history.back();
+  }
+
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
   pauseVideo() {
-    this.pauseMovie = false;
     const myPlayer = videojs('my-video');
+    this.pauseMovie = false;
       setTimeout(() => {
         if (myPlayer.paused() === true) {
           this.pauseMovie = true;
