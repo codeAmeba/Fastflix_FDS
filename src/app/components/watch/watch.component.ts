@@ -150,18 +150,8 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.hourOfMovie = this.minOfMovie > 60 ? this.minOfMovie / 60 : 0;
       this.minOfMovie = Math.round(myPlayer.currentTime() / 60);
       this.secOfMovie = Math.round(myPlayer.currentTime() % 60);
-      // videojs.log(
-      //   `마지막으로 저장된 시간 : ${
-      //     this.hourOfMovie < 10 ? '0' + this.hourOfMovie : this.hourOfMovie
-      //   }:${this.minOfMovie < 10 ? '0' + this.minOfMovie : this.minOfMovie}:${
-      //     this.secOfMovie < 10 ? '0' + this.secOfMovie : this.secOfMovie
-      //   }`
-      // );
-      // videojs.log(`마지막으로 저장된 시간 : ${Math.round(myPlayer.currentTime())} 초`);
     });
 
-    // *테스트* beforunload 이벤트(새로고침, url 변경) 발생 시 localstorage에 현재 시간(초) 저장
-    // 최종적으로 localstorage 대신 DB 적용해야 됨
     window.addEventListener('beforeunload', this.savePlayTime);
     // window.addEventListener('beforeunload', function() {
     //   localStorage.setItem('lastTime', myPlayer.currentTime());
