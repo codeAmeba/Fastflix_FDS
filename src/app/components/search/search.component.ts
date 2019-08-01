@@ -31,7 +31,28 @@ export class SearchComponent implements OnInit {
         response => {
           console.log('search response', response);
           this.relatedContents = response.contents;
+          this.searchMovies = response['first_movie'].map(movie => {
+            return {
+              id: movie.id,
+              title: movie.name,
+              url: movie['horizontal_image_path'],
+              preview: movie['sample_video_file'],
+            };
+          });
+          this.searchMovies = [
+            ...this.searchMovies,
+            ...response['other_movie'].map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['horizontal_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            }),
+          ];
           console.log('content', this.relatedContents);
+          console.log('movies', this.searchMovies);
+          this.parseMyList();
         },
         error => {
           console.error(error);

@@ -45,7 +45,7 @@ import { SearchService } from 'src/app/services/search.service';
 export class HeaderComponent implements OnInit, AfterViewChecked {
   @Output() profileSelected = new EventEmitter();
   showDropDown: boolean;
-  isHome: boolean;
+  isSubHeader: boolean;
   isSearch: boolean;
   searchValue: string;
   subUsers: SubUser[];
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.showDropDown = false;
     this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
     this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : '';
-    this.isHome = this.router.url === '/home';
+    this.isSubHeader = this.checkRoute();
     this.subUsers = this.authService.getSubUsers();
     this.subUser = this.subUsers.find(
       ({ id }) => id === this.authService.getProfile()
@@ -73,6 +73,11 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (document.getElementById('#searchInput') && this.isSearch)
       document.getElementById('#searchInput').focus();
+  }
+
+  checkRoute() {
+    if (this.router.url === '/home' || this.isSearch) return false;
+    else return true;
   }
 
   selectProfile(subUser: SubUser) {
