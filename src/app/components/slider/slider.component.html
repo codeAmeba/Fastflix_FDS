@@ -140,9 +140,8 @@
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
                                       >{{
-                                        moviesDetail['match_rate']
-                                          ? moviesDetail['match_rate']
-                                          : ''
+                                        moviesDetail?.match_rate
+                                          
                                       }}{{
                                         moviesDetail['match_rate']
                                           ? '% 일치'
