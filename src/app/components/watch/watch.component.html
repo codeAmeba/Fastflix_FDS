@@ -2,7 +2,12 @@
  (keyup.arrowright)="moveForward()"
  (keyup.arrowleft)="moveBack()"
  (keyup.backspace)="historyBack()"
+ (keyup.enter)="enterFullScreen()"
+ (keyup.space)="playOrPause()"
  (mousemove)="pauseMovie = false">
+  <!-- <div class="play-icon play-icon-active">
+    <img src="https://png2.kisspng.com/sh/d87b785e0a71a2187b75dcfc4d657467/L0KzQYm4UcE6N6p5g5H0aYP2gLBuTfNwdaF6jNd7LXnmf7B6TgBweqVmet5uLX7ohMj2kvsub6NmiNpyY4Owg7TojPFjdJYyf9h5bHH8PcT9h71xdpgygdV4bj3pgrbsTfRwf59xh9NtLUK6Rom4Vb1wdp1uRadrZkLpQra7UsEyapM2RqU8NEG4QYKBUcU1Omc5UKc9OEG2RYe1kP5o/kisspng-computer-icons-portable-network-graphics-scalable-gfplay-svg-png-icon-free-download-276815-onli-5bf2f2e4211bb1.3341511815426485481356.png" alt="play">
+  </div> -->
   <div class="pause-message pause-current-movie" [class.pause-current-movie]="pauseMovie">
     <div class="movie-info">
       <p>시청 중인 콘텐츠</p>
