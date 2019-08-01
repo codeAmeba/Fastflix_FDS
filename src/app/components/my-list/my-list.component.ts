@@ -9,7 +9,11 @@ import { MoviePreview } from 'src/app/models/movie-preview';
 })
 export class MyListComponent implements OnInit {
   myLists: MoviePreview[];
-  sliderLines: number;
+
+  sliderNums: number;
+  sliderLines: MoviePreview[][];
+
+  openedCategory: string;
 
   constructor(private movieService: MovieService) {}
 
@@ -33,6 +37,31 @@ export class MyListComponent implements OnInit {
   }
 
   parseMyList() {
-    this.sliderLines = Math.ceil(this.myLists.length / 6);
+    this.sliderNums = Math.ceil(this.myLists.length / 6);
+    this.sliderLines = Array.from(Array(this.sliderNums), () => Array());
+    console.log(this.sliderNums);
+    for (let i = 0; i < this.sliderNums; i++) {
+      this.sliderLines[i] = this.myLists.slice(i * 6, (i + 1) * 6);
+      console.log(this.sliderLines);
+    }
+  }
+
+  sliderOpened(category: string) {
+    const thanos = document.querySelector('.thanos');
+
+    this.openedCategory = category;
+    thanos.classList.add('has-open-jaw');
+    console.log('opened', this.openedCategory);
+  }
+
+  sliderClosed(category: string) {
+    const thanos = document.querySelector('.thanos');
+
+    this.openedCategory =
+      this.openedCategory === category ? '' : this.openedCategory;
+
+    thanos.classList.remove('has-open-jaw');
+
+    console.log('closed', this.openedCategory);
   }
 }
