@@ -744,7 +744,9 @@ a {
     height: 37vw;
   }
 }
-
+.jawBoneContainer .background.dim {
+  opacity: 0.2;
+}
 .jawBoneContainer .background {
   position: absolute;
   top: 0;
@@ -1025,9 +1027,29 @@ a {
   line-height: 1.1vw;
   margin-bottom: 0.8em;
 }
-
+.jawBoneContainer .jawBoneCommon .simsLockup .meta {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  height: auto;
+  height: initial;
+  line-height: initial;
+  font-size: 1vw;
+}
+.jawBoneContainer .jawBoneCommon .simsLockup .meta {
+  line-height: 1.4;
+}
+@media screen and (min-width: 1400px) {
+  .jawBoneContainer .jawBoneCommon .simsLockup .meta {
+    font-size: 0.9vw;
+  }
+}
 .match-score-wrapper {
   color: #fff;
+}
+.jawBoneContainer .jawBoneCommon .simsLockup .meta .match-score-wrapper {
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .video-meta > span,
@@ -1422,6 +1444,10 @@ a {
   padding-right: 30px;
   font-size: 0.83333vw;
 }
+.simsLockup .meta,
+.trailerLockup .meta {
+  margin: 0 0 4px 0;
+}
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
   .simsLockup,
@@ -1446,11 +1472,27 @@ a {
   z-index: 3;
   background-size: cover;
 }
-
+.title-artwork,
+.video-artwork {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  width: 100%;
+  padding: 28.125% 0;
+}
 @media screen and (max-width: 1099px) and (min-width: 800px) {
   .simsLockup .video-artwork,
   .trailerLockup .video-artwork {
     margin-bottom: 0.75vw;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .simsLockup .video-artwork,
+  .trailerLockup .video-artwork {
+    margin-bottom: 0.45vw;
   }
 }
 
@@ -1481,7 +1523,33 @@ a {
   outline: 0;
   transition: all 150ms ease;
 }
-
+@media screen and (min-width: 1400px) {
+  .simsLockup .simsPlay,
+  .simsLockup .trailerPlay,
+  .trailerLockup .simsPlay,
+  .trailerLockup .trailerPlay {
+    font-size: 3.6vw;
+    height: 3.96vw;
+    width: 3.96vw;
+    margin-left: -1.89vw;
+    margin-top: -1.89vw;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #fff;
+    opacity: 0;
+    position: absolute;
+    z-index: 100;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-transition: all 150ms ease;
+    -o-transition: all 150ms ease;
+    -moz-transition: all 150ms ease;
+    transition: all 150ms ease;
+  }
+}
 @media screen and (max-width: 1099px) and (min-width: 800px) {
   .simsLockup .simsPlay,
   .simsLockup .trailerPlay,
@@ -1503,6 +1571,12 @@ a {
   }
 }
 
+@media screen and (min-width: 1500px) {
+  .slider {
+    padding: 0 60px;
+  }
+}
+
 @media screen and (min-width: 1400px) {
   .jawBoneContainer {
     height: 32vw;
@@ -1510,6 +1584,17 @@ a {
   .jawBonePane .content-warning,
   .jawBonePane .overview {
     font-size: 1.125vw;
+  }
+
+  .episodeWrapper .loadingTitle,
+  .episodeWrapper .row-with-x-columns .slider-item,
+  .placeholderEpisodes .loadingTitle,
+  .placeholderEpisodes .row-with-x-columns .slider-item,
+  .simsWrapper .loadingTitle,
+  .simsWrapper .row-with-x-columns .slider-item,
+  .trailerWrapper .loadingTitle,
+  .trailerWrapper .row-with-x-columns .slider-item {
+    width: 20%;
   }
 }
 .nf-flat-button .nf-flat-button-icon-mylist-add:before {
