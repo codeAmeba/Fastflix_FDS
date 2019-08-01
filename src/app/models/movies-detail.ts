@@ -1,13 +1,26 @@
+interface actor {
+  name: string;
+  id: number;
+}
+interface genre {
+  name: string;
+  id: number;
+}
+interface feature {
+  name: string;
+  id: number;
+}
+
 export interface MovieDetail {
-  actors: string[];
+  actors: actor[];
   author: string[];
   big_image_path: string;
   can_i_store: boolean;
   circle_image: string;
   degree: object;
   directors: string[];
-  feature: string[];
-  genre: string[];
+  feature: feature[];
+  genre: genre[];
   horizontal_image_path: string;
   id: number;
   like: number;

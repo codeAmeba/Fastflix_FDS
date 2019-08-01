@@ -7,7 +7,10 @@
             <span>
               <div
                 class="image-rotator-image "
-                style='background-image: url("https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYyXFjEuP-UUXBW41asHaT1tMR1DPPaJGuhhfsWSXP71AbW-Y4zu5qBVu85QO95uibYFSlZitqSIzn88HjzNybPhBpc6Y68e9w.webp?r=c9b"); z-index: 2; opacity: 1; transition-duration: 750ms;'
+                style=' z-index: 2; opacity: 1; transition-duration: 750ms;'
+                [ngStyle]="{
+                  'background-image': 'url(' + moviesDetail?.big_image_path + ')'
+                }"
               ></div>
             </span>
           </div>
@@ -29,19 +32,20 @@
                 <img
                   alt="The Spy Who Dumped Me"
                   class="logo"
-                  src="https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/jsgGe9NCko3c-j0wGZ7FSwVlHs0/AAAABQBzRBHv6OAZJGdjUi5730L_4TgDSu1u3o68bbcUJWVHvqNIvmY3ZVtlmkS6dVD5So-NtMRxnxzFQXCLYWqgWcKH8TzSHpCV3z7SRmQ.webp?r=25e"
+                  src={{moviesDetail?.logo_image_path}}
                 /></div
             ></a>
           </h3>
           <div class="jawBoneCommon">
             <div class="jawBonePanes">
+              <!-- 콘텐츠 정보 tab -->
               <div
                 *ngIf="tabState === 'content'"
                 class="jawBonePane"
                 tabindex="-1"
-                style="opacity: 1; transition-duration: 300ms;"
-              >
+                style="opacity: 1; transition-duration: 300ms;">
                 <div class="overview">
+                  <div class="meta video-meta">
                   <span class="match-score-wrapper">
                     <div class="show-match-score rating-inner">
                       <div class="meta-thumb-container thumb-down">
@@ -74,30 +78,34 @@
                           </use>
                         </svg>
                       </div>
-                      <span class="match-score">98% 일치</span>
+                      <span class="match-score">{{moviesDetail?.match_rate}}{{
+                          moviesDetail?.match_rate
+                            ? '% 일치'
+                            : ''
+                        }}</span>
                     </div>
                   </span>
-                  <span class="year">2018</span>
+                  <span class="year">{{moviesDetail?.production_date}}</span>
                   <span class="maturity-rating "
                     ><span>
-                      <svg
+                      <!-- <span
                         class="svg-icon svg-icon-maturity-rating-KR-KMRB-95"
                         focusable="true"
-                      >
-                        <use
+                      > -->
+                      <img src="{{moviesDetail?.degree['degree_image_path']}}" alt="">
+                      
+                        <!-- <use
                           filter=""
                           xlink:href="#maturity-rating-KR-KMRB-95"
-                        ></use>
-                      </svg>
+                        ></use> -->
+                        <!-- </span> -->
                     </span>
                   </span>
-                  <span class="duration">1시간 47분</span>
+                  <span class="duration">{{moviesDetail?.running_time}}</span>
+                </div>
                   <div class="video-title"></div>
                   <div class="synopsis">
-                    거대 기업 '라이프 파운데이션'에 잠입한 열혈 기자. 끔찍한
-                    실험실에서 그는 외계 생명체 심비오트와 한 몸이 된다.
-                    베놈으로 거듭나며 주체못할 막강한 힘이 생긴 지금, 광기에
-                    사로잡힌 기업 대표의 어두운 계획을 막아야만 한다.
+                    {{moviesDetail?.synopsis}}
                   </div>
                   <div class="jawbone-actions">
                     <a
@@ -126,7 +134,7 @@
                       role="link"
                     >
                       <span
-                        class="nf-flat-button-icon nf-flat-button-icon-mylist-added"
+                        class="nf-flat-button-icon nf-flat-button-icon-mylist-add"
                       ></span>
                       <span class="nf-flat-button-text">내가 찜한 콘텐츠</span>
                     </a>
@@ -187,47 +195,49 @@
                       </div>
                     </span>
                   </div>
-                  <div class="evidence hook-evidence">
+                  <!-- <div class="evidence hook-evidence">
                     <span class="evidence-icon icon-Talent"></span>
                     <p class="evidence-text">
                       할리우드 연기파 배우 톰 하디가 마블 최초의 빌런 히어로
                       베놈으로 돌아왔다. 화려한 CG가 압권으로, 히어로물에 파란을
                       불러일으킨 초특급 블록버스터.
                     </p>
-                  </div>
+                  </div> -->
                   <div class="meta-lists">
                     <p class="cast inline-list" label="주연:">
                       <span class="list-label">주연:</span>
                       <span class="list-items">
-                        <a href="/browse/person/20037666">톰 하디</a>,
-                        <a href="/browse/person/162903">미셸 윌리엄스</a>,
-                        <a href="/browse/person/30048753">리즈 아메드</a>
+                        <span *ngFor="let actor of moviesDetail?.actors; index as moviesIdx">
+                          {{actor.name}}{{moviesIdx === moviesDetail?.actors.length-1 ? '' : ','}}
+                        </span>
+                        <!-- <a href="/browse/person/30048753">리즈 아메드</a> -->
                       </span>
                     </p>
                     <p class="genres inline-list" label="장르:">
                       <span class="list-label">장르:</span>
-                      <span class="list-items"
-                        ><a href="/browse/genre/1159493">미국 영화</a>,
-                        <a href="/browse/genre/1365">액션 &amp; 어드벤처</a>,
-                        <a href="/browse/genre/90176"
-                          >액션 &amp; 어드벤처·블록버스터</a
-                        >
+                      <span class="list-items">
+                        <span *ngFor="let genre of moviesDetail?.genre; index as genreIdx">
+                            {{genre.name}}{{genreIdx === moviesDetail?.genre.length-1 ? '' : ','}}
+                        </span>
+                        <!-- <a href="/browse/genre/90176">액션 &amp; 어드벤처·블록버스터</a> -->
                       </span>
                     </p>
                     <p class="tags inline-list" label="영화 특징:">
                       <span class="list-label">영화 특징:</span>
-                      <span class="list-items"
-                        ><a href="/browse/genre/108228">아드레날린 폭발</a>,
-                        <a href="/browse/genre/1632671">색다른 이야기</a>,
-                        <a href="/browse/genre/100041">흥미진진</a>
+                      <span class="list-items">
+                          <span *ngFor="let feature of moviesDetail?.feature; index as featureIdx">
+                              {{feature.name}}{{featureIdx === moviesDetail?.feature.length-1 ? '' : ','}}
+                          </span>
+                        <!-- <a href="/browse/genre/100041">흥미진진</a> -->
                       </span>
                     </p>
                   </div>
                 </div>
                 <div class="jaw-play-hitzone" role="presentation"></div>
               </div>
+              <!-- 상세 정보 tab -->
               <div
-                *ngIf="tabState !== 'content'"
+                *ngIf="tabState === 'detail'"
                 class="jawBonePane"
                 tabindex="-1"
                 style="opacity: 1; transition-duration: 300ms;"

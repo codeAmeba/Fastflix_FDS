@@ -14,13 +14,21 @@ export class FixHeaderDirective {
     private router: Router
   ) {}
 
-  @HostListener('window:scroll', ['$event']) fix() {
+  checkRoute() {
+    if (
+      this.router.url === '/home' ||
+      this.router.url.slice(0, 7) === '/search'
+    )
+      return false;
+    else return true;
+  }
 
+  @HostListener('window:scroll', ['$event']) fix() {
     if (this.lastScrollTop > window.pageYOffset) this.state = 'up';
     else this.state = 'down';
 
     if (window.pageYOffset >= 10) {
-      if (this.router.url === '/home') {
+      if (this.checkRoute()) {
         // top: 0px; position: fixed; background: rgb(20, 20, 20);
         this.renderer.setStyle(this.el.nativeElement, 'top', '0');
         this.renderer.setStyle(this.el.nativeElement, 'position', 'fixed');
