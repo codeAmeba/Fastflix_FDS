@@ -1,0 +1,46 @@
+<app-header (profileSelected)="ngOnInit()"></app-header>
+<div class="mainView" role="main">
+  <div class="thanos">
+    <div class="search">
+      <div class="gallery row-with-x-columns">
+        <div class="search-title-header">
+          <div class="rail">
+            <div class="suggestions">
+              <div class="suggestionRailContainer">
+                <span class="suggestionsLabel">Explore titles related to:</span>
+                <ul>
+                  <li class="">
+                    <a href="/search?q=gg&amp;suggestionId=70044766_video"
+                      >G.G. Allin: Terror in America: Live 1993</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="galleryContent">
+          <div class="galleryLockups">
+            <div
+              *ngFor="let sliderLine of sliderLines; let i = index"
+              class="thanosRow thanosTitleCard"
+              [class.jawBoneOpen]="i + '' === openedCategory"
+            >
+              <div class="rowContainer rowContainer_title_card" id="row-0">
+                <div class="rowContent slider-hover-trigger-layer">
+                  <app-slider
+                    [moviesList]="sliderLine"
+                    [category]="i + ''"
+                    [openCategory]="null"
+                    (sliderOpen)="sliderOpened($event)"
+                    (sliderClose)="sliderClosed($event)"
+                  ></app-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

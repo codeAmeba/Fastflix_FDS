@@ -32,6 +32,7 @@ import {
   SignupStep4Component,
   ProfileSliderComponent,
   OriginalSliderComponent,
+  SearchComponent,
 } from './components';
 
 // Directives
@@ -66,6 +67,7 @@ import { OnUnloadDirective } from './directives/on-unload.directive';
     ProfileSliderComponent,
     OriginalSliderComponent,
     OnUnloadDirective,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

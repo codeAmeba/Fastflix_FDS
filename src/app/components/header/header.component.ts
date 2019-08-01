@@ -3,6 +3,7 @@ import { style, animate, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SubUser } from 'src/app/models/sub-user';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -45,12 +46,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private location: Location,
     private authService: AuthenticationService
   ) {}
 
   ngOnInit() {
     this.showDropDown = false;
-    this.isSearch = false;
+    this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
     this.searchValue = '';
     this.isHome = this.router.url === '/home';
     this.subUsers = this.authService.getSubUsers();
@@ -89,7 +91,11 @@ export class HeaderComponent implements OnInit {
 
   search() {
     console.log('search Input: ', this.searchValue);
+    if (!this.searchValue) {
+      console.log('no search value');
 
+      this.location.back();
+    } else this.router.navigate([`search/${this.searchValue}`]);
     // if (this.searchValue === '') this.isSearch = false;
 
     // 값 있으면 searchValue로 검색
