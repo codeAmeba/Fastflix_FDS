@@ -222,18 +222,17 @@ export class ProfileManageComponent implements OnInit {
   }
 
   saveProfile() {
-    if (!this.nameChanged && !this.kidChanged && !this.imageChanged) return;
+    this.nameChanged = this.changeForm.get('name').value ? true : false;
 
-    this.nameChanged =
-      this.selectedUser.name !== this.changeForm.get('name').value
-        ? true
-        : false;
+    if (!this.nameChanged && !this.kidChanged && !this.imageChanged) return;
 
     this.tempUser.name = this.isChanged
       ? this.changeForm.get('name').value
       : this.selectedUser.name;
 
-    const profileInfo = {};
+    const profileInfo = {
+      sub_user_id: this.selectedUser.id,
+    };
     if (this.nameChanged) profileInfo['name'] = this.tempUser.name;
     if (this.kidChanged) profileInfo['kid'] = this.tempUser.kid;
     if (this.imageChanged)
