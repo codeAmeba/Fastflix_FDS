@@ -1,11 +1,25 @@
 <app-header (profileSelected)="ngOnInit()"></app-header>
 <div class="mainView" role="main">
-  <div class="gallery row-with-x-columns">
-    <div class="galleryContent">
-      <div class="galleryLockups">
-        <div class="rowContainer rowContainer_title_card" id="row-0">
-          <div class="rowContent slider-hover-trigger-layer">
-            <app-slider></app-slider>
+  <div class="thanos">
+    <div class="gallery row-with-x-columns">
+      <div class="galleryContent">
+        <div class="galleryLockups">
+          <div
+            *ngFor="let sliderLine of sliderLines; let i = index"
+            class="thanosRow thanosTitleCard"
+            [class.jawBoneOpen]="i + '' === openedCategory"
+          >
+            <div class="rowContainer rowContainer_title_card" id="row-0">
+              <div class="rowContent slider-hover-trigger-layer">
+                <app-slider
+                  [moviesList]="sliderLine"
+                  [category]="i + ''"
+                  [openCategory]="null"
+                  (sliderOpen)="sliderOpened($event)"
+                  (sliderClose)="sliderClosed($event)"
+                ></app-slider>
+              </div>
+            </div>
           </div>
         </div>
       </div>
