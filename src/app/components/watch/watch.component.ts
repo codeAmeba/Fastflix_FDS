@@ -27,11 +27,11 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 샘플 영상 링크
   video: string =
     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
-  pauseMovie: boolean;
+  pauseMovie: boolean = false;
 
   // 영화정보 데이터 받았다고 가정함
   movieTitle: string = 'Big Buck Bunny';
-  madeYear: number = 2019;
+  madeYear: string = '2019';
   ageLimit: string = '12';
   runningTime: string = '9분 56초';
   movieIntro: string =
@@ -175,7 +175,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     const myPlayer = videojs('my-video');
     myPlayer.currentTime(myPlayer.currentTime() - 10);
   }
-
   // 뒤로가기 버튼
   historyBack() {
     window.history.back();
@@ -183,9 +182,14 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
   pauseVideo() {
-    setTimeout(() => {
-      this.pauseMovie = true;
-    }, 2500);
+    const myPlayer = videojs('my-video');
+    if (myPlayer.paused() === true) {
+      setTimeout(() => {
+        this.pauseMovie = true;
+      }, 2500);
+    } else if (myPlayer.paused() === false) {
+      this.pauseMovie = false;
+    }
   }
 
   savePlayTime() {
