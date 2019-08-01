@@ -222,7 +222,7 @@
                 name="name"
                 autofocus
                 formControlName="name"
-                value="{{ selectedUser.name }}"
+                value="{{ nameChanged ? tempUser.name : selectedUser.name }}"
               /><span
                 ><input
                   type="checkbox"
@@ -317,7 +317,7 @@
         </div>
         <div class="lolopi-profile">
           <span class="lolopi-profile-name">{{
-            changeForm.get('name').value || selectedUser.name
+            nameChanged ? tempUser.name : selectedUser.name
           }}</span
           ><img
             src="{{ selectedUser['profile_info']['profile_image_path'] }}"

@@ -33,6 +33,9 @@ export class ProfileManageComponent implements OnInit {
   profileCategories: ProfileCategory[];
   standardIcons: ProfileImage[];
   newProfileImage: string;
+  nameChanged: boolean;
+  kidChanged: boolean;
+  imageChanged: boolean;
 
   constructor(
     private authService: AuthenticationService,
@@ -51,12 +54,18 @@ export class ProfileManageComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       kid: new FormControl(false),
     });
+    this.nameChanged = false;
+    this.kidChanged = false;
+    this.imageChanged = false;
   }
 
+  // 해당 계정의 모든 SubUser를 다시 가져와서 LocalStorage에 저장
+  // this.subUsers에도 새로 반영
+  // selectedUser 초기화
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
-      console.log(subUsers);
-      this.authService.setSubUsers(subUsers);
+      console.log(subUsers.sort((a, b) => a.id - b.id));
+      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
       this.subUsers = subUsers;
       // this.subUsers = this.authService.getSubUsers();
       console.log('get subUsers', this.authService.getSubUsers());
@@ -69,11 +78,8 @@ export class ProfileManageComponent implements OnInit {
       profile_info: {},
     };
   }
-  // secondLogin(id: number) {
-  //   this.authService.setProfile(id);
-  //   this.router.navigate(['home']);
-  // }
 
+  // 사용자가 Profile 클릭 시 선택된 subUser 저장
   selectUser(subUser: SubUser) {
     this.selectedUser = subUser;
     this.tempUser = {
@@ -86,6 +92,7 @@ export class ProfileManageComponent implements OnInit {
     console.log('selectedUser', this.selectedUser);
   }
 
+  // Profile Add로 전환
   tabAdd() {
     this.userService.getProfileImages().subscribe(response => {
       const random = Math.floor(Math.random() * (5 - 0)) + 0;
@@ -94,6 +101,8 @@ export class ProfileManageComponent implements OnInit {
     this.tabState = 'add';
   }
 
+  // Profile Add (name, kid 필수)
+  // 반영된 subUsers를 다시 가져오고 selectedUser 초기화
   addProfile() {
     if (this.addForm.invalid) return;
 
@@ -121,10 +130,13 @@ export class ProfileManageComponent implements OnInit {
     });
   }
 
+  // Profile 삭제 클릭시 화면 전환
   tabDelete() {
     this.tabState = 'delete';
   }
 
+  // Profile 삭제
+  // 반영된 subUsers를 다시 가져오고 selectedUser 초기화
   removeProfile() {
     this.userService.removeProfile(this.selectedUser.id).subscribe(response => {
       console.log('remove', response);
@@ -133,12 +145,36 @@ export class ProfileManageComponent implements OnInit {
     });
   }
 
+  // selectedUser와 tempUser를 비교해서 변경되었는지 state 관리
+  isChanged() {
+    this.nameChanged =
+      this.selectedUser.name === this.tempUser.name ? false : true;
+
+    this.kidChanged =
+      this.selectedUser.kid === this.tempUser.kid ? false : true;
+
+    this.imageChanged =
+      this.selectedUser['profile_info']['profile_image_path'] ===
+      this.tempUser.profile_image_path
+        ? false
+        : true;
+  }
+
+  // Profile 변경 시 Image 선택 페이지로 전환
+  // 우선 tempUser에 변경사항 저장하고 변경 state update
   changeProfile() {
     if (!this.selectedUser) return;
     this.userService.getProfileImages().subscribe(
       response => {
         this.tempUser.name =
           this.changeForm.get('name').value || this.tempUser.name;
+
+        this.tempUser.kid = this.changeForm.get('kid').value;
+
+        this.isChanged();
+
+        console.log('tempUser', this.tempUser);
+
         this.tabState = 'profileImage';
 
         this.standardIcons = response['대표 아이콘'];
@@ -157,39 +193,53 @@ export class ProfileManageComponent implements OnInit {
     );
   }
 
+  // Profile 선택 시 임시 User에 선택된 Image 저장
   profileImageSelected(selectedIcon: ProfileImage) {
     this.tempUser.profile_image_path = selectedIcon.image_path;
+    this.isChanged();
     this.tabState = 'confirm';
   }
 
+  // Profile Image 변경 확인
   confirmProfileImage() {
-    this.selectedUser['profile_info'][
-      'profile_image_path'
-    ] = this.tempUser.profile_image_path;
-    this.selectedUser.name = this.tempUser.name;
-    this.selectedUser.kid = this.tempUser.kid;
+    // this.selectedUser['profile_info'][
+    //   'profile_image_path'
+    // ] = this.tempUser.profile_image_path;
+
+    // this.selectedUser.name = this.tempUser.name;
+    // this.selectedUser.kid = this.tempUser.kid;
+    this.imageChanged = true;
     this.tabState = 'change';
   }
 
+  // Profile Image 변경 취소
   cancelProfileImage() {
-    this.tempUser.profile_image_path = this.selectedUser['profile_info'][
-      'profile_image_path'
-    ];
+    // this.tempUser.profile_image_path = this.selectedUser['profile_info'][
+    //   'profile_image_path'
+    // ];
+    this.imageChanged = false;
     this.tabState = 'profileImage';
   }
 
   saveProfile() {
-    this.selectedUser.name =
-      this.changeForm.get('name').value || this.selectedUser.name;
+    if (!this.nameChanged && !this.kidChanged && !this.imageChanged) return;
 
-    const profileInfo = {
-      sub_user_id: this.selectedUser.id,
-      name: this.selectedUser.name,
-      kid: this.selectedUser.kid,
-      profile_image_path: this.selectedUser['profile_info'][
-        'profile_image_path'
-      ],
-    };
+    this.nameChanged =
+      this.selectedUser.name !== this.changeForm.get('name').value
+        ? true
+        : false;
+
+    this.tempUser.name = this.isChanged
+      ? this.changeForm.get('name').value
+      : this.selectedUser.name;
+
+    const profileInfo = {};
+    if (this.nameChanged) profileInfo['name'] = this.tempUser.name;
+    if (this.kidChanged) profileInfo['kid'] = this.tempUser.kid;
+    if (this.imageChanged)
+      profileInfo['profile_image_path'] = this.tempUser.profile_image_path;
+
+    console.log('pre change profile', profileInfo);
 
     this.userService.changeProfile(profileInfo).subscribe(
       ({ response }) => {
