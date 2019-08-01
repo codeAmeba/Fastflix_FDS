@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         response['sub_user_list'].sort((a, b) => a.id - b.id)
       );
 
-      if (response.token) this.router.navigate(['/home']);
+      if (response.token) this.router.navigate(['home']);
     });
     this.authService.setMaintainance(this.loginForm.get('maintainance').value);
   }
