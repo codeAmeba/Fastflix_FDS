@@ -20,3 +20,5 @@ export * from './signup-step3/signup-step3.component';
 export * from './signup-step4/signup-step4.component';
 export * from './profile-slider/profile-slider.component';
 export * from './original-slider/original-slider.component';
+export * from './search/search.component';
+export * from './detail-slider/detail-slider.component';
