@@ -225,37 +225,39 @@ export class SliderComponent implements OnInit, OnChanges {
     this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
-      this.moviesDetail = {
-        actors: [],
-        author: [],
-        big_image_path: "",
-        can_i_store: false,
-        circle_image: "",
-        degree: {},
-        directors: [],
-        feature: [],
-        genre: [],
-        horizontal_image_path: "",
-        id: 0,
-        like: 0,
-        logo_image_path: "",
-        marked: false,
-        match_rate: 0,
-        name: "",
-        production_date: "",
-        real_running_time: 0,
-        remaining_time: 0,
-        running_time: 0,
-        sample_video_file: "",
-        similar_movies: [],
-        synopsis: "",
-        to_be_continue: 0,
-        total_minute: 0,
-        uploaded_date: "",
-        vertical_image: "",
-        vertical_sample_video_file: "",
-        video_file: ""
-      };
+      if (!this.isOpen) {
+        this.moviesDetail = {
+          actors: [],
+          author: [],
+          big_image_path: "",
+          can_i_store: false,
+          circle_image: "",
+          degree: {},
+          directors: [],
+          feature: [],
+          genre: [],
+          horizontal_image_path: "",
+          id: 0,
+          like: 0,
+          logo_image_path: "",
+          marked: false,
+          match_rate: 0,
+          name: "",
+          production_date: "",
+          real_running_time: 0,
+          remaining_time: 0,
+          running_time: 0,
+          sample_video_file: "",
+          similar_movies: [],
+          synopsis: "",
+          to_be_continue: 0,
+          total_minute: 0,
+          uploaded_date: "",
+          vertical_image: "",
+          vertical_sample_video_file: "",
+          video_file: ""
+        };
+      }
     }, 300);
 
     console.log("호버 나갔당");
