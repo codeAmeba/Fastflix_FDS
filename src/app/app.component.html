@@ -6,9 +6,6 @@
   OnUnload
   style="min-height: 100vh;"
 >
-  <app-header
-    *ngIf="isHeaderNeed()"
-    (profileSelected)="ngOnInit()"
-  ></app-header>
-  <router-outlet #outlet="outlet"></router-outlet>
+  <app-header *ngIf="showHeader" (profileSelected)="reload()"></app-header>
+  <router-outlet (activate)="isHeaderNeed()" #outlet="outlet"></router-outlet>
 </div>

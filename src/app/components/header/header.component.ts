@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SubUser } from 'src/app/models/sub-user';
 import { SearchService } from 'src/app/services/search.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -54,7 +55,8 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -62,10 +64,8 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
     this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : '';
     this.isSubHeader = this.checkRoute();
-    this.subUsers = this.authService.getSubUsers();
-    this.subUser = this.subUsers.find(
-      ({ id }) => id === this.authService.getProfile()
-    );
+    this.getSubUsers();
+
     if (document.getElementById('#searchInput') && this.isSearch)
       document.getElementById('#searchInput').focus();
   }
@@ -73,6 +73,17 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (document.getElementById('#searchInput') && this.isSearch)
       document.getElementById('#searchInput').focus();
+  }
+
+  getSubUsers() {
+    this.userService.getSubUsers().subscribe(subUsers => {
+      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+      this.subUsers = subUsers;
+      this.subUser = this.subUsers.find(
+        ({ id }) => id === this.authService.getProfile()
+      );
+      console.log('get subUsers', this.authService.getSubUsers());
+    });
   }
 
   checkRoute() {

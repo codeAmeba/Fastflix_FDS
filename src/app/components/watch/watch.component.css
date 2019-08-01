@@ -68,3 +68,20 @@ video {
 .age-limit {
   margin: auto 15px;
 }
+
+.play-icon {
+  position: fixed;
+  z-index: 10;
+  left: 43vw;
+  top: 43vh;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s;
+}
+.play-icon-active {
+  opacity: 1;
+  transition: visibility 1s, opacity 1s;
+}
+.play-icon>img {
+  width: 120px;
+  height: 120px;
+}

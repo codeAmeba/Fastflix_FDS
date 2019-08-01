@@ -18,17 +18,21 @@ export class SearchComponent implements OnInit {
   openedCategory: string;
   relatedContents: string[];
 
+  searchOK: boolean;
+
   constructor(
     private route: ActivatedRoute,
     private searchService: SearchService
   ) {}
 
   ngOnInit() {
+    this.searchOK = true;
     this.route.paramMap.subscribe(params => {
       this.query = params.get('query');
       console.log('query', this.query);
       this.searchService.searchMovies(this.query).subscribe(
         response => {
+          this.searchOK = true;
           console.log('search response', response);
           this.relatedContents = response.contents;
           this.searchMovies = response['first_movie'].map(movie => {
@@ -56,6 +60,9 @@ export class SearchComponent implements OnInit {
         },
         error => {
           console.error(error);
+          this.searchOK = false;
+          this.relatedContents = [];
+          this.searchMovies = [];
         }
       );
     });

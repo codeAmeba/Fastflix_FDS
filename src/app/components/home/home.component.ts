@@ -32,26 +32,6 @@ export class HomeComponent implements OnInit {
       .find(({ id }) => id === +this.authService.getProfile()).name;
 
     this.playBillBoard = false;
-    console.log('sub users', this.authService.getSubUsers());
-    console.log('user', this.user);
-    this.mainMovie = {
-      id: 0,
-      logo: '',
-      title: '',
-      image: '',
-      degree: {},
-      synopsis: '',
-      marked: false,
-    };
-    this.bigMovie = {
-      id: 0,
-      logo: '',
-      title: '',
-      image: '',
-      degree: {},
-      synopsis: '',
-      marked: false,
-    };
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
@@ -60,24 +40,28 @@ export class HomeComponent implements OnInit {
 
   getMainMovie() {
     this.movieService.getHomeMain().subscribe(mainMovie => {
-      this.mainMovie.id = mainMovie[0]['메인 영화']['id'];
-      this.mainMovie.image = mainMovie[0]['메인 영화']['big_image_path'];
-      this.mainMovie.logo = mainMovie[0]['메인 영화']['logo_image_path'];
-      this.mainMovie.title = mainMovie[0]['메인 영화']['name'];
-      this.mainMovie.degree = mainMovie[0]['메인 영화']['degree'];
-      this.mainMovie.synopsis = mainMovie[0]['메인 영화']['synopsis'];
-      this.mainMovie.marked = mainMovie[0]['메인 영화']['marked'];
+      this.mainMovie = {
+        id: mainMovie[0]['메인 영화']['id'],
+        image: mainMovie[0]['메인 영화']['big_image_path'],
+        logo: mainMovie[0]['메인 영화']['logo_image_path'],
+        title: mainMovie[0]['메인 영화']['name'],
+        degree: mainMovie[0]['메인 영화']['degree'],
+        synopsis: mainMovie[0]['메인 영화']['synopsis'],
+        marked: mainMovie[0]['메인 영화']['marked'],
+      };
       this.getCategoryMovies();
     });
 
     this.movieService.getBigMovie().subscribe(bigMovie => {
-      this.bigMovie.id = bigMovie['id'];
-      this.bigMovie.image = bigMovie['big_image_path'];
-      this.bigMovie.logo = bigMovie['logo_image_path'];
-      this.bigMovie.title = bigMovie['name'];
-      this.bigMovie.degree = bigMovie['degree'];
-      this.bigMovie.synopsis = bigMovie['synopsis'];
-      this.bigMovie.marked = bigMovie['marked'];
+      this.bigMovie = {
+        id: bigMovie['id'],
+        image: bigMovie['big_image_path'],
+        logo: bigMovie['logo_image_path'],
+        title: bigMovie['name'],
+        degree: bigMovie['degree'],
+        synopsis: bigMovie['synopsis'],
+        marked: bigMovie['marked'],
+      };
     });
   }
 
@@ -141,7 +125,6 @@ export class HomeComponent implements OnInit {
         };
       });
       myListCategory.movies = this.myLists;
-      console.log('내가 찜한 목록', myListCategory.movies);
     });
   }
 
@@ -167,8 +150,6 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
-        console.log('시청 중', movies);
-
         follwUpCategory.movies = movies.map(continueMovie => {
           return {
             id: continueMovie.movie.id,

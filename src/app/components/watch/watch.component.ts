@@ -28,6 +28,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   video: string =
     'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
   pauseMovie: boolean = false;
+  playIconActive: boolean = false;
 
   // 영화정보 데이터 받았다고 가정함
   movieTitle: string = 'Big Buck Bunny';
@@ -179,18 +180,33 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   historyBack() {
     window.history.back();
   }
+  // 엔터키 -> 전체화면 
+  enterFullScreen() {
+    const myPlayer = videojs('my-video');
+    myPlayer.requestFullscreen();
+  }
+  // 스페이스바 -> 일시정지 or 재생
+  playOrPause() {
+    const myPlayer = videojs('my-video');
+    if (myPlayer.paused()) {
+      myPlayer.play();
+    } else {
+      myPlayer.pause();
+    }
+  }
+  
 
   // 현재 시청 중인 영상 일시정지 시 2.5초 뒤 영화정보 트랜지션으로 노출
   pauseVideo() {
+    this.pauseMovie = false;
     const myPlayer = videojs('my-video');
-    if (myPlayer.paused() === true) {
       setTimeout(() => {
-        this.pauseMovie = true;
-      }, 2500);
-    } else if (myPlayer.paused() === false) {
-      this.pauseMovie = false;
-    }
-  }
+        if (myPlayer.paused() === true) {
+          this.pauseMovie = true;
+        }
+      }, 2000);
+    } 
+
 
   savePlayTime() {
     const myPlayer = videojs('my-video');

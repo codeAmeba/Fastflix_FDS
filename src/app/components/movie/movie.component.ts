@@ -11,7 +11,6 @@ import { MovieCategory } from 'src/app/models/movie-category';
   styleUrls: ['./movie.component.css'],
 })
 export class MovieComponent implements OnInit, OnDestroy {
-  user: string;
   playBillBoard: boolean;
   movies: object[];
   mainMovie: Main;
@@ -28,20 +27,10 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.body.parentElement, 'movie');
     this.renderer.addClass(document.body, 'movie');
 
-    this.user = '사용자';
     this.playBillBoard = false;
-    this.mainMovie = {
-      id: 0,
-      logo: '',
-      title: '',
-      image: '',
-      degree: {},
-      synopsis: '',
-      marked: false,
-    };
     this.openedCategory = '';
+
     this.getMovies();
-    this.movieCategories = MovieCategories;
   }
 
   getMovies() {
@@ -68,7 +57,7 @@ export class MovieComponent implements OnInit, OnDestroy {
         return preMovie;
       });
       this.getMainMovie();
-      this.movieCategories = this.movieCategories.map(previewCat => {
+      this.movieCategories = MovieCategories.map(previewCat => {
         return {
           category: previewCat.category,
           movies: this.getCategoryMovie(previewCat.category),
@@ -79,13 +68,15 @@ export class MovieComponent implements OnInit, OnDestroy {
   }
 
   getMainMovie() {
-    this.mainMovie.id = this.movies['메인 영화']['id'];
-    this.mainMovie.image = this.movies['메인 영화']['big_image_path'];
-    this.mainMovie.logo = this.movies['메인 영화']['logo_image_path'];
-    this.mainMovie.title = this.movies['메인 영화']['name'];
-    this.mainMovie.degree = this.movies['메인 영화']['degree'];
-    this.mainMovie.synopsis = this.movies['메인 영화']['synopsis'];
-    this.mainMovie.marked = this.movies['메인 영화']['marked'];
+    this.mainMovie = {
+      id: this.movies['메인 영화']['id'],
+      image: this.movies['메인 영화']['big_image_path'],
+      logo: this.movies['메인 영화']['logo_image_path'],
+      title: this.movies['메인 영화']['name'],
+      degree: this.movies['메인 영화']['degree'],
+      synopsis: this.movies['메인 영화']['synopsis'],
+      marked: this.movies['메인 영화']['marked'],
+    };
   }
 
   getCategoryMovie(category: string): MoviePreview[] {
@@ -104,7 +95,6 @@ export class MovieComponent implements OnInit, OnDestroy {
 
     this.openedCategory = category;
     thanos.classList.add('has-open-jaw');
-    console.log('opened', this.openedCategory);
   }
 
   sliderClosed(category: string) {
@@ -114,8 +104,6 @@ export class MovieComponent implements OnInit, OnDestroy {
       this.openedCategory === category ? '' : this.openedCategory;
 
     thanos.classList.remove('has-open-jaw');
-
-    console.log('closed', this.openedCategory);
   }
 
   toggleMyLsit(movie: Main) {
