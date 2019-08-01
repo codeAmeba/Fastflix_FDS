@@ -27,7 +27,8 @@ video {
   max-width: 50vw;
   max-height: 50vh;
   font-size: 1.7em;
-  margin: 5em 8em;
+  top: 25vh;
+  left: 25vw;
   z-index: 1;
   visibility: visible;
   opacity: 0;
