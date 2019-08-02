@@ -66,8 +66,6 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.isHeaderNeed();
     this.getSubUsers();
 
-    console.log('subHeader', this.isSubHeader);
-
     if (document.getElementById('#searchInput') && this.isSearch)
       document.getElementById('#searchInput').focus();
   }

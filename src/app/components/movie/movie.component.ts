@@ -5,6 +5,8 @@ import { MovieCategories } from 'src/app/models/movieCategories';
 import { MoviePreview } from 'src/app/models/movie-preview';
 import { MovieCategory } from 'src/app/models/movie-category';
 import { Router, NavigationEnd } from '@angular/router';
+import { SubUser } from 'src/app/models/sub-user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-movie',
@@ -19,16 +21,18 @@ export class MovieComponent implements OnInit, OnDestroy {
   openedCategory: string;
   myLists: MoviePreview[];
   navigationSubscription;
+  subUser: SubUser;
 
   constructor(
     private renderer: Renderer2,
     private movieService: MovieService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        this.ngOnInit();
+        if (this.subUser !== authService.subUser) this.init();
       }
     });
   }
@@ -36,10 +40,12 @@ export class MovieComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.renderer.addClass(document.body.parentElement, 'movie');
     this.renderer.addClass(document.body, 'movie');
-
     this.playBillBoard = false;
-    this.openedCategory = '';
+  }
 
+  init() {
+    this.subUser = this.authService.subUser;
+    this.openedCategory = '';
     this.getMovies();
   }
 

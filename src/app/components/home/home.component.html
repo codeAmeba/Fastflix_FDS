@@ -110,7 +110,7 @@
             <div class="rowHeaderTitle" *ngIf="homeCategory">
               {{
                 homeCategory?.category === '시청 중인 콘텐츠'
-                  ? user + ' 님이 ' + homeCategory?.category
+                  ? subUser?.name + ' 님이 ' + homeCategory?.category
                   : homeCategory?.category
               }}
             </div>
