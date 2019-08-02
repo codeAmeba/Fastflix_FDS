@@ -70,6 +70,10 @@ const routes: Routes = [
     component: SearchComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: '**',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({

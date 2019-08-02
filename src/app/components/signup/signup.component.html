@@ -7,7 +7,7 @@
       <img src="../../../assets/images/fastflix_logo_03.png" alt="NETFLIX" />
     </a>
     <a *ngIf="!isLogin" routerLink="/login" class="login">로그인</a>
-    <a *ngIf="isLogin" routerLink="/logout" class="login">로그아웃</a>
+    <a *ngIf="isLogin" (click)="logout()" class="login">로그아웃</a>
   </header>
   <div
     [@routeAnimations]="
