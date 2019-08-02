@@ -219,7 +219,7 @@ export class OriginalSliderComponent implements OnInit {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = "scale(0.52222)";
+  bobScaleTall = "scale(0.836)";
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -373,7 +373,7 @@ export class OriginalSliderComponent implements OnInit {
       console.log(movieOrder);
 
       setTimeout(() => {
-        this.bobScale = "scale(0.977777)";
+        this.bobScaleTall = "scale(0.977777)";
       }, 300);
     }
     this.cardMove = true;
@@ -387,7 +387,7 @@ export class OriginalSliderComponent implements OnInit {
   cardHoverLeave() {
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScale = "scale(0.836)";
+    this.bobScaleTall = "scale(0.836)";
     setTimeout(() => {
       this.bobup = 0;
       this.moviesDetail = {
