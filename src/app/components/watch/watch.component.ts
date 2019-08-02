@@ -186,8 +186,8 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   // 스페이스바 -> 일시정지 or 재생
   playOrPause() {
     const myPlayer = videojs('my-video');
-    myPlayer.paused() ? myPlayer.play() : myPlayer.paused();
-  }
+    myPlayer.paused() ? myPlayer.play() : myPlayer.pause();
+    }
   
   // 뒤로가기 버튼
   historyBack() {
