@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MoviePreview } from 'src/app/models/movie-preview';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { SearchService } from 'src/app/services/search.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   searchMovies: MoviePreview[];
   query: string;
 
@@ -19,11 +19,20 @@ export class SearchComponent implements OnInit {
   relatedContents: string[];
 
   searchOK: boolean;
+  navigationSubscription: any;
 
   constructor(
     private route: ActivatedRoute,
-    private searchService: SearchService
-  ) {}
+    private searchService: SearchService,
+    private router: Router
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   ngOnInit() {
     this.searchOK = true;
@@ -95,5 +104,10 @@ export class SearchComponent implements OnInit {
     thanos.classList.remove('has-open-jaw');
 
     console.log('closed', this.openedCategory);
+  }
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }

@@ -226,14 +226,14 @@
                 name="name"
                 autofocus
                 formControlName="name"
-                value="{{ nameChanged ? tempUser.name : selectedUser.name }}"
+                value="{{ nameChanged ? tempUser?.name : selectedUser?.name }}"
               /><span
                 ><input
                   type="checkbox"
                   id="add-kids-profile"
                   name="kid"
                   formControlName="kid"
-                  checked="{{ kidChanged ? tempUser.kid : selectedUser.kid }}"
+                  checked="{{ kidChanged ? tempUser?.kid : selectedUser?.kid }}"
                   (change)="
                     kidChanged = true;
                     tempUser.kid = changeForm?.get('kid').value

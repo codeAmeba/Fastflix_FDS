@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
       console.log('Please Login to Enter');
       this.router.navigate(['welcome']);
       return false;
-    } else if (!this.authService.getProfile()) {
+    } else if (!this.authService.subUser) {
       console.log('Please Select Profile');
       this.router.navigate(['profile']);
       return false;

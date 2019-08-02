@@ -1,12 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { MovieDetail } from "src/app/models/movies-detail";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+} from '@angular/core';
+import { MovieDetail } from 'src/app/models/movies-detail';
 
 @Component({
-  selector: "app-detail-card",
-  templateUrl: "./detail-card.component.html",
-  styleUrls: ["./detail-card.component.css"]
+  selector: 'app-detail-card',
+  templateUrl: './detail-card.component.html',
+  styleUrls: ['./detail-card.component.css'],
 })
-export class DetailCardComponent implements OnInit {
+export class DetailCardComponent implements OnInit, OnChanges {
   @Input() isOpen: boolean;
   @Input() moviesDetail: MovieDetail;
   @Output() detailClose = new EventEmitter();
@@ -25,12 +32,16 @@ export class DetailCardComponent implements OnInit {
     //   'transition-duration': '750ms',
     // };
     this.imageRotatorImage = {
-      "background-image": "url()",
-      "z-index": 2,
+      'background-image': 'url()',
+      'z-index': 2,
       opacity: 1,
-      "transition-duration": "750ms"
+      'transition-duration': '750ms',
     };
-    this.tabState = "content";
+    this.tabState = 'content';
+  }
+
+  ngOnChanges() {
+    console.log('detail', this.moviesDetail);
   }
 
   detailClosed() {

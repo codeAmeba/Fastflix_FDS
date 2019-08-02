@@ -2,16 +2,15 @@
   <span class="jawBoneOpenContainer">
     <div class="jawBoneFadeInPlaceContainer">
       <div class="jawBoneContainer slider-hover-trigger-layer">
-        <div class="background"
-          [class.dim]="tabState !== 'content'"
-        >
+        <div class="background" [class.dim]="tabState !== 'content'">
           <div class="jawBoneBackground image-rotator">
             <span>
               <div
                 class="image-rotator-image "
-                style=' z-index: 2; opacity: 1; transition-duration: 750ms;'
+                style=" z-index: 2; opacity: 1; transition-duration: 750ms;"
                 [ngStyle]="{
-                  'background-image': 'url(' + moviesDetail?.big_image_path + ')'
+                  'background-image':
+                    'url(' + moviesDetail?.big_image_path + ')'
                 }"
               ></div>
             </span>
@@ -34,7 +33,7 @@
                 <img
                   alt="The Spy Who Dumped Me"
                   class="logo"
-                  src={{moviesDetail?.logo_image_path}}
+                  src="{{ moviesDetail?.logo_image_path }}"
                 /></div
             ></a>
           </h3>
@@ -45,69 +44,78 @@
                 *ngIf="tabState === 'content'"
                 class="jawBonePane"
                 tabindex="-1"
-                style="opacity: 1; transition-duration: 300ms;">
+                style="opacity: 1; transition-duration: 300ms;"
+              >
                 <div class="overview">
                   <div class="meta video-meta">
-                  <span class="match-score-wrapper">
-                    <div class="show-match-score rating-inner">
-                      <div class="meta-thumb-container thumb-down">
-                        <svg
-                          class="svg-icon svg-icon-thumb-down-filled thumb thumb-down-filled"
-                          focusable="true"
+                    <span class="match-score-wrapper">
+                      <div class="show-match-score rating-inner">
+                        <div class="meta-thumb-container thumb-down">
+                          <svg
+                            class="svg-icon svg-icon-thumb-down-filled thumb thumb-down-filled"
+                            focusable="true"
+                          >
+                            <use filter="" xlink:href="#thumb-down-filled">
+                              <svg id="thumb-down-filled" viewBox="0 0 44 44">
+                                <path
+                                  fill="currentColor"
+                                  d="M7.77409406,4.98611111 C7.77409406,2.87125897 9.75648409,2.16059507 11.3546646,2.02537973 L22.9699448,2 C32.3088898,2 31.8388589,4.98611111 39,5.58333333 L39,19.9166667 L33.926393,22.8376301 L27.7380974,34.0441616 C27.7380974,34.0441616 27.0322261,43.0253705 27.0322261,43.5197523 C27.0322261,43.5197523 21.4597021,46.233934 20.0783569,38.7573652 C18.6970116,31.2807964 19.655707,26.6668091 19.9160924,26.0006104 L7.78656274,25.9752306 C6.18838222,25.8400153 4.19352352,25.0176299 4.19352352,22.9027778 C4.19352352,20.7879256 6.17591354,20.0772617 7.77409406,19.9420464 L6.58057055,19.9166667 C4.98239002,19.7560716 3,19.0454077 3,16.9305556 C3,14.8157034 4.98239002,14.1050395 6.58057055,13.9698242 L8.96761758,13.9444444 C7.36943706,13.7838494 5.38704703,13.0731855 5.38704703,10.9583333 C5.38704703,8.84348119 7.36943706,8.13281729 8.96761758,7.99760195 L11.3546646,7.97222222 C9.75648409,7.81162716 7.77409406,7.10096325 7.77409406,4.98611111 Z"
+                                ></path>
+                              </svg>
+                            </use>
+                          </svg>
+                        </div>
+                        <div class="meta-thumb-container thumb-up">
+                          <svg
+                            class="svg-icon svg-icon-thumb-up-filled thumb thumb-up-filled"
+                            focusable="true"
+                          >
+                            <use filter="" xlink:href="#thumb-up-filled">
+                              <svg id="thumb-up-filled" viewBox="0 0 44 44">
+                                <path
+                                  fill="currentColor"
+                                  d="M36.2259059,39.0138889 C36.2259059,41.128741 34.2435159,41.8394049 32.6453354,41.9746203 L21.0300552,42 C11.6911102,42 12.1611411,39.0138889 5,38.4166667 L5,24.0833333 L10.073607,21.1623699 L16.2619026,9.95583842 C16.2619026,9.95583842 16.9677739,0.974629541 16.9677739,0.480247712 C16.9677739,0.480247712 22.5402979,-2.23393403 23.9216431,5.2426348 C25.3029884,12.7192036 24.344293,17.3331909 24.0839076,17.9993896 L36.2134373,18.0247694 C37.8116178,18.1599847 39.8064765,18.9823701 39.8064765,21.0972222 C39.8064765,23.2120744 37.8240865,23.9227383 36.2259059,24.0579536 L37.4194295,24.0833333 C39.01761,24.2439284 41,24.9545923 41,27.0694444 C41,29.1842966 39.01761,29.8949605 37.4194295,30.0301758 L35.0323824,30.0555556 C36.6305629,30.2161506 38.612953,30.9268145 38.612953,33.0416667 C38.612953,35.1565188 36.6305629,35.8671827 35.0323824,36.002398 L32.6453354,36.0277778 C34.2435159,36.1883728 36.2259059,36.8990367 36.2259059,39.0138889 Z"
+                                ></path>
+                              </svg>
+                            </use>
+                          </svg>
+                        </div>
+                        <span class="match-score"
+                          >{{ moviesDetail?.match_rate
+                          }}{{ moviesDetail?.match_rate ? '% 일치' : '' }}</span
                         >
-                          <use filter="" xlink:href="#thumb-down-filled">
-                            <svg id="thumb-down-filled" viewBox="0 0 44 44">
-                              <path
-                                fill="currentColor"
-                                d="M7.77409406,4.98611111 C7.77409406,2.87125897 9.75648409,2.16059507 11.3546646,2.02537973 L22.9699448,2 C32.3088898,2 31.8388589,4.98611111 39,5.58333333 L39,19.9166667 L33.926393,22.8376301 L27.7380974,34.0441616 C27.7380974,34.0441616 27.0322261,43.0253705 27.0322261,43.5197523 C27.0322261,43.5197523 21.4597021,46.233934 20.0783569,38.7573652 C18.6970116,31.2807964 19.655707,26.6668091 19.9160924,26.0006104 L7.78656274,25.9752306 C6.18838222,25.8400153 4.19352352,25.0176299 4.19352352,22.9027778 C4.19352352,20.7879256 6.17591354,20.0772617 7.77409406,19.9420464 L6.58057055,19.9166667 C4.98239002,19.7560716 3,19.0454077 3,16.9305556 C3,14.8157034 4.98239002,14.1050395 6.58057055,13.9698242 L8.96761758,13.9444444 C7.36943706,13.7838494 5.38704703,13.0731855 5.38704703,10.9583333 C5.38704703,8.84348119 7.36943706,8.13281729 8.96761758,7.99760195 L11.3546646,7.97222222 C9.75648409,7.81162716 7.77409406,7.10096325 7.77409406,4.98611111 Z"
-                              ></path>
-                            </svg>
-                          </use>
-                        </svg>
                       </div>
-                      <div class="meta-thumb-container thumb-up">
-                        <svg
-                          class="svg-icon svg-icon-thumb-up-filled thumb thumb-up-filled"
-                          focusable="true"
-                        >
-                          <use filter="" xlink:href="#thumb-up-filled">
-                            <svg id="thumb-up-filled" viewBox="0 0 44 44">
-                              <path
-                                fill="currentColor"
-                                d="M36.2259059,39.0138889 C36.2259059,41.128741 34.2435159,41.8394049 32.6453354,41.9746203 L21.0300552,42 C11.6911102,42 12.1611411,39.0138889 5,38.4166667 L5,24.0833333 L10.073607,21.1623699 L16.2619026,9.95583842 C16.2619026,9.95583842 16.9677739,0.974629541 16.9677739,0.480247712 C16.9677739,0.480247712 22.5402979,-2.23393403 23.9216431,5.2426348 C25.3029884,12.7192036 24.344293,17.3331909 24.0839076,17.9993896 L36.2134373,18.0247694 C37.8116178,18.1599847 39.8064765,18.9823701 39.8064765,21.0972222 C39.8064765,23.2120744 37.8240865,23.9227383 36.2259059,24.0579536 L37.4194295,24.0833333 C39.01761,24.2439284 41,24.9545923 41,27.0694444 C41,29.1842966 39.01761,29.8949605 37.4194295,30.0301758 L35.0323824,30.0555556 C36.6305629,30.2161506 38.612953,30.9268145 38.612953,33.0416667 C38.612953,35.1565188 36.6305629,35.8671827 35.0323824,36.002398 L32.6453354,36.0277778 C34.2435159,36.1883728 36.2259059,36.8990367 36.2259059,39.0138889 Z"
-                              ></path>
-                            </svg>
-                          </use>
-                        </svg>
-                      </div>
-                      <span class="match-score">{{moviesDetail?.match_rate}}{{
-                          moviesDetail?.match_rate
-                            ? '% 일치'
-                            : ''
-                        }}</span>
-                    </div>
-                  </span>
-                  <span class="year">{{moviesDetail?.production_date}}</span>
-                  <span class="maturity-rating "
-                    ><span>
-                      <!-- <span
+                    </span>
+                    <span class="year">{{
+                      moviesDetail?.production_date
+                    }}</span>
+                    <span class="maturity-rating "
+                      ><span>
+                        <!-- <span
                         class="svg-icon svg-icon-maturity-rating-KR-KMRB-95"
                         focusable="true"
                       > -->
-                      <img src="{{moviesDetail?.degree['degree_image_path']}}" alt="">
-                      
+                        <img
+                          src="{{
+                            (moviesDetail?.degree)['degree_image_path']
+                          }}"
+                          alt=""
+                        />
+
                         <!-- <use
                           filter=""
                           xlink:href="#maturity-rating-KR-KMRB-95"
                         ></use> -->
                         <!-- </span> -->
+                      </span>
                     </span>
-                  </span>
-                  <span class="duration">{{moviesDetail?.running_time}}</span>
-                </div>
+                    <span class="duration">{{
+                      moviesDetail?.running_time
+                    }}</span>
+                  </div>
                   <div class="video-title"></div>
                   <div class="synopsis">
-                    {{moviesDetail?.synopsis}}
+                    {{ moviesDetail?.synopsis }}
                   </div>
                   <div class="jawbone-actions">
                     <a
@@ -209,8 +217,18 @@
                     <p class="cast inline-list" label="주연:">
                       <span class="list-label">주연:</span>
                       <span class="list-items">
-                        <span *ngFor="let actor of moviesDetail?.actors; index as moviesIdx">
-                          {{actor.name}}{{moviesIdx === moviesDetail?.actors.length-1 ? '' : ','}}
+                        <span
+                          *ngFor="
+                            let actor of moviesDetail?.actors;
+                            index as moviesIdx
+                          "
+                        >
+                          {{ actor.name
+                          }}{{
+                            moviesIdx === moviesDetail?.actors.length - 1
+                              ? ''
+                              : ','
+                          }}
                         </span>
                         <!-- <a href="/browse/person/30048753">리즈 아메드</a> -->
                       </span>
@@ -218,8 +236,18 @@
                     <p class="genres inline-list" label="장르:">
                       <span class="list-label">장르:</span>
                       <span class="list-items">
-                        <span *ngFor="let genre of moviesDetail?.genre; index as genreIdx">
-                            {{genre.name}}{{genreIdx === moviesDetail?.genre.length-1 ? '' : ','}}
+                        <span
+                          *ngFor="
+                            let genre of moviesDetail?.genre;
+                            index as genreIdx
+                          "
+                        >
+                          {{ genre.name
+                          }}{{
+                            genreIdx === moviesDetail?.genre.length - 1
+                              ? ''
+                              : ','
+                          }}
                         </span>
                         <!-- <a href="/browse/genre/90176">액션 &amp; 어드벤처·블록버스터</a> -->
                       </span>
@@ -227,9 +255,19 @@
                     <p class="tags inline-list" label="영화 특징:">
                       <span class="list-label">영화 특징:</span>
                       <span class="list-items">
-                          <span *ngFor="let feature of moviesDetail?.feature; index as featureIdx">
-                              {{feature.name}}{{featureIdx === moviesDetail?.feature.length-1 ? '' : ','}}
-                          </span>
+                        <span
+                          *ngFor="
+                            let feature of moviesDetail?.feature;
+                            index as featureIdx
+                          "
+                        >
+                          {{ feature.name
+                          }}{{
+                            featureIdx === moviesDetail?.feature.length - 1
+                              ? ''
+                              : ','
+                          }}
+                        </span>
                         <!-- <a href="/browse/genre/100041">흥미진진</a> -->
                       </span>
                     </p>
@@ -242,19 +280,20 @@
                 *ngIf="tabState === 'similar'"
                 class="jawBonePane"
                 tabindex="-1"
-                style="opacity: 1; transition-duration: 300ms;">
+                style="opacity: 1; transition-duration: 300ms;"
+              >
                 <div class="ptrack-container">
                   <div class="simsWrapper">
                     <div class="ptrack-content">
                       <app-detail-slider
-                        [similarContent]="moviesDetail?.similar_movies">
+                        [similarContent]="moviesDetail?.similar_movies"
+                      >
                       </app-detail-slider>
-
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <!-- 상세 정보 tab -->
               <div
                 *ngIf="tabState === 'detail'"
@@ -274,99 +313,67 @@
                       <span>
                         <div class="detailsItem detailsMedia">
                           <ul>
-                            <li class="listLabel">
+                            <li
+                              *ngIf="moviesDetail?.directors !== []"
+                              class="listLabel"
+                            >
                               <span>감독</span>
                             </li>
-                            <li>
-                              <a href="/browse/person/30032564"
-                                >루벤 플라이셔</a
-                              >
+                            <li
+                              *ngFor="let director of moviesDetail?.directors"
+                            >
+                              <a *ngIf="moviesDetail">{{ director?.name }}</a>
                             </li>
-                            <li class="listLabel">
+                            <li
+                              *ngIf="moviesDetail?.actors !== []"
+                              class="listLabel"
+                            >
                               <span>출연</span>
                             </li>
-                            <li>
-                              <a href="/browse/person/20037666">톰 하디</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/162903">미셸 윌리엄스</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/30048753">리즈 아메드</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/30181259">스콧 헤이즈</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/30072834">리드 스콧</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/30150745"
-                                >제니 슬레이트</a
-                              >
-                            </li>
-                            <li>
-                              <a href="/browse/person/20015107"
-                                >멜로라 월터스</a
-                              >
-                            </li>
-                            <li>
-                              <a href="/browse/person/39482">우디 해럴슨</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/20037831">페기 루</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/60018712">맬컴 C. 머리</a>
-                            </li>
-                            <li class="listLabel">
-                              <span>각본</span>
-                            </li>
-                            <li>
-                              <a href="/browse/person/40007391">제프 핑크너</a>
+                            <li *ngFor="let actor of moviesDetail?.actors">
+                              <a>{{ actor?.name }}</a>
                             </li>
                           </ul>
                         </div>
-                        <div class="detailsItem detailsMedia">
+                        <div
+                          *ngIf="moviesDetail?.author !== []"
+                          class="detailsItem detailsMedia"
+                        >
                           <ul>
-                            <li class="listLabel">
+                            <li
+                              *ngIf="moviesDetail?.author !== []"
+                              class="listLabel"
+                            >
                               <span>각본</span>
                             </li>
-                            <li>
-                              <a href="/browse/person/164017">스콧 로젠버그</a>
-                            </li>
-                            <li>
-                              <a href="/browse/person/20031131">켈리 마르셀</a>
+                            <li *ngFor="let author of moviesDetail?.author">
+                              <a>{{ author?.name }}</a>
                             </li>
                           </ul>
                         </div>
                       </span>
                       <div class="detailsItem detailsTags">
                         <div>
-                          <h4 class="listLabel">장르</h4>
+                          <h4
+                            *ngIf="moviesDetail?.genre !== []"
+                            class="listLabel"
+                          >
+                            장르
+                          </h4>
                           <ul>
-                            <li>
-                              <a href="/browse/genre/1159493">미국 영화</a>
+                            <li *ngFor="let genre of moviesDetail?.genre">
+                              <a>{{ genre?.name }}</a>
                             </li>
-                            <li>
-                              <a href="/browse/genre/1365"
-                                >액션 &amp; 어드벤처</a
-                              >
-                            </li>
-                            <li>
-                              <a href="/browse/genre/90176"
-                                >액션 &amp; 어드벤처·블록버스터</a
-                              >
-                            </li>
-                            <li><a href="/browse/genre/7442">어드벤처</a></li>
                           </ul>
-                          <h4 class="listLabel">영화 특징</h4>
+                          <h4
+                            *ngIf="moviesDetail?.feature !== []"
+                            class="listLabel"
+                          >
+                            영화 특징
+                          </h4>
                           <ul>
-                            <li>
-                              <a href="/browse/genre/108228">아드레날린 폭발</a>
-                            </li>
-                            <li>
-                              <a href="/browse/genre/1632671">색다른 이야기</a>
+                            <li *ngFor="let feature of moviesDetail?.feature">
+                              <a>{{ feature?.name }}</a>
                             </li>
                           </ul>
                         </div>
@@ -375,80 +382,33 @@
                         <h4 class="listLabel">관람등급</h4>
                         <div>
                           <div class="maturity-rating inline-rating">
-                            <a href="https://help.netflix.com/support/2064">
-                              <svg
-                                class="svg-icon svg-icon-maturity-rating-KR-KMRB-95"
-                                focusable="true"
-                              >
-                                <use
-                                  filter=""
-                                  xlink:href="#maturity-rating-KR-KMRB-95"
-                                ></use></svg></a
-                            ><span class="maturityDescription"
-                              >만 15세 이상의 자가 관람할 수 있는 영화</span
+                            <a>
+                              <span class="maturity-rating ">
+                                <span>
+                                  <img
+                                    *ngIf="moviesDetail"
+                                    [src]="
+                                      moviesDetail?.degree
+                                        ? (moviesDetail?.degree)[
+                                            'degree_image_path'
+                                          ]
+                                        : ''
+                                    "
+                                    alt="{{
+                                      moviesDetail?.degree
+                                        ? (moviesDetail?.degree)['name']
+                                        : ''
+                                    }}"
+                                /></span> </span></a
+                            ><span
+                              *ngIf="moviesDetail"
+                              class="maturityDescription"
+                              >{{
+                                moviesDetail?.degree
+                                  ? (moviesDetail?.degree)['name']
+                                  : ''
+                              }}</span
                             >
-                          </div>
-                          <div class="complex-maturity-advisories">
-                            <div class="maturity-reason-container">
-                              <svg
-                                class="svg-icon svg-icon-maturity-advisory-KR-KMRB-harmful-themes"
-                                focusable="true"
-                              >
-                                <use
-                                  filter=""
-                                  xlink:href="#maturity-advisory-KR-KMRB-harmful-themes"
-                                ></use>
-                              </svg>
-                              다소높음
-                            </div>
-                            <div class="maturity-reason-container">
-                              <svg
-                                class="svg-icon svg-icon-maturity-advisory-KR-KMRB-lewdness"
-                                focusable="true"
-                              >
-                                <use
-                                  filter=""
-                                  xlink:href="#maturity-advisory-KR-KMRB-lewdness"
-                                ></use>
-                              </svg>
-                              보통
-                            </div>
-                            <div class="maturity-reason-container">
-                              <svg
-                                class="svg-icon svg-icon-maturity-advisory-KR-KMRB-violence"
-                                focusable="true"
-                              >
-                                <use
-                                  filter=""
-                                  xlink:href="#maturity-advisory-KR-KMRB-violence"
-                                ></use>
-                              </svg>
-                              다소높음
-                            </div>
-                            <div class="maturity-reason-container">
-                              <svg
-                                class="svg-icon svg-icon-maturity-advisory-KR-KMRB-profanity"
-                                focusable="true"
-                              >
-                                <use
-                                  filter=""
-                                  xlink:href="#maturity-advisory-KR-KMRB-profanity"
-                                ></use>
-                              </svg>
-                              다소높음
-                            </div>
-                            <div class="maturity-reason-container">
-                              <svg
-                                class="svg-icon svg-icon-maturity-advisory-KR-KMRB-fear"
-                                focusable="true"
-                              >
-                                <use
-                                  filter=""
-                                  xlink:href="#maturity-advisory-KR-KMRB-fear"
-                                ></use>
-                              </svg>
-                              다소높음
-                            </div>
                           </div>
                         </div>
                       </div>
