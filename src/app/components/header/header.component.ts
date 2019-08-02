@@ -4,10 +4,9 @@ import {
   Output,
   EventEmitter,
   AfterViewChecked,
-  AfterViewInit,
 } from '@angular/core';
 import { style, animate, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SubUser } from 'src/app/models/sub-user';
 import { SearchService } from 'src/app/services/search.service';
@@ -51,6 +50,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   searchValue: string;
   subUsers: SubUser[];
   subUser: SubUser;
+  navigationSubscription;
 
   constructor(
     private router: Router,
@@ -63,8 +63,10 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.showDropDown = false;
     this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
     this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : '';
-    this.isSubHeader = this.checkRoute();
+    this.isHeaderNeed();
     this.getSubUsers();
+
+    console.log('subHeader', this.isSubHeader);
 
     if (document.getElementById('#searchInput') && this.isSearch)
       document.getElementById('#searchInput').focus();
@@ -75,27 +77,30 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
       document.getElementById('#searchInput').focus();
   }
 
-  getSubUsers() {
-    this.userService.getSubUsers().subscribe(subUsers => {
-      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
-      this.subUsers = subUsers;
-      this.subUser = this.subUsers.find(
-        ({ id }) => id === this.authService.getProfile()
-      );
-      console.log('get subUsers', this.authService.getSubUsers());
+  isHeaderNeed() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        // Hide loading indicator
+        // Home, Movie, MyList, Search일 때만 header 필요
+        if (this.router.url === '/movie' || this.router.url === '/mylist')
+          this.isSubHeader = true;
+        else this.isSubHeader = false;
+      }
     });
   }
 
-  checkRoute() {
-    if (this.router.url === '/home' || this.isSearch) return false;
-    else return true;
+  getSubUsers() {
+    this.userService.getSubUsers().subscribe(subUsers => {
+      this.authService.subUsers = subUsers.sort((a, b) => a.id - b.id);
+      this.subUsers = subUsers;
+      this.subUser = this.authService.subUser;
+      console.log('get subUsers', this.authService.subUsers);
+    });
   }
 
   selectProfile(subUser: SubUser) {
-    this.authService.setProfile(subUser.id);
-    this.subUser = this.subUsers.find(
-      ({ id }) => id === this.authService.getProfile()
-    );
+    this.authService.subUser = subUser;
+    this.subUser = subUser;
     this.ngOnInit();
     this.profileSelected.emit();
   }

@@ -4,6 +4,7 @@ import { Main } from 'src/app/models/main';
 import { MovieCategories } from 'src/app/models/movieCategories';
 import { MoviePreview } from 'src/app/models/movie-preview';
 import { MovieCategory } from 'src/app/models/movie-category';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
@@ -17,11 +18,20 @@ export class MovieComponent implements OnInit, OnDestroy {
   movieCategories: MovieCategory[];
   openedCategory: string;
   myLists: MoviePreview[];
+  navigationSubscription;
 
   constructor(
     private renderer: Renderer2,
-    private movieService: MovieService
-  ) {}
+    private movieService: MovieService,
+    private router: Router
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   ngOnInit() {
     this.renderer.addClass(document.body.parentElement, 'movie');
@@ -121,5 +131,8 @@ export class MovieComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.renderer.removeClass(document.body.parentElement, 'movie');
     this.renderer.removeClass(document.body, 'movie');
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }

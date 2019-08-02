@@ -12,7 +12,8 @@ import { UserProfile } from '../models/user-profile';
 export class AuthenticationService implements OnInit {
   apiUrl = environment.apiUrl;
   userName: string;
-  subUsers: SubUser[];
+  _subUsers: SubUser[];
+  _subUser: SubUser;
   PROFILE_NAME = 'PID';
   TOKEN_NAME = 'Token';
   PROFILES_NAME = 'PUSERS';
@@ -46,20 +47,34 @@ export class AuthenticationService implements OnInit {
     );
   }
 
-  setProfile(profileId: any) {
-    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
+  // setProfile(profileId: any) {
+  //   this.subUser = this.subUsers.find(({ id }) => id === profileId);
+  //   localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
+  // }
+
+  // getProfile() {
+  //   return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
+  // }
+
+  set subUser(subUser: SubUser) {
+    localStorage.setItem(this.PROFILE_NAME, JSON.stringify(subUser.id));
+    this._subUser = subUser;
   }
 
-  getProfile() {
-    return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
+  get subUser() {
+    const subUserId = JSON.parse(localStorage.getItem(this.PROFILE_NAME));
+    this._subUser = this.subUsers.find(({ id }) => id === subUserId);
+    return this._subUser;
   }
 
-  setSubUsers(subUsers: SubUser[]) {
+  set subUsers(subUsers: SubUser[]) {
     localStorage.setItem(this.PROFILES_NAME, JSON.stringify(subUsers));
+    this._subUsers = subUsers;
   }
 
-  getSubUsers(): SubUser[] {
-    return JSON.parse(localStorage.getItem(this.PROFILES_NAME));
+  get subUsers(): SubUser[] {
+    this._subUsers = JSON.parse(localStorage.getItem(this.PROFILES_NAME));
+    return this._subUsers;
   }
 
   setMaintainance(isMaintain: boolean) {

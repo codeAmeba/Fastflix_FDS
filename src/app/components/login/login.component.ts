@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit {
 
       this.authService.setToken(response['token']);
 
-      this.authService.setSubUsers(
-        response['sub_user_list'].sort((a, b) => a.id - b.id)
+      this.authService.subUsers = response['sub_user_list'].sort(
+        (a, b) => a.id - b.id
       );
 
       if (response.token) this.router.navigate(['home']);
