@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { MoviePreview } from 'src/app/models/movie-preview';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-list',
   templateUrl: './my-list.component.html',
   styleUrls: ['./my-list.component.css'],
 })
-export class MyListComponent implements OnInit {
+export class MyListComponent implements OnInit, OnDestroy {
   myLists: MoviePreview[];
 
   sliderNums: number;
   sliderLines: MoviePreview[][];
 
   openedCategory: string;
+  navigationSubscription;
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   ngOnInit() {
     this.getMyListMovies();
@@ -63,5 +72,11 @@ export class MyListComponent implements OnInit {
     thanos.classList.remove('has-open-jaw');
 
     console.log('closed', this.openedCategory);
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }

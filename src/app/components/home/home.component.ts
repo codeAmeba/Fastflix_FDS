@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Main } from 'src/app/models/main';
 import { MovieService } from 'src/app/services/movie.service';
 import { HomeCategories } from 'src/app/models/homeCategories';
 import { MovieCategory } from 'src/app/models/movie-category';
 import { MoviePreview } from 'src/app/models/movie-preview';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   user: string;
   playBillBoard: boolean;
   mainMovie: Main;
@@ -19,11 +20,20 @@ export class HomeComponent implements OnInit {
   homeCatogories: MovieCategory[];
   openedCategory: string;
   myLists: MoviePreview[];
+  navigationSubscription;
 
   constructor(
     private authService: AuthenticationService,
-    private movieService: MovieService
-  ) {}
+    private movieService: MovieService,
+    private router: Router
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   ngOnInit() {
     this.playBillBoard = false;
@@ -184,5 +194,11 @@ export class HomeComponent implements OnInit {
     //   },
     //   error => console.error(error)
     // );
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }
