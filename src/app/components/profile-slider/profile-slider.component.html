@@ -23,27 +23,17 @@
           *ngFor="let movie of movies"
           class="slider-item slider-item-{{ 0 }} "
         >
-          <div class="title-card-container">
-            <div
-              id="title-card-2-{{ 0 }}"
-              class="slider-refocus title-card"
-              (mouseover)="cardHover(movie.order, movie.id)"
-            >
-              <a
-                role="link"
-                tabindex="0"
-                (click)="selectIcon(movie)"
-                class="slider-refocus"
-              >
-                <div class="boxart-size-16x9 boxart-container">
-                  <img
-                    class="boxart-image boxart-image-in-padded-container"
-                    src="{{ movie['image_path'] }}"
-                    alt=""
-                  />
-                </div>
-              </a>
-            </div>
+          <div class="ptrack-content">
+            <button
+              class="lolopi-icon"
+              tabindex="0"
+              aria-hidden="false"
+              aria-label="movie.name"
+              (click)="selectIcon(movie)"
+              [ngStyle]="{
+                'background-image': 'url(' + movie['image_path'] + ')'
+              }"
+            ></button>
           </div>
         </div>
       </div>
@@ -59,7 +49,7 @@
         role="button"
         aria-label="콘텐츠 더 보기"
       >
-        <b class="indicator-icon icon-rightCaret"></b>
+        <b class="indicator-icon icon-rightCaret"> </b>
       </span>
     </ng-template>
   </div>

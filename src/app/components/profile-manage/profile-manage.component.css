@@ -74,10 +74,10 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  text-align: center;
+  /* text-align: center; */
   background: #141414;
   z-index: 0;
-  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Netflix Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .profiles-gate-container .centered-div {
@@ -93,7 +93,8 @@ h2 {
   flex-direction: column;
 }
 
-.profiles-gate-container .centered-div.list-profiles-container:not(.js-transition-node) {
+.profiles-gate-container
+  .centered-div.list-profiles-container:not(.js-transition-node) {
   animation: animateProfileGate 450ms forwards;
 }
 
@@ -161,7 +162,7 @@ h2 {
 }
 
 .icon-tvuiAdd:before {
-  content: '\e716';
+  content: "\e716";
 }
 
 .profiles-gate-container li {
@@ -367,7 +368,7 @@ img {
   align-items: center;
 }
 
-.profile-entry input[type='text'] {
+.profile-entry input[type="text"] {
   width: 18em;
   height: 2em;
   background: #666;
@@ -386,7 +387,7 @@ img {
   pointer-events: none;
 }
 
-.profile-entry input[type='checkbox']:checked+label {
+.profile-entry input[type="checkbox"]:checked + label {
   border: 1px solid #333;
   color: #99a1a7;
 }
@@ -395,7 +396,7 @@ img {
   display: inline;
 }
 
-.profile-entry input[type='checkbox'] {
+.profile-entry input[type="checkbox"] {
   display: none;
 }
 
@@ -403,7 +404,7 @@ img {
   display: inline;
 }
 
-.profile-entry-inputs input[type='checkbox']+label {
+.profile-entry-inputs input[type="checkbox"] + label {
   border: 1px solid #333;
   border-radius: 0;
   display: inline-block;
@@ -498,7 +499,7 @@ img {
 }
 
 @media screen and (max-width: 800px) {
-  .profile-entry input[type='text'] {
+  .profile-entry input[type="text"] {
     font-size: 13px;
   }
 }
@@ -536,7 +537,7 @@ img {
     margin-left: 15px;
   }
 
-  .profile-entry input[type='checkbox']+label {
+  .profile-entry input[type="checkbox"] + label {
     font-size: 7px;
   }
 
@@ -620,7 +621,7 @@ img {
 }
 
 .icon-back:before {
-  content: '\e635';
+  content: "\e635";
 }
 
 .profiles-gate-container .profile-lolopi-header .lolopi-header {
@@ -629,7 +630,10 @@ img {
 }
 
 .profiles-gate-container .profile-lolopi-header .lolopi-header .header-text,
-.profiles-gate-container .profile-lolopi-header .lolopi-header .sub-header-text {
+.profiles-gate-container
+  .profile-lolopi-header
+  .lolopi-header
+  .sub-header-text {
   margin: 0;
   padding: 0;
 }
@@ -638,7 +642,10 @@ img {
   font-size: 2.5vw;
 }
 
-.profiles-gate-container .profile-lolopi-header .lolopi-header .sub-header-text {
+.profiles-gate-container
+  .profile-lolopi-header
+  .lolopi-header
+  .sub-header-text {
   font-size: 2vw;
 }
 
@@ -771,7 +778,7 @@ img {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin: 0 .5vw;
+  margin: 0 0.5vw;
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -788,7 +795,7 @@ img {
 }
 
 .profiles-gate-container .profile-lolopi-confirm .profile-button {
-  margin: 2em .5em 1em;
+  margin: 2em 0.5em 1em;
 }
 
 .profile-button a,
@@ -796,10 +803,10 @@ img {
   border: 1px solid grey;
   color: grey;
   text-transform: uppercase;
-  padding: .5em 1.5em;
+  padding: 0.5em 1.5em;
   letter-spacing: 2px;
   cursor: pointer;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .profile-button.preferred-action a,
@@ -865,32 +872,32 @@ img {
   align-items: center;
 }
 
-input[type=checkbox],
-input[type=radio] {
+input[type="checkbox"],
+input[type="radio"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
 }
 
-.profile-entry input[type=checkbox] {
+.profile-entry input[type="checkbox"] {
   display: none;
 }
 
-.profile-entry input[type=checkbox]+label {
+.profile-entry input[type="checkbox"] + label {
   border: 1px solid #333;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
   display: inline-block;
   position: relative;
-  margin-right: .5em;
-  font-size: .8vw;
+  margin-right: 0.5em;
+  font-size: 0.8vw;
   width: 2.5em;
   height: 2.5em;
 }
 
-.profile-entry input[type=checkbox]:checked+label {
+.profile-entry input[type="checkbox"]:checked + label {
   border: 1px solid #333;
   color: #99a1a7;
 }

@@ -128,7 +128,7 @@
                             <!-- 동영상 play 버튼 -->
                             <a></a>
                             <div class="bob-title">
-                              {{ moviesDetail.name ? moviesDetail.name : '' }}
+                              {{ moviesDetail.name ? moviesDetail.name : "" }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -141,9 +141,9 @@
                                     <span class="match-score"
                                       >{{ moviesDetail?.match_rate
                                       }}{{
-                                        moviesDetail['match_rate']
-                                          ? '% 일치'
-                                          : ''
+                                        moviesDetail["match_rate"]
+                                          ? "% 일치"
+                                          : ""
                                       }}</span
                                     >
                                   </div>
@@ -151,9 +151,9 @@
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail['running_time']
-                                    ? moviesDetail['running_time']
-                                    : ' '
+                                  moviesDetail["running_time"]
+                                    ? moviesDetail["running_time"]
+                                    : " "
                                 }}</span>
                               </div>
                             </div>
@@ -172,7 +172,7 @@
                                         index as i
                                       "
                                     >
-                                      {{ feature ? feature.name : '' }}
+                                      {{ feature ? feature.name : "" }}
                                     </li>
                                     <ng-template
                                       [ngIf]="moviesDetail.feature.length < 3"
@@ -191,7 +191,7 @@
                                           index as i
                                         "
                                       >
-                                        {{ genre.name ? genre.name : '' }}
+                                        {{ genre.name ? genre.name : "" }}
                                       </li>
                                     </ng-template>
                                   </ul>
@@ -205,10 +205,10 @@
                           <span class="ActionButtons">
                             <div
                               class="thumbs-component thumbs thumbs-vertical animated "
-                              [class.unrated]="!testgood && !testbad"
-                              [class.rated]="movieGood || movieBad"
-                              [class.rated-up]="movieGood"
-                              [class.rated-down]="movieBad"
+                              [class.unrated]="moviesDetail.like === 0"
+                              [class.rated]="moviesDetail.like === 1 || moviesDetail.like === 2"
+                              [class.rated-up]="moviesDetail.like === 1"
+                              [class.rated-down]="moviesDetail.like === 2"
                             >
                               <!-- rated rated-up -->
                               <div
@@ -219,15 +219,15 @@
                                   data-rating="2"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
-                                  [class.clicked]="movieGood"
+                                  [class.clicked]="moviesDetail.like === 1"
                                   (click)="likeMovie(movie.id)"
                                 >
                                   <svg
-                                    *ngIf="!movieGood"
+                                    *ngIf="moviesDetail.like === 0"
                                     data-rating="2"
                                     class="svg-icon "
-                                    [class.svg-icon-thumb-up]="!movieGood"
-                                    [class.svg-icon-thumb-up-filled]="movieGood"
+                                    [class.svg-icon-thumb-up]="moviesDetail.like === 0"
+                                    [class.svg-icon-thumb-up-filled]="moviesDetail.like === 1"
                                     focusable="true"
                                   >
                                     <use filter="" xlink:href="#thumb-up">
@@ -241,7 +241,7 @@
                                   </svg>
                                   <!-- 엄지척 흰색 -->
                                   <svg
-                                    *ngIf="movieGood"
+                                    *ngIf="moviesDetail.like === 1"
                                     data-rating="0"
                                     class="svg-icon svg-icon-thumb-up-filled"
                                     focusable="true"
@@ -275,7 +275,7 @@
                                   (click)="dislikeMovie(movie.id)"
                                 >
                                   <svg
-                                    *ngIf="!movieBad"
+                                    *ngIf="moviesDetail.like === 0"
                                     data-rating="1"
                                     class="svg-icon svg-icon-thumb-down"
                                     focusable="true"
@@ -291,7 +291,7 @@
                                   </svg>
                                   <!-- 엄지 다운 흰색 -->
                                   <svg
-                                    *ngIf="movieBad"
+                                    *ngIf="moviesDetail.like === 2"
                                     data-rating="0"
                                     class="svg-icon svg-icon-thumb-down-filled"
                                     focusable="true"
