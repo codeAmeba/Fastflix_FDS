@@ -14,7 +14,6 @@ import { MoviePreview } from 'src/app/models/movie-preview';
 export class HomeComponent implements OnInit {
   user: string;
   playBillBoard: boolean;
-  movies: object[];
   mainMovie: Main;
   bigMovie: Main;
   homeCatogories: MovieCategory[];
@@ -27,15 +26,15 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.user = this.authService
-      .getSubUsers()
-      .find(({ id }) => id === +this.authService.getProfile()).name;
-
     this.playBillBoard = false;
+    this.init();
+  }
+
+  init() {
+    this.user = this.authService.subUser.name;
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
-    this.getMyListMovies();
   }
 
   getMainMovie() {
@@ -92,6 +91,7 @@ export class HomeComponent implements OnInit {
     this.getPopularMovies();
     this.getLatestMovies();
     this.getFollowUpMovies();
+    this.getMyListMovies();
   }
 
   getPopularMovies() {

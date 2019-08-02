@@ -77,12 +77,10 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
 
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
-      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+      this.authService.subUsers = subUsers.sort((a, b) => a.id - b.id);
       this.subUsers = subUsers;
-      this.subUser = this.subUsers.find(
-        ({ id }) => id === this.authService.getProfile()
-      );
-      console.log('get subUsers', this.authService.getSubUsers());
+      this.subUser = this.authService.subUser;
+      console.log('get subUsers', this.authService.subUsers);
     });
   }
 
@@ -92,10 +90,8 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   }
 
   selectProfile(subUser: SubUser) {
-    this.authService.setProfile(subUser.id);
-    this.subUser = this.subUsers.find(
-      ({ id }) => id === this.authService.getProfile()
-    );
+    this.authService.subUser = subUser;
+    this.subUser = subUser;
     this.ngOnInit();
     this.profileSelected.emit();
   }

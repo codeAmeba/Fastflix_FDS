@@ -24,7 +24,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/`, {
       headers,
@@ -37,7 +37,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/big_size_video/`, {
       headers,
@@ -50,7 +50,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/most_likes/`, {
       headers,
@@ -63,7 +63,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/my_list/`, {
       headers,
@@ -76,7 +76,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/brand_new/`, {
       headers,
@@ -89,7 +89,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     return this.http.get<any>(`${this.apiUrl}/movies/followup/`, {
       headers,
@@ -103,7 +103,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     console.log(headers);
 
@@ -119,7 +119,7 @@ export class MovieService {
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
-      .set('subuserid', this.authService.getProfile() + '');
+      .set('subuserid', this.authService.subUser.id + '');
 
     console.log('movie detail header', headers);
 
@@ -130,7 +130,7 @@ export class MovieService {
 
   // 좋아요
   likeMovie(movieid: number): Observable<any> {
-    const subuserid = this.authService.getProfile();
+    const subuserid = this.authService.subUser.id;
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
@@ -146,7 +146,7 @@ export class MovieService {
 
   // 싫어요
   dislikeMovie(movieid: number): Observable<any> {
-    const subuserid = this.authService.getProfile();
+    const subuserid = this.authService.subUser.id;
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
@@ -162,7 +162,7 @@ export class MovieService {
 
   // 찜하기
   myList(movieid: number): Observable<any> {
-    const subuserid = this.authService.getProfile();
+    const subuserid = this.authService.subUser.id;
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
@@ -179,7 +179,7 @@ export class MovieService {
   /* watch */
   // 재생 시간 저장
   saveWatchingTime(id: number, time: number) {
-    const subuserid = this.authService.getProfile();
+    const subuserid = this.authService.subUser.id;
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);

@@ -64,11 +64,12 @@ export class ProfileManageComponent implements OnInit {
   // selectedUser 초기화
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
-      console.log(subUsers.sort((a, b) => a.id - b.id));
-      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+      this.authService.subUsers = subUsers.sort(
+        (a: SubUser, b: SubUser) => a.id - b.id
+      );
       this.subUsers = subUsers;
       // this.subUsers = this.authService.getSubUsers();
-      console.log('get subUsers', this.authService.getSubUsers());
+      console.log('get subUsers', this.authService.subUsers);
     });
     this.selectedUser = {
       id: 0,
@@ -117,11 +118,11 @@ export class ProfileManageComponent implements OnInit {
     this.authService.createProfile(user).subscribe(profiles => {
       console.log('success', profiles['sub_user_list']);
 
-      this.authService.setSubUsers(
-        profiles['sub_user_list'].sort((a, b) => a.id - b.id)
+      this.authService.subUsers = profiles['sub_user_list'].sort(
+        (a: SubUser, b: SubUser) => a.id - b.id
       );
 
-      console.log('after added', this.authService.getSubUsers());
+      console.log('after added', this.authService.subUsers);
 
       // this.subUsers = this.authService.getSubUsers();
       this.getSubUsers();
@@ -245,7 +246,9 @@ export class ProfileManageComponent implements OnInit {
         console.log('save Profile OK', response);
         if (!response) console.log('save Profile FAIL', response);
         this.userService.getSubUsers().subscribe(subUsers => {
-          this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+          this.authService.subUsers = subUsers.sort(
+            (a: SubUser, b: SubUser) => a.id - b.id
+          );
           this.getSubUsers();
           this.tabState = '';
         });

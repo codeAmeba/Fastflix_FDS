@@ -37,10 +37,12 @@ export class ProfileComponent implements OnInit {
 
   getSubUsers() {
     this.userService.getSubUsers().subscribe(subUsers => {
-      this.authService.setSubUsers(subUsers.sort((a, b) => a.id - b.id));
+      this.authService.subUsers = subUsers.sort(
+        (a: SubUser, b: SubUser) => a.id - b.id
+      );
       this.subUsers = subUsers;
       // this.subUsers = this.authService.getSubUsers();
-      console.log('get subUsers', this.authService.getSubUsers());
+      console.log('get subUsers', this.authService.subUsers);
     });
     this.selectedUser = {
       id: 0,
@@ -51,8 +53,8 @@ export class ProfileComponent implements OnInit {
     };
   }
 
-  secondLogin(id: number) {
-    this.authService.setProfile(id);
+  secondLogin(subUser: SubUser) {
+    this.authService.subUser = subUser;
     this.router.navigate(['/home']);
   }
 
@@ -78,11 +80,11 @@ export class ProfileComponent implements OnInit {
     this.authService.createProfile(user).subscribe(profiles => {
       console.log('success', profiles['sub_user_list']);
 
-      this.authService.setSubUsers(
-        profiles['sub_user_list'].sort((a, b) => a.id - b.id)
+      this.authService.subUsers = profiles['sub_user_list'].sort(
+        (a: SubUser, b: SubUser) => a.id - b.id
       );
 
-      console.log('after added', this.authService.getSubUsers());
+      console.log('after added', this.authService.subUsers);
 
       this.getSubUsers();
 
