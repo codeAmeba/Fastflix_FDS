@@ -15,7 +15,11 @@ export interface similarMovies {
   name: string;
   horizontal_image_path: string;
   marked: boolean;
+  match_rate: number;
   vertical_image: string;
+  degree: object[];
+  synopsis: string;
+  production_date: string;
 }
 
 export interface MovieDetail {
