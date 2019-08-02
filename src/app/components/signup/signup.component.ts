@@ -29,6 +29,11 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.isLogin = this.authService.getToken() ? true : false;
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/home']);
+  }
+
   ngOnDestroy(): void {
     this.renderer.removeClass(document.body.parentElement, 'signup');
     this.renderer.removeClass(document.body, 'signup');

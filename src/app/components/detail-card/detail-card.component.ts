@@ -7,6 +7,7 @@ import {
   OnChanges,
 } from '@angular/core';
 import { MovieDetail } from 'src/app/models/movies-detail';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-detail-card',
@@ -17,11 +18,12 @@ export class DetailCardComponent implements OnInit, OnChanges {
   @Input() isOpen: boolean;
   @Input() moviesDetail: MovieDetail;
   @Output() detailClose = new EventEmitter();
+  @Output() toggleMyList = new EventEmitter();
 
   imageRotatorImage: object;
   tabState: string;
 
-  constructor() {}
+  constructor(private movieService: MovieService) {}
 
   ngOnInit() {
     // this.imageRotatorImage = {
@@ -47,5 +49,46 @@ export class DetailCardComponent implements OnInit, OnChanges {
   detailClosed() {
     this.isOpen = false;
     this.detailClose.emit();
+  }
+
+  likeMovie(id: number) {
+    console.log(id);
+
+    this.movieService.likeMovie(id).subscribe(({ response }) => {
+      console.log('liked response', response);
+      this.moviesDetail.like = response ? 1 : 0;
+      console.log('after like', this.moviesDetail.like);
+
+      // this.hoverMoviesDetail(id);
+      // this.movieGood = response;
+    });
+
+    // if (this.movieGood) {
+    //   this.movieGood = false;
+    // } else {
+    //   this.movieGood = true;
+    // }
+    // this.movieBad = false;
+  }
+
+  dislikeMovie(id: number) {
+    console.log(id);
+
+    this.movieService.dislikeMovie(id).subscribe(({ response }) => {
+      console.log('disliked response', response);
+      this.moviesDetail.like = response ? 2 : 0;
+      console.log('after dislike', this.moviesDetail.like);
+
+      // this.hoverMoviesDetail(id);
+      // this.movieBad = response;
+    });
+  }
+
+  myList(movie: MovieDetail) {
+    this.movieService.myList(movie.id).subscribe(({ marked }) => {
+      console.log('myList', movie.id, marked);
+      movie.marked = marked;
+      this.toggleMyList.emit();
+    });
   }
 }

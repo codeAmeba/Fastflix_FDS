@@ -124,7 +124,7 @@
                       role="link"
                       aria-label="재생"
                       class=" playLink"
-                      href="/watch/80991034?trackId=253575043&amp;tctx=0%2C0%2Ca17e2f51-91f4-4d9c-9c5a-9345f04f3c03-29258373%2C3e76e734-20e8-4ed4-bfaf-79eac9e680ad_49022112X6XX1564474161233%2C3e76e734-20e8-4ed4-bfaf-79eac9e680ad_ROOT"
+                      [routerLink]="['/watch', moviesDetail?.id]"
                     >
                       <span
                         tabindex="-1"
@@ -142,6 +142,7 @@
                       class="nf-icon-button nf-flat-button nf-flat-button-uppercase"
                       aria-label="내가 찜한 콘텐츠에서 삭제"
                       role="link"
+                      (click)="myList(moviesDetail)"
                     >
                       <span
                         class="nf-flat-button-icon nf-flat-button-icon-mylist-add"
@@ -160,6 +161,7 @@
                             tabindex="0"
                             class="nf-svg-button simpleround"
                             aria-label="'좋아요'로 평가하기"
+                            (click)="likeMovie(moviesDetail?.id)"
                           >
                             <svg
                               data-rating="2"
@@ -185,6 +187,7 @@
                             tabindex="0"
                             class="nf-svg-button simpleround"
                             aria-label="'별로예요'로 평가하기"
+                            (click)="dislikeMovie(moviesDetail?.id)"
                           >
                             <svg
                               data-rating="1"
