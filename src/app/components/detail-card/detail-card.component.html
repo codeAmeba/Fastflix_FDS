@@ -2,7 +2,9 @@
   <span class="jawBoneOpenContainer">
     <div class="jawBoneFadeInPlaceContainer">
       <div class="jawBoneContainer slider-hover-trigger-layer">
-        <div class="background">
+        <div class="background"
+          [class.dim]="tabState !== 'content'"
+        >
           <div class="jawBoneBackground image-rotator">
             <span>
               <div
@@ -235,6 +237,24 @@
                 </div>
                 <div class="jaw-play-hitzone" role="presentation"></div>
               </div>
+              <!-- 비슷한 콘텐츠 tab -->
+              <div
+                *ngIf="tabState === 'similar'"
+                class="jawBonePane"
+                tabindex="-1"
+                style="opacity: 1; transition-duration: 300ms;">
+                <div class="ptrack-container">
+                  <div class="simsWrapper">
+                    <div class="ptrack-content">
+                      <app-detail-slider
+                        [similarContent]="moviesDetail?.similar_movies">
+                      </app-detail-slider>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
               <!-- 상세 정보 tab -->
               <div
                 *ngIf="tabState === 'detail'"

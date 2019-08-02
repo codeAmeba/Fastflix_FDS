@@ -1,10 +1,14 @@
 @font-face {
   font-family: nf-icon;
   src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot);
-  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot?#iefix) format("embedded-opentype"),
-    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff) format("woff"),
-    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.ttf) format("truetype"),
-    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.svg#nf-icon-v1-93) format("svg");
+  src: url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.eot?#iefix)
+      format("embedded-opentype"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.woff)
+      format("woff"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.ttf)
+      format("truetype"),
+    url(https://assets.nflxext.com/ffe/siteui/fonts/nf-icon-v1-93.svg#nf-icon-v1-93)
+      format("svg");
   font-weight: 400;
   font-style: normal;
 }
@@ -97,6 +101,38 @@
 .billboard-links.forward-leaning .nf-icon-button .nf-icon-button-label {
   text-transform: none;
 }
+.nf-icon-button .nf-icon-button-icon {
+  display: inline-block;
+  font-size: 2vw;
+  vertical-align: middle;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.25);
+  -webkit-transition: -webkit-transform 150ms ease;
+  transition: -webkit-transform 150ms ease;
+  -o-transition: -o-transform 150ms ease;
+  -moz-transition: transform 150ms ease, -moz-transform 150ms ease;
+  transition: transform 150ms ease;
+  transition: transform 150ms ease, -webkit-transform 150ms ease,
+    -moz-transform 150ms ease, -o-transform 150ms ease;
+}
+.nf-icon-button .nf-icon-button-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: 6px;
+  left: 25%;
+  background: #fff;
+  text-transform: uppercase;
+  color: #000;
+  width: 8.5vw;
+  margin-left: -4vw;
+  font-size: 0.9vw;
+  font-weight: 700;
+  padding: 2px 0 2px;
+  text-align: center;
+}
 
 .nf-flat-button .nf-flat-button-text {
   vertical-align: middle;
@@ -113,13 +149,13 @@
 .nf-flat-button {
   font-size: 1vw;
   font-weight: 700;
-  margin-right: .75em;
-  padding: .57em 1.35em;
+  margin-right: 0.75em;
+  padding: 0.57em 1.35em;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, .4);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   background-image: none;
-  background-color: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .nf-icon-button {
@@ -146,7 +182,7 @@
   color: #fff;
 }
 
-.slider .handle>.indicator-icon {
+.slider .handle > .indicator-icon {
   display: none;
   height: auto;
   -webkit-align-self: center;
@@ -186,7 +222,7 @@
   vertical-align: middle;
   cursor: pointer;
   font-weight: 700;
-  letter-spacing: .025rem;
+  letter-spacing: 0.025rem;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -201,16 +237,16 @@
   border: none;
   position: relative;
   min-height: 48px;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
-  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .25);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
   color: #000;
 }
 
 .nf-btn {
   position: relative;
   font-size: 1rem;
-  padding: .75rem 1.33333333rem;
+  padding: 0.75rem 1.33333333rem;
   min-width: 74px;
   min-height: 48px;
   width: 100%;
@@ -224,7 +260,7 @@
 
 .nf-btn.nf-btn-oversize {
   font-size: 19px;
-  padding: .75rem 25.33333333px;
+  padding: 0.75rem 25.33333333px;
   min-width: 110px;
   min-height: 60px;
   width: 100%;
@@ -239,4 +275,9 @@
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+}
+
+/* play icon */
+.icon-play:before {
+  content: "\e646";
 }
