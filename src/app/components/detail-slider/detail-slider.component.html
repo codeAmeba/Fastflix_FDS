@@ -1,1 +1,109 @@
-<p>detail-slider works!</p>
+<div class="slider">
+  <div class="sliderMask">
+    <div class="sliderContent row-with-x-columns">
+      <div
+        *ngFor="let similar of similarContent; index as similarIdx"
+        class="slider-item slider-item-{{ similarIdx }}"
+      >
+        <!-- card -->
+        <div class="simsLockup slider-refocus" tabindex="-1">
+          <div class="ptrack-content">
+            <div
+              class="video-artwork sims-artwork"
+              alt="메리다와 마법의 숲"
+              [ngStyle]="{
+                'background-image':
+                  'url(' + similar?.horizontal_image_path + ')'
+              }"
+            >
+              <a
+                tabindex="0"
+                data-uia="play-button"
+                role="link"
+                aria-label="재생"
+                class="simsPlay playLink"
+                href="/watch/70213513?trackId=200257846&amp;tctx=0%2C0%2Cec3fb8c2-43f2-42bb-98b4-34d8491f3c68-23741717%2C%2C"
+              >
+                <div class="playRing">
+                  <div class="play icon-play"></div>
+                </div>
+              </a>
+              <div class="ptrack-content">
+                <a
+                  role="button"
+                  aria-live="assertive"
+                  tabindex="0"
+                  class="nf-icon-button mylist-button"
+                >
+                  <span
+                    role="presentation"
+                    class="nf-icon-button-icon icon-button-mylist-add"
+                  >
+                  </span>
+                  <span class="nf-icon-button-tooltip">
+                    내가 찜한 콘텐츠에 추가
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="meta video-meta ">
+            <span class="match-score-wrapper">
+              <div class="show-match-score rating-inner">
+                <div class="meta-thumb-container thumb-down">
+                  <svg
+                    class="svg-icon svg-icon-thumb-down-filled thumb thumb-down-filled"
+                    focusable="true"
+                  >
+                    <use filter="" xlink:href="#thumb-down-filled"></use>
+                  </svg>
+                </div>
+                <div class="meta-thumb-container thumb-up">
+                  <svg
+                    class="svg-icon svg-icon-thumb-up-filled thumb thumb-up-filled"
+                    focusable="true"
+                  >
+                    <use filter="" xlink:href="#thumb-up-filled"></use>
+                  </svg>
+                </div>
+
+                <span class="match-score">
+                  70% 일치
+                </span>
+              </div>
+            </span>
+            <span class="year">
+              {{ similar?.production_date }}
+            </span>
+            <span class="maturity-rating ">
+              <span>
+                <svg
+                  class="svg-icon svg-icon-maturity-rating-KR-KMRB-35"
+                  focusable="true"
+                >
+                  <use filter="" xlink:href="#maturity-rating-KR-KMRB-35"></use>
+                </svg>
+              </span>
+            </span>
+            <span class="duration">
+              1시간 34분
+            </span>
+          </div>
+          <div class="simsSynopsis">
+            {{ similar?.synopsis }}
+          </div>
+        </div>
+        <!-- card finish -->
+        <!-- handle prev -->
+        <!-- <span
+          class="handle handleNext active"
+          tabindex="0"
+          role="button"
+          aria-label="콘텐츠 더 보기"
+        >
+          <b class="indicator-icon icon-rightCaret"> </b>
+        </span> -->
+      </div>
+    </div>
+  </div>
+</div>
