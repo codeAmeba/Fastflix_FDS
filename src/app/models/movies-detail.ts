@@ -22,14 +22,19 @@ export interface similarMovies {
   production_date: string;
 }
 
+interface director {
+  id: number;
+  name: string;
+}
+
 export interface MovieDetail {
   actors: actor[];
-  author: string[];
+  author: director[];
   big_image_path: string;
   can_i_store: boolean;
   circle_image: string;
   degree: object;
-  directors: string[];
+  directors: director[];
   feature: feature[];
   genre: genre[];
   horizontal_image_path: string;
