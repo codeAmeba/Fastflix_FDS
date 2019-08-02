@@ -1336,6 +1336,15 @@ a {
   padding: 0 4%;
   touch-action: pan-y;
 }
+.slider {
+  z-index: 2;
+  /* overflow-x: hidden; */
+  position: relative;
+  margin: 0;
+  padding: 0.4% 4%;
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
 
 .slider .handle {
   position: absolute;
@@ -1365,7 +1374,22 @@ a {
 .slider .handle.handlePrev .indicator-icon {
   transform-origin: 55% 50%;
 }
-
+.slider .handle.handleNext .indicator-icon {
+  -webkit-transform-origin: 45% 50%;
+  -moz-transform-origin: 45% 50%;
+  -ms-transform-origin: 45% 50%;
+  -o-transform-origin: 45% 50%;
+  transform-origin: 45% 50%;
+}
+.slider .handle.active:hover .indicator-icon {
+  font-weight: 700;
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  transform: scale(1.25);
+  color: #fff;
+}
 .slider .handle.active {
   cursor: pointer;
 }
@@ -1570,7 +1594,10 @@ a {
 
 @media screen and (min-width: 1500px) {
   .slider {
-    padding: 0 60px;
+    padding: 0.4% 60px;
+  }
+  .slider .handle > .indicator-icon {
+    font-size: 3.65em;
   }
 }
 
