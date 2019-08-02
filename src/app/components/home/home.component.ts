@@ -1,41 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Main } from 'src/app/models/main';
 import { MovieService } from 'src/app/services/movie.service';
 import { HomeCategories } from 'src/app/models/homeCategories';
 import { MovieCategory } from 'src/app/models/movie-category';
 import { MoviePreview } from 'src/app/models/movie-preview';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   user: string;
   playBillBoard: boolean;
-  movies: object[];
   mainMovie: Main;
   bigMovie: Main;
   homeCatogories: MovieCategory[];
   openedCategory: string;
   myLists: MoviePreview[];
+  navigationSubscription;
 
   constructor(
     private authService: AuthenticationService,
-    private movieService: MovieService
-  ) {}
+    private movieService: MovieService,
+    private router: Router
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   ngOnInit() {
-    this.user = this.authService
-      .getSubUsers()
-      .find(({ id }) => id === +this.authService.getProfile()).name;
-
     this.playBillBoard = false;
+    this.init();
+  }
+
+  init() {
+    this.user = this.authService.subUser.name;
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
-    this.getMyListMovies();
   }
 
   getMainMovie() {
@@ -92,6 +101,7 @@ export class HomeComponent implements OnInit {
     this.getPopularMovies();
     this.getLatestMovies();
     this.getFollowUpMovies();
+    this.getMyListMovies();
   }
 
   getPopularMovies() {
@@ -150,13 +160,15 @@ export class HomeComponent implements OnInit {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
+        console.log('시청 중', movies);
+
         follwUpCategory.movies = movies.map(continueMovie => {
           return {
             id: continueMovie.movie.id,
             title: continueMovie.movie.name,
             url: continueMovie.movie['horizontal_image_path'],
             preview: continueMovie.movie['sample_video_file'],
-            continue: continueMovie['to_be_continue'],
+            continue: continueMovie['progress_bar'],
           };
         });
       },
@@ -182,5 +194,11 @@ export class HomeComponent implements OnInit {
     //   },
     //   error => console.error(error)
     // );
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 }

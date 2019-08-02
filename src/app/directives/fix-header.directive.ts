@@ -19,8 +19,8 @@ export class FixHeaderDirective {
       this.router.url === '/home' ||
       this.router.url.slice(0, 7) === '/search'
     )
-      return false;
-    else return true;
+      return true;
+    else return false;
   }
 
   @HostListener('window:scroll', ['$event']) fix() {
@@ -29,6 +29,9 @@ export class FixHeaderDirective {
 
     if (window.pageYOffset >= 10) {
       if (this.checkRoute()) {
+        // home이나 search일 때
+        console.log('home 또는 search');
+
         // top: 0px; position: fixed; background: rgb(20, 20, 20);
         this.renderer.setStyle(this.el.nativeElement, 'top', '0');
         this.renderer.setStyle(this.el.nativeElement, 'position', 'fixed');
@@ -38,6 +41,8 @@ export class FixHeaderDirective {
           'rgb(20, 20, 20)'
         );
       } else {
+        console.log('movie, myList');
+
         if (this.state === 'down') {
           // top: -68px; position: fixed; background: rgb(20, 20, 20);
           this.renderer.setStyle(this.el.nativeElement, 'top', '-68px');

@@ -22,7 +22,9 @@
 }
 
 ::ng-deep div>router-outlet~app-login,
-::ng-deep div>router-outlet~app-watch {
+::ng-deep div>router-outlet~app-watch,
+::ng-deep div>router-outlet~app-profile,
+::ng-deep div>router-outlet~app-profile-manage {
   position: static;
   top: 0;
   left: 0;
