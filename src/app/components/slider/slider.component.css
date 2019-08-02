@@ -135,31 +135,31 @@ img {
 
 /* hover시 좌우 이동 */
 .toRight {
-  transform: translate3d(280px, 0px, 0px);
+  transform: translate3d(94.7%, 0px, 0px);
   transition: transform ease 540ms;
   transition-delay: 100ms;
 }
 
 .toLeft {
-  transform: translate3d(-277px, 0px, 0px);
+  transform: translate3d(-93.5%, 0px, 0px);
   transition: transform ease 540ms;
   transition-delay: 100ms;
 }
 
 .toRightSide {
-  transform: translate3d(139px, 0px, 0px);
+  transform: translate3d(47%, 0px, 0px);
   transition: transform ease 540ms;
   transition-delay: 100ms;
 }
 
 .toLeftSide {
-  transform: translate3d(-140px, 0px, 0px);
+  transform: translate3d(-47%, 0px, 0px);
   transition: transform ease 540ms;
   transition-delay: 100ms;
 }
 
 .toDefault {
-  transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0%, 0px, 0px);
   transition: transform ease 280ms;
   transition-delay: 100ms;
 }
