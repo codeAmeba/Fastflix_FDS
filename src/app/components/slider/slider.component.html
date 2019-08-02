@@ -139,9 +139,7 @@
                                 <span class="match-score-wrapper">
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
-                                      >{{
-                                        moviesDetail?.match_rate
-                                          
+                                      >{{ moviesDetail?.match_rate
                                       }}{{
                                         moviesDetail['match_rate']
                                           ? '% 일치'
@@ -333,7 +331,6 @@
                                   *ngIf="!moviesDetail?.marked"
                                 >
                                   <use filter="" xlink:href="#mylist-add">
-                                    #shadow-root (closed)
                                     <svg id="mylist-add" viewBox="0 0 14 14">
                                       <polygon
                                         fill="currentColor"
