@@ -6,6 +6,7 @@ import { HomeCategories } from 'src/app/models/homeCategories';
 import { MovieCategory } from 'src/app/models/movie-category';
 import { MoviePreview } from 'src/app/models/movie-preview';
 import { Router, NavigationEnd } from '@angular/router';
+import { SubUser } from 'src/app/models/sub-user';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,6 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  user: string;
   playBillBoard: boolean;
   mainMovie: Main;
   bigMovie: Main;
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   openedCategory: string;
   myLists: MoviePreview[];
   navigationSubscription;
+  subUser: SubUser;
 
   constructor(
     private authService: AuthenticationService,
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        this.ngOnInit();
+        if (this.subUser !== authService.subUser) this.init();
       }
     });
   }
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   init() {
-    this.user = this.authService.subUser.name;
+    this.subUser = this.authService.subUser;
     this.homeCatogories = HomeCategories;
     this.openedCategory = '';
     this.getMainMovie();
