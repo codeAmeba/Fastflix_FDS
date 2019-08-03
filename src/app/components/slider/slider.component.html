@@ -96,7 +96,7 @@
                 <ng-template [ngIf]="bobup === movie.order">
                   <span (mouseleave)="cardHoverLeave()">
                     <div
-                      class="bob-card bob-card-adult "
+                      class="bob-card bob-card-adult bob-card-adult-video-merch"
                       [class.bobup]="bobup"
                       [style.left.%]="bobupLeft()"
                       [style.transform]="bobScale"
@@ -112,7 +112,9 @@
                         </span>
                       </div>
                       <div class="bob-overlay">
-                        <div class="bob-play-hitzone"></div>
+                        <div class="bob-play-hitzone" 
+                          [routerLink]="['/watch', moviesDetail?.id]"
+                        ></div>
                         <!-- 영상 메인 이동..뭔지 일단 모르겠음, 아래 화살표 -->
                         <a
                           class="bob-jaw-hitzone"
@@ -126,7 +128,41 @@
                         <div class="bob-overview-wrapper">
                           <div class="bob-overview">
                             <!-- 동영상 play 버튼 -->
-                            <a></a>
+                            <a tabindex="0" data-uia="play-button" class="bob-play-button playLink"
+                            
+                            >
+                              <span class="play-button">
+                                <svg
+                                  class="svg-icon svg-icon-play-with-ring"
+                                  focusable="true"
+                                >
+                                  <use filter="" xlink:href="#play-with-ring">
+                                    <svg
+                                      id="play-with-ring"
+                                      viewBox="0 0 28 28"
+                                    >
+                                      <g fill="none" fill-rule="evenodd">
+                                        <circle
+                                          stroke="#FFF"
+                                          class="ring"
+                                          fill="#000"
+                                          fill-opacity="0.5"
+                                          stroke-width="1"
+                                          cx="14"
+                                          cy="14"
+                                          r="13"
+                                        ></circle>
+                                        <polygon
+                                          fill="currentColor"
+                                          class="arrow"
+                                          points="10 20 10 8 20 14"
+                                        ></polygon>
+                                      </g>
+                                    </svg>
+                                  </use>
+                                </svg>
+                              </span>
+                            </a>
                             <div class="bob-title">
                               {{ moviesDetail.name ? moviesDetail.name : '' }}
                             </div>
@@ -139,9 +175,9 @@
                                 <span class="match-score-wrapper">
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
-                                      >{{ moviesDetail?.match_rate
+                                      >{{ moviesDetail.match_rate ? moviesDetail.match_rate : ''
                                       }}{{
-                                        moviesDetail['match_rate']
+                                        moviesDetail.match_rate
                                           ? '% 일치'
                                           : ''
                                       }}</span
@@ -151,8 +187,8 @@
                                 <span class="maturity-rating "></span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail['running_time']
-                                    ? moviesDetail['running_time']
+                                  moviesDetail.running_time
+                                    ? moviesDetail.running_time
                                     : ' '
                                 }}</span>
                               </div>

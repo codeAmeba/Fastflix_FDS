@@ -363,14 +363,6 @@ a {
   pointer-events: none;
 }
 
-.bob-overview .bob-play-button,
-.svg-icon-play-with-ring {
-  width: 2.5vw;
-  height: 2.5vw;
-  position: relative;
-  display: inline-block;
-}
-
 .bob-overview .bob-title {
   line-height: 1.4;
   font-weight: 700;
@@ -876,15 +868,6 @@ a {
   .title-card .title-card-play:focus .playRing,
   .title-card .title-card-play:hover .playRing {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
-  }
-  .bob-overview .bob-play-button .play-button {
-    width: 1.8vw;
-    padding-bottom: 1.8vw;
-    opacity: 1;
-    -webkit-transition: all 150ms ease;
-    -o-transition: all 150ms ease;
-    -moz-transition: all 150ms ease;
-    transition: all 150ms ease;
   }
 }
 
