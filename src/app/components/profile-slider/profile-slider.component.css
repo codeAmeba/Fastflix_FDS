@@ -22,10 +22,12 @@
 .slider .sliderMask.showPeek {
   overflow-x: visible;
 }
+
 .slider .sliderMask {
   overflow-x: hidden;
   padding-bottom: 1px;
 }
+
 .slider .sliderMask .sliderContent {
   white-space: nowrap;
 }
@@ -45,6 +47,7 @@
   vertical-align: top;
   padding: 0 2px;
 }
+
 .lolopi-icon {
   height: 10vw;
   width: 10vw;
@@ -75,19 +78,24 @@
   background-color: transparent;
   border: 2px solid transparent;
 }
+
 .lolopi-icon:hover {
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
+
 /* 왼쪽 오른쪽 이동 버튼 */
 .slider .handle {
   background: rgba(20, 20, 20, 0.5);
 }
+
 .slider:hover .handle.active:hover {
   background: rgba(20, 20, 20, 0.7);
 }
+
 .slider .handle.active {
   cursor: pointer;
 }
+
 .slider .handle {
   position: absolute;
   top: 0.4vw;
@@ -107,22 +115,18 @@
   display: flex;
   color: #fff;
 }
+
 .slider .contain .handleNext {
-  background: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#141414),
-    to(rgba(20, 20, 20, 0.4))
-  );
-  background: -webkit-linear-gradient(
-    right,
-    #141414 0,
-    rgba(20, 20, 20, 0.4) 100%
-  );
-  background: -moz-
-    oldlinear-gradient(right, #141414 0, rgba(20, 20, 20, 0.4) 100%);
-  background: -o-linear-gradient(right, #141414 0, rgba(20, 20, 20, 0.4) 100%);
+  /* background: -webkit-gradient(linear,
+      right top,
+      left top,
+      from(#141414),
+      to(rgba(20, 20, 20, 0.4)));
+  background: -webkit-linear-gradient(to left,
+      #141414 0,
+      rgba(20, 20, 20, 0.4) 100%);
+  background: -moz- oldlinear-gradient(right, #141414 0, rgba(20, 20, 20, 0.4) 100%);
+  background: -o-linear-gradient(right, #141414 0, rgba(20, 20, 20, 0.4) 100%); */
   background: linear-gradient(to left, #141414 0, rgba(20, 20, 20, 0.4) 100%);
 }
 
@@ -144,6 +148,7 @@
     /* margin: 0 7.5px; */
   }
 }
+
 @media screen and (min-width: 1400px) {
   .slider .row-with-x-columns .slider-item {
     /* width: 16.66666667%; */
@@ -155,11 +160,13 @@
     width: 20%;
   }
 }
+
 @media screen and (max-width: 1099px) and (min-width: 800px) {
   .slider .row-with-x-columns .slider-item {
     width: 25%;
   }
 }
+
 @media screen and (max-width: 799px) and (min-width: 500px) {
   .slider .row-with-x-columns .slider-item {
     width: 33.333333%;
