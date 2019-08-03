@@ -50,14 +50,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getMainMovie() {
     this.movieService.getHomeMain().subscribe(mainMovie => {
+      console.log('home main', mainMovie);
+
       this.mainMovie = {
-        id: mainMovie[0]['메인 영화']['id'],
-        image: mainMovie[0]['메인 영화']['big_image_path'],
-        logo: mainMovie[0]['메인 영화']['logo_image_path'],
-        title: mainMovie[0]['메인 영화']['name'],
-        degree: mainMovie[0]['메인 영화']['degree'],
-        synopsis: mainMovie[0]['메인 영화']['synopsis'],
-        marked: mainMovie[0]['메인 영화']['marked'],
+        id: mainMovie['메인 영화']['id'],
+        image: mainMovie['메인 영화']['big_image_path'],
+        logo: mainMovie['메인 영화']['logo_image_path'],
+        title: mainMovie['메인 영화']['name'],
+        degree: mainMovie['메인 영화']['degree'],
+        synopsis: mainMovie['메인 영화']['synopsis'],
+        marked: mainMovie['메인 영화']['marked'],
       };
       this.getCategoryMovies();
     });
