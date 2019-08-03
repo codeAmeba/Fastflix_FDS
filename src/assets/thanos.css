@@ -12,6 +12,7 @@
 }
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
+
   .mainView .aro-genre .lolomo,
   .mainView .aro-genre-loading {
     margin-top: 2.5%;
@@ -137,23 +138,19 @@
   right: 0;
   top: auto;
   bottom: 0;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(20, 20, 20, 0) 0,
-    rgba(20, 20, 20, 0.15) 15%,
-    rgba(20, 20, 20, 0.35) 29%,
-    rgba(20, 20, 20, 0.58) 44%,
-    #141414 68%,
-    #141414 100%
-  );
+  background-image: linear-gradient(to bottom,
+      rgba(20, 20, 20, 0) 0,
+      rgba(20, 20, 20, 0.15) 15%,
+      rgba(20, 20, 20, 0.35) 29%,
+      rgba(20, 20, 20, 0.58) 44%,
+      #141414 68%,
+      #141414 100%);
 }
 
 .billboard .vignette-top {
-  background-image: linear-gradient(
-    to bottom,
-    #141414 0,
-    rgba(20, 20, 20, 0) 100%
-  );
+  background-image: linear-gradient(to bottom,
+      #141414 0,
+      rgba(20, 20, 20, 0) 100%);
   background-size: 100% 100%;
   background-position: 0 top;
   background-repeat: repeat-x;
@@ -286,7 +283,7 @@
   display: flex;
 }
 
-.billboard-row .billboard-originals .billboard-links > a {
+.billboard-row .billboard-originals .billboard-links>a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -377,10 +374,7 @@ a {
 }
 
 .billboard-row .billboard-originals .mylist-button .icon-button-mylist-added,
-.billboard-row
-  .billboard-originals
-  .mylist-button
-  .icon-button-mylist-added-reverse {
+.billboard-row .billboard-originals .mylist-button .icon-button-mylist-added-reverse {
   transform: scale(1.5);
 }
 
@@ -506,20 +500,16 @@ a {
 
 .bigRow .bigRowItem .background-image:before {
   top: 0;
-  background-image: linear-gradient(
-    to top,
-    rgba(20, 20, 20, 0) 0,
-    #141414 100%
-  );
+  background-image: linear-gradient(to top,
+      rgba(20, 20, 20, 0) 0,
+      #141414 100%);
 }
 
 .bigRow .bigRowItem .background-image:after {
   bottom: 0;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(20, 20, 20, 0) 0,
-    #141414 100%
-  );
+  background-image: linear-gradient(to bottom,
+      rgba(20, 20, 20, 0) 0,
+      #141414 100%);
 }
 
 .bigRow .video-component-container {
@@ -563,10 +553,7 @@ a {
   z-index: 4;
 }
 
-.bigRow
-  .video-component-container
-  .button-container
-  .Billboard__replay-trailer-button {
+.bigRow .video-component-container .button-container .Billboard__replay-trailer-button {
   position: relative;
   margin: 0 1.1vw 0 0;
 }
@@ -654,16 +641,17 @@ a {
 
 /* DetailView */
 
-.thanosRow.jawBoneOpen ~ .thanosRow,
-.rowContainer.jawBoneOpen ~ .rowContainer {
+.thanosRow.jawBoneOpen~.thanosRow,
+.rowContainer.jawBoneOpen~.rowContainer {
   -webkit-transform: translate3d(0, 37vw, 0);
   -moz-transform: translate3d(0, 37vw, 0);
   transform: translate3d(0, 37vw, 0);
 }
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
-  .thanosRow.jawBoneOpen ~ .thanosRow,
-  .rowContainer.jawBoneOpen ~ .rowContainer {
+
+  .thanosRow.jawBoneOpen~.thanosRow,
+  .rowContainer.jawBoneOpen~.rowContainer {
     -webkit-transform: translate3d(0, 42vw, 0);
     -moz-transform: translate3d(0, 42vw, 0);
     transform: translate3d(0, 42vw, 0);
@@ -831,8 +819,7 @@ a {
 
 .jawBoneContainer .background .nav-shadow {
   height: 114px;
-  background: url(https://assets.nflxext.com/en_us/akira/jawBone/nav-shadow.png)
-    no-repeat center 100%;
+  background: url(https://assets.nflxext.com/en_us/akira/jawBone/nav-shadow.png) no-repeat center 100%;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -909,31 +896,22 @@ a {
   -ms-transform-origin: 60% 35%;
   -o-transform-origin: 60% 35%;
   transform-origin: 60% 35%;
-  background: -webkit-radial-gradient(
-    top right ellipse,
-    rgba(0, 0, 0, 0.4) 0,
-    rgba(0, 0, 0, 0) 70%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  background: -moz-
-    oldradial-gradient(
-      top right ellipse,
+  background: -webkit-radial-gradient(top right ellipse,
       rgba(0, 0, 0, 0.4) 0,
       rgba(0, 0, 0, 0) 70%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  background: -o-radial-gradient(
-    top right ellipse,
-    rgba(0, 0, 0, 0.4) 0,
-    rgba(0, 0, 0, 0) 70%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  background: radial-gradient(
-    ellipse at top right,
-    rgba(0, 0, 0, 0.4) 0,
-    rgba(0, 0, 0, 0) 70%,
-    rgba(0, 0, 0, 0) 100%
-  );
+      rgba(0, 0, 0, 0) 100%);
+  background: -moz- oldradial-gradient(top right ellipse,
+      rgba(0, 0, 0, 0.4) 0,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0) 100%);
+  background: -o-radial-gradient(top right ellipse,
+      rgba(0, 0, 0, 0.4) 0,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0) 100%);
+  background: radial-gradient(ellipse at top right,
+      rgba(0, 0, 0, 0.4) 0,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 0) 100%);
   background-position: 50% -50%;
 }
 
@@ -1059,13 +1037,13 @@ a {
   margin-bottom: 5px;
 }
 
-.video-meta > span,
-.video-meta > svg {
+.video-meta>span,
+.video-meta>svg {
   margin-right: 0.5em;
   margin-bottom: 0.3vw;
 }
 
-.jawBoneContainer .jawBoneCommon .meta > span {
+.jawBoneContainer .jawBoneCommon .meta>span {
   line-height: 1.4;
   font-weight: 700;
 }
@@ -1358,6 +1336,7 @@ a {
   padding: 0 4%;
   touch-action: pan-y;
 }
+
 .slider {
   z-index: 2;
   /* overflow-x: hidden; */
@@ -1384,7 +1363,7 @@ a {
   left: 0;
 }
 
-.slider .handle > .indicator-icon {
+.slider .handle>.indicator-icon {
   display: none;
   height: auto;
   align-self: center;
@@ -1396,6 +1375,7 @@ a {
 .slider .handle.handlePrev .indicator-icon {
   transform-origin: 55% 50%;
 }
+
 .slider .handle.handleNext .indicator-icon {
   -webkit-transform-origin: 45% 50%;
   -moz-transform-origin: 45% 50%;
@@ -1403,6 +1383,7 @@ a {
   -o-transform-origin: 45% 50%;
   transform-origin: 45% 50%;
 }
+
 .slider .handle.active:hover .indicator-icon {
   font-weight: 700;
   -webkit-transform: scale(1.25);
@@ -1412,6 +1393,7 @@ a {
   transform: scale(1.25);
   color: #fff;
 }
+
 .slider .handle.active {
   cursor: pointer;
 }
@@ -1420,7 +1402,7 @@ a {
   right: 0;
 }
 
-.jawBoneContainer .jawBoneDetails .handle.active > .indicator-icon {
+.jawBoneContainer .jawBoneDetails .handle.active>.indicator-icon {
   display: block;
 }
 
@@ -1443,7 +1425,15 @@ a {
   white-space: nowrap;
 }
 
+
+@media screen and (min-width: 1500px) {
+  .jawBoneContainer .slider {
+    margin-left: -60px;
+  }
+}
+
 @media screen and (max-width: 1099px) and (min-width: 800px) {
+
   .episodeWrapper .loadingTitle,
   .episodeWrapper .row-with-x-columns .slider-item,
   .placeholderEpisodes .loadingTitle,
@@ -1482,6 +1472,7 @@ a {
 }
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
+
   .simsLockup,
   .trailerLockup {
     font-size: 1.249995vw;
@@ -1518,6 +1509,7 @@ a {
 }
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
+
   .simsLockup .video-artwork,
   .trailerLockup .video-artwork {
     margin-bottom: 0.75vw;
@@ -1525,6 +1517,7 @@ a {
 }
 
 @media screen and (min-width: 1400px) {
+
   .simsLockup .video-artwork,
   .trailerLockup .video-artwork {
     margin-bottom: 0.45vw;
@@ -1559,7 +1552,49 @@ a {
   transition: all 150ms ease;
 }
 
+.jawBoneContainer .jawBoneDetails .detailsItem {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 20px 0 0;
+  height: auto;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  width: 50%;
+}
+
+
+
+.jawBoneContainer .jawBoneDetails ul {
+  padding-left: 0;
+  margin: 0 0 14px 0;
+}
+
+.jawBoneContainer .jawBoneDetails ul li {
+  list-style: none;
+}
+
+.jawBoneContainer .jawBoneDetails .listLabel {
+  font-size: 15px;
+  margin: 0 0 5px;
+  display: block;
+  color: grey;
+  font-weight: 700;
+}
+
+.jawBoneContainer .jawBoneDetails li.listLabel {
+  margin-top: 14px;
+}
+
+.jawBoneContainer .jawBoneDetails li.listLabel:first-child {
+  margin-top: 0;
+}
+
+
 @media screen and (min-width: 1400px) {
+
   .simsLockup .simsPlay,
   .simsLockup .trailerPlay,
   .trailerLockup .simsPlay,
@@ -1588,6 +1623,7 @@ a {
 }
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
+
   .simsLockup .simsPlay,
   .simsLockup .trailerPlay,
   .trailerLockup .simsPlay,
@@ -1612,7 +1648,8 @@ a {
   .slider {
     padding: 0.4% 60px;
   }
-  .slider .handle > .indicator-icon {
+
+  .slider .handle>.indicator-icon {
     font-size: 2rem;
   }
 }
@@ -1637,52 +1674,20 @@ a {
   .trailerWrapper .row-with-x-columns .slider-item {
     width: 20%;
   }
+
+  .jawBoneContainer .jawBoneDetails .detailsItem {
+    width: 16.66666667%;
+  }
+
 }
 
 .nf-flat-button .nf-flat-button-icon-mylist-add:before {
   content: "\e641";
 }
 
-.jawBoneContainer .jawBoneDetails .detailsItem {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0 20px 0 0;
-  height: auto;
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: top;
-  white-space: normal;
-  width: 50%;
-}
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
   .jawBoneContainer .jawBoneDetails .detailsItem {
     width: 25%;
   }
-}
-
-.jawBoneContainer .jawBoneDetails ul {
-  padding-left: 0;
-  margin: 0 0 14px 0;
-}
-
-.jawBoneContainer .jawBoneDetails ul li {
-  list-style: none;
-}
-
-.jawBoneContainer .jawBoneDetails .listLabel {
-  font-size: 15px;
-  margin: 0 0 5px;
-  display: block;
-  color: grey;
-  font-weight: 700;
-}
-
-.jawBoneContainer .jawBoneDetails li.listLabel {
-  margin-top: 14px;
-}
-
-.jawBoneContainer .jawBoneDetails li.listLabel:first-child {
-  margin-top: 0;
 }
