@@ -1747,3 +1747,21 @@ a {
   .svg-icon-play-with-ring {
   color: #e50914;
 }
+
+.video-meta > span,
+.video-meta > svg {
+  margin-right: 0.5em;
+  margin-bottom: 0.3vw;
+}
+
+.maturity-rating .svg-icon {
+  width: 2em;
+  height: 2em;
+  margin: 0 0.4em 0 0;
+  vertical-align: middle;
+}
+
+.video-meta .maturity-rating .svg-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
