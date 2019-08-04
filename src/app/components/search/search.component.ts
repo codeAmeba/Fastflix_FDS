@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MoviePreview } from 'src/app/models/movie-preview';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { SearchService } from 'src/app/services/search.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { SubUser } from 'src/app/models/sub-user';
 
 @Component({
   selector: 'app-search',
@@ -11,6 +13,7 @@ import { SearchService } from 'src/app/services/search.service';
 export class SearchComponent implements OnInit, OnDestroy {
   searchMovies: MoviePreview[];
   query: string;
+  subUser: SubUser;
 
   sliderNums: number;
   sliderLines: MoviePreview[][];
@@ -24,25 +27,29 @@ export class SearchComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private searchService: SearchService,
+    private authService: AuthenticationService,
     private router: Router
   ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        this.ngOnInit();
+        if (this.subUser !== authService.subUser) this.ngOnInit();
       }
     });
   }
 
   ngOnInit() {
+    console.log('onInit');
+
+    this.subUser = this.authService.subUser;
     this.searchOK = true;
     this.route.paramMap.subscribe(params => {
       this.query = params.get('query');
-      console.log('query', this.query);
+
       this.searchService.searchMovies(this.query).subscribe(
         response => {
           this.searchOK = true;
-          console.log('search response', response);
+          console.log('search response for "', this.query, '": ', response);
           this.relatedContents = response.contents;
           this.searchMovies = response['first_movie'].map(movie => {
             return {
@@ -63,8 +70,6 @@ export class SearchComponent implements OnInit, OnDestroy {
               };
             }),
           ];
-          console.log('content', this.relatedContents);
-          console.log('movies', this.searchMovies);
           this.parseMyList();
         },
         error => {
@@ -72,6 +77,7 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.searchOK = false;
           this.relatedContents = [];
           this.searchMovies = [];
+          return;
         }
       );
     });
@@ -80,10 +86,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   parseMyList() {
     this.sliderNums = Math.ceil(this.searchMovies.length / 6);
     this.sliderLines = Array.from(Array(this.sliderNums), () => Array());
-    console.log(this.sliderNums);
     for (let i = 0; i < this.sliderNums; i++) {
       this.sliderLines[i] = this.searchMovies.slice(i * 6, (i + 1) * 6);
-      console.log(this.sliderLines);
     }
   }
 
@@ -92,7 +96,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     this.openedCategory = category;
     thanos.classList.add('has-open-jaw');
-    console.log('opened', this.openedCategory);
   }
 
   sliderClosed(category: string) {
@@ -102,8 +105,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.openedCategory === category ? '' : this.openedCategory;
 
     thanos.classList.remove('has-open-jaw');
-
-    console.log('closed', this.openedCategory);
   }
   ngOnDestroy() {
     if (this.navigationSubscription) {

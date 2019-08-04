@@ -40,9 +40,6 @@ export class SearchService implements OnInit {
     const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
     const params = new HttpParams().set('search_key', query);
 
-    console.log('search headers', headers);
-    console.log('params', query);
-
     return this.http.get<any>(`${this.apiUrl}/movies/search/`, {
       headers,
       params,

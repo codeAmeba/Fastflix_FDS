@@ -46,7 +46,6 @@ export class MyListComponent implements OnInit, OnDestroy {
           preview: movie['sample_video_file'],
         };
       });
-      console.log('내가 찜한 목록', this.myLists);
       this.parseMyList();
     });
   }
@@ -54,10 +53,8 @@ export class MyListComponent implements OnInit, OnDestroy {
   parseMyList() {
     this.sliderNums = Math.ceil(this.myLists.length / 6);
     this.sliderLines = Array.from(Array(this.sliderNums), () => Array());
-    console.log(this.sliderNums);
     for (let i = 0; i < this.sliderNums; i++) {
       this.sliderLines[i] = this.myLists.slice(i * 6, (i + 1) * 6);
-      console.log(this.sliderLines);
     }
   }
 
@@ -66,7 +63,6 @@ export class MyListComponent implements OnInit, OnDestroy {
 
     this.openedCategory = category;
     thanos.classList.add('has-open-jaw');
-    console.log('opened', this.openedCategory);
   }
 
   sliderClosed(category: string) {
@@ -76,8 +72,6 @@ export class MyListComponent implements OnInit, OnDestroy {
       this.openedCategory === category ? '' : this.openedCategory;
 
     thanos.classList.remove('has-open-jaw');
-
-    console.log('closed', this.openedCategory);
   }
 
   ngOnDestroy() {

@@ -1664,6 +1664,7 @@ a {
   .slider .handle > .indicator-icon {
     font-size: 2rem;
   }
+
   .bob-overview .bob-play-button .play-button {
     width: 1.8vw;
     padding-bottom: 1.8vw;
@@ -1765,3 +1766,25 @@ a {
   width: 1.5em;
   height: 1.5em;
 }
+/* .profiles-gate-container .lolopi-row-medium .lolopi-icon {
+  height: 13.66vw;
+  width: 13.66vw;
+}
+
+.profiles-gate-container .lolopi-icon {
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 40px;
+  min-width: 40px;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: 0 .5vw;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+} */

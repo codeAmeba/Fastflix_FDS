@@ -43,7 +43,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('detail', this.moviesDetail);
+    // console.log('detail', this.moviesDetail);
   }
 
   detailClosed() {
@@ -52,7 +52,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
   }
 
   likeMovie(id: number) {
-    console.log(id);
+    // console.log(id);
 
     this.movieService.likeMovie(id).subscribe(({ response }) => {
       console.log('liked response', response);
@@ -72,7 +72,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
   }
 
   dislikeMovie(id: number) {
-    console.log(id);
+    // console.log(id);
 
     this.movieService.dislikeMovie(id).subscribe(({ response }) => {
       console.log('disliked response', response);
