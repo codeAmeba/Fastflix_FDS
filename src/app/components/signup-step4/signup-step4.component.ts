@@ -44,7 +44,6 @@ export class SignupStep4Component implements OnInit {
   getPreMovies() {
     this.userService.getPreMovies().subscribe(movies => {
       this.movies = movies;
-      console.log(this.movies);
     });
   }
 
@@ -69,8 +68,6 @@ export class SignupStep4Component implements OnInit {
 
     this.activeSubmit = this.count === 3 ? true : false;
     this.animateCounter();
-
-    console.log('selected Movies', this.selectedMovies);
   }
 
   animateCounter() {
@@ -83,7 +80,7 @@ export class SignupStep4Component implements OnInit {
   onSubmit() {
     this.selectedMovies.forEach(({ id }) => {
       this.movieService.myList(id).subscribe(response => {
-        console.log(response);
+        console.log('add to my list: ', response);
       });
     });
 

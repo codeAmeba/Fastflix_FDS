@@ -52,8 +52,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => (this.movieId = +params.get('id')));
-
-    console.log('movieId', this.movieId);
   }
 
   ngAfterViewInit() {
@@ -65,7 +63,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       controlBar: {
         volumePanel: { inline: true },
       },
-      fluid: true
+      fluid: true,
     };
 
     this.vidObj = new videojs(
@@ -82,7 +80,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.video = detail['video_file'] || this.video;
 
       myPlayer.src({ type: 'video/mp4', src: this.video });
-      console.log('video url', this.video);
     });
 
     // 10초 전, 후 이동 버튼 vjs-control-bar에 동적 추가
@@ -115,7 +112,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
                   </i>
                   </div>`;
 
-        backArrow = `<div 
+      backArrow = `<div 
                   class="back-arrow"
                   style="position: fixed;
                   left: 0;
@@ -123,24 +120,26 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
                   margin: 15px;
                   cursor: pointer;">
                   <img id="back-to-home" alt="뒤로가기" src="https://www.materialui.co/materialIcons/navigation/arrow_back_white_36x36.png">
-                  </div>`
+                  </div>`;
 
       myControlBar.appendChild(backForwardContain);
       backForwardContain.classList.add('back-forward-contain');
       backForwardContain.innerHTML = playBackForwardButton;
 
       document
-      .querySelector('#move-back')
-      .addEventListener('click', this.moveBack);
+        .querySelector('#move-back')
+        .addEventListener('click', this.moveBack);
       document
-      .querySelector('#move-forward')
-      .addEventListener('click', this.moveForward);
+        .querySelector('#move-forward')
+        .addEventListener('click', this.moveForward);
 
       myControlBar.appendChild(backArrowContain);
       backArrowContain.classList.add('back-arrow-contain');
       backArrowContain.innerHTML = backArrow;
 
-      document.querySelector('#back-to-home').addEventListener('click', this.historyBack);
+      document
+        .querySelector('#back-to-home')
+        .addEventListener('click', this.historyBack);
 
       //test
       // 플레이어 구동 시 lastTime부터 플레이 시작
@@ -177,7 +176,7 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     myPlayer.currentTime(myPlayer.currentTime() - 10);
   }
 
-  // 엔터키 -> 전체화면 
+  // 엔터키 -> 전체화면
   enterFullScreen() {
     const myPlayer = videojs('my-video');
     myPlayer.requestFullscreen();
@@ -187,8 +186,8 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   playOrPause() {
     const myPlayer = videojs('my-video');
     myPlayer.paused() ? myPlayer.play() : myPlayer.pause();
-    }
-  
+  }
+
   // 뒤로가기 버튼
   historyBack() {
     window.history.back();
@@ -198,19 +197,19 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
   pauseVideo() {
     const myPlayer = videojs('my-video');
     this.pauseMovie = false;
-      setTimeout(() => {
-        if (myPlayer.paused() === true) {
-          this.pauseMovie = true;
-        }
-      }, 2000);
-    } 
+    setTimeout(() => {
+      if (myPlayer.paused() === true) {
+        this.pauseMovie = true;
+      }
+    }, 2000);
+  }
 
   savePlayTime() {
     const myPlayer = videojs('my-video');
     this.movieService
       .saveWatchingTime(this.movieId, Math.round(myPlayer.currentTime()))
       .subscribe(({ saved }) => {
-        console.log('saved', saved);
+        console.log('play time saved: ', saved);
       });
   }
 }
