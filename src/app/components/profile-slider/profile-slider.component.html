@@ -23,18 +23,16 @@
           *ngFor="let movie of movies"
           class="slider-item slider-item-{{ 0 }} "
         >
-          <div class="ptrack-content">
-            <button
-              class="lolopi-icon"
-              tabindex="0"
-              aria-hidden="false"
-              aria-label="movie.name"
-              (click)="selectIcon(movie)"
-              [ngStyle]="{
-                'background-image': 'url(' + movie['image_path'] + ')'
-              }"
-            ></button>
-          </div>
+          <button
+            class="lolopi-icon"
+            tabindex="0"
+            aria-hidden="false"
+            aria-label="movie.name"
+            (click)="selectIcon(movie)"
+            [ngStyle]="{
+              'background-image': 'url(' + movie['image_path'] + ')'
+            }"
+          ></button>
         </div>
       </div>
     </div>

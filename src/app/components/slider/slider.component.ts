@@ -107,7 +107,7 @@ export class SliderComponent implements OnInit, OnChanges {
       ...movie,
       order: index + 1,
     }));
-    console.log(this.category, this.movies);
+    // console.log(this.category, this.movies);
 
     this.moviesLength = this.moviesList.length;
     // console.log(this.moviesLength);
@@ -204,7 +204,7 @@ export class SliderComponent implements OnInit, OnChanges {
   }
   cardHover(movieOrder, movieId) {
     if (!this.isOpen) {
-      console.log('안열렸당');
+      // console.log('안열렸당');
 
       this.bobup = movieOrder;
       setTimeout(() => {
@@ -212,7 +212,7 @@ export class SliderComponent implements OnInit, OnChanges {
       }, 200);
     }
     this.cardMove = true;
-    console.log('호버됬당');
+    // console.log('호버됬당');
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
     // if (this.cardMove) return;
@@ -220,7 +220,7 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   cardHoverLeave() {
-    console.log(this.moviesDetail);
+    // console.log(this.moviesDetail);
     this.cardMove = false;
     this.bobScale = 'scale(0.52222)';
     setTimeout(() => {
@@ -260,7 +260,7 @@ export class SliderComponent implements OnInit, OnChanges {
       }
     }, 300);
 
-    console.log('호버 나갔당');
+    // console.log('호버 나갔당');
     // console.log(this.isOpen);
   }
 
@@ -333,7 +333,7 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   likeMovie(id: number) {
-    console.log(id);
+    // console.log(id);
 
     this.movieService.likeMovie(id).subscribe(({ response }) => {
       console.log('liked response', response);
@@ -353,7 +353,7 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   dislikeMovie(id: number) {
-    console.log(id);
+    // console.log(id);
 
     this.movieService.dislikeMovie(id).subscribe(({ response }) => {
       console.log('disliked response', response);

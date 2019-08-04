@@ -48,6 +48,11 @@
   padding: 0 2px;
 }
 
+.lolopi-row-medium .lolopi-icon {
+  height: 13.66vw;
+  width: 13.66vw;
+}
+
 .lolopi-icon {
   height: 10vw;
   width: 10vw;
@@ -136,6 +141,7 @@
   content: "\e867";
 }
 
+
 /* 미디어 screen */
 @media screen and (min-width: 1500px) {
   .slider .handle {
@@ -147,6 +153,8 @@
     width: 150px;
     /* margin: 0 7.5px; */
   }
+
+
 }
 
 @media screen and (min-width: 1400px) {
