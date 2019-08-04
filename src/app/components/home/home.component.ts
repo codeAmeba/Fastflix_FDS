@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getMainMovie() {
     this.movieService.getHomeMain().subscribe(mainMovie => {
-      console.log('home main', mainMovie);
+      // console.log('home main', mainMovie);
 
       this.mainMovie = {
         id: mainMovie['메인 영화']['id'],
@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
-        console.log('시청 중', movies);
+        // console.log('시청 중', movies);
 
         follwUpCategory.movies = movies.map(continueMovie => {
           return {

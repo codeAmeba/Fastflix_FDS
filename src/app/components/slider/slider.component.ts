@@ -323,7 +323,7 @@ export class SliderComponent implements OnInit, OnChanges {
     this.movieService.getMovieDetail(movieId).subscribe(
       detail => {
         this.moviesDetail = detail;
-        console.log(this.moviesDetail);
+        // console.log(this.moviesDetail);
       },
       error => {
         console.log(error);

@@ -45,9 +45,6 @@ export class UserService implements OnInit {
 
     const headers = new HttpHeaders({}).set('Authorization', `Token ${token}`);
 
-    console.log('header', headers);
-    console.log('payload', profileInfo);
-
     return this.http.patch<any>(
       `${this.apiUrl}/accounts/change_sub_user/`,
       profileInfo,
@@ -63,8 +60,6 @@ export class UserService implements OnInit {
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
       .set('subuserid', subuserid + '');
-
-    console.log('remove header', headers);
 
     return this.http.delete<any>(`${this.apiUrl}/accounts/delete_sub_user/`, {
       headers,
