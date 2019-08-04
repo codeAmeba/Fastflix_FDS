@@ -349,26 +349,6 @@ img {
 }
 
 /* hover상세 정보 */
-.bob-overview-wrapper {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 1 90%;
-  -moz-box-flex: 0;
-  -ms-flex: 0 1 90%;
-  flex: 0 1 90%;
-  max-width: 88%;
-}
-
-.bob-overview {
-  text-align: left;
-  pointer-events: none;
-}
-
-.bob-overview .bob-play-button {
-  width: 2.5vw;
-  height: 2.5vw;
-  position: relative;
-  display: inline-block;
-}
 
 .bob-overview .bob-title {
   line-height: 1.4;
