@@ -82,7 +82,7 @@
                         </div>
                         <span class="match-score"
                           >{{ moviesDetail?.match_rate
-                          }}{{ moviesDetail?.match_rate ? '% 일치' : '' }}</span
+                          }}{{ moviesDetail?.match_rate ? "% 일치" : "" }}</span
                         >
                       </div>
                     </span>
@@ -100,6 +100,7 @@
                             (moviesDetail?.degree)['degree_image_path']
                           }}"
                           alt=""
+                          class="svg-icon"
                         />
 
                         <!-- <use
@@ -230,8 +231,8 @@
                           {{ actor.name
                           }}{{
                             moviesIdx === moviesDetail?.actors.length - 1
-                              ? ''
-                              : ','
+                              ? ""
+                              : ","
                           }}
                         </span>
                         <!-- <a href="/browse/person/30048753">리즈 아메드</a> -->
@@ -249,8 +250,8 @@
                           {{ genre.name
                           }}{{
                             genreIdx === moviesDetail?.genre.length - 1
-                              ? ''
-                              : ','
+                              ? ""
+                              : ","
                           }}
                         </span>
                         <!-- <a href="/browse/genre/90176">액션 &amp; 어드벤처·블록버스터</a> -->
@@ -268,8 +269,8 @@
                           {{ feature.name
                           }}{{
                             featureIdx === moviesDetail?.feature.length - 1
-                              ? ''
-                              : ','
+                              ? ""
+                              : ","
                           }}
                         </span>
                         <!-- <a href="/browse/genre/100041">흥미진진</a> -->
@@ -403,14 +404,17 @@
                                         ? (moviesDetail?.degree)['name']
                                         : ''
                                     }}"
-                                /></span> </span></a
-                            ><span
+                                  />
+                                </span>
+                              </span>
+                            </a>
+                            <span
                               *ngIf="moviesDetail"
                               class="maturityDescription"
                               >{{
                                 moviesDetail?.degree
-                                  ? (moviesDetail?.degree)['name']
-                                  : ''
+                                  ? (moviesDetail?.degree)["name"]
+                                  : ""
                               }}</span
                             >
                           </div>
