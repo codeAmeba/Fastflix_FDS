@@ -30,7 +30,6 @@ export class FixHeaderDirective {
     if (window.pageYOffset >= 10) {
       if (this.checkRoute()) {
         // home이나 search일 때
-        console.log('home 또는 search');
 
         // top: 0px; position: fixed; background: rgb(20, 20, 20);
         this.renderer.setStyle(this.el.nativeElement, 'top', '0');
@@ -41,7 +40,7 @@ export class FixHeaderDirective {
           'rgb(20, 20, 20)'
         );
       } else {
-        console.log('movie, myList');
+        // movie, my list일 때
 
         if (this.state === 'down') {
           // top: -68px; position: fixed; background: rgb(20, 20, 20);

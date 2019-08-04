@@ -79,7 +79,6 @@ export class MovieComponent implements OnInit, OnDestroy {
           movies: this.getCategoryMovie(previewCat.category),
         };
       });
-      console.log('내가 찜한 목록', this.myLists);
     });
   }
 

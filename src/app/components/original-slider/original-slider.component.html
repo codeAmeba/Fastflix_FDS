@@ -112,14 +112,19 @@
                         ></div>
                       </div>
                       <div class="bob-overlay">
-                        <div class="bob-play-hitzone"
+                        <div
+                          class="bob-play-hitzone"
                           [routerLink]="['/watch', moviesDetail?.id]"
                         ></div>
                         <a class="bob-jaw-hitzone" href="/title/80196789"> </a>
                         <!-- hover시 나타나는 detail 정보 -->
                         <div class="bob-overview-wrapper">
                           <div class="bob-overview">
-                            <a tabindex="0" data-uia="play-button" class="bob-play-button playLink">
+                            <a
+                              tabindex="0"
+                              data-uia="play-button"
+                              class="bob-play-button playLink"
+                            >
                               <span class="play-button">
                                 <svg
                                   class="svg-icon svg-icon-play-with-ring"
@@ -262,7 +267,6 @@
                                   focusable="true"
                                 >
                                   <use filter="" xlink:href="#mylist-add">
-                                    #shadow-root (closed)
                                     <svg id="mylist-add" viewBox="0 0 14 14">
                                       <polygon
                                         fill="currentColor"

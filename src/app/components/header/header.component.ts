@@ -93,6 +93,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
       this.subUsers = subUsers;
       this.subUser = this.authService.subUser;
       console.log('get subUsers', this.authService.subUsers);
+      console.log('Current subUser', this.subUser.name);
     });
   }
 

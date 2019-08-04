@@ -38,23 +38,12 @@ export class AuthenticationService implements OnInit {
 
     const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
 
-    console.log('create user', user);
-
     return this.http.post<UserProfile>(
       `${this.apiUrl}/accounts/create_sub_user/`,
       user,
       { headers }
     );
   }
-
-  // setProfile(profileId: any) {
-  //   this.subUser = this.subUsers.find(({ id }) => id === profileId);
-  //   localStorage.setItem(this.PROFILE_NAME, JSON.stringify(profileId));
-  // }
-
-  // getProfile() {
-  //   return JSON.parse(localStorage.getItem(this.PROFILE_NAME));
-  // }
 
   set subUser(subUser: SubUser) {
     localStorage.setItem(this.PROFILE_NAME, JSON.stringify(subUser.id));

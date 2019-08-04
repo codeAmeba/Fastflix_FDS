@@ -105,8 +105,6 @@ export class MovieService {
       .set('Authorization', `Token ${token}`)
       .set('subuserid', this.authService.subUser.id + '');
 
-    console.log(headers);
-
     return this.http.get<any>(`${this.apiUrl}/movies/genre_select_before/`, {
       headers,
     });
@@ -120,8 +118,6 @@ export class MovieService {
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
       .set('subuserid', this.authService.subUser.id + '');
-
-    console.log('movie detail header', headers);
 
     return this.http.get<any>(`${this.apiUrl}/movies/${id}/`, { headers });
   }
