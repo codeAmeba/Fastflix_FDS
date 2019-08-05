@@ -10,7 +10,7 @@ import { MovieService } from 'src/app/services/movie.service';
   styleUrls: ['./original-slider.component.css'],
 })
 export class OriginalSliderComponent implements OnInit {
-  // @Input() moviesList: MoviePreview[];
+  @Input() moviesList: MoviePreview[];
   @Input() category: string;
   @Input() openCategory: string;
   @Input() isContinue: boolean;
