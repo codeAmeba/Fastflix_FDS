@@ -128,6 +128,15 @@
               *ngIf="
                 homeCategory && homeCategory?.category === 'Fastflix 오리지널'
               "
+              [moviesList]="homeCategory?.movies"
+              [category]="homeCategory?.category"
+              [openCategory]="openedCategory"
+              [isContinue]="
+                homeCategory?.category === '시청 중인 콘텐츠' ? true : false
+              "
+              (sliderOpen)="sliderOpened($event)"
+              (sliderClose)="sliderClosed($event)"
+              (toggleMyList)="getMyListMovies()"
             ></app-original-slider>
             <app-slider
               *ngIf="
