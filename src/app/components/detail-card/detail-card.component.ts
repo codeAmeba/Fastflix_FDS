@@ -26,13 +26,6 @@ export class DetailCardComponent implements OnInit, OnChanges {
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    // this.imageRotatorImage = {
-    //   'background-image':
-    //     'url(https://occ-0-3451-1009.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8…hfsWSXP71AbW-Y4zu5qBVu85QO95uibYFSlZitqSIzn88HjzNybPhBpc6Y68e9w.webp?r=c9b)',
-    //   'z-index': 2,
-    //   opacity: 1,
-    //   'transition-duration': '750ms',
-    // };
     this.imageRotatorImage = {
       'background-image': 'url()',
       'z-index': 2,
@@ -52,36 +45,21 @@ export class DetailCardComponent implements OnInit, OnChanges {
   }
 
   likeMovie(id: number) {
-    // console.log(id);
-
     this.movieService.likeMovie(id).subscribe(({ response }) => {
       console.log('liked response', response);
       this.moviesDetail.like = response ? 1 : 0;
       console.log('after like', this.moviesDetail.like);
-
-      // this.hoverMoviesDetail(id);
-      // this.movieGood = response;
     });
-
-    // if (this.movieGood) {
-    //   this.movieGood = false;
-    // } else {
-    //   this.movieGood = true;
-    // }
-    // this.movieBad = false;
+    this.ngOnInit();
   }
 
   dislikeMovie(id: number) {
-    // console.log(id);
-
     this.movieService.dislikeMovie(id).subscribe(({ response }) => {
       console.log('disliked response', response);
       this.moviesDetail.like = response ? 2 : 0;
       console.log('after dislike', this.moviesDetail.like);
-
-      // this.hoverMoviesDetail(id);
-      // this.movieBad = response;
     });
+    this.ngOnInit();
   }
 
   myList(movie: MovieDetail) {
@@ -90,5 +68,6 @@ export class DetailCardComponent implements OnInit, OnChanges {
       movie.marked = marked;
       this.toggleMyList.emit();
     });
+    this.ngOnInit();
   }
 }
