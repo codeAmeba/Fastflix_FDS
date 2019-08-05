@@ -13,10 +13,60 @@ export class DetailSliderComponent implements OnInit {
 
   ngOnInit() {}
 
-  myList(movie: similarMovies) {
+  myList(event) {
+    console.log(event);
+
+    const myListButton = event[0];
+    const movie: similarMovies = event[1];
+
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
       console.log('myList', movie.id, marked);
       movie.marked = marked;
+
+      if (marked) {
+        myListButton.classList.remove('icon-button-mylist-add-reverse');
+        myListButton.classList.add('icon-button-mylist-added-reverse');
+      } else {
+        myListButton.classList.remove('icon-button-mylist-added-reverse');
+        myListButton.classList.add('icon-button-mylist-add-reverse');
+      }
     });
+  }
+
+  onHover(myListButton: HTMLElement) {
+    console.log('mousein', myListButton);
+
+    const parent = myListButton.parentElement;
+    const message = parent.lastElementChild;
+
+    parent.classList.add('hovered');
+
+    if (myListButton.classList.contains('icon-button-mylist-add')) {
+      myListButton.classList.remove('icon-button-mylist-add');
+      myListButton.classList.add('icon-button-mylist-add-reverse');
+      message.innerHTML = '내가 찜한 콘텐츠에 추가';
+    } else if (myListButton.classList.contains('icon-button-mylist-added')) {
+      myListButton.classList.remove('icon-button-mylist-added');
+      myListButton.classList.add('icon-button-mylist-added-reverse');
+      message.innerHTML = '내가 찜한 콘텐츠에서 삭제';
+    }
+  }
+
+  onLeave(myListButton: HTMLElement) {
+    console.log('mouseout', myListButton);
+
+    const parent = myListButton.parentElement;
+
+    if (myListButton.classList.contains('icon-button-mylist-add-reverse')) {
+      myListButton.classList.remove('icon-button-mylist-add-reverse');
+      myListButton.classList.add('icon-button-mylist-add');
+    } else if (
+      myListButton.classList.contains('icon-button-mylist-added-reverse')
+    ) {
+      myListButton.classList.remove('icon-button-mylist-added-reverse');
+      myListButton.classList.add('icon-button-mylist-added');
+    }
+
+    parent.classList.remove('hovered');
   }
 }
