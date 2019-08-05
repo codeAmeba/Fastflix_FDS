@@ -86,7 +86,10 @@
                 }"
               >
                 <div class="title-card-focus-ring"></div>
-                <a role="link" class="title-card-play playLink">
+                <a role="link" class="title-card-play playLink"
+                  *ngIf="moviesDetail"
+                  [routerLink]="['/watch', moviesDetail?.id]"
+                >
                   <div class="playRing">
                     <div class="play icon-play"></div>
                   </div>

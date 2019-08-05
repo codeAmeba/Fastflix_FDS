@@ -4,17 +4,17 @@ import {
   Input,
   OnChanges,
   Output,
-  EventEmitter,
-} from '@angular/core';
-import { MoviePreview } from '../../models/movie-preview';
-import { MovieDetail } from 'src/app/models/movies-detail';
+  EventEmitter
+} from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
+import { MovieDetail } from "src/app/models/movies-detail";
 
-import { MovieService } from 'src/app/services/movie.service';
+import { MovieService } from "src/app/services/movie.service";
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css'],
+  selector: "app-slider",
+  templateUrl: "./slider.component.html",
+  styleUrls: ["./slider.component.css"]
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
@@ -57,7 +57,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = 'scale(0.52222)';
+  bobScale = "scale(0.52222)";
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -106,7 +106,7 @@ export class SliderComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.movies = this.moviesList.map((movie, index) => ({
       ...movie,
-      order: index + 1,
+      order: index + 1
     }));
 
     this.moviesLength = this.moviesList.length;
@@ -200,7 +200,7 @@ export class SliderComponent implements OnInit, OnChanges {
     if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobScale = 'scale(0.99999)';
+        this.bobScale = "scale(0.99999)";
       }, 200);
     }
     this.cardMove = true;
@@ -214,7 +214,7 @@ export class SliderComponent implements OnInit, OnChanges {
   cardHoverLeave() {
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScale = 'scale(0.52222)';
+    this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
       if (!this.isOpen) {
@@ -290,8 +290,8 @@ export class SliderComponent implements OnInit, OnChanges {
 
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return 'left';
-    else if (this.hoverCard === 6) return 'right';
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
     return;
   }
 
@@ -326,9 +326,9 @@ export class SliderComponent implements OnInit, OnChanges {
     // console.log(id);
 
     this.movieService.likeMovie(id).subscribe(({ response }) => {
-      console.log('liked response', response);
+      console.log("liked response", response);
       this.moviesDetail.like = response ? 1 : 0;
-      console.log('after like', this.moviesDetail.like);
+      console.log("after like", this.moviesDetail.like);
     });
   }
 
@@ -336,15 +336,15 @@ export class SliderComponent implements OnInit, OnChanges {
     // console.log(id);
 
     this.movieService.dislikeMovie(id).subscribe(({ response }) => {
-      console.log('disliked response', response);
+      console.log("disliked response", response);
       this.moviesDetail.like = response ? 2 : 0;
-      console.log('after dislike', this.moviesDetail.like);
+      console.log("after dislike", this.moviesDetail.like);
     });
   }
 
   myList(movie: MovieDetail) {
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log('myList', movie.id, marked);
+      console.log("myList", movie.id, marked);
       movie.marked = marked;
       this.toggleMyList.emit();
     });
