@@ -178,26 +178,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  // // original API 미완
-  // getOriginalMovies() {
-  //   const originalCategory = this.homeCatogories.find(
-  //     ({ category }) => category === 'Fastflix 오리지널'
-  //   );
-  //   // this.movieService.getFollowUpMovies().subscribe(
-  //   //   movies => {
-  //   //     originalCategory.movies = movies.map(movie => {
-  //   //       return {
-  //   //         id: movie.id,
-  //   //         title: movie.name,
-  //   //         url: movie['horizontal_image_path'],
-  //   //         preview: movie['sample_video_file'],
-  //   //       };
-  //   //     });
-  //   //   },
-  //   //   error => console.error(error)
-  //   // );
-  // }
-
   getOurCatgegories() {
     this.homeCatogories
       .slice(5, this.homeCatogories.length + 1)
@@ -208,7 +188,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             : ourCategory.category;
 
         this.movieService.getMovieByGenre(category).subscribe(movies => {
-          console.log(category, movies);
           if (category === '넷플릭스 오리지널') {
             ourCategory.movies = movies.map(movie => {
               return {

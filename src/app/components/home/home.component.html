@@ -128,7 +128,7 @@
               *ngIf="
                 homeCategory && homeCategory?.category === 'Fastflix 오리지널'
               "
-              moviesList]="homeCategory?.movies"
+              [moviesList]="homeCategory?.movies"
               [category]="homeCategory?.category"
               [openCategory]="openedCategory"
               [isContinue]="

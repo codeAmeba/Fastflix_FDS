@@ -40,7 +40,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('onInit');
-
     this.subUser = this.authService.subUser;
     this.searchOK = true;
     this.route.paramMap.subscribe(params => {
@@ -77,7 +76,6 @@ export class SearchComponent implements OnInit, OnDestroy {
           this.searchOK = false;
           this.relatedContents = [];
           this.searchMovies = [];
-          return;
         }
       );
     });
@@ -106,6 +104,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     thanos.classList.remove('has-open-jaw');
   }
+
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
