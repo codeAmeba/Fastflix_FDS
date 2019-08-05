@@ -14,13 +14,10 @@ export class DetailSliderComponent implements OnInit {
   ngOnInit() {}
 
   myList(event) {
-    console.log(event);
-
     const myListButton = event[0];
     const movie: similarMovies = event[1];
 
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log('myList', movie.id, marked);
       movie.marked = marked;
 
       if (marked) {
@@ -34,8 +31,6 @@ export class DetailSliderComponent implements OnInit {
   }
 
   onHover(myListButton: HTMLElement) {
-    console.log('mousein', myListButton);
-
     const parent = myListButton.parentElement;
     const message = parent.lastElementChild;
 
@@ -53,8 +48,6 @@ export class DetailSliderComponent implements OnInit {
   }
 
   onLeave(myListButton: HTMLElement) {
-    console.log('mouseout', myListButton);
-
     const parent = myListButton.parentElement;
 
     if (myListButton.classList.contains('icon-button-mylist-add-reverse')) {
