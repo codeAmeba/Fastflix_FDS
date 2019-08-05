@@ -6,7 +6,7 @@
         <div class="billboard billboard-originals">
           <div class="billboard-trailer">
             <div class="trailer-background">
-              <div class="FFPlayer" *ngIf="playBillBoard"></div>
+              <!-- <div class="FFPlayer" *ngIf="playBillBoard"></div> -->
               <div class="hero-img-wrapper">
                 <img
                   *ngIf="mainMovie"
@@ -23,11 +23,17 @@
                         *ngIf="mainMovie"
                         [src]="
                           mainMovie?.degree
-                            ? (mainMovie?.degree)['degree_image_path']
+                            ? mainMovie?.degree
+                              ? (mainMovie?.degree)['degree_image_path']
+                              : ''
                             : ''
                         "
                         alt="{{
-                          mainMovie?.degree ? (mainMovie?.degree)['name'] : ''
+                          mainMovie?.degree
+                            ? mainMovie?.degree
+                              ? (mainMovie?.degree)['name']
+                              : ''
+                            : ''
                         }}"/></span
                   ></span>
                 </div>
@@ -127,8 +133,8 @@
               *ngIf="
                 homeCategory && homeCategory?.category !== 'Fastflix 오리지널'
               "
-              [moviesList]="homeCategory.movies"
-              [category]="homeCategory.category"
+              [moviesList]="homeCategory?.movies"
+              [category]="homeCategory?.category"
               [openCategory]="openedCategory"
               [isContinue]="
                 homeCategory?.category === '시청 중인 콘텐츠' ? true : false
@@ -190,11 +196,17 @@
                         *ngIf="bigMovie"
                         [src]="
                           bigMovie?.degree
-                            ? (bigMovie?.degree)['degree_image_path']
+                            ? bigMovie?.degree
+                              ? (bigMovie?.degree)['degree_image_path']
+                              : ''
                             : ''
                         "
                         alt="{{
-                          bigMovie?.degree ? (bigMovie?.degree)['name'] : ''
+                          bigMovie?.degree
+                            ? bigMovie?.degree
+                              ? (bigMovie?.degree)['name']
+                              : ''
+                            : ''
                         }}"
                     /></span>
                   </span>
@@ -210,12 +222,12 @@
                     alt="{{ bigMovie?.title }}"
                   />
                 </div>
-                <div class="billboard-links button-layer forward-leaning">
+                <span class="billboard-links button-layer forward-leaning">
                   <a
                     *ngIf="bigMovie"
                     role="link"
                     aria-label="재생"
-                    class=" playLink"
+                    class="playLink"
                     [routerLink]="['/watch', bigMovie?.id]"
                   >
                     <span
@@ -244,7 +256,7 @@
                     ></span>
                     <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
                   </a>
-                </div>
+                </span>
                 <div *ngIf="bigMovie" class="synopsis">
                   {{ bigMovie?.synopsis }}
                 </div>
