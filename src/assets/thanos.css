@@ -1681,6 +1681,9 @@ a {
 }
 
 @media screen and (min-width: 1400px) {
+  /* .slider .row-with-x-columns .slider-item {
+    width: 16.66666667%;
+  } */
   .jawBoneContainer {
     height: 32vw;
   }
@@ -1839,6 +1842,71 @@ a {
 .video-meta .maturity-rating .svg-icon {
   width: 1.5em;
   height: 1.5em;
+}
+
+.evidence-list {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-grid-column-align: flex-start;
+  justify-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+/* 하단 버튼 */
+.bob-chevron-wrapper {
+  pointer-events: none;
+  padding: 0.5vw 0 0 0;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+  -moz-box-flex: 0;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+}
+
+.bob-jaw-hitzone:hover ~ .bob-chevron-wrapper {
+  color: #e50914;
+  stroke: #e50914;
+  stroke-width: 2px;
+  stroke-linejoin: miter;
+}
+
+.bob-jawbone-chevron {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+  -webkit-animation-name: chevronSlideDown;
+  -moz-animation-name: chevronSlideDown;
+  -o-animation-name: chevronSlideDown;
+  animation-name: chevronSlideDown;
+  -webkit-animation-duration: 0.4s;
+  -moz-animation-duration: 0.4s;
+  -o-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  text-align: center;
+}
+
+.bob-jawbone-chevron svg {
+  width: 3vw;
+  height: 1vw;
+}
+.svg-icon {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+svg:not(:root) {
+  overflow: hidden;
 }
 
 /* .profiles-gate-container .lolopi-row-medium .lolopi-icon {

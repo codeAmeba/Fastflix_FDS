@@ -729,16 +729,6 @@ img {
   animation-timing-function: linear;
 }
 
-.svg-icon {
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
 .nf-svg-button-wrapper .nf-svg-button svg {
   color: #fff;
   fill: #fff;
@@ -749,10 +739,6 @@ svg:not(:root) {
 .thumbs-component .nf-svg-button svg {
   width: 1em;
   height: 1em;
-}
-
-svg:not(:root) {
-  overflow: hidden;
 }
 
 /* 내가 찜한 콘텐츠 추가 */
@@ -818,16 +804,6 @@ a {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.svg-icon {
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
 polygon {
   fill: currentcolor;
 }
@@ -869,59 +845,6 @@ polygon {
   position: absolute;
   top: 0;
   width: 0;
-}
-
-/* 하단 버튼 */
-.bob-chevron-wrapper {
-  pointer-events: none;
-  padding: 0.5vw 0 0 0;
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 100%;
-  -moz-box-flex: 0;
-  -ms-flex: 0 0 100%;
-  flex: 0 0 100%;
-}
-
-.bob-jaw-hitzone:hover ~ .bob-chevron-wrapper {
-  color: #e50914;
-  stroke: #e50914;
-  stroke-width: 2px;
-  stroke-linejoin: miter;
-}
-
-.bob-jawbone-chevron {
-  -webkit-animation-delay: 0.2s;
-  -moz-animation-delay: 0.2s;
-  -o-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-  -webkit-animation-name: chevronSlideDown;
-  -moz-animation-name: chevronSlideDown;
-  -o-animation-name: chevronSlideDown;
-  animation-name: chevronSlideDown;
-  -webkit-animation-duration: 0.4s;
-  -moz-animation-duration: 0.4s;
-  -o-animation-duration: 0.4s;
-  animation-duration: 0.4s;
-  text-align: center;
-}
-
-.bob-jawbone-chevron svg {
-  width: 3vw;
-  height: 1vw;
-}
-
-svg:not(:root) {
-  overflow: hidden;
-}
-
-.svg-icon {
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-svg:not(:root) {
-  overflow: hidden;
 }
 
 /* click 시 테두리 */

@@ -104,7 +104,7 @@ a {
   height: 0;
   position: relative;
   overflow: hidden;
-  padding: 200% 0 0;
+  /* padding: 200% 0 0; */
 }
 
 .title-card-tall-panel .boxart-tall-panel {
@@ -609,23 +609,7 @@ a {
 }
 
 /* 키워드 */
-.evidence-list {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-grid-column-align: flex-start;
-  justify-items: flex-start;
-  margin: 0;
-  padding: 0;
-}
+
 .evidence-text {
   line-height: 1.4;
 }
@@ -636,10 +620,11 @@ a {
   display: -ms-flexbox;
   display: flex;
   padding-right: 0.5vw;
+  flex-wrap: wrap;
 }
 .evidence-text {
   color: #fff;
-  line-height: 1.3;
+  line-height: 1.7;
   position: relative;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
   font-size: 0.8vw;
