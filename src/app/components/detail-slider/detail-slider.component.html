@@ -10,7 +10,6 @@
           <div class="ptrack-content">
             <div
               class="video-artwork sims-artwork"
-              alt="메리다와 마법의 숲"
               [ngStyle]="{
                 'background-image':
                   'url(' + similar?.horizontal_image_path + ')'
@@ -29,26 +28,24 @@
                   <div class="play icon-play"></div>
                 </div>
               </a>
-              <div class="ptrack-content">
-                <a
-                  role="button"
-                  aria-live="assertive"
-                  tabindex="0"
-                  class="nf-icon-button mylist-button"
-                  (click)="myList(similar)"
+              <a
+                role="button"
+                aria-live="assertive"
+                tabindex="0"
+                class="nf-icon-button mylist-button"
+                (mouseover)="onHover($event.target)"
+                (mouseout)="onLeave($event.target)"
+                (click)="myList([$event.target, similar])"
+              >
+                <span
+                  role="presentation"
+                  class="nf-icon-button-icon"
+                  [class.icon-button-mylist-add]="!similar?.marked"
+                  [class.icon-button-mylist-added]="similar?.marked"
                 >
-                  <span
-                    role="presentation"
-                    class="nf-icon-button-icon"
-                    [class.icon-button-mylist-add]="!similar?.marked"
-                    [class.icon-button-mylist-added]="similar?.marked"
-                  >
-                  </span>
-                  <span class="nf-icon-button-tooltip">
-                    내가 찜한 콘텐츠에 추가
-                  </span>
-                </a>
-              </div>
+                </span>
+                <span class="nf-icon-button-tooltip"> </span>
+              </a>
             </div>
           </div>
           <div class="meta video-meta ">
