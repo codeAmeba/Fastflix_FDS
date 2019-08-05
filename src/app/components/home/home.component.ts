@@ -209,15 +209,25 @@ export class HomeComponent implements OnInit, OnDestroy {
 
         this.movieService.getMovieByGenre(category).subscribe(movies => {
           console.log(category, movies);
-
-          ourCategory.movies = movies.map(movie => {
-            return {
-              id: movie.id,
-              title: movie.name,
-              url: movie['horizontal_image_path'],
-              preview: movie['sample_video_file'],
-            };
-          });
+          if (category === '넷플릭스 오리지널') {
+            ourCategory.movies = movies.map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['vertical_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            });
+          } else {
+            ourCategory.movies = movies.map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['horizontal_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            });
+          }
         });
       });
   }
