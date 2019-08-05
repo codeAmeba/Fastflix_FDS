@@ -50,8 +50,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getMainMovie() {
     this.movieService.getHomeMain().subscribe(mainMovie => {
-      // console.log('home main', mainMovie);
-
       this.mainMovie = {
         id: mainMovie['메인 영화']['id'],
         image: mainMovie['메인 영화']['big_image_path'],
@@ -105,6 +103,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getLatestMovies();
     this.getFollowUpMovies();
     this.getMyListMovies();
+    this.getOurCatgegories();
   }
 
   getPopularMovies() {
@@ -179,24 +178,58 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  // original API 미완
-  getOriginalMovies() {
-    const originalCategory = this.homeCatogories.find(
-      ({ category }) => category === 'Fastflix 오리지널'
-    );
-    // this.movieService.getFollowUpMovies().subscribe(
-    //   movies => {
-    //     originalCategory.movies = movies.map(movie => {
-    //       return {
-    //         id: movie.id,
-    //         title: movie.name,
-    //         url: movie['horizontal_image_path'],
-    //         preview: movie['sample_video_file'],
-    //       };
-    //     });
-    //   },
-    //   error => console.error(error)
-    // );
+  // // original API 미완
+  // getOriginalMovies() {
+  //   const originalCategory = this.homeCatogories.find(
+  //     ({ category }) => category === 'Fastflix 오리지널'
+  //   );
+  //   // this.movieService.getFollowUpMovies().subscribe(
+  //   //   movies => {
+  //   //     originalCategory.movies = movies.map(movie => {
+  //   //       return {
+  //   //         id: movie.id,
+  //   //         title: movie.name,
+  //   //         url: movie['horizontal_image_path'],
+  //   //         preview: movie['sample_video_file'],
+  //   //       };
+  //   //     });
+  //   //   },
+  //   //   error => console.error(error)
+  //   // );
+  // }
+
+  getOurCatgegories() {
+    this.homeCatogories
+      .slice(5, this.homeCatogories.length + 1)
+      .forEach(ourCategory => {
+        const category =
+          ourCategory.category === 'Fastflix 오리지널'
+            ? '넷플릭스 오리지널'
+            : ourCategory.category;
+
+        this.movieService.getMovieByGenre(category).subscribe(movies => {
+          console.log(category, movies);
+          if (category === '넷플릭스 오리지널') {
+            ourCategory.movies = movies.map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['vertical_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            });
+          } else {
+            ourCategory.movies = movies.map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['horizontal_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            });
+          }
+        });
+      });
   }
 
   ngOnDestroy() {

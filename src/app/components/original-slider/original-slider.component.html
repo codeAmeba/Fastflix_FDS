@@ -26,43 +26,43 @@
         <!-- card -->
         <div
           *ngFor="let movie of movies ? movies : ''"
-          class="slider-item slider-item-{{ movie.order }} show-number-{{
-            showNumber(movie.order)
+          class="slider-item slider-item-{{ movie?.order }} show-number-{{
+            showNumber(movie?.order)
           }}"
           [class.toRight]="
             !isOpen &&
             cardMove &&
             hoverCard === 1 &&
-            showNumber(movie.order) > hoverCard
+            showNumber(movie?.order) > hoverCard
           "
           [class.toRightSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
-            showNumber(movie.order) > hoverCard
+            showNumber(movie?.order) > hoverCard
           "
           [class.toLeftSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 6 &&
             hoverCard !== 1 &&
-            showNumber(movie.order) < hoverCard
+            showNumber(movie?.order) < hoverCard
           "
           [class.toLeft]="
             !isOpen &&
             cardMove &&
             hoverCard === 6 &&
-            showNumber(movie.order) !== 0 &&
-            showNumber(movie.order) < hoverCard
+            showNumber(movie?.order) !== 0 &&
+            showNumber(movie?.order) < hoverCard
           "
           [class.toDefault]="!cardMove"
         >
           <div class="title-card-container">
             <div
-              id="title-card-2-{{ movie.order }}"
+              id="title-card-2-{{ movie?.order }}"
               class="slider-refocus title-card title-card-tall-panel"
-              (mouseenter)="hoverTimeout(movie.order)"
+              (mouseenter)="hoverTimeout(movie?.order)"
               (mouseleave)="hoverTimeoutClear()"
             >
               <!-- , movie.id -->
@@ -70,8 +70,8 @@
                 <div class="boxart-size-16x9 boxart-container">
                   <img
                     class="boxart-image boxart-image-in-padded-container"
-                    src="{{ movie.url }}"
-                    alt="{{ movie.title }}"
+                    src="{{ movie?.url }}"
+                    alt="{{ movie?.title }}"
                   />
                 </div>
               </a>
@@ -79,7 +79,7 @@
               <div class="boxart-size-1x2 boxart-tall-panel boxart-container">
                 <img
                   class="boxart-image-tall boxart-image-in-padded-container"
-                  src="{{ movie.tallUrl }}"
+                  src="{{ movie?.tallUrl }}"
                   alt=""
                 />
 
@@ -96,7 +96,7 @@
                   <!-- tall-hover-card -->
                   <div
                     class="bob-card bob-card-adult-tall-panel-video-merch"
-                    *ngIf="bobup === movie.order"
+                    *ngIf="bobup === movie?.order"
                     [class.bobup]="bobup"
                     [style.left.%]="bobupLeft()"
                     [style.transform]="bobScaleTall"
@@ -108,7 +108,9 @@
                         <div
                           class="image-rotator-image"
                           [class.image-rotator-style]="bobup"
-                          [style.backgroundImage]="'url(' + movie.tallUrl + ')'"
+                          [style.backgroundImage]="
+                            'url(' + movie?.tallUrl + ')'
+                          "
                         ></div>
                       </div>
                       <div class="bob-overlay">
@@ -116,7 +118,7 @@
                           class="bob-play-hitzone"
                           [routerLink]="['/watch', moviesDetail?.id]"
                         ></div>
-                        <a class="bob-jaw-hitzone" href="/title/80196789"> </a>
+                        <a class="bob-jaw-hitzone"> </a>
                         <!-- hover시 나타나는 detail 정보 -->
                         <div class="bob-overview-wrapper">
                           <div class="bob-overview">
@@ -158,7 +160,7 @@
                               </span>
                             </a>
                             <div class="bob-title">
-                              {{ movie.title }}
+                              {{ movie?.title }}
                             </div>
                             <div
                               class="bob-overview-resume-title-wrapper"

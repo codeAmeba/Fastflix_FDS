@@ -22,7 +22,8 @@
                 role="link"
                 aria-label="재생"
                 class="simsPlay playLink"
-                href="/watch/70213513?trackId=200257846&amp;tctx=0%2C0%2Cec3fb8c2-43f2-42bb-98b4-34d8491f3c68-23741717%2C%2C"
+                *ngIf="similar"
+                [routerLink]="['/watch', similar?.id]"
               >
                 <div class="playRing">
                   <div class="play icon-play"></div>
