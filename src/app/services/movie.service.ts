@@ -110,6 +110,19 @@ export class MovieService {
     });
   }
 
+  // Genre로 Home Component 중 우리만의 카테고리 가져오기
+  getMovieByGenre(genre: string): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.subUser.id + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/genre/${genre}/list/`, {
+      headers,
+    });
+  }
+
   /* Slider에서 Detail Open 시 Detail 요청 */
 
   getMovieDetail(id: number): Observable<any> {

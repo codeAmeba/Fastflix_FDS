@@ -26,51 +26,52 @@
         <!-- card -->
         <div
           *ngFor="let movie of movies"
-          class="slider-item slider-item-{{ movie.order }} show-number-{{
-            showNumber(movie.order)
+          class="slider-item slider-item-{{ movie?.order }} show-number-{{
+            showNumber(movie?.order)
           }}"
           [class.toRight]="
             !isOpen &&
             cardMove &&
             hoverCard === 1 &&
-            showNumber(movie.order) > hoverCard
+            showNumber(movie?.order) > hoverCard
           "
           [class.toRightSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 1 &&
             hoverCard !== 6 &&
-            showNumber(movie.order) > hoverCard
+            showNumber(movie?.order) > hoverCard
           "
           [class.toLeftSide]="
             !isOpen &&
             cardMove &&
             hoverCard !== 6 &&
             hoverCard !== 1 &&
-            showNumber(movie.order) < hoverCard
+            showNumber(movie?.order) < hoverCard
           "
           [class.toLeft]="
             !isOpen &&
             cardMove &&
             hoverCard === 6 &&
-            showNumber(movie.order) !== 0 &&
-            showNumber(movie.order) < hoverCard
+            showNumber(movie?.order) !== 0 &&
+            showNumber(movie?.order) < hoverCard
           "
           [class.toDefault]="!cardMove"
         >
           <div class="title-card-container">
             <div
-              id="title-card-2-{{ movie.order }}"
+              id="title-card-2-{{ movie?.order }}"
               class="slider-refocus title-card"
-              (mouseenter)="hoverTimeout(movie.order, movie.id)"
+              (mouseenter)="hoverTimeout(movie?.order, movie?.id)"
               (mouseleave)="hoverTimeoutClear()"
             >
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
                   <img
+                    *ngIf="movie"
                     class="boxart-image boxart-image-in-padded-container"
-                    src="{{ movie.url }}"
-                    alt="{{ movie.title }}"
+                    src="{{ movie?.url }}"
+                    alt="{{ movie?.title }}"
                   />
                 </div>
               </a>
@@ -79,9 +80,9 @@
                 class="title-card-jawbone-focus"
                 [ngStyle]="{
                   opacity:
-                    isOpen && hoverCard === showNumber(movie.order) ? 1 : 0,
+                    isOpen && hoverCard === showNumber(movie?.order) ? 1 : 0,
                   'transition-duration.ms':
-                    isOpen && hoverCard === showNumber(movie.order) ? 300 : 0
+                    isOpen && hoverCard === showNumber(movie?.order) ? 300 : 0
                 }"
               >
                 <div class="title-card-focus-ring"></div>
@@ -95,7 +96,7 @@
               </div>
               <!-- hover시 확대 span의 내용이 나타났다 사라졌다 함-->
               <div class="hoverDiv">
-                <ng-template [ngIf]="bobup === movie.order">
+                <ng-template [ngIf]="bobup === movie?.order">
                   <span (mouseleave)="cardHoverLeave()">
                     <div
                       class="bob-card bob-card-adult bob-card-adult-video-merch"
@@ -109,12 +110,13 @@
                           <div
                             class="image-rotator-image "
                             [class.image-rotator-style]="bobup"
-                            [style.backgroundImage]="'url(' + movie.url + ')'"
+                            [style.backgroundImage]="'url(' + movie?.url + ')'"
                           ></div>
                         </span>
                       </div>
                       <div class="bob-overlay">
-                        <div class="bob-play-hitzone" 
+                        <div
+                          class="bob-play-hitzone"
                           [routerLink]="['/watch', moviesDetail?.id]"
                         ></div>
                         <!-- 영상 메인 이동..뭔지 일단 모르겠음, 아래 화살표 -->
@@ -130,8 +132,10 @@
                         <div class="bob-overview-wrapper">
                           <div class="bob-overview">
                             <!-- 동영상 play 버튼 -->
-                            <a tabindex="0" data-uia="play-button" class="bob-play-button playLink"
-                            
+                            <a
+                              tabindex="0"
+                              data-uia="play-button"
+                              class="bob-play-button playLink"
                             >
                               <span class="play-button">
                                 <svg
@@ -166,7 +170,7 @@
                               </span>
                             </a>
                             <div class="bob-title">
-                              {{ moviesDetail.name ? moviesDetail.name : '' }}
+                              {{ moviesDetail?.name ? moviesDetail?.name : '' }}
                             </div>
 
                             <div class="bob-metadata-wrapper">
@@ -177,11 +181,12 @@
                                 <span class="match-score-wrapper">
                                   <div class="show-match-score rating-inner">
                                     <span class="match-score"
-                                      >{{ moviesDetail.match_rate ? moviesDetail.match_rate : ''
-                                      }}{{
-                                        moviesDetail.match_rate
-                                          ? '% 일치'
+                                      >{{
+                                        moviesDetail?.match_rate
+                                          ? moviesDetail?.match_rate
                                           : ''
+                                      }}{{
+                                        moviesDetail?.match_rate ? '% 일치' : ''
                                       }}</span
                                     >
                                   </div>
@@ -207,8 +212,8 @@
                                 </span>
                                 <!-- 관람등급 -->
                                 <span class="duration">{{
-                                  moviesDetail.running_time
-                                    ? moviesDetail.running_time
+                                  moviesDetail?.running_time
+                                    ? moviesDetail?.running_time
                                     : ' '
                                 }}</span>
                               </div>
@@ -222,8 +227,8 @@
                                         i
                                       }}"
                                       *ngFor="
-                                        let feature of moviesDetail.feature
-                                          ? moviesDetail.feature
+                                        let feature of moviesDetail?.feature
+                                          ? moviesDetail?.feature
                                           : '';
                                         index as i
                                       "
@@ -231,23 +236,24 @@
                                       {{ feature ? feature.name : '' }}
                                     </li>
                                     <ng-template
-                                      [ngIf]="moviesDetail.feature.length < 3"
+                                      [ngIf]="moviesDetail?.feature?.length < 3"
                                     >
                                       <li
                                         class="evidence-text evidence-text-{{
-                                          moviesDetail.feature.length + i
+                                          moviesDetail?.feature?.length + i
                                         }}"
                                         *ngFor="
-                                          let genre of moviesDetail.genre
-                                            ? moviesDetail.genre.slice(
+                                          let genre of moviesDetail?.genre
+                                            ? moviesDetail?.genre?.slice(
                                                 0,
-                                                3 - moviesDetail.feature.length
+                                                3 -
+                                                  moviesDetail?.feature?.length
                                               )
                                             : '';
                                           index as i
                                         "
                                       >
-                                        {{ genre.name ? genre.name : '' }}
+                                        {{ genre?.name ? genre?.name : '' }}
                                       </li>
                                     </ng-template>
                                   </ul>
@@ -279,10 +285,10 @@
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
                                   [class.clicked]="moviesDetail?.like === 1"
-                                  (click)="likeMovie(movie.id)"
+                                  (click)="likeMovie(movie?.id)"
                                 >
                                   <svg
-                                    *ngIf="moviesDetail.like === 0"
+                                    *ngIf="moviesDetail?.like === 0"
                                     data-rating="2"
                                     class="svg-icon"
                                     [class.svg-icon-thumb-up]="
@@ -335,7 +341,7 @@
                                   data-rating="1"
                                   tabindex="0"
                                   class="nf-svg-button simpleround"
-                                  (click)="dislikeMovie(movie.id)"
+                                  (click)="dislikeMovie(movie?.id)"
                                 >
                                   <svg
                                     *ngIf="moviesDetail?.like === 0"
