@@ -6,6 +6,8 @@ import {
   Input,
 } from '@angular/core';
 import { MovieCategories } from 'src/app/models/movieCategories';
+import { HomeCategories } from 'src/app/models/homeCategories';
+import { Router } from '@angular/router';
 
 @Directive({
   selector: '[Moveupdown]',
@@ -14,12 +16,21 @@ export class MoveupdownDirective {
   @Input() category: string;
   @Input() openedCategory: string;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private router: Router,
+    private el: ElementRef,
+    private renderer: Renderer2
+  ) {}
 
   isDown() {
     if (!this.openedCategory) return false;
 
-    const categories = MovieCategories.map(({ category }) => category);
+    let categories: string[];
+
+    if (this.router.url === '/movie')
+      categories = MovieCategories.map(({ category }) => category);
+    else if (this.router.url === '/home')
+      categories = HomeCategories.map(({ category }) => category);
 
     return (
       categories.indexOf(this.category) >

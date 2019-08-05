@@ -2,6 +2,7 @@
 .slider .sliderMask {
   margin-right: -30px;
 }
+
 .simsLockup,
 .trailerLockup {
   padding-right: 30px;
@@ -20,6 +21,7 @@
   border-radius: 50%;
   position: absolute;
 }
+
 .simsLockup .simsPlay .play,
 .simsLockup .trailerPlay .play,
 .trailerLockup .simsPlay .play,
@@ -32,6 +34,7 @@
   text-align: center;
   position: absolute;
 }
+
 .simsLockup .simsPlay .playRing:after,
 .simsLockup .trailerPlay .playRing:after,
 .trailerLockup .simsPlay .playRing:after,
@@ -47,6 +50,7 @@
   height: 100%;
   width: 100%;
 }
+
 .simsLockup .mylist-button,
 .trailerLockup .mylist-button {
   opacity: 0;
@@ -54,6 +58,16 @@
   bottom: 5px;
   right: 5px;
 }
+
+.simsLockup:hover .mylist-button,
+.simsLockup:hover .simsPlay,
+.simsLockup:hover .trailerPlay,
+.trailerLockup:hover .mylist-button,
+.trailerLockup:hover .simsPlay,
+.trailerLockup:hover .trailerPlay {
+  opacity: .7;
+}
+
 
 /* handle prev */
 .icon-rightCaret:before {
@@ -65,11 +79,14 @@
     margin-left: -60px;
   }
 }
+
 @media screen and (min-width: 1400px) {
+
   .simsLockup,
   .trailerLockup {
     font-size: 0.916663vw;
   }
+
   .simsLockup .simsPlay .playRing,
   .simsLockup .trailerPlay .playRing,
   .trailerLockup .simsPlay .playRing,
@@ -82,6 +99,7 @@
     border-radius: 50%;
     position: absolute;
   }
+
   .simsLockup .simsPlay .play,
   .simsLockup .trailerPlay .play,
   .trailerLockup .simsPlay .play,
@@ -94,6 +112,7 @@
     text-align: center;
     position: absolute;
   }
+
   .simsLockup .simsPlay .playRing:after,
   .simsLockup .trailerPlay .playRing:after,
   .trailerLockup .simsPlay .playRing:after,
