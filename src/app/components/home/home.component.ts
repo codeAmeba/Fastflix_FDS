@@ -1,17 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Main } from 'src/app/models/main';
-import { MovieService } from 'src/app/services/movie.service';
-import { HomeCategories } from 'src/app/models/homeCategories';
-import { MovieCategory } from 'src/app/models/movie-category';
-import { MoviePreview } from 'src/app/models/movie-preview';
-import { Router, NavigationEnd } from '@angular/router';
-import { SubUser } from 'src/app/models/sub-user';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { Main } from "src/app/models/main";
+import { MovieService } from "src/app/services/movie.service";
+import { HomeCategories } from "src/app/models/homeCategories";
+import { MovieCategory } from "src/app/models/movie-category";
+import { MoviePreview } from "src/app/models/movie-preview";
+import { Router, NavigationEnd } from "@angular/router";
+import { SubUser } from "src/app/models/sub-user";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit, OnDestroy {
   playBillBoard: boolean;
@@ -44,33 +44,33 @@ export class HomeComponent implements OnInit, OnDestroy {
   init() {
     this.subUser = this.authService.subUser;
     this.homeCatogories = HomeCategories;
-    this.openedCategory = '';
+    this.openedCategory = "";
     this.getMainMovie();
   }
 
   getMainMovie() {
     this.movieService.getHomeMain().subscribe(mainMovie => {
       this.mainMovie = {
-        id: mainMovie['메인 영화']['id'],
-        image: mainMovie['메인 영화']['big_image_path'],
-        logo: mainMovie['메인 영화']['logo_image_path'],
-        title: mainMovie['메인 영화']['name'],
-        degree: mainMovie['메인 영화']['degree'],
-        synopsis: mainMovie['메인 영화']['synopsis'],
-        marked: mainMovie['메인 영화']['marked'],
+        id: mainMovie["메인 영화"]["id"],
+        image: mainMovie["메인 영화"]["big_image_path"],
+        logo: mainMovie["메인 영화"]["logo_image_path"],
+        title: mainMovie["메인 영화"]["name"],
+        degree: mainMovie["메인 영화"]["degree"],
+        synopsis: mainMovie["메인 영화"]["synopsis"],
+        marked: mainMovie["메인 영화"]["marked"]
       };
       this.getCategoryMovies();
     });
 
     this.movieService.getBigMovie().subscribe(bigMovie => {
       this.bigMovie = {
-        id: bigMovie['id'],
-        image: bigMovie['big_image_path'],
-        logo: bigMovie['logo_image_path'],
-        title: bigMovie['name'],
-        degree: bigMovie['degree'],
-        synopsis: bigMovie['synopsis'],
-        marked: bigMovie['marked'],
+        id: bigMovie["id"],
+        image: bigMovie["big_image_path"],
+        logo: bigMovie["logo_image_path"],
+        title: bigMovie["name"],
+        degree: bigMovie["degree"],
+        synopsis: bigMovie["synopsis"],
+        marked: bigMovie["marked"]
       };
     });
   }
@@ -83,19 +83,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   sliderOpened(category: string) {
-    const thanos = document.querySelector('.thanos');
+    const thanos = document.querySelector(".thanos");
 
     this.openedCategory = category;
-    thanos.classList.add('has-open-jaw');
+    thanos.classList.add("has-open-jaw");
   }
 
   sliderClosed(category: string) {
-    const thanos = document.querySelector('.thanos');
+    const thanos = document.querySelector(".thanos");
 
     this.openedCategory =
-      this.openedCategory === category ? '' : this.openedCategory;
+      this.openedCategory === category ? "" : this.openedCategory;
 
-    thanos.classList.remove('has-open-jaw');
+    thanos.classList.remove("has-open-jaw");
   }
 
   getCategoryMovies() {
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getPopularMovies() {
     const popularCategory = this.homeCatogories.find(
-      ({ category }) => category === 'Fastflix 인기 콘텐츠'
+      ({ category }) => category === "Fastflix 인기 콘텐츠"
     );
 
     this.movieService.getPopularMovies().subscribe(movies => {
@@ -116,8 +116,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         return {
           id: movie.id,
           title: movie.name,
-          url: movie['horizontal_image_path'],
-          preview: movie['sample_video_file'],
+          url: movie["horizontal_image_path"],
+          preview: movie["sample_video_file"]
         };
       });
     });
@@ -125,15 +125,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getMyListMovies() {
     const myListCategory = this.homeCatogories.find(
-      ({ category }) => category === '내가 찜한 콘텐츠'
+      ({ category }) => category === "내가 찜한 콘텐츠"
     );
     this.movieService.getMyListMovies().subscribe(movies => {
       this.myLists = movies.map(movie => {
         return {
           id: movie.id,
           title: movie.name,
-          url: movie['horizontal_image_path'],
-          preview: movie['sample_video_file'],
+          url: movie["horizontal_image_path"],
+          preview: movie["sample_video_file"]
         };
       });
       myListCategory.movies = this.myLists;
@@ -142,15 +142,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getLatestMovies() {
     const latestCategory = this.homeCatogories.find(
-      ({ category }) => category === '최신 등록 콘텐츠'
+      ({ category }) => category === "최신 등록 콘텐츠"
     );
     this.movieService.getLatestMovies().subscribe(movies => {
       latestCategory.movies = movies.map(movie => {
         return {
           id: movie.id,
           title: movie.name,
-          url: movie['horizontal_image_path'],
-          preview: movie['sample_video_file'],
+          url: movie["horizontal_image_path"],
+          preview: movie["sample_video_file"]
         };
       });
     });
@@ -158,7 +158,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getFollowUpMovies() {
     const follwUpCategory = this.homeCatogories.find(
-      ({ category }) => category === '시청 중인 콘텐츠'
+      ({ category }) => category === "시청 중인 콘텐츠"
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
@@ -168,9 +168,9 @@ export class HomeComponent implements OnInit, OnDestroy {
           return {
             id: continueMovie.movie.id,
             title: continueMovie.movie.name,
-            url: continueMovie.movie['horizontal_image_path'],
-            preview: continueMovie.movie['sample_video_file'],
-            continue: continueMovie['progress_bar'],
+            url: continueMovie.movie["horizontal_image_path"],
+            preview: continueMovie.movie["sample_video_file"],
+            continue: continueMovie["progress_bar"]
           };
         });
       },
@@ -183,18 +183,19 @@ export class HomeComponent implements OnInit, OnDestroy {
       .slice(5, this.homeCatogories.length + 1)
       .forEach(ourCategory => {
         const category =
-          ourCategory.category === 'Fastflix 오리지널'
-            ? '넷플릭스 오리지널'
+          ourCategory.category === "Fastflix 오리지널"
+            ? "넷플릭스 오리지널"
             : ourCategory.category;
 
         this.movieService.getMovieByGenre(category).subscribe(movies => {
-          if (category === '넷플릭스 오리지널') {
+          if (category === "넷플릭스 오리지널") {
             ourCategory.movies = movies.map(movie => {
               return {
                 id: movie.id,
                 title: movie.name,
-                url: movie['vertical_image_path'],
-                preview: movie['sample_video_file'],
+                url: movie["horizontal_image_path"],
+                tallUrl: movie["original_vertical_image_path"],
+                preview: movie["sample_video_file"]
               };
             });
           } else {
@@ -202,8 +203,8 @@ export class HomeComponent implements OnInit, OnDestroy {
               return {
                 id: movie.id,
                 title: movie.name,
-                url: movie['horizontal_image_path'],
-                preview: movie['sample_video_file'],
+                url: movie["horizontal_image_path"],
+                preview: movie["sample_video_file"]
               };
             });
           }
