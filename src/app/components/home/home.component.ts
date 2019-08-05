@@ -105,6 +105,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getLatestMovies();
     this.getFollowUpMovies();
     this.getMyListMovies();
+    this.getOurCatgegories();
   }
 
   getPopularMovies() {
@@ -197,6 +198,26 @@ export class HomeComponent implements OnInit, OnDestroy {
     //   },
     //   error => console.error(error)
     // );
+  }
+
+  getOurCatgegories() {
+    this.homeCatogories
+      .slice(6, this.homeCatogories.length + 1)
+      .forEach(ourCategory => {
+        console.log(ourCategory);
+        this.movieService
+          .getMovieByGenre(ourCategory.category)
+          .subscribe(movies => {
+            ourCategory.movies = movies.map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['horizontal_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            });
+          });
+      });
   }
 
   ngOnDestroy() {

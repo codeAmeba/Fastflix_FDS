@@ -65,41 +65,42 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverTimer;
   movieGood: boolean = false;
   movieBad: boolean = false;
+
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
     this.tabArray();
-    this.moviesDetail = {
-      actors: [],
-      author: [],
-      big_image_path: '',
-      can_i_store: false,
-      circle_image: '',
-      degree: {},
-      directors: [],
-      feature: [],
-      genre: [],
-      horizontal_image_path: '',
-      id: 0,
-      like: 0,
-      logo_image_path: '',
-      marked: false,
-      match_rate: 0,
-      name: '',
-      production_date: '',
-      real_running_time: 0,
-      remaining_time: 0,
-      running_time: 0,
-      sample_video_file: '',
-      similar_movies: [],
-      synopsis: '',
-      to_be_continue: 0,
-      total_minute: 0,
-      uploaded_date: '',
-      vertical_image: '',
-      vertical_sample_video_file: '',
-      video_file: '',
-    };
+    // this.moviesDetail = {
+    //   actors: [],
+    //   author: [],
+    //   big_image_path: '',
+    //   can_i_store: false,
+    //   circle_image: '',
+    //   degree: {},
+    //   directors: [],
+    //   feature: [],
+    //   genre: [],
+    //   horizontal_image_path: '',
+    //   id: 0,
+    //   like: 0,
+    //   logo_image_path: '',
+    //   marked: false,
+    //   match_rate: 0,
+    //   name: '',
+    //   production_date: '',
+    //   real_running_time: 0,
+    //   remaining_time: 0,
+    //   running_time: 0,
+    //   sample_video_file: '',
+    //   similar_movies: [],
+    //   synopsis: '',
+    //   to_be_continue: 0,
+    //   total_minute: 0,
+    //   uploaded_date: '',
+    //   vertical_image: '',
+    //   vertical_sample_video_file: '',
+    //   video_file: '',
+    // };
   }
 
   ngOnChanges() {
@@ -107,16 +108,13 @@ export class SliderComponent implements OnInit, OnChanges {
       ...movie,
       order: index + 1,
     }));
-    // console.log(this.category, this.movies);
 
     this.moviesLength = this.moviesList.length;
-    // console.log(this.moviesLength);
 
     if (this.default) {
       this.moviesClone();
     }
     this.slider = this.movies.length / this.cardCount;
-    // console.log(this.category, this.movies);
 
     this.isOpen = this.category === this.openCategory;
   }
@@ -140,19 +138,17 @@ export class SliderComponent implements OnInit, OnChanges {
       this.OneSliderLength}%, 0px, 0px)`;
     this.transition = `transform 0.75s ease 0s`;
     this.sliderPosition = this.sliderPosition + this.OneSliderLength;
-    // console.log(this.sliderPosition + this.OneSliderLength);
 
     this.sliderState--;
     if (this.sliderState === 0) {
       this.sliderState = this.tabLength;
-      // settimeout
+
       setTimeout(() => {
         this.transform = `translate3d(${this.XState -
           this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
         this.transition = `none`;
         this.sliderPosition =
           this.XState - this.OneSliderLength * this.sliderState;
-        // console.log(this.XState - this.OneSliderLength * this.sliderState);
       }, 750);
     }
   }
@@ -164,7 +160,6 @@ export class SliderComponent implements OnInit, OnChanges {
         this.OneSliderLength}%, 0px, 0px)`;
       this.transition = `transform 0.75s ease 0s`;
       this.sliderPosition = this.sliderPosition - this.OneSliderLength;
-      // console.log(this.sliderPosition - this.OneSliderLength);
     } else {
       // movies 뒷부분 clone
       this.moviesClone();
@@ -175,14 +170,11 @@ export class SliderComponent implements OnInit, OnChanges {
       this.default = true;
       this.sliderPosition =
         this.XState - this.OneSliderLength * this.sliderState;
-      // console.log(this.XState - this.OneSliderLength * this.sliderState);
     }
-    // console.log(this.sliderState);
 
     if (this.sliderState === this.tabLength + 1) {
       this.sliderState = 1;
 
-      // settimeout
       setTimeout(() => {
         this.transform = `translate3d(${this.XState -
           this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
@@ -198,24 +190,24 @@ export class SliderComponent implements OnInit, OnChanges {
       this.cardHover(movieOrder, movieId);
     }, 500);
   }
+
   hoverTimeoutClear() {
     clearTimeout(this.hoverTimer);
     this.cardHoverLeave();
   }
-  cardHover(movieOrder, movieId) {
-    if (!this.isOpen) {
-      // console.log('안열렸당');
 
+  cardHover(movieOrder: number, movieId: number) {
+    if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
         this.bobScale = 'scale(0.99999)';
       }, 200);
     }
     this.cardMove = true;
-    // console.log('호버됬당');
+
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
-    // if (this.cardMove) return;
+
     this.hoverMoviesDetail(movieId);
   }
 
@@ -226,42 +218,39 @@ export class SliderComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.bobup = 0;
       if (!this.isOpen) {
-        this.moviesDetail = {
-          actors: [],
-          author: [],
-          big_image_path: '',
-          can_i_store: false,
-          circle_image: '',
-          degree: {},
-          directors: [],
-          feature: [],
-          genre: [],
-          horizontal_image_path: '',
-          id: 0,
-          like: 0,
-          logo_image_path: '',
-          marked: false,
-          match_rate: 0,
-          name: '',
-          production_date: '',
-          real_running_time: 0,
-          remaining_time: 0,
-          running_time: 0,
-          sample_video_file: '',
-          similar_movies: [],
-          synopsis: '',
-          to_be_continue: 0,
-          total_minute: 0,
-          uploaded_date: '',
-          vertical_image: '',
-          vertical_sample_video_file: '',
-          video_file: '',
-        };
+        // this.moviesDetail = {
+        //   actors: [],
+        //   author: [],
+        //   big_image_path: '',
+        //   can_i_store: false,
+        //   circle_image: '',
+        //   degree: {},
+        //   directors: [],
+        //   feature: [],
+        //   genre: [],
+        //   horizontal_image_path: '',
+        //   id: 0,
+        //   like: 0,
+        //   logo_image_path: '',
+        //   marked: false,
+        //   match_rate: 0,
+        //   name: '',
+        //   production_date: '',
+        //   real_running_time: 0,
+        //   remaining_time: 0,
+        //   running_time: 0,
+        //   sample_video_file: '',
+        //   similar_movies: [],
+        //   synopsis: '',
+        //   to_be_continue: 0,
+        //   total_minute: 0,
+        //   uploaded_date: '',
+        //   vertical_image: '',
+        //   vertical_sample_video_file: '',
+        //   video_file: '',
+        // };
       }
     }, 300);
-
-    // console.log('호버 나갔당');
-    // console.log(this.isOpen);
   }
 
   // 보여주고 있는 카드 숫자 부여
@@ -319,7 +308,9 @@ export class SliderComponent implements OnInit, OnChanges {
     this.cardMove = false;
   }
 
-  hoverMoviesDetail(movieId) {
+  hoverMoviesDetail(movieId: number) {
+    if (!movieId) return;
+
     this.movieService.getMovieDetail(movieId).subscribe(
       detail => {
         this.moviesDetail = detail;
@@ -329,7 +320,6 @@ export class SliderComponent implements OnInit, OnChanges {
         console.log(error);
       }
     );
-    return;
   }
 
   likeMovie(id: number) {
@@ -339,17 +329,7 @@ export class SliderComponent implements OnInit, OnChanges {
       console.log('liked response', response);
       this.moviesDetail.like = response ? 1 : 0;
       console.log('after like', this.moviesDetail.like);
-
-      // this.hoverMoviesDetail(id);
-      // this.movieGood = response;
     });
-
-    // if (this.movieGood) {
-    //   this.movieGood = false;
-    // } else {
-    //   this.movieGood = true;
-    // }
-    // this.movieBad = false;
   }
 
   dislikeMovie(id: number) {
@@ -359,17 +339,7 @@ export class SliderComponent implements OnInit, OnChanges {
       console.log('disliked response', response);
       this.moviesDetail.like = response ? 2 : 0;
       console.log('after dislike', this.moviesDetail.like);
-
-      // this.hoverMoviesDetail(id);
-      // this.movieBad = response;
     });
-
-    // if (this.movieBad) {
-    //   this.movieBad = false;
-    // } else {
-    //   this.movieBad = true;
-    // }
-    // this.movieGood = false;
   }
 
   myList(movie: MovieDetail) {
