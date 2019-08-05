@@ -129,3 +129,42 @@
     width: 100%;
   }
 }
+
+.simsLockup .simsPlay:focus .play,
+.simsLockup .simsPlay:hover .play,
+.simsLockup .trailerPlay:focus .play,
+.simsLockup .trailerPlay:hover .play,
+.trailerLockup .simsPlay:focus .play,
+.trailerLockup .simsPlay:hover .play,
+.trailerLockup .trailerPlay:focus .play,
+.trailerLockup .trailerPlay:hover .play {
+  color: #e50914;
+}
+
+@media screen and (max-width: 1099px) and (min-width: 800px) {
+
+  .simsLockup .simsPlay:focus .play,
+  .simsLockup .simsPlay:hover .play,
+  .simsLockup .trailerPlay:focus .play,
+  .simsLockup .trailerPlay:hover .play,
+  .trailerLockup .simsPlay:focus .play,
+  .trailerLockup .simsPlay:hover .play,
+  .trailerLockup .trailerPlay:focus .play,
+  .trailerLockup .trailerPlay:hover .play {
+    color: #e50914;
+  }
+}
+
+.nf-icon-button.hovered .nf-icon-button-tooltip,
+/* .nf-icon-button:focus .nf-icon-button-tooltip, */
+.nf-icon-button:hover .nf-icon-button-tooltip {
+  display: block;
+}
+
+.icon-button-mylist-add-reverse:before {
+  content: '\e891';
+}
+
+.icon-button-mylist-added-reverse:before {
+  content: '\e894';
+}
