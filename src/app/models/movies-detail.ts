@@ -18,6 +18,7 @@ export interface similarMovies {
   match_rate: number;
   vertical_image: string;
   degree: object[];
+  running_time: string;
   synopsis: string;
   production_date: string;
 }
