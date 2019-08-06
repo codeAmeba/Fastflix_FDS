@@ -17,33 +17,37 @@
   -moz-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-transition: -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  transition: -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  -o-transition: -o-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  -moz-transition: transform 350ms cubic-bezier(.86, 0, .07, 1), -moz-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  transition: transform 350ms cubic-bezier(.86, 0, .07, 1);
-  transition: transform 350ms cubic-bezier(.86, 0, .07, 1), -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1), -moz-transform 350ms cubic-bezier(.86, 0, .07, 1), -o-transform 350ms cubic-bezier(.86, 0, .07, 1);
+  -webkit-transition: -webkit-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: -webkit-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  -o-transition: -o-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  -moz-transition: transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -moz-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -webkit-transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -moz-transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -o-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 @keyframes buttonFlash {
   0% {
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
   }
 
   12% {
-    background: rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, 0.7);
   }
 
   100% {
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
 .nf-svg-button-wrapper .nf-svg-button.simpleround.clicked {
-  -webkit-animation-duration: .4s;
-  -moz-animation-duration: .4s;
-  -o-animation-duration: .4s;
-  animation-duration: .4s;
+  -webkit-animation-duration: 0.4s;
+  -moz-animation-duration: 0.4s;
+  -o-animation-duration: 0.4s;
+  animation-duration: 0.4s;
   -webkit-animation-name: buttonFlash;
   -moz-animation-name: buttonFlash;
   -o-animation-name: buttonFlash;
@@ -66,19 +70,23 @@
   -ms-transform: scale(1.13);
   -o-transform: scale(1.13);
   transform: scale(1.13);
-  -webkit-transition: -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  transition: -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  -o-transition: -o-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  -moz-transition: transform 350ms cubic-bezier(.86, 0, .07, 1), -moz-transform 350ms cubic-bezier(.86, 0, .07, 1);
-  transition: transform 350ms cubic-bezier(.86, 0, .07, 1);
-  transition: transform 350ms cubic-bezier(.86, 0, .07, 1), -webkit-transform 350ms cubic-bezier(.86, 0, .07, 1), -moz-transform 350ms cubic-bezier(.86, 0, .07, 1), -o-transform 350ms cubic-bezier(.86, 0, .07, 1);
+  -webkit-transition: -webkit-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: -webkit-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  -o-transition: -o-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  -moz-transition: transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -moz-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -webkit-transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -moz-transform 350ms cubic-bezier(0.86, 0, 0.07, 1),
+    -o-transform 350ms cubic-bezier(0.86, 0, 0.07, 1);
 }
 
 .nf-svg-button-wrapper .nf-svg-button.simpleround:focus,
 .nf-svg-button-wrapper .nf-svg-button.simpleround:hover {
   outline: 0;
   border-color: #fff;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .thumbs-component.animated.thumbs-horizontal.unrated .thumb-down-container {
@@ -87,12 +95,22 @@
   -ms-transform: translate(0, 0);
   -o-transform: translate(0, 0);
   transform: translate(0, 0);
-  -webkit-transition: opacity 150ms linear 650ms, -webkit-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  transition: opacity 150ms linear 650ms, -webkit-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  -o-transition: opacity 150ms linear 650ms, -o-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  -moz-transition: transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, opacity 150ms linear 650ms, -moz-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  transition: transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, opacity 150ms linear 650ms;
-  transition: transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, opacity 150ms linear 650ms, -webkit-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, -moz-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, -o-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
+  -webkit-transition: opacity 150ms linear 650ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  transition: opacity 150ms linear 650ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  -o-transition: opacity 150ms linear 650ms,
+    -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  -moz-transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 650ms,
+    -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 650ms;
+  transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 650ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
 }
 
 .thumbs-component.animated.unrated .thumb-container {
@@ -119,10 +137,64 @@
   -ms-transform: translate(-2.4em, 0);
   -o-transform: translate(-2.4em, 0);
   transform: translate(-2.4em, 0);
-  -webkit-transition: opacity 150ms linear 550ms, -webkit-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  transition: opacity 150ms linear 550ms, -webkit-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  -o-transition: opacity 150ms linear 550ms, -o-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  -moz-transition: transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, opacity 150ms linear 550ms, -moz-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
-  transition: transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, opacity 150ms linear 550ms;
-  transition: transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, opacity 150ms linear 550ms, -webkit-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, -moz-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s, -o-transform 550ms cubic-bezier(.86, 0, .07, 1) .4s;
+  -webkit-transition: opacity 150ms linear 550ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  transition: opacity 150ms linear 550ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  -o-transition: opacity 150ms linear 550ms,
+    -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  -moz-transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 550ms,
+    -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+  transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 550ms;
+  transition: transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    opacity 150ms linear 550ms,
+    -webkit-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
+    -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
+}
+
+.watched {
+  margin-top: 0.8em;
+}
+.progress {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.watched .progress {
+  font-size: 0.8em;
+  width: 88%;
+  min-height: 0.8em;
+}
+.progress-bar {
+  display: block;
+  position: relative;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -moz-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.progress-completed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: #e50914;
+}
+.progress .summary {
+  margin: 0 0 0 8px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
 }

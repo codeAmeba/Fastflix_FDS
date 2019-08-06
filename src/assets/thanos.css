@@ -1012,6 +1012,9 @@ a {
 .originals-panels-row .jawBonePane .overview .heroSynopsis {
   line-height: 1.6;
 }
+.jawBonePane .synopsis {
+  margin: 0.8em 0 0 0;
+}
 
 .video-meta {
   display: flex;

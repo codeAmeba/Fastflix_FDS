@@ -17,10 +17,13 @@ import { MovieService } from "src/app/services/movie.service";
 export class DetailCardComponent implements OnInit, OnChanges {
   @Input() isOpen: boolean;
   @Input() moviesDetail: MovieDetail;
+  @Input() isContinue: boolean;
   @Output() detailClose = new EventEmitter();
   @Output() toggleMyList = new EventEmitter();
 
   imageRotatorImage: object;
+  running_time: number;
+  continue_time: number;
   tabState: string;
 
   constructor(private movieService: MovieService) {}
@@ -36,7 +39,11 @@ export class DetailCardComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log("detail", this.moviesDetail);
+    // console.log("detail", this.moviesDetail);
+    if (this.moviesDetail) {
+      this.running_time = Math.floor(this.moviesDetail.real_running_time / 60);
+      this.continue_time = Math.floor(this.moviesDetail.to_be_continue / 60);
+    }
   }
 
   detailClosed() {
