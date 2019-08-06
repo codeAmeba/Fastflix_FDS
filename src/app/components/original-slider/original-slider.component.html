@@ -417,6 +417,7 @@
       <span
         (click)="next()"
         class="handle handleNext active"
+        [class.original]="!isOpen"
         tabindex="0"
         role="button"
         aria-label="콘텐츠 더 보기"
