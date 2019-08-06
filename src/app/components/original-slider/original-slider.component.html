@@ -4,6 +4,7 @@
     <span
       (click)="prev()"
       class="handle handlePrev active"
+      [class.original]="!isOpen"
       tabindex="0"
       role="button"
       aria-label="이전 콘텐츠 보기"
