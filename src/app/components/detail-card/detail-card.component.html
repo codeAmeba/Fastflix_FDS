@@ -33,6 +33,7 @@
                 <img
                   alt="{{ moviesDetail?.name}}"
                   class="logo"
+                  [class.small-logo]="tabState !== 'content'"
                   src="{{ moviesDetail?.logo_image_path }}"
                 /></div
             ></a>
