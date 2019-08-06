@@ -394,7 +394,7 @@ export class OriginalSliderComponent implements OnInit {
   }
 
   cardHoverLeave() {
-    // console.log(this.moviesDetail);
+    console.log(this.moviesDetail);
     this.cardMove = false;
     this.bobScaleTall = "scale(0.836)";
     setTimeout(() => {
