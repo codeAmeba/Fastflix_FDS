@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { SubUser } from 'src/app/models/sub-user';
 import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -50,7 +51,8 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   searchValue: string;
   subUsers: SubUser[];
   subUser: SubUser;
-  navigationSubscription;
+  navigationSubscription: Subscription;
+  timeout;
 
   constructor(
     private router: Router,
@@ -122,20 +124,27 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   }
 
   search() {
-    console.log('search Input: ', this.searchValue);
+    // 500ms 이내에 다시 keyup event 시 search 안 함 (입력중이기 때문에)
+    clearTimeout(this.timeout);
+
     if (!this.searchValue && this.router.url.slice(0, 7) === '/search') {
+      // search 창에서 검색어 없을 시 이전 화면으로 돌아감
       console.log(
         'no search value! go back to',
         this.searchService.beforeSearch
       );
       this.router.navigate([this.searchService.beforeSearch]);
     } else {
+      // input Value가 있을 경우
       if (this.router.url.slice(0, 7) !== '/search') {
-        console.log('remember now', this.router.url);
+        // 처음 search로 이동할 때 현재의 routing 주소 저장
         this.searchService.rememberBefore(this.router.url);
       }
-      this.searchService.setSearchQuery(this.searchValue);
-      this.router.navigate([`search/${this.searchValue}`]);
+      // 입력이 안 끝났을 때 search를 방지하기 위해서 500ms 이후에 search => error 적어짐
+      this.timeout = setTimeout(() => {
+        this.searchService.setSearchQuery(this.searchValue);
+        this.router.navigate([`search/${this.searchValue}`]);
+      }, 500);
     }
   }
 }

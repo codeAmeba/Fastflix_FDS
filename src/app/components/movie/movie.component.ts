@@ -79,6 +79,7 @@ export class MovieComponent implements OnInit, OnDestroy {
           movies: this.getCategoryMovie(previewCat.category),
         };
       });
+      this.getOriginalMovies();
     });
   }
 
@@ -102,6 +103,22 @@ export class MovieComponent implements OnInit, OnDestroy {
         url: movie['horizontal_image_path'],
         preview: movie['sample_video_file'],
       };
+    });
+  }
+
+  getOriginalMovies() {
+    this.movieService.getMovieByGenre('넷플릭스 오리지널').subscribe(movies => {
+      this.movieCategories.find(
+        ({ category }) => category === '오리지널'
+      ).movies = movies.map(movie => {
+        return {
+          id: movie.id,
+          title: movie.name,
+          url: movie['horizontal_image_path'],
+          tallUrl: movie['original_vertical_image_path'],
+          preview: movie['sample_video_file'],
+        };
+      });
     });
   }
 
