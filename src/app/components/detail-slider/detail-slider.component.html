@@ -69,7 +69,8 @@
                 </div>
 
                 <span class="match-score">
-                  70% 일치
+                  {{ similar?.match_rate ? similar?.match_rate : ""
+                  }}{{ similar?.match_rate ? "% 일치" : "" }}
                 </span>
               </div>
             </span>
@@ -78,16 +79,19 @@
             </span>
             <span class="maturity-rating ">
               <span>
-                <svg
-                  class="svg-icon svg-icon-maturity-rating-KR-KMRB-35"
-                  focusable="true"
-                >
-                  <use filter="" xlink:href="#maturity-rating-KR-KMRB-35"></use>
-                </svg>
-              </span>
+                <img
+                  *ngIf="similar"
+                  [src]="
+                    similar?.degree
+                      ? (similar?.degree)['degree_image_path']
+                      : ''
+                  "
+                  alt="{{ similar?.degree ? (similar?.degree)['name'] : '' }}"
+                  class="svg-icon"
+              /></span>
             </span>
             <span class="duration">
-              1시간 34분
+              {{ similar?.running_time ? similar?.running_time : " " }}
             </span>
           </div>
           <div class="simsSynopsis">

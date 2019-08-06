@@ -50,6 +50,22 @@
   height: 100%;
   width: 100%;
 }
+.simsLockup .simsPlay:focus,
+.simsLockup .simsPlay:hover,
+.simsLockup .trailerPlay:focus,
+.simsLockup .trailerPlay:hover,
+.trailerLockup .simsPlay:focus,
+.trailerLockup .simsPlay:hover,
+.trailerLockup .trailerPlay:focus,
+.trailerLockup .trailerPlay:hover {
+  text-decoration: none;
+  opacity: 1;
+  -webkit-transform: scale(1.08, 1.08);
+  -moz-transform: scale(1.08, 1.08);
+  -ms-transform: scale(1.08, 1.08);
+  -o-transform: scale(1.08, 1.08);
+  transform: scale(1.08, 1.08);
+}
 
 .simsLockup .mylist-button,
 .trailerLockup .mylist-button {
@@ -65,9 +81,8 @@
 .trailerLockup:hover .mylist-button,
 .trailerLockup:hover .simsPlay,
 .trailerLockup:hover .trailerPlay {
-  opacity: .7;
+  opacity: 0.7;
 }
-
 
 /* handle prev */
 .icon-rightCaret:before {
@@ -81,7 +96,6 @@
 }
 
 @media screen and (min-width: 1400px) {
-
   .simsLockup,
   .trailerLockup {
     font-size: 0.916663vw;
@@ -142,7 +156,6 @@
 }
 
 @media screen and (max-width: 1099px) and (min-width: 800px) {
-
   .simsLockup .simsPlay:focus .play,
   .simsLockup .simsPlay:hover .play,
   .simsLockup .trailerPlay:focus .play,
@@ -162,9 +175,9 @@
 }
 
 .icon-button-mylist-add-reverse:before {
-  content: '\e891';
+  content: "\e891";
 }
 
 .icon-button-mylist-added-reverse:before {
-  content: '\e894';
+  content: "\e894";
 }
