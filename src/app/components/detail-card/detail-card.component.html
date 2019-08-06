@@ -33,6 +33,7 @@
                 <img
                   alt="{{ moviesDetail?.name}}"
                   class="logo"
+                  [class.small-logo]="tabState !== 'content'"
                   src="{{ moviesDetail?.logo_image_path }}"
                 /></div
             ></a>
@@ -115,6 +116,21 @@
                     }}</span>
                   </div>
                   <div class="video-title"></div>
+                  <div 
+                    *ngIf="isContinue"
+                    class="watched">
+                    <div class="progress ">
+                      <span class="progress-bar">
+                        <span role="presentation" class="progress-completed"
+                        [ngStyle]="{ width: (continue_time / running_time) * 100 + '%'}"
+                        >
+                        </span>
+                      </span>
+                      <span class="summary">
+                        총 {{ running_time }}분 중 {{ continue_time}}분
+                      </span>
+                    </div>
+                  </div>
                   <div class="synopsis">
                     {{ moviesDetail?.synopsis }}
                   </div>

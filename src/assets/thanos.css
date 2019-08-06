@@ -957,6 +957,9 @@ a {
   transition: transform 0.3s, -webkit-transform 0.3s, -moz-transform 0.3s,
     -o-transform 0.3s;
 }
+.jawBoneContainer .title .logo.small-logo {
+  transform: scale(0.7);
+}
 
 .jawBoneContainer .jawBoneCommon {
   display: inline-block;
@@ -1008,6 +1011,9 @@ a {
 .jawBonePane .synopsis,
 .originals-panels-row .jawBonePane .overview .heroSynopsis {
   line-height: 1.6;
+}
+.jawBonePane .synopsis {
+  margin: 0.8em 0 0 0;
 }
 
 .video-meta {

@@ -174,7 +174,9 @@
                               {{ moviesDetail?.name ? moviesDetail?.name : '' }}
                             </div>
 
-                            <div class="bob-metadata-wrapper">
+                            <div 
+                              *ngIf="!isContinue"
+                              class="bob-metadata-wrapper">
                               <div
                                 class="meta video-meta video-meta--bob-overview"
                               >
@@ -219,7 +221,9 @@
                                 }}</span>
                               </div>
                             </div>
-                            <div class="bob-overview-evidence-wrapper">
+                            <div 
+                              *ngIf="!isContinue"
+                              class="bob-overview-evidence-wrapper">
                               <div class="evidence-tags">
                                 <div class="evidence-list">
                                   <ul class="evidence-item">
@@ -467,12 +471,12 @@
               </div>
               <!-- hover시 확대 끝 -->
             </div>
-            <div *ngIf="isContinue" class="progress ">
+            <div *ngIf="isContinue && !isOpen" class="progress ">
               <span class="progress-bar"
                 ><span
                   role="presentation"
                   class="progress-completed"
-                  [ngStyle]="{ width: movie?.continue + '%' }"
+                  [ngStyle]="{ width: (movie?.continue + 1) * 10 > 100 ? movie?.continue : (movie?.continue + 1)* 10+ '%' }"
                 ></span
               ></span>
             </div>
@@ -497,6 +501,7 @@
   </div>
 </div>
 <app-detail-card
+  [isContinue]="isContinue"
   [isOpen]="isOpen"
   (detailClose)="detailClosed()"
   [moviesDetail]="moviesDetail"
