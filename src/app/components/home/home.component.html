@@ -115,8 +115,8 @@
           <span class="rowTitle">
             <div class="rowHeaderTitle" *ngIf="homeCategory">
               {{
-                homeCategory?.category === "시청 중인 콘텐츠"
-                  ? subUser?.name + " 님이 " + homeCategory?.category
+                homeCategory?.category === '시청 중인 콘텐츠'
+                  ? subUser?.name + ' 님이 ' + homeCategory?.category
                   : homeCategory?.category
               }}
             </div>
@@ -131,9 +131,6 @@
               [moviesList]="homeCategory?.movies"
               [category]="homeCategory?.category"
               [openCategory]="openedCategory"
-              [isContinue]="
-                homeCategory?.category === '시청 중인 콘텐츠' ? true : false
-              "
               (sliderOpen)="sliderOpened($event)"
               (sliderClose)="sliderClosed($event)"
               (toggleMyList)="getMyListMovies()"
