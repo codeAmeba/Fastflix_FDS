@@ -33,7 +33,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        if (this.subUser !== authService.subUser) this.ngOnInit();
+        if (this.subUser && this.subUser.id !== authService.subUser.id)
+          this.ngOnInit();
       }
     });
   }

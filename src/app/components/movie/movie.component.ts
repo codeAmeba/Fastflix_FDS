@@ -22,6 +22,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   myLists: MoviePreview[];
   navigationSubscription;
   subUser: SubUser;
+  genre: string;
 
   constructor(
     private renderer: Renderer2,
@@ -32,7 +33,11 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        if (this.subUser !== authService.subUser) this.init();
+        if (this.subUser && this.subUser.id !== authService.subUser.id)
+          this.init();
+        if (this.genre !== movieService.Genre) {
+          console.log('!!!!!!!!!', this.genre, movieService.Genre);
+        }
       }
     });
   }
@@ -41,10 +46,16 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.body.parentElement, 'movie');
     this.renderer.addClass(document.body, 'movie');
     this.playBillBoard = false;
+    this.init();
   }
 
   init() {
     this.subUser = this.authService.subUser;
+    console.log(this.subUser, this.authService.subUser);
+
+    this.genre = this.movieService.Genre;
+    console.log((this.genre, this.movieService.Genre));
+
     this.openedCategory = '';
     this.getMovies();
   }

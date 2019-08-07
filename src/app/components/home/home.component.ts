@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
-        if (this.subUser !== authService.subUser) this.init();
+        if (this.subUser && this.subUser.id !== authService.subUser.id)
+          this.init();
       }
     });
   }
@@ -162,7 +163,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
-        console.log("시청 중", movies);
+        console.log('시청 중', movies);
 
         follwUpCategory.movies = movies.map(continueMovie => {
           return {
