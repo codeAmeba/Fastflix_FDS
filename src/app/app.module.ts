@@ -40,7 +40,6 @@ import {
 import { FixHeaderDirective } from './directives/fix-header.directive';
 import { MoveupdownDirective } from './directives/moveupdown.directive';
 import { OnUnloadDirective } from './directives/on-unload.directive';
-import { GenrePipe } from './models/genre.pipe';
 
 @NgModule({
   declarations: [
@@ -71,7 +70,6 @@ import { GenrePipe } from './models/genre.pipe';
     OnUnloadDirective,
     SearchComponent,
     DetailSliderComponent,
-    GenrePipe,
   ],
   imports: [
     BrowserModule,

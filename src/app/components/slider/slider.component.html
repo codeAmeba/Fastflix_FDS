@@ -86,7 +86,9 @@
                 }"
               >
                 <div class="title-card-focus-ring"></div>
-                <a role="link" class="title-card-play playLink"
+                <a
+                  role="link"
+                  class="title-card-play playLink"
                   *ngIf="moviesDetail"
                   [routerLink]="['/watch', moviesDetail?.id]"
                 >
@@ -174,9 +176,10 @@
                               {{ moviesDetail?.name ? moviesDetail?.name : '' }}
                             </div>
 
-                            <div 
+                            <div
                               *ngIf="!isContinue"
-                              class="bob-metadata-wrapper">
+                              class="bob-metadata-wrapper"
+                            >
                               <div
                                 class="meta video-meta video-meta--bob-overview"
                               >
@@ -221,9 +224,10 @@
                                 }}</span>
                               </div>
                             </div>
-                            <div 
+                            <div
                               *ngIf="!isContinue"
-                              class="bob-overview-evidence-wrapper">
+                              class="bob-overview-evidence-wrapper"
+                            >
                               <div class="evidence-tags">
                                 <div class="evidence-list">
                                   <ul class="evidence-item">
@@ -442,7 +446,7 @@
                 ><span
                   role="presentation"
                   class="progress-completed"
-                  [ngStyle]="{ width: (movie?.continue) * 10 > 100 ? movie?.continue : (movie?.continue)* 10+ '%' }"
+                  [ngStyle]="{ width: movie?.continue + '%' }"
                 ></span
               ></span>
             </div>
