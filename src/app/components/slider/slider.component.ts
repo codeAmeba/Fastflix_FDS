@@ -155,21 +155,21 @@ export class SliderComponent implements OnInit, OnChanges {
 
   next() {
     this.sliderState++;
-    if (this.default) {
-      this.transform = `translate3d(${this.sliderPosition -
-        this.OneSliderLength}%, 0px, 0px)`;
-      this.transition = `transform 0.75s ease 0s`;
-      this.sliderPosition = this.sliderPosition - this.OneSliderLength;
-    } else {
-      // movies 뒷부분 clone
-      this.moviesClone();
-
-      this.transform = `translate3d(${this.XState -
-        this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
-      this.transition = `transform 0.75s ease 0s`;
-      this.default = true;
-      this.sliderPosition =
-        this.XState - this.OneSliderLength * this.sliderState;
+    this.transform = `translate3d(${this.sliderPosition -
+      this.OneSliderLength}%, 0px, 0px)`;
+    this.transition = `transform 0.75s ease 0s`;
+    this.sliderPosition = this.sliderPosition - this.OneSliderLength;
+    if (!this.default) {
+      setTimeout(() => {
+        // movies 뒷부분 clone
+        this.moviesClone();
+        this.transform = `translate3d(${this.XState -
+          this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
+        this.transition = `none`;
+        this.default = true;
+        this.sliderPosition =
+          this.XState - this.OneSliderLength * this.sliderState;
+      }, 750);
     }
 
     if (this.sliderState === this.tabLength + 1) {

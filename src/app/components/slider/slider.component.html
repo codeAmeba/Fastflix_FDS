@@ -89,7 +89,7 @@
                 <a
                   role="link"
                   class="title-card-play playLink"
-                  *ngIf="moviesDetail"
+                  *ngIf="moviesDetail?.id"
                   [routerLink]="['/watch', moviesDetail?.id]"
                 >
                   <div class="playRing">
