@@ -30,7 +30,7 @@ const routes: Routes = [
     path: 'signup',
     component: SignupComponent,
     children: [
-      /* UserComponent의 <router-outlet>에 표시 */
+      /* SignupComponentd의 <router-outlet>에 표시 */
       {
         path: 'step1',
         component: SignupStep1Component,

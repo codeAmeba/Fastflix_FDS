@@ -45,6 +45,7 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, AfterViewChecked {
   @Output() profileSelected = new EventEmitter();
+  @Output() genreSelected = new EventEmitter();
   showDropDown: boolean;
   isSubHeader: boolean;
   isSearch: boolean;
@@ -104,6 +105,10 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.subUser = subUser;
     this.ngOnInit();
     this.profileSelected.emit();
+  }
+
+  selectGenre() {
+    this.genreSelected.emit();
   }
 
   showMenu(event: HTMLElement) {
