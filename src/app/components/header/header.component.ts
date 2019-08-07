@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   AfterViewChecked,
+  Input,
 } from '@angular/core';
 import { style, animate, transition, trigger } from '@angular/animations';
 import { Router, Event, NavigationEnd } from '@angular/router';
@@ -47,7 +48,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   @Output() profileSelected = new EventEmitter();
   @Output() genreSelected = new EventEmitter();
   showDropDown: boolean;
-  isSubHeader: boolean;
+  @Input() isSubHeader: boolean;
   isSearch: boolean;
   searchValue: string;
   subUsers: SubUser[];
@@ -66,7 +67,6 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     this.showDropDown = false;
     this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
     this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : '';
-    this.isHeaderNeed();
     this.getSubUsers();
 
     if (document.getElementById('#searchInput') && this.isSearch)
@@ -76,18 +76,6 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     if (document.getElementById('#searchInput') && this.isSearch)
       document.getElementById('#searchInput').focus();
-  }
-
-  isHeaderNeed() {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        // Hide loading indicator
-        // Home, Movie, MyList, Search일 때만 header 필요
-        if (this.router.url === '/movie' || this.router.url === '/mylist')
-          this.isSubHeader = true;
-        else this.isSubHeader = false;
-      }
-    });
   }
 
   getSubUsers() {
