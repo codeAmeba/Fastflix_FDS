@@ -68,7 +68,7 @@
               <a role="link" tabindex="0" class="slider-refocus">
                 <div class="boxart-size-16x9 boxart-container">
                   <img
-                    *ngIf="movie"
+                    *ngIf="movie?.url"
                     class="boxart-image boxart-image-in-padded-container"
                     src="{{ movie?.url }}"
                     alt="{{ movie?.title }}"
@@ -200,7 +200,7 @@
                                 <span class="maturity-rating ">
                                   <span>
                                     <img
-                                      *ngIf="moviesDetail"
+                                      *ngIf="moviesDetail?.degree"
                                       [src]="
                                         moviesDetail?.degree
                                           ? (moviesDetail?.degree)[
@@ -367,7 +367,7 @@
                                 role="link"
                                 tabindex="0"
                                 class="nf-svg-button simpleround"
-                                (click)="myList(moviesDetail)"
+                                (click)="myList(moviesDetail? moviesDetail : null)"
                               >
                                 <svg
                                   class="svg-icon svg-icon-mylist-add"
