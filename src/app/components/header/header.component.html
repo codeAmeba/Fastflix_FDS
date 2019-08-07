@@ -178,7 +178,7 @@
       </ul>
     </nav>
     <ng-container *ngIf="isSubHeader">
-      <app-sub-header></app-sub-header>
+      <app-sub-header (selectedGenre)="selectGenre()"></app-sub-header>
     </ng-container>
   </div>
 </header>
