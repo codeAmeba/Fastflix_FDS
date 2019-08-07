@@ -1180,11 +1180,6 @@ a {
   transition: opacity 150ms linear 650ms;
 }
 
-.thumbs-component .nf-svg-button svg {
-  width: 1em;
-  height: 1em;
-}
-
 .jawBonePane .overview .evidence {
   margin: 15px 0 0 0;
   display: flex;
@@ -1964,11 +1959,17 @@ a {
   animation-timing-function: linear;
 }
 
-.nf-svg-button-wrapper .nf-svg-button svg {
+.nf-svg-button-wrapper .nf-svg-button svg,
+.nf-svg-button-wrapper .nf-svg-button img {
   color: #fff;
   fill: #fff;
   width: 0.8em;
   height: 0.8em;
+}
+.thumbs-component .nf-svg-button svg,
+.thumbs-component .nf-svg-button img {
+  width: 1em;
+  height: 1em;
 }
 
 .nf-svg-button-wrapper .nf-svg-button-tooltip {
