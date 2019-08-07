@@ -25,7 +25,7 @@
             >
               <ul class="sub-menu-list multi-column">
                 <li
-                  *ngFor="let genre of genreList.slice(0, 7)"
+                  *ngFor="let genre of genreList.slice(0, 5)"
                   class="sub-menu-item"
                 >
                   <a class="sub-menu-link" (click)="filterGenre(genre)">{{
@@ -35,7 +35,19 @@
               </ul>
               <ul class="sub-menu-list multi-column">
                 <li
-                  *ngFor="let genre of genreList.slice(7, genreList.length + 1)"
+                  *ngFor="let genre of genreList.slice(5, 10)"
+                  class="sub-menu-item"
+                >
+                  <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                    genre
+                  }}</a>
+                </li>
+              </ul>
+              <ul class="sub-menu-list multi-column">
+                <li
+                  *ngFor="
+                    let genre of genreList.slice(10, genreList.length + 1)
+                  "
                   class="sub-menu-item"
                 >
                   <a class="sub-menu-link" (click)="filterGenre(genre)">{{

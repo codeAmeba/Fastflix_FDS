@@ -43,7 +43,7 @@ export class SubHeaderComponent implements OnInit, AfterContentChecked {
     this.isGrid = false;
     this.showGridMenu = false;
     this.currentRouting = this.router.url;
-    this.genreList = MovieGenres;
+    this.genreList = MovieGenres.map(({ category }) => category);
   }
 
   filterGenre(genre: string) {

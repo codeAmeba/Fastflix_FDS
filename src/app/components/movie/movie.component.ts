@@ -7,6 +7,7 @@ import { MovieCategory } from 'src/app/models/movie-category';
 import { Router, NavigationEnd } from '@angular/router';
 import { SubUser } from 'src/app/models/sub-user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MovieGenres } from 'src/app/models/movieGenres';
 
 @Component({
   selector: 'app-movie',
@@ -18,6 +19,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   movies: object[];
   mainMovie: Main;
   movieCategories: MovieCategory[];
+  genreCatogories: MovieCategory[];
   openedCategory: string;
   myLists: MoviePreview[];
   navigationSubscription;
@@ -37,6 +39,7 @@ export class MovieComponent implements OnInit, OnDestroy {
           this.init();
         if (this.genre !== movieService.Genre) {
           console.log('!!!!!!!!!', this.genre, movieService.Genre);
+          this.filterByMovies();
         }
       }
     });
@@ -51,13 +54,31 @@ export class MovieComponent implements OnInit, OnDestroy {
 
   init() {
     this.subUser = this.authService.subUser;
-    console.log(this.subUser, this.authService.subUser);
-
     this.genre = this.movieService.Genre;
-    console.log((this.genre, this.movieService.Genre));
-
     this.openedCategory = '';
     this.getMovies();
+  }
+
+  filterByMovies() {
+    this.genre = this.movieService.Genre;
+    this.genreCatogories = MovieGenres;
+    this.movieService.getGenreMovieList().subscribe(movies => {
+      console.log(movies);
+
+      this.genreCatogories.forEach(genreCategory => {
+        genreCategory.movies = movies[genreCategory.category]
+          ? movies[genreCategory.category].map(movie => {
+              return {
+                id: movie.id,
+                title: movie.name,
+                url: movie['horizontal_image_path'],
+                preview: movie['sample_video_file'],
+              };
+            })
+          : [];
+      });
+      console.log(this.genreCatogories);
+    });
   }
 
   getMovies() {
