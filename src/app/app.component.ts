@@ -17,6 +17,7 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   showHeader: boolean;
+  isSubHeader: boolean;
 
   constructor(
     private authService: AuthenticationService,
@@ -33,10 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isHeaderNeed() {
     this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationStart) {
-        // Show loading indicator
-      }
-
       if (event instanceof NavigationEnd) {
         // Hide loading indicator
         // Home, Movie, MyList, Search일 때만 header 필요
@@ -48,11 +45,10 @@ export class AppComponent implements OnInit, OnDestroy {
         )
           this.showHeader = true;
         else this.showHeader = false;
-      }
 
-      if (event instanceof NavigationError) {
-        // Hide loading indicator
-        // Present error to user
+        if (this.router.url === '/movie' || this.router.url === '/mylist')
+          this.isSubHeader = true;
+        else this.isSubHeader = false;
       }
     });
   }
