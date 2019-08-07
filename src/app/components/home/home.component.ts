@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
-        // console.log('시청 중', movies);
+        console.log("시청 중", movies);
 
         follwUpCategory.movies = movies.map(continueMovie => {
           return {
