@@ -169,7 +169,7 @@ export class SliderComponent implements OnInit, OnChanges {
         this.default = true;
         this.sliderPosition =
           this.XState - this.OneSliderLength * this.sliderState;
-      }, 750);
+      }, 760);
     }
 
     if (this.sliderState === this.tabLength + 1) {
