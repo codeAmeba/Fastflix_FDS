@@ -88,41 +88,71 @@
         </div>
       </div>
     </span>
-    <div
-      *ngFor="let previewCat of movieCategories"
-      class="thanosRow thanosTitleCard"
-      [class.originalsRow]="previewCat.category === '오리지널'"
-      [class.jawBoneOpen]="previewCat.category === openedCategory"
-    >
-      <h2 class="rowHeader">
-        <span class="rowTitle">
-          <div class="rowHeaderTitle">
-            {{ previewCat.category }}
+    <ng-container *ngIf="!genre; else filterByGenre">
+      <div
+        *ngFor="let previewCat of movieCategories"
+        class="thanosRow thanosTitleCard"
+        [class.originalsRow]="previewCat?.category === '오리지널'"
+        [class.jawBoneOpen]="previewCat?.category === openedCategory"
+      >
+        <h2 class="rowHeader">
+          <span class="rowTitle">
+            <div class="rowHeaderTitle">
+              {{ previewCat.category }}
+            </div>
+          </span>
+        </h2>
+        <div class="rowContainer rowContainerTitleCard">
+          <div class="rowContent">
+            <app-original-slider
+              *ngIf="previewCat?.category === '오리지널'"
+              [moviesList]="previewCat?.movies"
+              [category]="previewCat?.category"
+              [openCategory]="openedCategory"
+              (sliderOpen)="sliderOpened($event)"
+              (sliderClose)="sliderClosed($event)"
+            >
+            </app-original-slider>
+            <app-slider
+              *ngIf="previewCat?.category !== '오리지널'"
+              [moviesList]="previewCat?.movies"
+              [category]="previewCat?.category"
+              [openCategory]="openedCategory"
+              (sliderOpen)="sliderOpened($event)"
+              (sliderClose)="sliderClosed($event)"
+            ></app-slider>
           </div>
-        </span>
-      </h2>
-      <div class="rowContainer rowContainerTitleCard">
-        <div class="rowContent">
-          <app-original-slider
-            *ngIf="previewCat?.category === '오리지널'"
-            [moviesList]="previewCat?.movies"
-            [category]="previewCat?.category"
-            [openCategory]="openedCategory"
-            (sliderOpen)="sliderOpened($event)"
-            (sliderClose)="sliderClosed($event)"
-          >
-          </app-original-slider>
-          <app-slider
-            *ngIf="previewCat.category !== '오리지널'"
-            [moviesList]="previewCat?.movies"
-            [category]="previewCat?.category"
-            [openCategory]="openedCategory"
-            (sliderOpen)="sliderOpened($event)"
-            (sliderClose)="sliderClosed($event)"
-          ></app-slider>
         </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-template #filterByGenre>
+      <div
+        *ngFor="let genreCatogory of genreCatogories"
+        class="thanosRow thanosTitleCard"
+        [class.jawBoneOpen]="genreCatogory.category === openedCategory"
+      >
+        <ng-container *ngIf="genreCatogory?.movies?.length !== 0">
+          <h2 class="rowHeader">
+            <span class="rowTitle">
+              <div class="rowHeaderTitle">
+                {{ genreCatogory?.category }}
+              </div>
+            </span>
+          </h2>
+          <div class="rowContainer rowContainerTitleCard">
+            <div class="rowContent">
+              <app-slider
+                [moviesList]="genreCatogory?.movies"
+                [category]="genreCatogory?.category"
+                [openCategory]="openedCategory"
+                (sliderOpen)="sliderOpened($event)"
+                (sliderClose)="sliderClosed($event)"
+              ></app-slider>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-template>
   </div>
 </div>
 <app-footer></app-footer>

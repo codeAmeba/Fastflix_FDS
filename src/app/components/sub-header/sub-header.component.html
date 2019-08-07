@@ -1,125 +1,75 @@
 <nav class="sub-header">
   <div class="sub-header-wrapper">
     <div class="aro-gallery-header" *ngIf="currentRouting === '/movie'">
-      <div class="title"></div>
+      <div class="title">
+        <div *ngIf="genre" class="breadCrumbs">
+          <ul>
+            <li><a (click)="clearGenre()">영화</a></li>
+          </ul>
+        </div>
+      </div>
       <div class="aro-genre-details">
-        <span class="genreTitle">영화</span>
-        <div class="subgenres">
-          <div label="장르" cols="3" class="nfDropDown theme-lakira">
-            <button
-              class="label"
-              (click)="showGenre = !showGenre"
-              [class.open]="showGenre"
-            >
-              장르
-              <span class="arrow"></span>
-            </button>
-            <div
-              class="sub-menu theme-lakira"
-              *ngIf="showGenre"
-              [@fadeInOut]
-              [ngStyle]="{
-                opacity: showGenre ? 1 : 0,
-                'transition-duration': '200ms'
-              }"
-            >
-              <ul class="sub-menu-list multi-column">
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link">한국 영화</a>
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/1159493?bc=34399"
-                    >미국 영화</a
+        <ng-container *ngIf="genre; else noGenre">
+          <span class="genreTitle">{{ genre }}</span>
+        </ng-container>
+        <ng-template #noGenre>
+          <span class="genreTitle">영화</span>
+          <div class="subgenres">
+            <div label="장르" cols="3" class="nfDropDown theme-lakira">
+              <button
+                class="label"
+                (click)="showGenre = !showGenre"
+                [class.open]="showGenre"
+              >
+                장르
+                <span class="arrow"></span>
+              </button>
+              <div
+                class="sub-menu theme-lakira"
+                *ngIf="showGenre"
+                [@fadeInOut]
+                [ngStyle]="{
+                  opacity: showGenre ? 1 : 0,
+                  'transition-duration': '200ms'
+                }"
+              >
+                <ul class="sub-menu-list multi-column">
+                  <li
+                    *ngFor="let genre of genreList.slice(0, 5)"
+                    class="sub-menu-item"
                   >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/78367?bc=34399"
-                    >외국 영화</a
+                    <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                      genre
+                    }}</a>
+                  </li>
+                </ul>
+                <ul class="sub-menu-list multi-column">
+                  <li
+                    *ngFor="let genre of genreList.slice(5, 10)"
+                    class="sub-menu-item"
                   >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/783?bc=34399"
-                    >어린이 &amp; 가족</a
+                    <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                      genre
+                    }}</a>
+                  </li>
+                </ul>
+                <ul class="sub-menu-list multi-column">
+                  <li
+                    *ngFor="
+                      let genre of genreList.slice(10, genreList.length + 1)
+                    "
+                    class="sub-menu-item"
                   >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/89844?bc=34399"
-                    >영화제 수상!</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/52852?bc=34399"
-                    >음악 &amp; 뮤지컬</a
-                  >
-                </li>
-              </ul>
-              <ul class="sub-menu-list multi-column">
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/1365?bc=34399"
-                    >액션</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/8933?bc=34399"
-                    >스릴러</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/1492?bc=34399"
-                    >SF &amp; 판타지</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/5824?bc=34399"
-                    >범죄</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/8711?bc=34399"
-                    >호러</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/2243108?bc=34399"
-                    >다큐멘터리</a
-                  >
-                </li>
-              </ul>
-              <ul class="sub-menu-list multi-column">
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/7077?bc=34399"
-                    >독립 영화</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/8883?bc=34399"
-                    >로맨스</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/5763?bc=34399"
-                    >드라마 장르 영화</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/6548?bc=34399"
-                    >코미디</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/3063?bc=34399"
-                    >일본 애니메이션</a
-                  >
-                </li>
-                <li class="sub-menu-item">
-                  <a class="sub-menu-link" href="/browse/genre/31574?bc=34399"
-                    >고전 영화</a
-                  >
-                </li>
-              </ul>
+                    <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                      genre
+                    }}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-template>
+
         <div class="aro-toggle" [class.grid-selected]="isGrid">
           <button
             class="aro-row-toggle"
