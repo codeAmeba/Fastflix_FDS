@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl: "http://52.78.134.79"
-  apiUrl: 'http://www.fastflix.co.kr',
+  apiUrl: 'http://www.api.fastflix.co.kr',
 };
 
 /*
