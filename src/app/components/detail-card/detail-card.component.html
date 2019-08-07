@@ -31,7 +31,7 @@
                 }"
               >
                 <img
-                  alt="{{ moviesDetail?.name}}"
+                  alt="{{ moviesDetail?.name }}"
                   class="logo"
                   [class.small-logo]="tabState !== 'content'"
                   src="{{ moviesDetail?.logo_image_path }}"
@@ -116,18 +116,20 @@
                     }}</span>
                   </div>
                   <div class="video-title"></div>
-                  <div 
-                    *ngIf="isContinue"
-                    class="watched">
+                  <div *ngIf="isContinue" class="watched">
                     <div class="progress ">
                       <span class="progress-bar">
-                        <span role="presentation" class="progress-completed"
-                        [ngStyle]="{ width: (continue_time / running_time) * 100 + '%'}"
+                        <span
+                          role="presentation"
+                          class="progress-completed"
+                          [ngStyle]="{
+                            width: moviesDetail?.progress_bar + '%'
+                          }"
                         >
                         </span>
                       </span>
                       <span class="summary">
-                        총 {{ running_time }}분 중 {{ continue_time}}분
+                        총 {{ running_time }}분 중 {{ continue_time }}분
                       </span>
                     </div>
                   </div>
@@ -195,7 +197,7 @@
                             aria-label="'좋아요'로 평가하기"
                             [class.clicked]="moviesDetail?.like === 1"
                             (click)="likeMovie(moviesDetail?.id)"
-                          > 
+                          >
                             <svg
                               *ngIf="moviesDetail.like === 0"
                               class="svg-icon"
@@ -216,10 +218,12 @@
                                 </svg>
                               </use>
                             </svg>
-                            <img 
+                            <img
                               *ngIf="moviesDetail?.like === 1"
                               class="svg-icon svg-icon-thumb-up-filled"
-                              src="https://user-images.githubusercontent.com/37561451/62601002-4f7f8400-b92b-11e9-83f8-f11a02c8f1f4.png" alt="">
+                              src="https://user-images.githubusercontent.com/37561451/62601002-4f7f8400-b92b-11e9-83f8-f11a02c8f1f4.png"
+                              alt=""
+                            />
                           </a>
                         </div>
                         <div
@@ -248,10 +252,12 @@
                                 </svg>
                               </use>
                             </svg>
-                            <img 
+                            <img
                               *ngIf="moviesDetail?.like === 2"
                               class="svg-icon svg-icon-thumb-down-filled"
-                              src="https://user-images.githubusercontent.com/37561451/62601003-50b0b100-b92b-11e9-9edb-cfab651d6005.png" alt="">
+                              src="https://user-images.githubusercontent.com/37561451/62601003-50b0b100-b92b-11e9-9edb-cfab651d6005.png"
+                              alt=""
+                            />
                           </a>
                         </div>
                       </div>

@@ -46,10 +46,12 @@ export interface MovieDetail {
   match_rate: number;
   name: string;
   production_date: string;
+  paused_minute?: number;
   real_running_time: number;
   remaining_time: number;
   running_time: number;
   sample_video_file: string;
+  progress_bar?: number;
   similar_movies: similarMovies[];
   synopsis: string;
   to_be_continue: number;

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://www.fastflix.co.kr',
+  apiUrl: 'http://www.api.fastflix.co.kr',
 };
