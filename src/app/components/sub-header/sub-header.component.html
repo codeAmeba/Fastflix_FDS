@@ -1,63 +1,75 @@
 <nav class="sub-header">
   <div class="sub-header-wrapper">
     <div class="aro-gallery-header" *ngIf="currentRouting === '/movie'">
-      <div class="title"></div>
+      <div class="title">
+        <div *ngIf="genre" class="breadCrumbs">
+          <ul>
+            <li><a (click)="clearGenre()">영화</a></li>
+          </ul>
+        </div>
+      </div>
       <div class="aro-genre-details">
-        <span class="genreTitle">영화</span>
-        <div class="subgenres">
-          <div label="장르" cols="3" class="nfDropDown theme-lakira">
-            <button
-              class="label"
-              (click)="showGenre = !showGenre"
-              [class.open]="showGenre"
-            >
-              장르
-              <span class="arrow"></span>
-            </button>
-            <div
-              class="sub-menu theme-lakira"
-              *ngIf="showGenre"
-              [@fadeInOut]
-              [ngStyle]="{
-                opacity: showGenre ? 1 : 0,
-                'transition-duration': '200ms'
-              }"
-            >
-              <ul class="sub-menu-list multi-column">
-                <li
-                  *ngFor="let genre of genreList.slice(0, 5)"
-                  class="sub-menu-item"
-                >
-                  <a class="sub-menu-link" (click)="filterGenre(genre)">{{
-                    genre
-                  }}</a>
-                </li>
-              </ul>
-              <ul class="sub-menu-list multi-column">
-                <li
-                  *ngFor="let genre of genreList.slice(5, 10)"
-                  class="sub-menu-item"
-                >
-                  <a class="sub-menu-link" (click)="filterGenre(genre)">{{
-                    genre
-                  }}</a>
-                </li>
-              </ul>
-              <ul class="sub-menu-list multi-column">
-                <li
-                  *ngFor="
-                    let genre of genreList.slice(10, genreList.length + 1)
-                  "
-                  class="sub-menu-item"
-                >
-                  <a class="sub-menu-link" (click)="filterGenre(genre)">{{
-                    genre
-                  }}</a>
-                </li>
-              </ul>
+        <ng-container *ngIf="genre; else noGenre">
+          <span class="genreTitle">{{ genre }}</span>
+        </ng-container>
+        <ng-template #noGenre>
+          <span class="genreTitle">영화</span>
+          <div class="subgenres">
+            <div label="장르" cols="3" class="nfDropDown theme-lakira">
+              <button
+                class="label"
+                (click)="showGenre = !showGenre"
+                [class.open]="showGenre"
+              >
+                장르
+                <span class="arrow"></span>
+              </button>
+              <div
+                class="sub-menu theme-lakira"
+                *ngIf="showGenre"
+                [@fadeInOut]
+                [ngStyle]="{
+                  opacity: showGenre ? 1 : 0,
+                  'transition-duration': '200ms'
+                }"
+              >
+                <ul class="sub-menu-list multi-column">
+                  <li
+                    *ngFor="let genre of genreList.slice(0, 5)"
+                    class="sub-menu-item"
+                  >
+                    <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                      genre
+                    }}</a>
+                  </li>
+                </ul>
+                <ul class="sub-menu-list multi-column">
+                  <li
+                    *ngFor="let genre of genreList.slice(5, 10)"
+                    class="sub-menu-item"
+                  >
+                    <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                      genre
+                    }}</a>
+                  </li>
+                </ul>
+                <ul class="sub-menu-list multi-column">
+                  <li
+                    *ngFor="
+                      let genre of genreList.slice(10, genreList.length + 1)
+                    "
+                    class="sub-menu-item"
+                  >
+                    <a class="sub-menu-link" (click)="filterGenre(genre)">{{
+                      genre
+                    }}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-template>
+
         <div class="aro-toggle" [class.grid-selected]="isGrid">
           <button
             class="aro-row-toggle"

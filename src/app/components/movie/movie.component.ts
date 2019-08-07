@@ -37,10 +37,11 @@ export class MovieComponent implements OnInit, OnDestroy {
       if (e instanceof NavigationEnd) {
         if (this.subUser && this.subUser.id !== authService.subUser.id)
           this.init();
-        if (this.genre !== movieService.Genre) {
+        if (movieService.Genre && this.genre !== movieService.Genre) {
           console.log('!!!!!!!!!', this.genre, movieService.Genre);
           this.filterByMovies();
         }
+        if (!movieService.Genre) this.init();
       }
     });
   }

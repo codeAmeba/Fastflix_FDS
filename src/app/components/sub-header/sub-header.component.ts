@@ -34,6 +34,7 @@ export class SubHeaderComponent implements OnInit, AfterContentChecked {
   showGridMenu: boolean;
   currentRouting: string;
   genreList: string[];
+  genre: string;
   @Output() selectedGenre = new EventEmitter();
 
   constructor(private movieService: MovieService, private router: Router) {}
@@ -41,6 +42,7 @@ export class SubHeaderComponent implements OnInit, AfterContentChecked {
   ngOnInit() {
     this.showGenre = false;
     this.isGrid = false;
+    this.genre = this.movieService.Genre;
     this.showGridMenu = false;
     this.currentRouting = this.router.url;
     this.genreList = MovieGenres.map(({ category }) => category);
@@ -49,6 +51,13 @@ export class SubHeaderComponent implements OnInit, AfterContentChecked {
   filterGenre(genre: string) {
     this.movieService.Genre = genre;
     this.selectedGenre.emit();
+    this.ngOnInit();
+  }
+
+  clearGenre() {
+    this.movieService.genre = '';
+    this.selectedGenre.emit();
+    this.ngOnInit();
   }
 
   ngAfterContentChecked() {
