@@ -629,10 +629,6 @@ img {
     -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
 }
 
-.thumbs-component .nf-svg-button svg {
-  width: 1em;
-  height: 1em;
-}
 
 /* 내가 찜한 콘텐츠 추가 */
 

@@ -10,11 +10,20 @@ import { AuthenticationService } from './authentication.service';
 })
 export class MovieService {
   apiUrl = environment.apiUrl;
+  genre: string;
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticationService
   ) {}
+
+  set Genre(genre: string) {
+    this.genre = genre;
+  }
+
+  get Genre() {
+    return this.genre;
+  }
 
   /*Home View 구성 Movies */
 
@@ -96,6 +105,19 @@ export class MovieService {
     });
   }
 
+  // Genre로 Home Component 중 우리만의 카테고리 가져오기
+  getMovieByGenre(genre: string): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.subUser.id + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/genre/${genre}/list/`, {
+      headers,
+    });
+  }
+
   /* Movie View 구성 Movies */
 
   getMainMovie(): Observable<any> {
@@ -110,17 +132,19 @@ export class MovieService {
     });
   }
 
-  // Genre로 Home Component 중 우리만의 카테고리 가져오기
-  getMovieByGenre(genre: string): Observable<any> {
+  getGenreMovieList(): Observable<any> {
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({})
       .set('Authorization', `Token ${token}`)
       .set('subuserid', this.authService.subUser.id + '');
 
-    return this.http.get<any>(`${this.apiUrl}/movies/genre/${genre}/list/`, {
-      headers,
-    });
+    return this.http.get<any>(
+      `${this.apiUrl}/movies/list_by_genre/${this.Genre}/`,
+      {
+        headers,
+      }
+    );
   }
 
   /* Slider에서 Detail Open 시 Detail 요청 */

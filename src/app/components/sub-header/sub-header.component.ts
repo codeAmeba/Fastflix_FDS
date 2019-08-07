@@ -1,6 +1,14 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterContentChecked,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { style, animate, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
+import { MovieGenres } from 'src/app/models/movieGenres';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-sub-header',
@@ -25,14 +33,31 @@ export class SubHeaderComponent implements OnInit, AfterContentChecked {
   isGrid: boolean;
   showGridMenu: boolean;
   currentRouting: string;
+  genreList: string[];
+  genre: string;
+  @Output() selectedGenre = new EventEmitter();
 
-  constructor(private router: Router) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit() {
     this.showGenre = false;
     this.isGrid = false;
+    this.genre = this.movieService.Genre;
     this.showGridMenu = false;
     this.currentRouting = this.router.url;
+    this.genreList = MovieGenres.map(({ category }) => category);
+  }
+
+  filterGenre(genre: string) {
+    this.movieService.Genre = genre;
+    this.selectedGenre.emit();
+    this.ngOnInit();
+  }
+
+  clearGenre() {
+    this.movieService.genre = '';
+    this.selectedGenre.emit();
+    this.ngOnInit();
   }
 
   ngAfterContentChecked() {
