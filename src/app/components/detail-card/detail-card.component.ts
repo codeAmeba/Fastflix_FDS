@@ -41,6 +41,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
   ngOnChanges() {
     // console.log("detail", this.moviesDetail);
     if (this.moviesDetail) {
+      console.log("detail", this.moviesDetail);
       this.running_time = Math.floor(this.moviesDetail.real_running_time / 60);
       this.continue_time = Math.floor(this.moviesDetail.to_be_continue / 60);
     }
