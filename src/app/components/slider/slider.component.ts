@@ -69,7 +69,6 @@ export class SliderComponent implements OnInit, OnChanges {
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.tabArray();
     // this.moviesDetail = {
     //   actors: [],
     //   author: [],
@@ -115,11 +114,12 @@ export class SliderComponent implements OnInit, OnChanges {
       this.moviesClone();
     }
     this.slider = this.movies.length / this.cardCount;
-
+    this.tabArray();
     this.isOpen = this.category === this.openCategory;
   }
 
   tabArray() {
+    this.tab = [];
     for (let i = 1; i <= this.slider; i++) {
       this.tab = [...this.tab, i];
     }

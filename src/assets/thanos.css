@@ -433,12 +433,12 @@ a {
   }
 }
 
-.originalsRow .slider .handle {
+.originalsRow .slider .handle.original {
   height: 346%;
 }
 
 @media screen and (max-width: 799px) and (min-width: 500px) {
-  .originalsRow .slider .handle {
+  .originalsRow .slider .handle.original {
     height: 346%;
   }
 }
