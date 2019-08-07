@@ -89,6 +89,10 @@
   background: rgba(0, 0, 0, 0.7);
 }
 
+.nf-flat-button-primary:hover {
+  background-color: #ff0a16;
+}
+
 .thumbs-component.animated.thumbs-horizontal.unrated .thumb-down-container {
   -webkit-transform: translate(0, 0);
   -moz-transform: translate(0, 0);
