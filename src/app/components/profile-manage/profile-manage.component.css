@@ -16,6 +16,10 @@ h1 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+h1 {
+  font-size: 2rem;
+  margin: 0.67em 0;
+}
 
 h2 {
   display: block;
@@ -765,6 +769,7 @@ img {
   border-top: 1px solid #333;
   border-bottom: 1px solid #333;
   align-items: center;
+  text-align: center;
 }
 
 .profiles-gate-container .lolopi-icon {
@@ -786,7 +791,11 @@ img {
 }
 
 .profiles-gate-container .profile-lolopi-confirm .lolopi-icon {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
+}
+.lolopi-icon + span {
+  font-size: 1vw;
+  text-align: center;
 }
 
 .profiles-gate-container .profile-lolopi-confirm .indicator-icon {
@@ -807,6 +816,10 @@ img {
   letter-spacing: 2px;
   cursor: pointer;
   font-size: 0.9em;
+}
+.profile-button a,
+.profile-button span {
+  letter-spacing: initial;
 }
 
 .profile-button.preferred-action a,
@@ -905,6 +918,24 @@ input[type="radio"] {
 .profile-metadata .add-kids-marker {
   font-weight: 400;
   font-size: 1.3vw;
+}
+
+.profiles-gate-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #141414;
+  z-index: 0;
+}
+
+@media screen and (min-width: 1500px) {
+  .profiles-gate-container .lolopi-icon {
+    height: 150px;
+    width: 150px;
+    margin: 0 7.5px;
+  }
 }
 
 /* .profile-gate-label {
