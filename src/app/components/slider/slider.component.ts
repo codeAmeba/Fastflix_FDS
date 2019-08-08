@@ -4,17 +4,17 @@ import {
   Input,
   OnChanges,
   Output,
-  EventEmitter
-} from "@angular/core";
-import { MoviePreview } from "../../models/movie-preview";
-import { MovieDetail } from "src/app/models/movies-detail";
+  EventEmitter,
+} from '@angular/core';
+import { MoviePreview } from '../../models/movie-preview';
+import { MovieDetail } from 'src/app/models/movies-detail';
 
-import { MovieService } from "src/app/services/movie.service";
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
-  selector: "app-slider",
-  templateUrl: "./slider.component.html",
-  styleUrls: ["./slider.component.css"]
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.css'],
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
@@ -57,7 +57,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = "scale(0.52222)";
+  bobScale = 'scale(0.52222)';
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -105,7 +105,7 @@ export class SliderComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.movies = this.moviesList.map((movie, index) => ({
       ...movie,
-      order: index + 1
+      order: index + 1,
     }));
 
     this.moviesLength = this.moviesList.length;
@@ -200,7 +200,7 @@ export class SliderComponent implements OnInit, OnChanges {
     if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobScale = "scale(0.99999)";
+        this.bobScale = 'scale(0.99999)';
       }, 200);
     }
     this.cardMove = true;
@@ -214,40 +214,40 @@ export class SliderComponent implements OnInit, OnChanges {
   cardHoverLeave() {
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScale = "scale(0.52222)";
+    this.bobScale = 'scale(0.52222)';
     setTimeout(() => {
       this.bobup = 0;
       if (!this.isOpen) {
         this.moviesDetail = {
           actors: [],
           author: [],
-          big_image_path: "",
+          big_image_path: '',
           can_i_store: false,
-          circle_image: "",
+          circle_image: '',
           degree: {},
           directors: [],
           feature: [],
           genre: [],
-          horizontal_image_path: "",
+          horizontal_image_path: '',
           id: 0,
           like: 0,
-          logo_image_path: "",
+          logo_image_path: '',
           marked: false,
           match_rate: 0,
-          name: "",
-          production_date: "",
+          name: '',
+          production_date: '',
           real_running_time: 0,
           remaining_time: 0,
           running_time: 0,
-          sample_video_file: "",
+          sample_video_file: '',
           similar_movies: [],
-          synopsis: "",
+          synopsis: '',
           to_be_continue: 0,
           total_minute: 0,
-          uploaded_date: "",
-          vertical_image: "",
-          vertical_sample_video_file: "",
-          video_file: ""
+          uploaded_date: '',
+          vertical_image: '',
+          vertical_sample_video_file: '',
+          video_file: '',
         };
       }
     }, 300);
@@ -290,8 +290,8 @@ export class SliderComponent implements OnInit, OnChanges {
 
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return "left";
-    else if (this.hoverCard === 6) return "right";
+    if (this.hoverCard === 1) return 'left';
+    else if (this.hoverCard === 6) return 'right';
     return;
   }
 
@@ -325,28 +325,32 @@ export class SliderComponent implements OnInit, OnChanges {
   likeMovie(id: number) {
     // console.log(id);
 
-    this.movieService.likeMovie(id).subscribe(({ response }) => {
-      console.log("liked response", response);
-      this.moviesDetail.like = response ? 1 : 0;
-      console.log("after like", this.moviesDetail.like);
-    });
+    this.movieService.likeMovie(id).subscribe(
+      ({ response }) => {
+        this.moviesDetail.like = response ? 1 : 0;
+      },
+      error => console.error(error)
+    );
   }
 
   dislikeMovie(id: number) {
     // console.log(id);
 
-    this.movieService.dislikeMovie(id).subscribe(({ response }) => {
-      console.log("disliked response", response);
-      this.moviesDetail.like = response ? 2 : 0;
-      console.log("after dislike", this.moviesDetail.like);
-    });
+    this.movieService.dislikeMovie(id).subscribe(
+      ({ response }) => {
+        this.moviesDetail.like = response ? 2 : 0;
+      },
+      error => console.error(error)
+    );
   }
 
   myList(movie: MovieDetail) {
-    this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log("myList", movie.id, marked);
-      movie.marked = marked;
-      this.toggleMyList.emit();
-    });
+    this.movieService.myList(movie.id).subscribe(
+      ({ marked }) => {
+        movie.marked = marked;
+        this.toggleMyList.emit();
+      },
+      error => console.error(error)
+    );
   }
 }

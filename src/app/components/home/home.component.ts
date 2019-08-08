@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
     this.movieService.getFollowUpMovies().subscribe(
       movies => {
-        console.log('시청 중', movies);
+        // console.log('시청 중', movies);
 
         follwUpCategory.movies = movies.map(continueMovie => {
           return {
@@ -174,7 +174,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             continue: continueMovie['progress_bar'],
           };
         });
-        console.log('시청 중', follwUpCategory.movies);
+        // console.log('시청 중', follwUpCategory.movies);
       },
       error => console.error(error)
     );

@@ -38,7 +38,7 @@ export class MovieComponent implements OnInit, OnDestroy {
         if (this.subUser && this.subUser.id !== authService.subUser.id)
           this.init();
         if (movieService.Genre && this.genre !== movieService.Genre) {
-          console.log('!!!!!!!!!', this.genre, movieService.Genre);
+          // console.log('!!!!!!!!!', this.genre, movieService.Genre);
           this.filterByMovies();
         }
         if (!movieService.Genre) this.init();
@@ -64,7 +64,7 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.genre = this.movieService.Genre;
     this.genreCatogories = MovieGenres;
     this.movieService.getGenreMovieList().subscribe(movies => {
-      console.log(movies);
+      // console.log(movies);
 
       this.genreCatogories.forEach(genreCategory => {
         genreCategory.movies = movies[genreCategory.category]
@@ -78,7 +78,7 @@ export class MovieComponent implements OnInit, OnDestroy {
             })
           : [];
       });
-      console.log(this.genreCatogories);
+      // console.log(this.genreCatogories);
     });
   }
 

@@ -54,25 +54,20 @@ export class DetailCardComponent implements OnInit, OnChanges {
 
   likeMovie(id: number) {
     this.movieService.likeMovie(id).subscribe(({ response }) => {
-      console.log('liked response', response);
       this.moviesDetail.like = response ? 1 : 0;
-      console.log('after like', this.moviesDetail.like);
     });
     this.ngOnInit();
   }
 
   dislikeMovie(id: number) {
     this.movieService.dislikeMovie(id).subscribe(({ response }) => {
-      console.log('disliked response', response);
       this.moviesDetail.like = response ? 2 : 0;
-      console.log('after dislike', this.moviesDetail.like);
     });
     this.ngOnInit();
   }
 
   myList(movie: MovieDetail) {
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log('myList', movie.id, marked);
       movie.marked = marked;
       this.toggleMyList.emit();
     });

@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       kid: new FormControl(false),
     });
-    console.log(this.subUsers);
   }
 
   getSubUsers() {
@@ -41,8 +40,6 @@ export class ProfileComponent implements OnInit {
         (a: SubUser, b: SubUser) => a.id - b.id
       );
       this.subUsers = subUsers;
-      // this.subUsers = this.authService.getSubUsers();
-      console.log('get subUsers', this.authService.subUsers);
     });
     this.selectedUser = {
       id: 0,
@@ -78,13 +75,9 @@ export class ProfileComponent implements OnInit {
     };
 
     this.authService.createProfile(user).subscribe(profiles => {
-      console.log('success', profiles['sub_user_list']);
-
       this.authService.subUsers = profiles['sub_user_list'].sort(
         (a: SubUser, b: SubUser) => a.id - b.id
       );
-
-      console.log('after added', this.authService.subUsers);
 
       this.getSubUsers();
 

@@ -79,9 +79,9 @@ export class SignupStep4Component implements OnInit {
 
   onSubmit() {
     this.selectedMovies.forEach(({ id }) => {
-      this.movieService.myList(id).subscribe(response => {
-        console.log('add to my list: ', response);
-      });
+      this.movieService
+        .myList(id)
+        .subscribe(response => {}, error => console.error(error));
     });
 
     this.router.navigate(['home']);
