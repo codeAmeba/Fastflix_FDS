@@ -105,191 +105,193 @@
       [class.thanosBigRow]="homeCategory?.category === '특별 소개 콘텐츠'"
       [class.jawBoneOpen]="homeCategory?.category === openedCategory"
     >
-      <div
-        *ngIf="
-          homeCategory && homeCategory?.category !== '특별 소개 콘텐츠';
-          else special
-        "
-      >
-        <h2 class="rowHeader">
-          <span class="rowTitle">
-            <div
-              class="rowHeaderTitle"
-              *ngIf="
-                homeCategory &&
-                homeCategory?.category !== '추천 콘텐츠' &&
-                homeCategory?.category !== '시청 중인 콘텐츠'
-              "
-            >
-              {{ homeCategory?.category }}
-            </div>
-            <div
-              class="rowHeaderTitle"
-              *ngIf="homeCategory && homeCategory?.category === '추천 콘텐츠'"
-            >
-              {{ subUser?.name + " 님을 위한 " + homeCategory?.category }}
-            </div>
-            <div
-              class="rowHeaderTitle"
-              *ngIf="
-                homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
-              "
-            >
-              {{ subUser?.name + " 님이 " + homeCategory?.category }}
-            </div>
-          </span>
-        </h2>
-        <div class="rowContainer rowContainerTitleCard">
-          <div class="rowContent">
-            <app-original-slider
-              *ngIf="
-                homeCategory && homeCategory?.category === 'Fastflix 오리지널'
-              "
-              [moviesList]="homeCategory?.movies"
-              [category]="homeCategory?.category"
-              [openCategory]="openedCategory"
-              (sliderOpen)="sliderOpened($event)"
-              (sliderClose)="sliderClosed($event)"
-              (toggleMyList)="getMyListMovies()"
-            ></app-original-slider>
-            <app-slider
-              *ngIf="
-                homeCategory && homeCategory?.category !== 'Fastflix 오리지널'
-              "
-              [moviesList]="homeCategory?.movies"
-              [category]="homeCategory?.category"
-              [openCategory]="openedCategory"
-              (sliderOpen)="sliderOpened($event)"
-              (sliderClose)="sliderClosed($event)"
-              (toggleMyList)="getMyListMovies()"
-            ></app-slider>
-            <!-- [isContinue]="
+      <ng-container *ngIf="homeCategory?.movies?.length !== 0">
+        <div
+          *ngIf="
+            homeCategory && homeCategory?.category !== '특별 소개 콘텐츠';
+            else special
+          "
+        >
+          <h2 class="rowHeader">
+            <span class="rowTitle">
+              <div
+                class="rowHeaderTitle"
+                *ngIf="
+                  homeCategory &&
+                  homeCategory?.category !== '추천 콘텐츠' &&
+                  homeCategory?.category !== '시청 중인 콘텐츠'
+                "
+              >
+                {{ homeCategory?.category }}
+              </div>
+              <div
+                class="rowHeaderTitle"
+                *ngIf="homeCategory && homeCategory?.category === '추천 콘텐츠'"
+              >
+                {{ subUser?.name + " 님을 위한 " + homeCategory?.category }}
+              </div>
+              <div
+                class="rowHeaderTitle"
+                *ngIf="
+                  homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
+                "
+              >
+                {{ subUser?.name + " 님이 " + homeCategory?.category }}
+              </div>
+            </span>
+          </h2>
+          <div class="rowContainer rowContainerTitleCard">
+            <div class="rowContent">
+              <app-original-slider
+                *ngIf="
+                  homeCategory && homeCategory?.category === 'Fastflix 오리지널'
+                "
+                [moviesList]="homeCategory?.movies"
+                [category]="homeCategory?.category"
+                [openCategory]="openedCategory"
+                (sliderOpen)="sliderOpened($event)"
+                (sliderClose)="sliderClosed($event)"
+                (toggleMyList)="getMyListMovies()"
+              ></app-original-slider>
+              <app-slider
+                *ngIf="
+                  homeCategory && homeCategory?.category !== 'Fastflix 오리지널'
+                "
+                [moviesList]="homeCategory?.movies"
+                [category]="homeCategory?.category"
+                [openCategory]="openedCategory"
+                (sliderOpen)="sliderOpened($event)"
+                (sliderClose)="sliderClosed($event)"
+                (toggleMyList)="getMyListMovies()"
+              ></app-slider>
+              <!-- [isContinue]="
                   homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
                     ? true
                     : false
                 " -->
+            </div>
           </div>
         </div>
-      </div>
-      <ng-template #special>
-        <div class="bigRow">
-          <div class="rowContent">
-            <div class="bigRowItem">
-              <div
-                *ngIf="bigMovie"
-                class="background-image"
-                [ngStyle]="{
-                  'background-image': 'url(' + bigMovie?.image + ')'
-                }"
-              ></div>
-              <div class="video-component-container">
-                <img
+        <ng-template #special>
+          <div class="bigRow">
+            <div class="rowContent">
+              <div class="bigRowItem">
+                <div
                   *ngIf="bigMovie"
-                  class="foreground-image show-foreground"
-                  [src]="bigMovie?.image"
-                  alt="{{ bigMovie?.title }}"
-                />
-                <div class="button-container forward-leaning">
-                  <svg
-                    aria-label="다시 재생"
-                    tabindex="0"
-                    class="svg-icon svg-icon-restart-playback Billboard__replay-trailer-button"
-                    focusable="true"
-                  >
-                    <use filter="" xlink:href="#restart-playback">
-                      <svg id="restart-playback" viewBox="0 0 24 24">
-                        <g
-                          transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000)"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M13,3 C8.03,3 4,7.03 4,12 L4,14 L6,14 L6,12 C6,8.13 9.13,5 13,5 C16.87,5 20,8.13 20,12 C20,15.87 16.87,19 13,19 C11.07,19 9.32,18.21 8.06,16.94 L6.64,18.36 C8.27,19.99 10.51,21 13,21 C17.97,21 22,16.97 22,12 C22,7.03 17.97,3 13,3 Z"
-                          ></path>
-                          <polyline
-                            stroke="currentColor"
-                            stroke-width="2"
-                            transform="translate(5.000000, 13.250000) rotate(-90.000000) translate(-5.000000, -13.250000) "
-                            points="6.25 9.75 3.75 13.25 6.25 16.75"
-                          ></polyline>
-                        </g>
-                      </svg>
-                    </use>
-                  </svg>
-                  <span class="maturity-rating ">
-                    <span>
-                      <img
-                        *ngIf="bigMovie"
-                        [src]="
-                          bigMovie?.degree
-                            ? bigMovie?.degree
-                              ? (bigMovie?.degree)['degree_image_path']
-                              : ''
-                            : ''
-                        "
-                        alt="{{
-                          bigMovie?.degree
-                            ? bigMovie?.degree
-                              ? (bigMovie?.degree)['name']
-                              : ''
-                            : ''
-                        }}"
-                    /></span>
-                  </span>
-                </div>
-              </div>
-              <div class="info">
-                <div class="billboard-title">
+                  class="background-image"
+                  [ngStyle]="{
+                    'background-image': 'url(' + bigMovie?.image + ')'
+                  }"
+                ></div>
+                <div class="video-component-container">
                   <img
-                    class="title-logo"
                     *ngIf="bigMovie"
-                    [src]="bigMovie?.logo"
-                    title="{{ bigMovie?.title }}"
+                    class="foreground-image show-foreground"
+                    [src]="bigMovie?.image"
                     alt="{{ bigMovie?.title }}"
                   />
+                  <div class="button-container forward-leaning">
+                    <svg
+                      aria-label="다시 재생"
+                      tabindex="0"
+                      class="svg-icon svg-icon-restart-playback Billboard__replay-trailer-button"
+                      focusable="true"
+                    >
+                      <use filter="" xlink:href="#restart-playback">
+                        <svg id="restart-playback" viewBox="0 0 24 24">
+                          <g
+                            transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000)"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="M13,3 C8.03,3 4,7.03 4,12 L4,14 L6,14 L6,12 C6,8.13 9.13,5 13,5 C16.87,5 20,8.13 20,12 C20,15.87 16.87,19 13,19 C11.07,19 9.32,18.21 8.06,16.94 L6.64,18.36 C8.27,19.99 10.51,21 13,21 C17.97,21 22,16.97 22,12 C22,7.03 17.97,3 13,3 Z"
+                            ></path>
+                            <polyline
+                              stroke="currentColor"
+                              stroke-width="2"
+                              transform="translate(5.000000, 13.250000) rotate(-90.000000) translate(-5.000000, -13.250000) "
+                              points="6.25 9.75 3.75 13.25 6.25 16.75"
+                            ></polyline>
+                          </g>
+                        </svg>
+                      </use>
+                    </svg>
+                    <span class="maturity-rating ">
+                      <span>
+                        <img
+                          *ngIf="bigMovie"
+                          [src]="
+                            bigMovie?.degree
+                              ? bigMovie?.degree
+                                ? (bigMovie?.degree)['degree_image_path']
+                                : ''
+                              : ''
+                          "
+                          alt="{{
+                            bigMovie?.degree
+                              ? bigMovie?.degree
+                                ? (bigMovie?.degree)['name']
+                                : ''
+                              : ''
+                          }}"
+                      /></span>
+                    </span>
+                  </div>
                 </div>
-                <span class="billboard-links button-layer forward-leaning">
-                  <a
-                    *ngIf="bigMovie"
-                    role="link"
-                    aria-label="재생"
-                    class="playLink"
-                    [routerLink]="['/watch', bigMovie?.id]"
-                  >
-                    <span
-                      tabindex="-1"
-                      class="nf-icon-button nf-flat-button nf-flat-button-uppercase"
+                <div class="info">
+                  <div class="billboard-title">
+                    <img
+                      class="title-logo"
+                      *ngIf="bigMovie"
+                      [src]="bigMovie?.logo"
+                      title="{{ bigMovie?.title }}"
+                      alt="{{ bigMovie?.title }}"
+                    />
+                  </div>
+                  <span class="billboard-links button-layer forward-leaning">
+                    <a
+                      *ngIf="bigMovie"
+                      role="link"
+                      aria-label="재생"
+                      class="playLink"
+                      [routerLink]="['/watch', bigMovie?.id]"
                     >
                       <span
-                        class="nf-flat-button-icon nf-flat-button-icon-play"
+                        tabindex="-1"
+                        class="nf-icon-button nf-flat-button nf-flat-button-uppercase"
+                      >
+                        <span
+                          class="nf-flat-button-icon nf-flat-button-icon-play"
+                        ></span>
+                        <span class="nf-flat-button-text">재생</span>
+                      </span>
+                    </a>
+                    <a
+                      role="button"
+                      tabindex="0"
+                      class="nf-icon-button mylist-button"
+                      aria-label="내가 찜한 콘텐츠에 추가"
+                      (click)="toggleMyLsit(bigMovie)"
+                    >
+                      <span
+                        *ngIf="bigMovie"
+                        role="presentation"
+                        class="nf-icon-button-icon"
+                        [class.icon-button-mylist-add]="!bigMovie?.marked"
+                        [class.icon-button-mylist-added]="bigMovie?.marked"
                       ></span>
-                      <span class="nf-flat-button-text">재생</span>
-                    </span>
-                  </a>
-                  <a
-                    role="button"
-                    tabindex="0"
-                    class="nf-icon-button mylist-button"
-                    aria-label="내가 찜한 콘텐츠에 추가"
-                    (click)="toggleMyLsit(bigMovie)"
-                  >
-                    <span
-                      *ngIf="bigMovie"
-                      role="presentation"
-                      class="nf-icon-button-icon"
-                      [class.icon-button-mylist-add]="!bigMovie?.marked"
-                      [class.icon-button-mylist-added]="bigMovie?.marked"
-                    ></span>
-                    <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
-                  </a>
-                </span>
-                <div *ngIf="bigMovie" class="synopsis">
-                  {{ bigMovie?.synopsis }}
+                      <span class="nf-icon-button-label">내가 찜한 콘텐츠</span>
+                    </a>
+                  </span>
+                  <div *ngIf="bigMovie" class="synopsis">
+                    {{ bigMovie?.synopsis }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </ng-template>
+        </ng-template>
+      </ng-container>
     </div>
   </div>
 </div>

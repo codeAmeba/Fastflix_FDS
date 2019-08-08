@@ -53,11 +53,11 @@ video {
   margin: 15px 0;
 }
 
-.movie-info>p {
+.movie-info > p {
   margin-top: 15px;
 }
 
-.pause-message>p {
+.pause-message > p {
   margin-top: 50px;
   text-align: right;
 }
@@ -68,4 +68,20 @@ video {
 
 .age-limit {
   margin: auto 15px;
+}
+
+.maturity-rating {
+  font-size: 1.1vw;
+  padding: 0.5vw 3.5vw 0.5vw 0.8vw;
+  display: flex;
+  align-items: center;
+  height: 2.4vw;
+  box-sizing: border-box;
+}
+
+.maturity-rating img {
+  width: 2vw;
+  height: 2vw;
+  margin: 0 0.4em 0 0;
+  vertical-align: middle;
 }
