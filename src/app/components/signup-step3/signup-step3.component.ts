@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { UserService } from "src/app/services/user.service";
+import { Router } from "@angular/router";
+import { AuthenticationService } from "src/app/services/authentication.service";
 
 @Component({
-  selector: 'app-signup-step3',
-  templateUrl: './signup-step3.component.html',
-  styleUrls: ['./signup-step3.component.css'],
+  selector: "app-signup-step3",
+  templateUrl: "./signup-step3.component.html",
+  styleUrls: ["./signup-step3.component.css"]
 })
 export class SignupStep3Component implements OnInit {
   profileForm: FormGroup;
@@ -22,16 +22,16 @@ export class SignupStep3Component implements OnInit {
     this.userName = this.authService.userName;
 
     this.profileForm = new FormGroup({
-      ownerName: new FormControl(''),
-      profile1Name: new FormControl(''),
-      profile2Name: new FormControl(''),
-      profile3Name: new FormControl(''),
-      profile4Name: new FormControl(''),
+      ownerName: new FormControl(""),
+      profile1Name: new FormControl(""),
+      profile2Name: new FormControl(""),
+      profile3Name: new FormControl(""),
+      profile4Name: new FormControl("")
     });
   }
 
   onSubmit() {
-    const names = [this.profileForm.get('ownerName').value || this.userName];
+    const names = [this.profileForm.get("ownerName").value || this.userName];
     const kids = [false];
 
     for (let i = 1; i < 5; i++) {
@@ -43,22 +43,22 @@ export class SignupStep3Component implements OnInit {
 
     const user = {
       name: names,
-      kid: kids,
+      kid: kids
     };
 
     this.authService.createProfile(user).subscribe(
       profiles => {
-        this.authService.subUser = profiles['sub_user_list'][0];
+        this.authService.subUser = profiles["sub_user_list"][0];
 
-        this.authService.subUsers = profiles['sub_user_list'].sort(
+        this.authService.subUsers = profiles["sub_user_list"].sort(
           (a, b) => a.id - b.id
         );
 
-        if (this.profileForm.get('ownerName').value) {
-          this.authService.userName = this.profileForm.get('ownerName').value;
+        if (this.profileForm.get("ownerName").value) {
+          this.authService.userName = this.profileForm.get("ownerName").value;
         }
 
-        this.router.navigate(['/signup/step4']);
+        this.router.navigate(["/signup/step4"]);
       },
       error => {
         console.error(error);
@@ -67,6 +67,6 @@ export class SignupStep3Component implements OnInit {
   }
 
   get ownerName() {
-    return this.profileForm.get('ownerName').value;
+    return this.profileForm.get("ownerName").value;
   }
 }

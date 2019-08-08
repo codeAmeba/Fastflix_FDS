@@ -1,28 +1,28 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable, OnInit } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-import { environment } from '../../environments/environment';
-import { SubUser } from '../models/sub-user';
-import { UserProfile } from '../models/user-profile';
+import { environment } from "../../environments/environment";
+import { SubUser } from "../models/sub-user";
+import { UserProfile } from "../models/user-profile";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root"
 })
 export class AuthenticationService implements OnInit {
   apiUrl = environment.apiUrl;
   userName: string;
   _subUsers: SubUser[];
   _subUser: SubUser;
-  PROFILE_NAME = 'PID';
-  TOKEN_NAME = 'Token';
-  PROFILES_NAME = 'PUSERS';
-  MAINTAIN = 'Maintain';
+  PROFILE_NAME = "PID";
+  TOKEN_NAME = "Token";
+  PROFILES_NAME = "PUSERS";
+  MAINTAIN = "Maintain";
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.userName = '';
+    this.userName = "";
   }
 
   getToken(): string {
@@ -36,7 +36,7 @@ export class AuthenticationService implements OnInit {
   createProfile(user: UserProfile): Observable<UserProfile> {
     const token = this.getToken();
 
-    const headers = new HttpHeaders().set('Authorization', `Token ${token}`);
+    const headers = new HttpHeaders().set("Authorization", `Token ${token}`);
 
     return this.http.post<UserProfile>(
       `${this.apiUrl}/accounts/create_sub_user/`,
