@@ -32,10 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
         if (this.subUser && this.subUser.id !== authService.subUser.id) {
-          // console.log("====================================");
-          // console.log("SubUser 선택으로 init");
-          // console.log("====================================");
-          this.init();
+          this.ngOnInit();
         }
       }
     });
@@ -43,10 +40,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.playBillBoard = false;
-    this.init();
-  }
-
-  init() {
     this.subUser = this.authService.subUser;
     this.homeCatogories = HomeCategories;
     this.openedCategory = "";
