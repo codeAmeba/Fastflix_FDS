@@ -156,21 +156,20 @@
               *ngIf="
                 homeCategory && homeCategory?.category !== 'Fastflix 오리지널'
               "
+              [moviesList]="homeCategory?.movies"
               [category]="homeCategory?.category"
               [openCategory]="openedCategory"
-              
-              [moviesList]="homeCategory?.movies"
               (sliderOpen)="sliderOpened($event)"
               (sliderClose)="sliderClosed($event)"
               (toggleMyList)="getMyListMovies()"
-              ></app-slider>
-              <!-- [isContinue]="
+            ></app-slider>
+            <!-- [isContinue]="
                   homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
                     ? true
                     : false
                 " -->
-            </div>
           </div>
+        </div>
       </div>
       <ng-template #special>
         <div class="bigRow">

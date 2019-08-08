@@ -20,11 +20,11 @@ export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
   @Input() category: string;
   @Input() openCategory: string;
-  @Input() isContinue: boolean;
   @Output() sliderOpen = new EventEmitter();
   @Output() sliderClose = new EventEmitter();
   @Output() toggleMyList = new EventEmitter();
 
+  isContinue: boolean;
   tabShow: boolean = false;
   movies: MoviePreview[];
   moviesLength: number;
@@ -68,59 +68,29 @@ export class SliderComponent implements OnInit, OnChanges {
 
   constructor(private movieService: MovieService) {}
 
-  ngOnInit() {
-    // this.moviesDetail = {
-    //   actors: [],
-    //   author: [],
-    //   big_image_path: '',
-    //   can_i_store: false,
-    //   circle_image: '',
-    //   degree: {},
-    //   directors: [],
-    //   feature: [],
-    //   genre: [],
-    //   horizontal_image_path: '',
-    //   id: 0,
-    //   like: 0,
-    //   logo_image_path: '',
-    //   marked: false,
-    //   match_rate: 0,
-    //   name: '',
-    //   production_date: '',
-    //   real_running_time: 0,
-    //   remaining_time: 0,
-    //   running_time: 0,
-    //   sample_video_file: '',
-    //   similar_movies: [],
-    //   synopsis: '',
-    //   to_be_continue: 0,
-    //   total_minute: 0,
-    //   uploaded_date: '',
-    //   vertical_image: '',
-    //   vertical_sample_video_file: '',
-    //   video_file: '',
-    // };
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
-    this.isContinue = this.category === "시청 중인 콘텐츠" ? true : false;
-    // console.log("시청중", this.isContinue, "moviesList", this.moviesList);
-    // console.log("시청중인 movies", this.movies);
-    if (this.moviesList !== []) {
+    this.isOpen = this.category === this.openCategory;
+
+    if (this.moviesList && this.moviesList.length === 0) return;
+
+    if (this.moviesList.length > 0) {
+      this.isContinue = this.category === "시청 중인 콘텐츠" ? true : false;
+
       this.movies = this.moviesList.map((movie, index) => ({
         ...movie,
         order: index + 1
       }));
-    }
 
-    this.moviesLength = this.moviesList.length;
+      this.moviesLength = this.moviesList.length;
 
-    if (this.default) {
-      this.moviesClone();
+      if (this.default) {
+        this.moviesClone();
+      }
+      this.slider = this.movies.length / this.cardCount;
+      this.tabArray();
     }
-    this.slider = this.movies.length / this.cardCount;
-    this.tabArray();
-    this.isOpen = this.category === this.openCategory;
   }
 
   tabArray() {
