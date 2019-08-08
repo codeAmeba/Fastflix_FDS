@@ -5,46 +5,47 @@ import {
   EventEmitter,
   AfterViewChecked,
   Input,
-} from '@angular/core';
-import { style, animate, transition, trigger } from '@angular/animations';
-import { Router, Event, NavigationEnd } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { SubUser } from 'src/app/models/sub-user';
-import { SearchService } from 'src/app/services/search.service';
-import { UserService } from 'src/app/services/user.service';
-import { Subscription } from 'rxjs';
+  OnDestroy
+} from "@angular/core";
+import { style, animate, transition, trigger } from "@angular/animations";
+import { Router, Event, NavigationEnd } from "@angular/router";
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { SubUser } from "src/app/models/sub-user";
+import { SearchService } from "src/app/services/search.service";
+import { UserService } from "src/app/services/user.service";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
   animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
+    trigger("fadeInOut", [
+      transition(":enter", [
         // :enter is alias to 'void => *'
         style({ opacity: 0 }),
-        animate(150, style({ opacity: 1 })),
+        animate(150, style({ opacity: 1 }))
       ]),
-      transition(':leave', [
+      transition(":leave", [
         // :leave is alias to '* => void'
-        animate(150, style({ opacity: 0 })),
-      ]),
+        animate(150, style({ opacity: 0 }))
+      ])
     ]),
-    trigger('slide', [
-      transition(':enter', [
+    trigger("slide", [
+      transition(":enter", [
         // :enter is alias to 'void => *'
         style({ width: 0, opacity: 0 }),
-        animate(200, style({ width: '212px', opacity: 1 })),
+        animate(200, style({ width: "212px", opacity: 1 }))
       ]),
-      transition(':leave', [
+      transition(":leave", [
         // :leave is alias to '* => void'
-        style({ width: '212px', opacity: 1 }),
-        animate(200, style({ width: 0, opacity: 0 })),
-      ]),
-    ]),
+        style({ width: "212px", opacity: 1 }),
+        animate(200, style({ width: 0, opacity: 0 }))
+      ])
+    ])
   ],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.css"]
 })
-export class HeaderComponent implements OnInit, AfterViewChecked {
+export class HeaderComponent implements OnInit, AfterViewChecked, OnDestroy {
   @Output() profileSelected = new EventEmitter();
   @Output() genreSelected = new EventEmitter();
   showDropDown: boolean;
@@ -63,21 +64,30 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     private authService: AuthenticationService,
     private searchService: SearchService,
     private userService: UserService
-  ) {}
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        if (this.subUser && this.subUser.id !== authService.subUser.id) {
+          this.ngOnInit();
+        }
+      }
+    });
+  }
 
   ngOnInit() {
     this.showDropDown = false;
-    this.isSearch = this.router.url.slice(0, 7) === '/search' ? true : false;
-    this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : '';
+    this.isSearch = this.router.url.slice(0, 7) === "/search" ? true : false;
+    this.searchValue = this.isSearch ? this.searchService.getSearchQuery() : "";
     this.getSubUsers();
 
-    if (document.getElementById('#searchInput') && this.isSearch)
-      document.getElementById('#searchInput').focus();
+    if (document.getElementById("#searchInput") && this.isSearch)
+      document.getElementById("#searchInput").focus();
   }
 
   ngAfterViewChecked() {
-    if (document.getElementById('#searchInput') && this.isSearch)
-      document.getElementById('#searchInput').focus();
+    if (document.getElementById("#searchInput") && this.isSearch)
+      document.getElementById("#searchInput").focus();
   }
 
   getSubUsers() {
@@ -111,7 +121,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
 
   signOut() {
     this.authService.logout();
-    this.router.navigate(['welcome']);
+    this.router.navigate(["welcome"]);
   }
 
   onBlur() {
@@ -122,7 +132,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
     // 500ms 이내에 다시 keyup event 시 search 안 함 (입력중이기 때문에)
     clearTimeout(this.timeout);
 
-    if (!this.searchValue && this.router.url.slice(0, 7) === '/search') {
+    if (!this.searchValue && this.router.url.slice(0, 7) === "/search") {
       // search 창에서 검색어 없을 시 이전 화면으로 돌아감
       // console.log(
       //   'no search value! go back to',
@@ -131,7 +141,7 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
       this.router.navigate([this.searchService.beforeSearch]);
     } else {
       // input Value가 있을 경우
-      if (this.router.url.slice(0, 7) !== '/search') {
+      if (this.router.url.slice(0, 7) !== "/search") {
         // 처음 search로 이동할 때 현재의 routing 주소 저장
         this.searchService.rememberBefore(this.router.url);
       }
@@ -140,6 +150,12 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
         this.searchService.setSearchQuery(this.searchValue);
         this.router.navigate([`search/${this.searchValue}`]);
       }, 500);
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
     }
   }
 }
