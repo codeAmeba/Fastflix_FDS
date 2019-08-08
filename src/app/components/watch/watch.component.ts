@@ -29,14 +29,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
   pauseMovie: boolean = false;
   playIconActive: boolean = false;
-
-  // 영화정보 데이터 받았다고 가정함
-  // movieTitle: string = 'Big Buck Bunny';
-  // madeYear: string = '2019';
-  // ageLimit: string = '12';
-  // runningTime: string = '9분 56초';
-  // movieIntro: string =
-  //   'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.';
   movieTitle: string;
   madeYear: string;
   ageLimit: string;
@@ -74,16 +66,12 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.vidObj = new videojs(
       this.vid.nativeElement,
       options,
-      function onPlayerReady() {
-        // videojs.log("FASTFLIX player is working!");
-      }
+      function onPlayerReady() {}
     );
 
     const myPlayer = videojs("my-video");
 
     this.movieService.getMovieDetail(this.movieId).subscribe(detail => {
-      console.log(detail);
-
       this.video = detail["video_file"] || this.video;
       this.movieTitle = detail["name"];
       this.madeYear = detail["production_date"];
@@ -92,8 +80,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
       this.movieIntro = detail["synopsis"];
 
       myPlayer.src({ type: "video/mp4", src: this.video });
-
-      console.log(this.ageLimit);
     });
 
     // 10초 전, 후 이동 버튼 vjs-control-bar에 동적 추가
@@ -157,27 +143,18 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
 
       //test
       // 플레이어 구동 시 lastTime부터 플레이 시작
-      // myPlayer.currentTime(localStorage.getItem('lastTime'));
       this.movieService.getMovieDetail(this.movieId).subscribe(detail => {
         myPlayer.currentTime(detail["to_be_continue"]);
       });
-      // this.hourOfMovie = this.minOfMovie > 60 ? this.minOfMovie / 60 : 0;
-      // this.minOfMovie = Math.round(myPlayer.currentTime() / 60);
-      // this.secOfMovie = Math.round(myPlayer.currentTime() % 60);
     });
 
     window.addEventListener("beforeunload", this.savePlayTime);
-    // window.addEventListener('beforeunload', function() {
-    //   localStorage.setItem('lastTime', myPlayer.currentTime());
-    // });
   }
 
   // OnDestroy 적용으로 컴포넌트 소멸 시(스트리밍 페이지 이탈 시) 시간 저장
   // 뒤로가기 시 시간 저장
   ngOnDestroy() {
     this.savePlayTime();
-    // const myPlayer = videojs('my-video');
-    // localStorage.setItem('lastTime', myPlayer.currentTime());
   }
 
   // 10초 전,후 이동
