@@ -68,8 +68,6 @@ export class ProfileManageComponent implements OnInit {
         (a: SubUser, b: SubUser) => a.id - b.id
       );
       this.subUsers = subUsers;
-      // this.subUsers = this.authService.getSubUsers();
-      console.log('get subUsers', this.authService.subUsers);
     });
     this.selectedUser = {
       id: 0,
@@ -90,7 +88,6 @@ export class ProfileManageComponent implements OnInit {
         'profile_image_path'
       ],
     };
-    console.log('selectedUser', this.selectedUser);
   }
 
   // Profile Add로 전환
@@ -116,13 +113,9 @@ export class ProfileManageComponent implements OnInit {
     };
 
     this.authService.createProfile(user).subscribe(profiles => {
-      console.log('success', profiles['sub_user_list']);
-
       this.authService.subUsers = profiles['sub_user_list'].sort(
         (a: SubUser, b: SubUser) => a.id - b.id
       );
-
-      console.log('after added', this.authService.subUsers);
 
       // this.subUsers = this.authService.getSubUsers();
       this.getSubUsers();
@@ -140,7 +133,6 @@ export class ProfileManageComponent implements OnInit {
   // 반영된 subUsers를 다시 가져오고 selectedUser 초기화
   removeProfile() {
     this.userService.removeProfile(this.selectedUser.id).subscribe(response => {
-      console.log('remove', response);
       this.getSubUsers();
       this.tabState = '';
     });
@@ -174,8 +166,6 @@ export class ProfileManageComponent implements OnInit {
 
         this.isChanged();
 
-        console.log('tempUser', this.tempUser);
-
         this.tabState = 'profileImage';
 
         this.standardIcons = response['대표 아이콘'];
@@ -203,21 +193,12 @@ export class ProfileManageComponent implements OnInit {
 
   // Profile Image 변경 확인
   confirmProfileImage() {
-    // this.selectedUser['profile_info'][
-    //   'profile_image_path'
-    // ] = this.tempUser.profile_image_path;
-
-    // this.selectedUser.name = this.tempUser.name;
-    // this.selectedUser.kid = this.tempUser.kid;
     this.imageChanged = true;
     this.tabState = 'change';
   }
 
   // Profile Image 변경 취소
   cancelProfileImage() {
-    // this.tempUser.profile_image_path = this.selectedUser['profile_info'][
-    //   'profile_image_path'
-    // ];
     this.imageChanged = false;
     this.tabState = 'profileImage';
   }
@@ -239,11 +220,8 @@ export class ProfileManageComponent implements OnInit {
     if (this.imageChanged)
       profileInfo['profile_image_path'] = this.tempUser.profile_image_path;
 
-    console.log('pre change profile', profileInfo);
-
     this.userService.changeProfile(profileInfo).subscribe(
       ({ response }) => {
-        console.log('save Profile OK', response);
         if (!response) console.log('save Profile FAIL', response);
         this.userService.getSubUsers().subscribe(subUsers => {
           this.authService.subUsers = subUsers.sort(

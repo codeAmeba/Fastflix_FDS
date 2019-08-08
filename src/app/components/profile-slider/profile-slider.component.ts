@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { ProfileImage } from "src/app/models/profile-image";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ProfileImage } from 'src/app/models/profile-image';
 
 @Component({
-  selector: "app-profile-slider",
-  templateUrl: "./profile-slider.component.html",
-  styleUrls: ["./profile-slider.component.css"]
+  selector: 'app-profile-slider',
+  templateUrl: './profile-slider.component.html',
+  styleUrls: ['./profile-slider.component.css'],
 })
 export class ProfileSliderComponent implements OnInit {
   @Input() profileData: ProfileImage[];
@@ -54,7 +54,7 @@ export class ProfileSliderComponent implements OnInit {
   ngOnChanges() {
     this.movies = this.profileData.map((movie, index) => ({
       ...movie,
-      order: index + 1
+      order: index + 1,
     }));
     this.moviesLength = this.profileData.length;
 
@@ -153,11 +153,6 @@ export class ProfileSliderComponent implements OnInit {
     this.cardMove = false;
     // setTimeout(() => {
     this.bobup = 0;
-
-    // }, 300);
-
-    console.log("호버 나갔당");
-    // console.log(this.isOpen);
   }
 
   // 보여주고 있는 카드 숫자 부여
@@ -189,7 +184,6 @@ export class ProfileSliderComponent implements OnInit {
   }
 
   selectIcon(profile) {
-    console.log(profile);
     this.selectedIcon.emit(profile);
   }
 }

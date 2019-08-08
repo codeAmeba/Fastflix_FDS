@@ -83,8 +83,8 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
       this.authService.subUsers = subUsers.sort((a, b) => a.id - b.id);
       this.subUsers = subUsers;
       this.subUser = this.authService.subUser;
-      console.log('get subUsers', this.authService.subUsers);
-      console.log('Current subUser', this.subUser.name);
+      // console.log('get subUsers', this.authService.subUsers);
+      // console.log('Current subUser', this.subUser.name);
     });
   }
 
@@ -122,10 +122,10 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
 
     if (!this.searchValue && this.router.url.slice(0, 7) === '/search') {
       // search 창에서 검색어 없을 시 이전 화면으로 돌아감
-      console.log(
-        'no search value! go back to',
-        this.searchService.beforeSearch
-      );
+      // console.log(
+      //   'no search value! go back to',
+      //   this.searchService.beforeSearch
+      // );
       this.router.navigate([this.searchService.beforeSearch]);
     } else {
       // input Value가 있을 경우

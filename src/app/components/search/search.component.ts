@@ -40,7 +40,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('onInit');
     this.subUser = this.authService.subUser;
     this.searchOK = true;
     this.route.paramMap.subscribe(params => {
@@ -49,7 +48,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.searchService.searchMovies(this.query).subscribe(
         response => {
           this.searchOK = true;
-          console.log('search response for "', this.query, '": ', response);
           this.relatedContents = response.contents;
           this.searchMovies = response['first_movie'].map(movie => {
             return {

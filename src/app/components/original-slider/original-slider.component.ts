@@ -4,17 +4,17 @@ import {
   OnChanges,
   Input,
   Output,
-  EventEmitter
-} from "@angular/core";
-import { MoviePreview } from "../../models/movie-preview";
-import { MovieDetail } from "src/app/models/movies-detail";
+  EventEmitter,
+} from '@angular/core';
+import { MoviePreview } from '../../models/movie-preview';
+import { MovieDetail } from 'src/app/models/movies-detail';
 
-import { MovieService } from "src/app/services/movie.service";
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
-  selector: "app-original-slider",
-  templateUrl: "./original-slider.component.html",
-  styleUrls: ["./original-slider.component.css"]
+  selector: 'app-original-slider',
+  templateUrl: './original-slider.component.html',
+  styleUrls: ['./original-slider.component.css'],
 })
 export class OriginalSliderComponent implements OnInit {
   @Input() moviesList: MoviePreview[];
@@ -58,7 +58,7 @@ export class OriginalSliderComponent implements OnInit {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScaleTall = "scale(0.836)";
+  bobScaleTall = 'scale(0.836)';
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -69,50 +69,47 @@ export class OriginalSliderComponent implements OnInit {
     this.moviesDetail = {
       actors: [],
       author: [],
-      big_image_path: "",
+      big_image_path: '',
       can_i_store: false,
-      circle_image: "",
+      circle_image: '',
       degree: {},
       directors: [],
       feature: [],
       genre: [],
-      horizontal_image_path: "",
+      horizontal_image_path: '',
       id: 0,
       like: 0,
-      logo_image_path: "",
+      logo_image_path: '',
       marked: false,
       match_rate: 0,
-      name: "",
-      production_date: "",
+      name: '',
+      production_date: '',
       real_running_time: 0,
       remaining_time: 0,
       running_time: 0,
-      sample_video_file: "",
+      sample_video_file: '',
       similar_movies: [],
-      synopsis: "",
+      synopsis: '',
       to_be_continue: 0,
       total_minute: 0,
-      uploaded_date: "",
-      vertical_image: "",
-      vertical_sample_video_file: "",
-      video_file: ""
+      uploaded_date: '',
+      vertical_image: '',
+      vertical_sample_video_file: '',
+      video_file: '',
     };
   }
 
   ngOnChanges() {
-    console.log("original MovieList", this.moviesList);
     this.movies = this.moviesList.map((movie, index) => ({
       ...movie,
-      order: index + 1
+      order: index + 1,
     }));
     this.moviesLength = this.moviesList.length;
-    console.log("clone movies", this.movies);
 
     if (this.default) {
       this.moviesClone();
     }
     this.slider = this.movies.length / this.cardCount;
-    // console.log(this.category, this.movies);
     this.tabArray();
     this.isOpen = this.category === this.openCategory;
   }
@@ -137,7 +134,6 @@ export class OriginalSliderComponent implements OnInit {
       this.OneSliderLength}%, 0px, 0px)`;
     this.transition = `transform 0.75s ease 0s`;
     this.sliderPosition = this.sliderPosition + this.OneSliderLength;
-    // console.log(this.sliderPosition + this.OneSliderLength);
 
     this.sliderState--;
     if (this.sliderState === 0) {
@@ -149,7 +145,6 @@ export class OriginalSliderComponent implements OnInit {
         this.transition = `none`;
         this.sliderPosition =
           this.XState - this.OneSliderLength * this.sliderState;
-        // console.log(this.XState - this.OneSliderLength * this.sliderState);
       }, 750);
     }
   }
@@ -161,11 +156,9 @@ export class OriginalSliderComponent implements OnInit {
         this.OneSliderLength}%, 0px, 0px)`;
       this.transition = `transform 0.75s ease 0s`;
       this.sliderPosition = this.sliderPosition - this.OneSliderLength;
-      // console.log(this.sliderPosition - this.OneSliderLength);
     } else {
       // movies 뒷부분 clone
       this.moviesClone();
-      // console.log(this.movies);
 
       this.transform = `translate3d(${this.XState -
         this.OneSliderLength * this.sliderState}%, 0px, 0px)`;
@@ -173,10 +166,7 @@ export class OriginalSliderComponent implements OnInit {
       this.default = true;
       this.sliderPosition =
         this.XState - this.OneSliderLength * this.sliderState;
-      // console.log(this.XState - this.OneSliderLength * this.sliderState);
     }
-    console.log(this.sliderState);
-    console.log(this.tabLength);
 
     if (this.sliderState === this.tabLength + 1) {
       this.sliderState = 1;
@@ -203,65 +193,58 @@ export class OriginalSliderComponent implements OnInit {
   }
   cardHover(movieOrder, movieId) {
     if (!this.isOpen) {
-      console.log("안열렸당");
       this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobScaleTall = "scale(0.977777)";
+        this.bobScaleTall = 'scale(0.977777)';
       }, 200);
     }
     this.cardMove = true;
-    console.log("호버됬당");
     this.hoverCard =
       movieOrder % this.cardCount !== 0 ? movieOrder % this.cardCount : 6;
 
     // if (this.cardMove) return;
     this.hoverMoviesDetail(movieId);
-    console.log(this.moviesDetail);
   }
 
   cardHoverLeave() {
-    console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScaleTall = "scale(0.836)";
+    this.bobScaleTall = 'scale(0.836)';
     setTimeout(() => {
       this.bobup = 0;
       if (!this.isOpen) {
         this.moviesDetail = {
           actors: [],
           author: [],
-          big_image_path: "",
+          big_image_path: '',
           can_i_store: false,
-          circle_image: "",
+          circle_image: '',
           degree: {},
           directors: [],
           feature: [],
           genre: [],
-          horizontal_image_path: "",
+          horizontal_image_path: '',
           id: 0,
           like: 0,
-          logo_image_path: "",
+          logo_image_path: '',
           marked: false,
           match_rate: 0,
-          name: "",
-          production_date: "",
+          name: '',
+          production_date: '',
           real_running_time: 0,
           remaining_time: 0,
           running_time: 0,
-          sample_video_file: "",
+          sample_video_file: '',
           similar_movies: [],
-          synopsis: "",
+          synopsis: '',
           to_be_continue: 0,
           total_minute: 0,
-          uploaded_date: "",
-          vertical_image: "",
-          vertical_sample_video_file: "",
-          video_file: ""
+          uploaded_date: '',
+          vertical_image: '',
+          vertical_sample_video_file: '',
+          video_file: '',
         };
       }
     }, 300);
-
-    console.log("호버 나갔당");
-    // console.log(this.isOpen);
   }
 
   // 보여주고 있는 카드 숫자 부여
@@ -271,7 +254,7 @@ export class OriginalSliderComponent implements OnInit {
       Math.floor(movieOrder / this.cardCount) === this.sliderState - 1
         ? showNumber
         : 0;
-    // console.log(quotient);
+
     if (this.sliderState === 1 && movieOrder === 18) {
       this.cardShowNumber = showNumber;
       return this.cardShowNumber;
@@ -301,14 +284,12 @@ export class OriginalSliderComponent implements OnInit {
 
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return "left";
-    else if (this.hoverCard === 6) return "right";
+    if (this.hoverCard === 1) return 'left';
+    else if (this.hoverCard === 6) return 'right';
     return;
   }
 
   showDetail() {
-    // console.log(this.default);
-    // console.log(this.bobup === order);
     this.bobup = 0;
     this.isOpen = true;
     this.sliderOpen.emit(this.category);
@@ -325,7 +306,6 @@ export class OriginalSliderComponent implements OnInit {
     this.movieService.getMovieDetail(movieId).subscribe(
       detail => {
         this.moviesDetail = detail;
-        console.log(this.moviesDetail);
       },
       error => {
         console.log(error);
@@ -335,7 +315,6 @@ export class OriginalSliderComponent implements OnInit {
 
   myList(movie: MovieDetail) {
     this.movieService.myList(movie.id).subscribe(({ marked }) => {
-      console.log("myList", movie.id, marked);
       movie.marked = marked;
       this.toggleMyList.emit();
     });

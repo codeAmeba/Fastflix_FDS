@@ -48,8 +48,6 @@ export class SignupStep3Component implements OnInit {
 
     this.authService.createProfile(user).subscribe(
       profiles => {
-        console.log('create profile success: ', profiles['sub_user_list']);
-
         this.authService.subUser = profiles['sub_user_list'][0];
 
         this.authService.subUsers = profiles['sub_user_list'].sort(

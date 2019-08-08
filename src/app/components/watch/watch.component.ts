@@ -208,8 +208,6 @@ export class WatchComponent implements OnInit, AfterViewInit, OnDestroy {
     const myPlayer = videojs('my-video');
     this.movieService
       .saveWatchingTime(this.movieId, Math.round(myPlayer.currentTime()))
-      .subscribe(({ saved }) => {
-        console.log('play time saved: ', saved);
-      });
+      .subscribe(({ saved }) => {}, error => console.error(error));
   }
 }

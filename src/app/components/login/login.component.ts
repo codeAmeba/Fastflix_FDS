@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     };
 
     this.authService.login(user).subscribe(response => {
-      console.log('login response: ', response);
+      // console.log('login response: ', response);
 
       this.authService.setToken(response['token']);
 
