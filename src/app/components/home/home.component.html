@@ -113,12 +113,22 @@
       >
         <h2 class="rowHeader">
           <span class="rowTitle">
-            <div class="rowHeaderTitle" *ngIf="homeCategory">
-              {{
-                homeCategory?.category === '시청 중인 콘텐츠'
-                  ? subUser?.name + ' 님이 ' + homeCategory?.category
-                  : homeCategory?.category
-              }}
+            <div class="rowHeaderTitle" *ngIf="homeCategory && homeCategory?.category !== '추천 콘텐츠' && homeCategory?.category !== '시청 중인 콘텐츠'" >
+              {{ homeCategory?.category }}
+            </div>
+            <div
+              class="rowHeaderTitle"
+              *ngIf="homeCategory && homeCategory?.category === '추천 콘텐츠'"
+            >
+              {{ subUser?.name + ' 님을 위한 ' + homeCategory?.category }}
+            </div>
+            <div
+              class="rowHeaderTitle"
+              *ngIf="
+                homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
+              "
+            >
+              {{ subUser?.name + ' 님이 ' + homeCategory?.category }}
             </div>
           </span>
         </h2>

@@ -2,6 +2,7 @@ import { MovieCategory } from './movie-category';
 
 export const HomeCategories: MovieCategory[] = [
   { category: 'Fastflix 인기 콘텐츠', movies: [] },
+  { category: '추천 콘텐츠', movies: [] },
   { category: '내가 찜한 콘텐츠', movies: [] },
   { category: '특별 소개 콘텐츠', movies: [] },
   { category: '최신 등록 콘텐츠', movies: [] },

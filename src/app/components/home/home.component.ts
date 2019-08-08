@@ -101,6 +101,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getCategoryMovies() {
     this.getPopularMovies();
+    this.getRecommendedMovies();
     this.getLatestMovies();
     this.getFollowUpMovies();
     this.getMyListMovies();
@@ -114,6 +115,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.movieService.getPopularMovies().subscribe(movies => {
       popularCategory.movies = movies.map(movie => {
+        return {
+          id: movie.id,
+          title: movie.name,
+          url: movie['horizontal_image_path'],
+          preview: movie['sample_video_file'],
+        };
+      });
+    });
+  }
+
+  getRecommendedMovies() {
+    const recommendedCategory = this.homeCatogories.find(
+      ({ category }) => category === '추천 콘텐츠'
+    );
+
+    this.movieService.getRecommendedMovies().subscribe(movies => {
+      recommendedCategory.movies = movies.map(movie => {
         return {
           id: movie.id,
           title: movie.name,
