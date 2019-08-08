@@ -11,6 +11,8 @@
     (profileSelected)="reload()"
     (genreSelected)="reload()"
     [isSubHeader]="isSubHeader"
+    [isProfileHeader]="isProfileHeader"
+    [isWelcome]="isWelcomeHeader"
   ></app-header>
   <router-outlet (activate)="isHeaderNeed()" #outlet="outlet"></router-outlet>
 </div>

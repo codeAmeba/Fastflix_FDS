@@ -49,6 +49,8 @@ export class HeaderComponent implements OnInit, AfterViewChecked {
   @Output() genreSelected = new EventEmitter();
   showDropDown: boolean;
   @Input() isSubHeader: boolean;
+  @Input() isProfileHeader: boolean;
+  @Input() isWelcome: boolean;
   isSearch: boolean;
   searchValue: string;
   subUsers: SubUser[];
