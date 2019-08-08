@@ -66,6 +66,19 @@ export class MovieService {
     });
   }
 
+  // 추천 영화들
+  getRecommendedMovies(): Observable<any> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({})
+      .set('Authorization', `Token ${token}`)
+      .set('subuserid', this.authService.subUser.id + '');
+
+    return this.http.get<any>(`${this.apiUrl}/movies/rcd/`, {
+      headers,
+    });
+  }
+
   // 내가 찜한 영화
   getMyListMovies(): Observable<any> {
     const token = this.authService.getToken();
