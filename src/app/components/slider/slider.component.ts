@@ -103,6 +103,9 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    if (this.isContinue)
+      console.log('시청중', this.isContinue, this.moviesList);
+
     this.movies = this.moviesList.map((movie, index) => ({
       ...movie,
       order: index + 1,
