@@ -1,5 +1,9 @@
 <header class="pinning-header">
-  <div class="header-container" fixHeader>
+  <div
+    *ngIf="!isProfileHeader && !isWelcome"
+    class="header-container"
+    fixHeader
+  >
     <nav class="main-header">
       <a routerLink="/home" class="logo" routerLinkActive="active">
         <img src="../../../assets/images/fastflix_logo_03.png" alt="" />
@@ -180,5 +184,17 @@
     <ng-container *ngIf="isSubHeader">
       <app-sub-header (selectedGenre)="selectGenre()"></app-sub-header>
     </ng-container>
+  </div>
+  <div *ngIf="isProfileHeader" class="pinning-header on-profiles-gate">
+    <div
+      class="pinning-header-container"
+      style="top: 0px; position: relative; background: transparent;"
+    >
+      <div class="main-header on-profiles-gate" role="navigation">
+        <a routerLink="/home" class="logo" routerLinkActive="active">
+          <img src="../../../assets/images/fastflix_logo_03.png" alt="" />
+        </a>
+      </div>
+    </div>
   </div>
 </header>

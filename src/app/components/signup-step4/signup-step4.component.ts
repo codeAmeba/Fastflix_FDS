@@ -23,6 +23,8 @@ export class SignupStep4Component implements OnInit {
   userName: string;
   movies: Movie[];
   selectedMovies: Movie[];
+  loadedImages: number;
+  allImageLoaded: boolean;
 
   constructor(
     private authService: AuthenticationService,
@@ -32,6 +34,8 @@ export class SignupStep4Component implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadedImages = 0;
+    this.allImageLoaded = false;
     this.activeSubmit = false;
     this.animate = false;
     this.count = 0;
@@ -39,6 +43,15 @@ export class SignupStep4Component implements OnInit {
     this.movies = [];
     this.selectedMovies = [];
     this.getPreMovies();
+  }
+
+  onImageLoaded(imgElement: HTMLImageElement) {
+    // Img.classList.add('loaded');
+    imgElement.classList.add('loaded');
+    this.loadedImages += 1;
+    if (this.loadedImages === 60) {
+      this.allImageLoaded = true;
+    }
   }
 
   getPreMovies() {
