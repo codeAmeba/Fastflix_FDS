@@ -104,25 +104,15 @@ export class SliderComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.isContinue = this.category === "시청 중인 콘텐츠" ? true : false;
-    if (this.isContinue) {
-      console.log("시청중", this.isContinue, "moviesList", this.moviesList);
-      console.log("시청중인 movies", this.movies);
-    }
+    // console.log("시청중", this.isContinue, "moviesList", this.moviesList);
+    // console.log("시청중인 movies", this.movies);
     if (this.moviesList !== []) {
-      // this.movies = this.moviesList.map(function(movie, index) {
-      //   return { ...movie, index };
-      // });
       this.movies = this.moviesList.map((movie, index) => ({
         ...movie,
         order: index + 1
       }));
     }
-    // this.movies = this.moviesList.map((movie, index) => ({
-    //   ...movie,
-    //   order: index + 1
-    // }));
-    // console.log("movies", this.moviesList);
-    // console.log("movies", this.movies);
+
     this.moviesLength = this.moviesList.length;
 
     if (this.default) {

@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
         if (this.subUser && this.subUser.id !== authService.subUser.id) {
-          console.log("====================================");
-          console.log("SubUser 선택으로 init");
-          console.log("====================================");
+          // console.log("====================================");
+          // console.log("SubUser 선택으로 init");
+          // console.log("====================================");
           this.init();
         }
       }
@@ -194,7 +194,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             continue: continueMovie["progress_bar"]
           };
         });
-        console.log("Home 시청 중 movies 할당", follwUpCategory.movies);
+        // console.log("Home 시청 중 movies 할당", follwUpCategory.movies);
       },
       error => console.error(error)
     );
