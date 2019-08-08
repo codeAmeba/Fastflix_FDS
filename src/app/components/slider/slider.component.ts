@@ -4,27 +4,27 @@ import {
   Input,
   OnChanges,
   Output,
-  EventEmitter,
-} from '@angular/core';
-import { MoviePreview } from '../../models/movie-preview';
-import { MovieDetail } from 'src/app/models/movies-detail';
+  EventEmitter
+} from "@angular/core";
+import { MoviePreview } from "../../models/movie-preview";
+import { MovieDetail } from "src/app/models/movies-detail";
 
-import { MovieService } from 'src/app/services/movie.service';
+import { MovieService } from "src/app/services/movie.service";
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css'],
+  selector: "app-slider",
+  templateUrl: "./slider.component.html",
+  styleUrls: ["./slider.component.css"]
 })
 export class SliderComponent implements OnInit, OnChanges {
   @Input() moviesList: MoviePreview[];
   @Input() category: string;
   @Input() openCategory: string;
-  @Input() isContinue: boolean;
   @Output() sliderOpen = new EventEmitter();
   @Output() sliderClose = new EventEmitter();
   @Output() toggleMyList = new EventEmitter();
 
+  isContinue: boolean;
   tabShow: boolean = false;
   movies: MoviePreview[];
   moviesLength: number;
@@ -57,7 +57,7 @@ export class SliderComponent implements OnInit, OnChanges {
   hoverCard: number = 8;
   cardTransform: any;
   cardTransition: any;
-  bobScale = 'scale(0.52222)';
+  bobScale = "scale(0.52222)";
   cardMove: boolean = false;
   cardShowNumber;
   isOpen: boolean = false;
@@ -68,57 +68,29 @@ export class SliderComponent implements OnInit, OnChanges {
 
   constructor(private movieService: MovieService) {}
 
-  ngOnInit() {
-    // this.moviesDetail = {
-    //   actors: [],
-    //   author: [],
-    //   big_image_path: '',
-    //   can_i_store: false,
-    //   circle_image: '',
-    //   degree: {},
-    //   directors: [],
-    //   feature: [],
-    //   genre: [],
-    //   horizontal_image_path: '',
-    //   id: 0,
-    //   like: 0,
-    //   logo_image_path: '',
-    //   marked: false,
-    //   match_rate: 0,
-    //   name: '',
-    //   production_date: '',
-    //   real_running_time: 0,
-    //   remaining_time: 0,
-    //   running_time: 0,
-    //   sample_video_file: '',
-    //   similar_movies: [],
-    //   synopsis: '',
-    //   to_be_continue: 0,
-    //   total_minute: 0,
-    //   uploaded_date: '',
-    //   vertical_image: '',
-    //   vertical_sample_video_file: '',
-    //   video_file: '',
-    // };
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
-    if (this.isContinue)
-      console.log('시청중', this.isContinue, this.moviesList);
-
-    this.movies = this.moviesList.map((movie, index) => ({
-      ...movie,
-      order: index + 1,
-    }));
-
-    this.moviesLength = this.moviesList.length;
-
-    if (this.default) {
-      this.moviesClone();
-    }
-    this.slider = this.movies.length / this.cardCount;
-    this.tabArray();
     this.isOpen = this.category === this.openCategory;
+
+    if (this.moviesList && this.moviesList.length === 0) return;
+
+    if (this.moviesList.length > 0) {
+      this.isContinue = this.category === "시청 중인 콘텐츠" ? true : false;
+
+      this.movies = this.moviesList.map((movie, index) => ({
+        ...movie,
+        order: index + 1
+      }));
+
+      this.moviesLength = this.moviesList.length;
+
+      if (this.default) {
+        this.moviesClone();
+      }
+      this.slider = this.movies.length / this.cardCount;
+      this.tabArray();
+    }
   }
 
   tabArray() {
@@ -203,7 +175,7 @@ export class SliderComponent implements OnInit, OnChanges {
     if (!this.isOpen) {
       this.bobup = movieOrder;
       setTimeout(() => {
-        this.bobScale = 'scale(0.99999)';
+        this.bobScale = "scale(0.99999)";
       }, 200);
     }
     this.cardMove = true;
@@ -217,40 +189,40 @@ export class SliderComponent implements OnInit, OnChanges {
   cardHoverLeave() {
     // console.log(this.moviesDetail);
     this.cardMove = false;
-    this.bobScale = 'scale(0.52222)';
+    this.bobScale = "scale(0.52222)";
     setTimeout(() => {
       this.bobup = 0;
       if (!this.isOpen) {
         this.moviesDetail = {
           actors: [],
           author: [],
-          big_image_path: '',
+          big_image_path: "",
           can_i_store: false,
-          circle_image: '',
+          circle_image: "",
           degree: {},
           directors: [],
           feature: [],
           genre: [],
-          horizontal_image_path: '',
+          horizontal_image_path: "",
           id: 0,
           like: 0,
-          logo_image_path: '',
+          logo_image_path: "",
           marked: false,
           match_rate: 0,
-          name: '',
-          production_date: '',
+          name: "",
+          production_date: "",
           real_running_time: 0,
           remaining_time: 0,
           running_time: 0,
-          sample_video_file: '',
+          sample_video_file: "",
           similar_movies: [],
-          synopsis: '',
+          synopsis: "",
           to_be_continue: 0,
           total_minute: 0,
-          uploaded_date: '',
-          vertical_image: '',
-          vertical_sample_video_file: '',
-          video_file: '',
+          uploaded_date: "",
+          vertical_image: "",
+          vertical_sample_video_file: "",
+          video_file: ""
         };
       }
     }, 300);
@@ -293,8 +265,8 @@ export class SliderComponent implements OnInit, OnChanges {
 
   // 어디서 bobup이 될 것인지 정해주기
   bobupTransformOrigin() {
-    if (this.hoverCard === 1) return 'left';
-    else if (this.hoverCard === 6) return 'right';
+    if (this.hoverCard === 1) return "left";
+    else if (this.hoverCard === 6) return "right";
     return;
   }
 
