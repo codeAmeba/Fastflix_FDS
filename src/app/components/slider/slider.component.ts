@@ -289,7 +289,7 @@ export class SliderComponent implements OnInit, OnChanges {
     this.movieService.getMovieDetail(movieId).subscribe(
       detail => {
         this.moviesDetail = detail;
-        // console.log(this.moviesDetail);
+        console.log("movie detail", this.moviesDetail);
       },
       error => {
         console.log(error);
@@ -299,10 +299,11 @@ export class SliderComponent implements OnInit, OnChanges {
 
   likeMovie(id: number) {
     // console.log(id);
-
     this.movieService.likeMovie(id).subscribe(
       ({ response }) => {
         this.moviesDetail.like = response ? 1 : 0;
+        // console.log("like response", response);
+        // console.log("like like", this.moviesDetail.like);
       },
       error => console.error(error)
     );
@@ -310,10 +311,12 @@ export class SliderComponent implements OnInit, OnChanges {
 
   dislikeMovie(id: number) {
     // console.log(id);
-
     this.movieService.dislikeMovie(id).subscribe(
       ({ response }) => {
         this.moviesDetail.like = response ? 2 : 0;
+
+        // console.log("dislike response", response);
+        // console.log("dislike like", this.moviesDetail.like);
       },
       error => console.error(error)
     );
