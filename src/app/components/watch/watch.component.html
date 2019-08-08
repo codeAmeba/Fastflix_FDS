@@ -1,25 +1,44 @@
-<div class="container"
- (keyup.arrowright)="moveForward()"
- (keyup.arrowleft)="moveBack()"
- (keyup.backspace)="historyBack()"
- (keyup.enter)="enterFullScreen()"
- (keyup.space)="playOrPause()"
- (mousemove)="pauseVideo()">
-  <div class="pause-message pause-current-movie" [class.pause-current-movie]="pauseMovie">
+<div
+  class="container"
+  (keyup.arrowright)="moveForward()"
+  (keyup.arrowleft)="moveBack()"
+  (keyup.backspace)="historyBack()"
+  (keyup.enter)="enterFullScreen()"
+  (keyup.space)="playOrPause()"
+  (mousemove)="pauseVideo()"
+>
+  <div
+    class="pause-message pause-current-movie"
+    [class.pause-current-movie]="pauseMovie"
+  >
     <div class="movie-info">
       <p>시청 중인 콘텐츠</p>
       <h1 class="movie-title">{{ movieTitle }}</h1>
       <span class="made-year">{{ madeYear }}</span>
-      <span class="age-limit">{{ ageLimit }}</span>
+      <span class="maturity-rating ">
+        <span>
+          <img
+            *ngIf="ageLimit"
+            [src]="ageLimit"
+            alt="
+              {{ ageLimit }}
+            "
+        /></span>
+      </span>
       <span class="running-time">{{ runningTime }}</span>
       <p class="movie-intro">{{ movieIntro }}</p>
     </div>
     <p>일시 중지됨</p>
   </div>
   <div class="video-contain">
-    <video #myvid id="my-video" (pause)="pauseVideo()" (play)="pauseMovie = false"
-      class="video-js vjs-matrix">
-      <source [src]="video" type="video/mp4"> 
+    <video
+      #myvid
+      id="my-video"
+      (pause)="pauseVideo()"
+      (play)="pauseMovie = false"
+      class="video-js vjs-matrix"
+    >
+      <source [src]="video" type="video/mp4" />
     </video>
   </div>
 </div>
