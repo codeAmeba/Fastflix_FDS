@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             continue: continueMovie['progress_bar'],
           };
         });
-        // console.log('시청 중', follwUpCategory.movies);
+        console.log('시청 중', follwUpCategory.movies);
       },
       error => console.error(error)
     );
