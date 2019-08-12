@@ -101,7 +101,13 @@ export class SignupStep4Component implements OnInit {
     this.userService.initializeSubUser().subscribe(
       ({ saved }) => {
         console.log("saved", saved);
-        if (saved) this.router.navigate(["home"]);
+        if (saved) {
+          this.authService.subUser = {
+            ...this.authService.subUser,
+            is_initialize: true
+          };
+          this.router.navigate(["home"]);
+        }
       },
       error => console.error(error)
     );

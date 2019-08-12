@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
       id: 0,
       kid: false,
       name: "",
-      is_initialized: false,
+      is_initialize: false,
       parent_user: 0,
       profile_info: {}
     };
@@ -53,8 +53,9 @@ export class ProfileComponent implements OnInit {
 
   secondLogin(subUser: SubUser) {
     this.authService.subUser = subUser;
-    if (this.authService.subUser.is_initialized)
-      this.router.navigate(["/home"]);
+    console.log(this.authService.subUser.is_initialize);
+
+    if (this.authService.subUser.is_initialize) this.router.navigate(["/home"]);
     else this.router.navigate(["/signup/step4"]);
   }
 

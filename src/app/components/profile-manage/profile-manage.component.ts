@@ -73,7 +73,7 @@ export class ProfileManageComponent implements OnInit {
       id: 0,
       kid: false,
       name: "",
-      is_initialized: false,
+      is_initialize: false,
       parent_user: 0,
       profile_info: {}
     };
