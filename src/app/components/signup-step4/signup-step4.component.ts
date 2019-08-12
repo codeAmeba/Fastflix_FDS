@@ -98,6 +98,12 @@ export class SignupStep4Component implements OnInit {
         .subscribe(response => {}, error => console.error(error));
     });
 
-    this.router.navigate(["home"]);
+    this.userService.initializeSubUser().subscribe(
+      ({ saved }) => {
+        console.log("saved", saved);
+        if (saved) this.router.navigate(["home"]);
+      },
+      error => console.error(error)
+    );
   }
 }

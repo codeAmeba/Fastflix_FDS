@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { SubUser } from 'src/app/models/sub-user';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { SubUser } from "src/app/models/sub-user";
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { Router } from "@angular/router";
+import { UserService } from "src/app/services/user.service";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: "app-profile",
+  templateUrl: "./profile.component.html",
+  styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
   isAdd: boolean;
@@ -29,8 +29,8 @@ export class ProfileComponent implements OnInit {
     this.isChild = false;
     this.getSubUsers();
     this.addForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      kid: new FormControl(false),
+      name: new FormControl("", [Validators.required]),
+      kid: new FormControl(false)
     });
   }
 
@@ -44,21 +44,24 @@ export class ProfileComponent implements OnInit {
     this.selectedUser = {
       id: 0,
       kid: false,
-      name: '',
+      name: "",
+      is_initialized: false,
       parent_user: 0,
-      profile_info: {},
+      profile_info: {}
     };
   }
 
   secondLogin(subUser: SubUser) {
     this.authService.subUser = subUser;
-    this.router.navigate(['/home']);
+    if (this.authService.subUser.is_initialized)
+      this.router.navigate(["/home"]);
+    else this.router.navigate(["/signup/step4"]);
   }
 
   tabAdd() {
     this.userService.getProfileImages().subscribe(response => {
       const random = Math.floor(Math.random() * (5 - 0)) + 0;
-      this.newProfileImage = response.basic[random]['image_path'];
+      this.newProfileImage = response.basic[random]["image_path"];
     });
     this.isAdd = true;
   }
@@ -66,16 +69,16 @@ export class ProfileComponent implements OnInit {
   addProfile() {
     if (this.addForm.invalid) return;
 
-    const names = [this.addForm.get('name').value];
-    const kids = [this.addForm.get('kid').value];
+    const names = [this.addForm.get("name").value];
+    const kids = [this.addForm.get("kid").value];
 
     const user = {
       name: names,
-      kid: kids,
+      kid: kids
     };
 
     this.authService.createProfile(user).subscribe(profiles => {
-      this.authService.subUsers = profiles['sub_user_list'].sort(
+      this.authService.subUsers = profiles["sub_user_list"].sort(
         (a: SubUser, b: SubUser) => a.id - b.id
       );
 
