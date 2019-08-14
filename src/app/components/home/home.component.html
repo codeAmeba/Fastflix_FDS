@@ -128,7 +128,7 @@
                 class="rowHeaderTitle"
                 *ngIf="homeCategory && homeCategory?.category === '추천 콘텐츠'"
               >
-                {{ subUser?.name + " 님을 위한 " + homeCategory?.category }}
+                {{ subUser?.name + ' 님을 위한 ' + homeCategory?.category }}
               </div>
               <div
                 class="rowHeaderTitle"
@@ -136,7 +136,7 @@
                   homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
                 "
               >
-                {{ subUser?.name + " 님이 " + homeCategory?.category }}
+                {{ subUser?.name + ' 님이 ' + homeCategory?.category }}
               </div>
             </span>
           </h2>
@@ -164,11 +164,6 @@
                 (sliderClose)="sliderClosed($event)"
                 (toggleMyList)="getMyListMovies()"
               ></app-slider>
-              <!-- [isContinue]="
-                  homeCategory && homeCategory?.category === '시청 중인 콘텐츠'
-                    ? true
-                    : false
-                " -->
             </div>
           </div>
         </div>
@@ -295,5 +290,4 @@
     </div>
   </div>
 </div>
-
 <app-footer></app-footer>
