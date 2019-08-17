@@ -310,6 +310,11 @@ img {
     rgba(0, 0, 0, 0.85) 100%
   );
 }
+.bob-card-adult-video-merch .bob-overlay.bob-overlay-hidden {
+  cursor: none;
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
 
 .bob-card-adult .bob-play-hitzone {
   position: absolute;
@@ -628,7 +633,6 @@ img {
     -moz-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s,
     -o-transform 550ms cubic-bezier(0.86, 0, 0.07, 1) 0.4s;
 }
-
 
 /* 내가 찜한 콘텐츠 추가 */
 
