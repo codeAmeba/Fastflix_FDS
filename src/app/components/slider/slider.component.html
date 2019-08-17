@@ -117,7 +117,12 @@
                           ></div>
                         </span>
                       </div>
-                      <div class="bob-overlay">
+                      <div class="bob-overlay bob-overlay-hidden"
+                        [ngStyle]="{
+                          opacity:
+                          cardMove && moviesDetail ? 1 : 0
+                        }"
+                      >
                         <div
                           class="bob-play-hitzone"
                           [routerLink]="['/watch', moviesDetail?.id]"
