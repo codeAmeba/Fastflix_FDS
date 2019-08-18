@@ -8,11 +8,11 @@
 >
   <app-header
     *ngIf="showHeader"
-    (genreSelected)="reload()"
     [isSubHeader]="isSubHeader"
     [isProfileHeader]="isProfileHeader"
     [isWelcome]="isWelcomeHeader"
   ></app-header>
   <!-- (profileSelected)="reload()" -->
+  <!-- (genreSelected)="reload()" -->
   <router-outlet (activate)="isHeaderNeed()" #outlet="outlet"></router-outlet>
 </div>
