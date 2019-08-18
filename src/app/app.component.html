@@ -2,17 +2,17 @@
 <!-- <router-outlet></router-outlet> -->
 
 <div
-  [@fadeAnimation]="getRouterOutletState(outlet)"
+  [@fadeAnimation]="getRouterOutletState(outlet) || isSelected"
   OnUnload
   style="min-height: 100vh;"
 >
   <app-header
     *ngIf="showHeader"
+    (profileSelected)="fadein()"
     [isSubHeader]="isSubHeader"
     [isProfileHeader]="isProfileHeader"
     [isWelcome]="isWelcomeHeader"
   ></app-header>
-  <!-- (profileSelected)="reload()" -->
   <!-- (genreSelected)="reload()" -->
   <router-outlet (activate)="isHeaderNeed()" #outlet="outlet"></router-outlet>
 </div>

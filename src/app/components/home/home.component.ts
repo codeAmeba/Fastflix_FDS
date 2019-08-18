@@ -12,7 +12,7 @@ import { SubUser } from 'src/app/models/sub-user';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
   playBillBoard: boolean;
   _mainMovie: Main;
   bigMovie: Main;
@@ -228,11 +228,5 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         });
       });
-  }
-
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 }

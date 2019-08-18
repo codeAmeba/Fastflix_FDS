@@ -208,8 +208,5 @@ export class MovieComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.renderer.removeClass(document.body.parentElement, 'movie');
     this.renderer.removeClass(document.body, 'movie');
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 }

@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './my-list.component.html',
   styleUrls: ['./my-list.component.css'],
 })
-export class MyListComponent implements OnInit, OnDestroy {
+export class MyListComponent implements OnInit {
   myLists: MoviePreview[];
   sliderNums: number;
   _sliderLines: MoviePreview[][];
@@ -71,11 +71,5 @@ export class MyListComponent implements OnInit, OnDestroy {
       this.openedCategory === category ? '' : this.openedCategory;
 
     thanos.classList.remove('has-open-jaw');
-  }
-
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 }
