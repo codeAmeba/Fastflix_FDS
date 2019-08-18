@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { MoviePreview } from 'src/app/models/movie-preview';
-import { NavigationEnd, Router } from '@angular/router';
 import { SubUser } from 'src/app/models/sub-user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -20,17 +19,8 @@ export class MyListComponent implements OnInit, OnDestroy {
 
   constructor(
     private movieService: MovieService,
-    private authService: AuthenticationService,
-    private router: Router
-  ) {
-    // this.navigationSubscription = this.router.events.subscribe((e: any) => {
-    //   // If it is a NavigationEnd event re-initalise the component
-    //   if (e instanceof NavigationEnd) {
-    //     if (this.subUser && this.subUser.id !== authService.subUser.id)
-    //       this.ngOnInit();
-    //   }
-    // });
-  }
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.subUser = this.authService.subUser;

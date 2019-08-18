@@ -4,7 +4,6 @@ import { Main } from 'src/app/models/main';
 import { MovieCategories } from 'src/app/models/movieCategories';
 import { MoviePreview } from 'src/app/models/movie-preview';
 import { MovieCategory } from 'src/app/models/movie-category';
-import { Router, NavigationEnd } from '@angular/router';
 import { SubUser } from 'src/app/models/sub-user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MovieGenres } from 'src/app/models/movieGenres';
@@ -29,22 +28,8 @@ export class MovieComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private movieService: MovieService,
-    private router: Router,
     private authService: AuthenticationService
-  ) {
-    // this.navigationSubscription = this.router.events.subscribe((e: any) => {
-    //   // If it is a NavigationEnd event re-initalise the component
-    //   if (e instanceof NavigationEnd) {
-    //     if (this.subUser && this.subUser.id !== authService.subUser.id)
-    //       this.init();
-    //     if (movieService.Genre && this.genre !== movieService.Genre) {
-    //       // console.log('!!!!!!!!!', this.genre, movieService.Genre);
-    //       this.filterByMovies();
-    //     }
-    //     if (!movieService.Genre) this.init();
-    //   }
-    // });
-  }
+  ) {}
 
   ngOnInit() {
     this.renderer.addClass(document.body.parentElement, 'movie');
