@@ -13,7 +13,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class MyListComponent implements OnInit, OnDestroy {
   myLists: MoviePreview[];
   sliderNums: number;
-  sliderLines: MoviePreview[][];
+  _sliderLines: MoviePreview[][];
   openedCategory: string;
   subUser: SubUser;
   navigationSubscription;
@@ -23,18 +23,26 @@ export class MyListComponent implements OnInit, OnDestroy {
     private authService: AuthenticationService,
     private router: Router
   ) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        if (this.subUser && this.subUser.id !== authService.subUser.id)
-          this.ngOnInit();
-      }
-    });
+    // this.navigationSubscription = this.router.events.subscribe((e: any) => {
+    //   // If it is a NavigationEnd event re-initalise the component
+    //   if (e instanceof NavigationEnd) {
+    //     if (this.subUser && this.subUser.id !== authService.subUser.id)
+    //       this.ngOnInit();
+    //   }
+    // });
   }
 
   ngOnInit() {
     this.subUser = this.authService.subUser;
     this.getMyListMovies();
+  }
+
+  get sliderLines() {
+    if (this.subUser && this.subUser.id !== this.authService.subUser.id) {
+      this.getMyListMovies();
+      this.subUser = this.authService.subUser;
+    }
+    return this._sliderLines;
   }
 
   getMyListMovies() {
@@ -53,9 +61,9 @@ export class MyListComponent implements OnInit, OnDestroy {
 
   parseMyList() {
     this.sliderNums = Math.ceil(this.myLists.length / 6);
-    this.sliderLines = Array.from(Array(this.sliderNums), () => Array());
+    this._sliderLines = Array.from(Array(this.sliderNums), () => Array());
     for (let i = 0; i < this.sliderNums; i++) {
-      this.sliderLines[i] = this.myLists.slice(i * 6, (i + 1) * 6);
+      this._sliderLines[i] = this.myLists.slice(i * 6, (i + 1) * 6);
     }
   }
 
