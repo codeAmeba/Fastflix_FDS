@@ -1,11 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
-import {
-  Router,
-  Event,
-  NavigationStart,
-  NavigationEnd,
-  NavigationError,
-} from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 import { fadeAnimation } from './animations/fadeinout.animation';
 import { AuthenticationService } from './services/authentication.service';
 
@@ -20,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isSubHeader: boolean;
   isProfileHeader: boolean;
   isWelcomeHeader: boolean;
+  isSelected: boolean;
 
   constructor(
     private authService: AuthenticationService,
@@ -32,6 +27,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public getRouterOutletState(outlet) {
     return outlet.isActivated ? outlet.activatedRoute : '';
+  }
+
+  fadein() {
+    this.isSelected = true;
+
+    setTimeout(() => {
+      this.isSelected = false;
+    }, 500);
   }
 
   isHeaderNeed() {
@@ -64,10 +67,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.isWelcomeHeader = this.router.url === '/welcome' ? true : false;
       }
     });
-  }
-
-  reload() {
-    this.router.navigate([this.router.url]);
   }
 
   ngOnDestroy() {

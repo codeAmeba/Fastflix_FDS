@@ -2,7 +2,12 @@
   <div class="thanos is-fullbleed">
     <h1 class="visually-hidden">Fastflix 홈</h1>
     <span class="billboard-animations-container">
-      <div class="billboard-row" role="region" aria-label="특별 소개 콘텐츠">
+      <div
+        *ngIf="mainMovie"
+        class="billboard-row"
+        role="region"
+        aria-label="특별 소개 콘텐츠"
+      >
         <div class="billboard billboard-originals">
           <div class="billboard-trailer">
             <div class="trailer-background">
@@ -99,7 +104,7 @@
       </div>
     </span>
     <div
-      *ngFor="let homeCategory of homeCatogories"
+      *ngFor="let homeCategory of homeCategories"
       class="thanosRow thanosTitleCard"
       [class.originalsRow]="homeCategory?.category === 'Fastflix 오리지널'"
       [class.thanosBigRow]="homeCategory?.category === '특별 소개 콘텐츠'"

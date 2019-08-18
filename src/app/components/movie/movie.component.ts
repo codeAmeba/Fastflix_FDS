@@ -4,7 +4,6 @@ import { Main } from 'src/app/models/main';
 import { MovieCategories } from 'src/app/models/movieCategories';
 import { MoviePreview } from 'src/app/models/movie-preview';
 import { MovieCategory } from 'src/app/models/movie-category';
-import { Router, NavigationEnd } from '@angular/router';
 import { SubUser } from 'src/app/models/sub-user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MovieGenres } from 'src/app/models/movieGenres';
@@ -18,33 +17,19 @@ export class MovieComponent implements OnInit, OnDestroy {
   playBillBoard: boolean;
   movies: object[];
   mainMovie: Main;
-  movieCategories: MovieCategory[];
-  genreCatogories: MovieCategory[];
+  _movieCategories: MovieCategory[];
+  _genreCatogories: MovieCategory[];
   openedCategory: string;
   myLists: MoviePreview[];
   navigationSubscription;
   subUser: SubUser;
-  genre: string;
+  _genre: string;
 
   constructor(
     private renderer: Renderer2,
     private movieService: MovieService,
-    private router: Router,
     private authService: AuthenticationService
-  ) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        if (this.subUser && this.subUser.id !== authService.subUser.id)
-          this.init();
-        if (movieService.Genre && this.genre !== movieService.Genre) {
-          // console.log('!!!!!!!!!', this.genre, movieService.Genre);
-          this.filterByMovies();
-        }
-        if (!movieService.Genre) this.init();
-      }
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.renderer.addClass(document.body.parentElement, 'movie');
@@ -53,20 +38,42 @@ export class MovieComponent implements OnInit, OnDestroy {
     this.init();
   }
 
+  get movieCategories() {
+    if (this.subUser && this.subUser.id !== this.authService.subUser.id) {
+      this.init();
+      console.log('get movie');
+    }
+    return this._movieCategories;
+  }
+
+  get genre() {
+    if (this.movieService.Genre && this._genre !== this.movieService.Genre) {
+      this.filterByMovies();
+      this._genre = this.movieService.Genre;
+    }
+    if (!this.movieService.Genre && this._genre !== this.movieService.Genre)
+      this.init();
+    return this._genre;
+  }
+
+  get genreCatogories() {
+    return this._genreCatogories;
+  }
+
   init() {
-    this.subUser = this.authService.subUser;
-    this.genre = this.movieService.Genre;
-    this.openedCategory = '';
     this.getMovies();
+    this.subUser = this.authService.subUser;
+    this._genre = this.movieService.Genre;
+    this.openedCategory = '';
   }
 
   filterByMovies() {
-    this.genre = this.movieService.Genre;
-    this.genreCatogories = MovieGenres;
+    this._genre = this.movieService.Genre;
+    this._genreCatogories = MovieGenres;
     this.movieService.getGenreMovieList().subscribe(movies => {
-      // console.log(movies);
+      console.log(movies);
 
-      this.genreCatogories.forEach(genreCategory => {
+      this._genreCatogories.forEach((genreCategory, index) => {
         genreCategory.movies = movies[genreCategory.category]
           ? movies[genreCategory.category].map(movie => {
               return {
@@ -77,8 +84,23 @@ export class MovieComponent implements OnInit, OnDestroy {
               };
             })
           : [];
+
+        // if (index === 1) {
+        //   console.log(movies[genreCategory.category][0]);
+
+        //   this.mainMovie = {
+        //     ...this.mainMovie,
+        //     id: movies[genreCategory.category][0]['id'],
+        //     image: movies[genreCategory.category][0]['vertical_image'],
+        //     logo: movies[genreCategory.category][0]['logo_image_path'],
+        //     title: movies[genreCategory.category][0]['name'],
+        //     synopsis: movies[genreCategory.category][0]['synopsis'],
+        //     marked: movies[genreCategory.category][0]['marked'],
+        //   };
+        // }
       });
-      // console.log(this.genreCatogories);
+
+      // console.log(this._genreCatogories);
     });
   }
 
@@ -106,7 +128,7 @@ export class MovieComponent implements OnInit, OnDestroy {
         return preMovie;
       });
       this.getMainMovie();
-      this.movieCategories = MovieCategories.map(previewCat => {
+      this._movieCategories = MovieCategories.map(previewCat => {
         return {
           category: previewCat.category,
           movies: this.getCategoryMovie(previewCat.category),
@@ -186,8 +208,5 @@ export class MovieComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.renderer.removeClass(document.body.parentElement, 'movie');
     this.renderer.removeClass(document.body, 'movie');
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 }
