@@ -71,8 +71,15 @@ export class MovieComponent implements OnInit, OnDestroy {
     this._genre = this.movieService.Genre;
     this._genreCatogories = MovieGenres;
     this.movieService.getGenreMovieList().subscribe(movies => {
-      console.log(movies);
-
+      this.mainMovie = {
+        id: movies['main_movie']['id'],
+        image: movies['main_movie']['big_image_path'],
+        logo: movies['main_movie']['logo_image_path'],
+        title: movies['main_movie']['name'],
+        degree: movies['main_movie']['degree'],
+        synopsis: movies['main_movie']['synopsis'],
+        marked: movies['main_movie']['marked'],
+      };
       this._genreCatogories.forEach((genreCategory, index) => {
         genreCategory.movies = movies[genreCategory.category]
           ? movies[genreCategory.category].map(movie => {
@@ -84,23 +91,7 @@ export class MovieComponent implements OnInit, OnDestroy {
               };
             })
           : [];
-
-        // if (index === 1) {
-        //   console.log(movies[genreCategory.category][0]);
-
-        //   this.mainMovie = {
-        //     ...this.mainMovie,
-        //     id: movies[genreCategory.category][0]['id'],
-        //     image: movies[genreCategory.category][0]['vertical_image'],
-        //     logo: movies[genreCategory.category][0]['logo_image_path'],
-        //     title: movies[genreCategory.category][0]['name'],
-        //     synopsis: movies[genreCategory.category][0]['synopsis'],
-        //     marked: movies[genreCategory.category][0]['marked'],
-        //   };
-        // }
       });
-
-      // console.log(this._genreCatogories);
     });
   }
 
