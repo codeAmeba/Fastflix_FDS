@@ -1,4 +1,6 @@
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+/* video.js */
+/* @import "../../../assets/video.js.min.css"; */
 
 .container {
   height: 100vh;
@@ -13,6 +15,14 @@
 
 video {
   object-fit: contain;
+}
+
+.video-js .vjs-tech {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .vjs-matrix.video-js {
@@ -53,11 +63,11 @@ video {
   margin: 15px 0;
 }
 
-.movie-info > p {
+.movie-info>p {
   margin-top: 15px;
 }
 
-.pause-message > p {
+.pause-message>p {
   margin-top: 50px;
   text-align: right;
 }
