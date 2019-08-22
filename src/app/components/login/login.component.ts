@@ -1,12 +1,12 @@
-import { Component, OnInit, Renderer2 } from "@angular/core";
-import { FormGroup, Validators, FormControl } from "@angular/forms";
-import { Router } from "@angular/router";
-import { AuthenticationService } from "src/app/services/authentication.service";
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -20,23 +20,23 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.renderer.addClass(document.body.parentElement, "signup");
-    this.renderer.addClass(document.body, "signup");
+    this.renderer.addClass(document.body.parentElement, 'signup');
+    this.renderer.addClass(document.body, 'signup');
     this.loginForm = new FormGroup({
-      id: new FormControl("", [
+      id: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
         // Validators.pattern(
         //   '^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$'
         // ),
       ]),
-      password: new FormControl("", [
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(60)
+        Validators.maxLength(60),
       ]),
-      maintainance: new FormControl(false)
+      maintainance: new FormControl(false),
     });
 
     this.emailHolderUp = false;
@@ -45,22 +45,22 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const user = {
-      id: this.loginForm.get("id").value,
-      pw: this.loginForm.get("password").value
+      id: this.loginForm.get('id').value,
+      pw: this.loginForm.get('password').value,
     };
 
     this.authService.login(user).subscribe(response => {
-      console.log("login response: ", response);
+      // console.log("login response: ", response);
 
-      this.authService.setToken(response["token"]);
+      this.authService.setToken(response['token']);
 
-      this.authService.subUsers = response["sub_user_list"].sort(
+      this.authService.subUsers = response['sub_user_list'].sort(
         (a, b) => a.id - b.id
       );
 
-      if (response.token) this.router.navigate(["home"]);
+      if (response.token) this.router.navigate(['home']);
     });
-    this.authService.setMaintainance(this.loginForm.get("maintainance").value);
+    this.authService.setMaintainance(this.loginForm.get('maintainance').value);
   }
 
   emailFocus(value: string) {
@@ -72,15 +72,15 @@ export class LoginComponent implements OnInit {
   }
 
   get id() {
-    return this.loginForm.get("id");
+    return this.loginForm.get('id');
   }
 
   get password() {
-    return this.loginForm.get("password");
+    return this.loginForm.get('password');
   }
 
   ngOnDestroy(): void {
-    this.renderer.removeClass(document.body.parentElement, "signup");
-    this.renderer.removeClass(document.body, "signup");
+    this.renderer.removeClass(document.body.parentElement, 'signup');
+    this.renderer.removeClass(document.body, 'signup');
   }
 }
