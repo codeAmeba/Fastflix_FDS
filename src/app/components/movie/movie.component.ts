@@ -41,7 +41,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   get movieCategories() {
     if (this.subUser && this.subUser.id !== this.authService.subUser.id) {
       this.init();
-      console.log('get movie');
+      // console.log('get movie');
     }
     return this._movieCategories;
   }
@@ -98,6 +98,7 @@ export class MovieComponent implements OnInit, OnDestroy {
   getMovies() {
     this.movieService.getMainMovie().subscribe(
       movies => {
+        // console.log(movies);
         this.movies = movies[0];
         this.getMyListMovies();
       },
